@@ -23,9 +23,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="{{ mix('/css/codebase.css') }}">
 
+        <!-- Drop Zone -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('/css/themes/corporate.css') }}"> -->
-        @yield('css_after')
+        @yield('styles')
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
@@ -174,7 +177,7 @@
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="javascript:void(0)">J. Smith</a>
+                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -183,9 +186,14 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="javascript:void(0)">
-                                        <i class="si si-logout"></i>
+                                    <a class="link-effect text-dual-primary-dark" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                            <i class="si si-logout"></i>
                                     </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                 </li>
                             </ul>
                         </div>
@@ -203,6 +211,11 @@
                             </li>
                             <li class="nav-main-heading">
                                 <span class="sidebar-mini-visible">VR</span><span class="sidebar-mini-hidden">Various</span>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/portafolio') ? ' active' : '' }}" href="/dashboard/portafolio">
+                                    <i class="si si-cup"></i><span class="sidebar-mini-hide">Portafolio</span>
+                                </a>
                             </li>
                             <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span class="sidebar-mini-hide">Examples</span></a>
@@ -511,6 +524,9 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
 
-        @yield('js_after')
+        <!-- Drop Zone -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+
+        @yield('scripts')
     </body>
 </html>
