@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Projects routes
     Route::get('dashboard/proyectos', 'System\ProjectController@index')->name('projects.index');
+    Route::get('dashboard/proyectos/create', 'System\ProjectController@create')->name('projects.create');
+    Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
 
 });
 

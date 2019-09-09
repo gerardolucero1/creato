@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\System;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,19 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $allUsers = User::orderBy('id', 'DESC')->get();
+        //dd($users);
+        
+        $usersClient = [];
+        foreach ($allUsers as $user) {
+            if($user->hasRole('cliente')){
+                array_push($usersClient, $user);
+            }
+        }
+        
+        $users = collect($usersClient);
+
+        return view('system.projects.create', compact('users'));
     }
 
     /**
@@ -35,7 +48,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

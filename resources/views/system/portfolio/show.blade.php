@@ -38,10 +38,10 @@
             <div class="col-md-12">
                 <div class="block block-themed pb-4">
                     <div class="block-header bg-success">
-                        <h3 class="block-title">Success</h3>
+                    <h3 class="block-title">{{ $portfolio->title }}</h3>
                         <div class="block-options">
                             <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn-block-option">
-                                <i class="si si-eye"></i>
+                                <i class="si si-pencil"></i>
                             </a>
                         </div>
                     </div>
@@ -67,40 +67,68 @@
                         </div>
                     </div>
                     <div class="container">
-                        <div class="row">
-                            @foreach ($portfolio->images as $image)
-                                <div class="col-md-4 image-portfolio" style="background-image: url('{{ $image->file_name }}');">
-                                    <div class="layer d-flex justify-content-center align-items-center">
-                                        <button onclick="event.preventDefault();
-                                            Swal.fire({
-                                                title: 'Are you sure?',
-                                                text: 'You wont be able to revert this!',
-                                                type: 'warning',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#3085d6',
-                                                cancelButtonColor: '#d33',
-                                                confirmButtonText: 'Yes, delete it!'
-                                                }).then((result) => {
-                                                if (result.value) {
-                                                    document.getElementById('delete-project-image-{{ $image->id }}').submit();
-                                                    Swal.fire(
-                                                    'Deleted!',
-                                                    'Your file has been deleted.',
-                                                    'success'
-                                                    )
-                                                }
-                                            });
-                                        "
-                                        style="submit" class="btn btn-sm btn-rounded btn-alt-danger min-width-75">
-                                            <i class="fa fa-times"></i> Delete
-                                        </button>
-
-                                        <form id="delete-project-image-{{ $image->id }}" action="{{ route('portfolio.delete.image', $image->id) }}" method="POST" class="d-inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                        <div class="row p-4">
+                            <div class="col-md-12">
+                                <div class="block">
+                                    <div class="block-content block-content-full d-flex align-items-center justify-content-between bg-primary">
+                                        <div class="mr-5">
+                                            <p class="font-size-lg font-w600 text-white mb-0">
+                                                Galeria de {{ $portfolio->title }}
+                                            </p>
+                                            <p class="font-size-sm text-uppercase font-w600 text-white-op mb-0">
+                                                {{ count($portfolio->images) }} Fotos
+                                            </p>
+                                        </div>
+                                        <div class="p-20">
+                                            <i class="fa fa-2x fa-image text-white-op"></i>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-full">
+                                        <div class="row js-gallery img-fluid-100 gutters-tiny js-gallery-enabled">
+                                            @foreach ($portfolio->images as $image)
+                                                <div class="col-md-4 image-portfolio" style="background-image: url('{{ $image->file_name }}'); margin: 0;">
+                                                    <div class="layer d-flex justify-content-center align-items-center">
+                                                        <button onclick="event.preventDefault();
+                                                            Swal.fire({
+                                                                title: 'Are you sure?',
+                                                                text: 'You wont be able to revert this!',
+                                                                type: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Yes, delete it!'
+                                                                }).then((result) => {
+                                                                if (result.value) {
+                                                                    document.getElementById('delete-project-image-{{ $image->id }}').submit();
+                                                                    Swal.fire(
+                                                                    'Deleted!',
+                                                                    'Your file has been deleted.',
+                                                                    'success'
+                                                                    )
+                                                                }
+                                                            });
+                                                        "
+                                                        style="submit" class="btn btn-sm btn-rounded btn-alt-danger min-width-75">
+                                                            <i class="fa fa-times"></i> Delete
+                                                        </button>
+                
+                                                        <form id="delete-project-image-{{ $image->id }}" action="{{ route('portfolio.delete.image', $image->id) }}" method="POST" class="d-inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            @foreach ($portfolio->images as $image)
+                                
                             @endforeach
                         </div>
                     </div>
