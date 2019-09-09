@@ -24,10 +24,25 @@ Route::group(['middleware' => ['auth']], function () {
     // Portfolio routes
     Route::get('dashboard/portafolio', 'System\PortfolioController@index')->name('portfolio.index');
     Route::get('dashboard/portafolio/create', 'System\PortfolioController@create')->name('portfolio.create');
+    Route::get('dashboard/portafolio/show/{id}', 'System\PortfolioController@show')->name('portfolio.show');
     Route::post('dashboard/portafolio', 'System\PortfolioController@store')->name('portfolio.store');
-    Route::get('dashboard/portafolio/{id}', 'System\PortfolioController@edit')->name('portfolio.edit');
+    Route::get('dashboard/portafolio/edit/{id}', 'System\PortfolioController@edit')->name('portfolio.edit');
     Route::put('dashboard/portafolio/{id}', 'System\PortfolioController@update')->name('portfolio.update');
     Route::delete('dashboard/portafolio/{id}', 'System\PortfolioController@destroy')->name('portfolio.delete');
+        // Portfolio pictures
+        Route::post('dashboard/portafolio/{id}/imagenes', 'System\PortfolioController@upload')->name('portfolio.images');
+        Route::delete('dashboard/portafolio/image/{id}', 'System\PortfolioController@destroyImage')->name('portfolio.delete.image');
+
+    // Users routes
+    Route::get('dashboard/usuarios', 'System\UsersController@index')->name('users.index');
+    Route::get('dashboard/usuarios/create', 'System\UsersController@create')->name('users.create');
+    Route::get('dashboard/usuarios/edit/{id}', 'System\UsersController@edit')->name('users.edit');
+    Route::post('dashboard/usuarios', 'System\UsersController@store')->name('users.store');
+    Route::put('dashboard/usuarios/{id}', 'System\UsersController@update')->name('users.update');
+    Route::delete('dashboard/usuarios/{id}', 'System\UsersController@destroy')->name('users.delete');
+
+    // Projects routes
+    Route::get('dashboard/proyectos', 'System\ProjectController@index')->name('projects.index');
 
 });
 

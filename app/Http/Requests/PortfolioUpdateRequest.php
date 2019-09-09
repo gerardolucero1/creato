@@ -24,10 +24,10 @@ class PortfolioUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => 'required|unique:portfolios,slug,' . $this->portfolio,
-            'date'  => 'required',
-            'place'  => 'required',
+            'title'     => 'required',
+            //'slug'      => 'required|unique:portfolios,slug,'.$this->portfolio,
+            'date'      => 'required',
+            'place'     => 'required',
             //'banner'  => 'required|mimes:jpg,jpeg,png',
         ];
     }

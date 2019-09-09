@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\System;
 
 use App\Portfolio;
+use App\PortfolioImage;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Validator;
 use App\Http\Requests\PortfolioStoreRequest;
 use App\Http\Requests\PortfolioUpdateRequest;
 
@@ -60,7 +63,9 @@ class PortfolioController extends Controller
      */
     public function show($id)
     {
-        //
+        $portfolio = Portfolio::find($id);
+
+        return view('system.portfolio.show',compact('portfolio'));
     }
 
     /**
@@ -86,6 +91,16 @@ class PortfolioController extends Controller
     public function update(PortfolioUpdateRequest $request, $id)
     {
         $portfolio = Portfolio::find($id);
+
+        //Comprobamos que el slug no se repita pero ignoramos el slug propio
+        $v = \Validator::make($request->all(), [
+            'slug' => ['required', Rule::unique('portfolios')->ignore($portfolio->id)],
+        ]);
+ 
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
 
         $portfolio->fill($request->all())->save();
         // Banner
@@ -113,5 +128,23 @@ class PortfolioController extends Controller
 
         return redirect()->route('portfolio.index')
             ->with('info', 'Portafolio elimiando con exito');
+    }
+
+    public function upload($id, Request $request){
+        if($archivo = $request->file('file')){
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move('portfolios', $nombre);
+        }
+
+        $portfolioImage = new PortfolioImage();
+        $portfolioImage->portfolio_id = $id;
+        $portfolioImage->fill(['file_name' => asset('portfolios/'.$nombre)])->save();
+    }
+
+    public function destroyImage($id){
+        $image = PortfolioImage::find($id);
+        $image->delete();
+
+        return back();
     }
 }
