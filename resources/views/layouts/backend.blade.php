@@ -231,6 +231,11 @@
                                     </li>
                                 </ul>
                             </li>
+                                                        <li>
+                                <a class="{{ request()->is('dashboard/cotizaciones') ? ' active' : '' }}" href="/dashboard/cotizaciones">
+                                    <i class="si si-calendar"></i><span class="sidebar-mini-hide">Cotizaciones</span>
+                                </a>
+                            </li>
                             <li class="nav-main-heading">
                                 <span class="sidebar-mini-visible">MR</span><span class="sidebar-mini-hidden">More</span>
                             </li>
@@ -342,7 +347,7 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block">J. Smith</span>
+                                <span class="d-none d-sm-inline-block">{{ Auth::user()->name}}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">

@@ -29,6 +29,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/portafolio/{id}', 'System\PortfolioController@update')->name('portfolio.update');
     Route::delete('dashboard/portafolio/{id}', 'System\PortfolioController@destroy')->name('portfolio.delete');
 
+
+    // Quotation Routes
+    Route::get('dashboard/cotizaciones', 'System\QuotationController@index')->name('quotation.index');
+    Route::post('Quotation', 'System\QuotationController@store')->name('quotation.store');
+    Route::delete('dashboard/cotizaciones/{id}', 'System\QuotationController@destroy')->name('quotation.delete');
+
 });
 
 
