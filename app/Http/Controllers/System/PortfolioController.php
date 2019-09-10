@@ -47,8 +47,8 @@ class PortfolioController extends Controller
         if($archivo = $request->file('banner')){
 
             $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('portfolios', $nombre);
-            $portfolio->fill(['banner' => asset('portfolios/'.$nombre)])->save();
+            $archivo->move('images', $nombre);
+            $portfolio->fill(['banner' => asset('images/'.$nombre)])->save();
         }
 
         return redirect()->route('portfolio.edit', $portfolio->id)
@@ -107,8 +107,8 @@ class PortfolioController extends Controller
         if($archivo = $request->file('banner')){
 
             $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('portfolios', $nombre);
-            $portfolio->fill(['banner' => asset('portfolios/'.$nombre)])->save();
+            $archivo->move('images', $nombre);
+            $portfolio->fill(['banner' => asset('images/'.$nombre)])->save();
         }
 
         return redirect()->route('portfolio.edit', $portfolio->id)
@@ -133,12 +133,12 @@ class PortfolioController extends Controller
     public function upload($id, Request $request){
         if($archivo = $request->file('file')){
             $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('portfolios', $nombre);
+            $archivo->move('images', $nombre);
         }
 
         $portfolioImage = new PortfolioImage();
         $portfolioImage->portfolio_id = $id;
-        $portfolioImage->fill(['file_name' => asset('portfolios/'.$nombre)])->save();
+        $portfolioImage->fill(['file_name' => asset('images/'.$nombre)])->save();
     }
 
     public function destroyImage($id){

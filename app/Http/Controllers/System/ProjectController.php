@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\System;
 
 use App\User;
+use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 
 class ProjectController extends Controller
 {
@@ -15,7 +18,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('system.projects.index');
+        $projects = Project::orderBy('id', 'DESC')->get();
+        return view('system.projects.index', compact('projects'));
     }
 
     /**
@@ -28,6 +32,7 @@ class ProjectController extends Controller
         $allUsers = User::orderBy('id', 'DESC')->get();
         //dd($users);
         
+        
         $usersClient = [];
         foreach ($allUsers as $user) {
             if($user->hasRole('cliente')){
@@ -35,8 +40,10 @@ class ProjectController extends Controller
             }
         }
         
-        $users = collect($usersClient);
-
+        $fullUsers = collect($usersClient);
+        $users = $fullUsers->pluck('name', 'id');
+        //dd($users);
+        
         return view('system.projects.create', compact('users'));
     }
 
@@ -46,9 +53,21 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectStoreRequest $request)
     {
-        dd($request);
+        //dd($request);
+        $project = Project::create($request->all());
+
+        // Banner
+        if($archivo = $request->file('banner')){
+
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $project->fill(['banner' => asset('images/'.$nombre)])->save();
+        }
+
+        return redirect()->route('project.edit', $project->id)
+            ->with('info', 'Proyecto creado con exito');
     }
 
     /**
@@ -59,7 +78,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return view('system.projects.show', compact('project'));
     }
 
     /**
@@ -70,7 +90,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Portfolio::find($id);
+
+        return view('system.projects.edit', compact('project'));
     }
 
     /**
@@ -80,7 +102,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectUpdateRequest $request, $id)
     {
         //
     }

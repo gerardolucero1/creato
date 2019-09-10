@@ -57,48 +57,50 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-xl-3">
-                        <div class="block text-center">
-                            <div class="block-content block-content-full block-sticky-options pt-30">
-                                <div class="block-options">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-fw fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(27px, 28px, 0px);">
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="fa fa-fw fa-user mr-5"></i>Check out profile
-                                            </a>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="fa fa-fw fa-folder mr-5"></i>Check out project
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="fa fa-fw fa-envelope-o mr-5"></i>Send a message
-                                            </a>
+                    @foreach ($projects as $project)
+                        <div class="col-md-6 col-xl-3">
+                            <div class="block text-center">
+                                <div class="block-content block-content-full block-sticky-options pt-30">
+                                    <div class="block-options">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-fw fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(27px, 28px, 0px);">
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="fa fa-fw fa-user mr-5"></i>Check out profile
+                                                </a>
+                                                <a class="dropdown-item" href="{{ route('projects.show', $project->id) }}">
+                                                    <i class="fa fa-fw fa-folder mr-5"></i>Check out project
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="fa fa-fw fa-envelope-o mr-5"></i>Send a message
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <img class="img-avatar" src="https://data.whicdn.com/images/261286359/superthumb.jpg" alt="">
                                 </div>
-                                <img class="img-avatar" src="https://data.whicdn.com/images/261286359/superthumb.jpg" alt="">
-                            </div>
-                            <div class="block-content block-content-full block-content-sm bg-body-light">
-                                <div class="font-w600 mb-5">Ralph Murray</div>
-                                <div class="font-size-sm text-muted">Web Developer</div>
-                            </div>
-                            <div class="block-content">
-                                <div class="row items-push">
-                                    <div class="col-6">
-                                        <div class="mb-5"><i class="si si-notebook fa-2x"></i></div>
-                                        <div class="font-size-sm text-muted">4 Notes</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mb-5"><i class="si si-camera fa-2x"></i></div>
-                                        <div class="font-size-sm text-muted">14 Photos</div>
+                                <div class="block-content block-content-full block-content-sm bg-body-light">
+                                    <div class="font-w600 mb-5">{{ $project->title}}</div>
+                                    <div class="font-size-sm text-muted">{{ $project->user->name }}</div>
+                                </div>
+                                <div class="block-content">
+                                    <div class="row items-push">
+                                        <div class="col-6">
+                                            <div class="mb-5"><i class="si si-notebook fa-2x"></i></div>
+                                            <div class="font-size-sm text-muted">4 Notes</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-5"><i class="si si-camera fa-2x"></i></div>
+                                            <div class="font-size-sm text-muted">14 Photos</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

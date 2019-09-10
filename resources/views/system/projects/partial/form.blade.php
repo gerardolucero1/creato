@@ -30,8 +30,8 @@
         <div class="form-group row">
             <div class="col-md-12">
                 <div class="form-material">
-                    {{ Form::label('cliente_id', 'Cliente') }}
-                    {{ Form::select('cliente_id', $users->pluck('name'), null, ['class' => 'form-control']) }}
+                    {{ Form::label('client_id', 'Cliente') }}
+                    {{ Form::select('client_id', $users, null, ['class' => 'form-control']) }}
                 </div>
             </div>
         </div>
