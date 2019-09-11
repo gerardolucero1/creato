@@ -352,8 +352,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                                 <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="si si-user mr-5"></i> Profile
+                                <a class="dropdown-item" href="perfil">
+                                    <i class="si si-user mr-5"></i> Perfil
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                     <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
@@ -372,8 +372,16 @@
                                 <!-- END Side Overlay -->
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="si si-logout mr-5"></i> Sign Out
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                    <i class="si si-logout mr-5"></i> Salir
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+
+
+
                                 </a>
                             </div>
                         </div>

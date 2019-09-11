@@ -35,7 +35,7 @@
                         <th class="d-none d-sm-table-cell" style="width: 20%;">Email</th>
                         <th class="d-none d-md-table-cell" style="width: 20%;">Fecha</th>
                         <th class="d-none d-md-table-cell" style="width: 30%;">Lugar</th>
-                        <th class="text-center" style="width: 100px;">Acciones</th>
+                        <th class="text-center" style="width: 30%;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@
                         <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
+                                    <a class="fa fa-pencil" href="{{ route('quotation.show', $quotation->id) }}"></a>
                                 </button>
                                 <button onclick="event.preventDefault();
                                                         Swal.fire({

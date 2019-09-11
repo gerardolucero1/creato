@@ -10,6 +10,7 @@ class Quotation extends Model
         'name',
         'place',
         'date',
-        'email'
+        'email',
+        'phone'
     ];
 }

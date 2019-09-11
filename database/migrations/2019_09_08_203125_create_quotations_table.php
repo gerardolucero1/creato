@@ -19,6 +19,7 @@ class CreateQuotationsTable extends Migration
             $table->string('email');
             $table->string('place');
             $table->date('date');
+            $table->char('phone');
             $table->timestamps();
         });
     }

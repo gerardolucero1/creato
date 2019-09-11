@@ -49,7 +49,8 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-        //
+       $quotations = Quotation::find($id);
+       return view('system.quotation.show', compact('quotations'));
     }
 
     /**

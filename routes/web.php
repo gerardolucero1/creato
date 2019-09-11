@@ -34,6 +34,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/cotizaciones', 'System\QuotationController@index')->name('quotation.index');
     Route::post('Quotation', 'System\QuotationController@store')->name('quotation.store');
     Route::delete('dashboard/cotizaciones/{id}', 'System\QuotationController@destroy')->name('quotation.delete');
+    Route::get('Quotation{id}', 'System\QuotationController@show')->name('quotation.show');
+
+    // ProfileRoutes
+    Route::get('dashboard/perfil', 'System\ProfileController@index')->name('users.Profile');
 
 });
 

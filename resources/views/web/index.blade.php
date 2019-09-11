@@ -22,11 +22,40 @@
                         <input type="text" class="form-control" id="lugar" name="place" placeholder="lugar">
                     </div>
                     <div class="form-group">
+                        <label for="phone">telefono</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="telefono">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                        
   </div>
-                   <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button onclick="event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Tu cotización sera enviada',
+                                                            text: 'Estaremos en contacto contigo pronto',
+                                                            type: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Enviar!'
+                                                            }).then((result) => {
+                                                            if (result.value) {
+                                                                (
+                                                                Swal.fire(
+                                                                'Listo!',
+                                                                'Tu cotizacióna sido enviada.',
+                                                                'success'
+                                                                )
+                                                            }
+                                                        });
+                                                    "
+                                                    style="submit" class="btn btn-primary">
+                                                    <i class="fa fa-times">Enviar</i>
+                                                </button>
+                                                
+
+                  <!--boton de envio normal <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>
         </div>
     </div>
