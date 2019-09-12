@@ -8,8 +8,9 @@
     "\\resources\\views",
     "\\resources\\views\\layouts",
     "\\resources\\views\\system",
-    "\\resources\\views\\system\\users",
-    "\\resources\\views\\web"
+    "\\resources\\views\\system\\quotation",
+    "\\resources\\views\\system\\users"
   ],
+  "SelectedNode": "\\resources\\views\\layouts\\app.blade.php",
   "PreviewInSolutionExplorer": false
 }
