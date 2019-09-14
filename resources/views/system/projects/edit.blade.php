@@ -30,7 +30,7 @@
                     <div class="block-header bg-gd-sea">
                         <h3 class="block-title">Proyecto</h3>
                         <div class="block-options">
-                            <a href="{{ route('project.create') }}" class="btn-block-option">
+                            <a href="{{ route('projects.create') }}" class="btn-block-option">
                                 <i class="si si-plus"></i>
                             </a>
                         </div>
@@ -38,7 +38,7 @@
                     <div class="block-content pb-4">
                         <div class="row">
                             <div class="col-md-12">
-                                {!! Form::model($project, ['route' => ['project.update', $project->id], 'method' => 'PUT', 'files' => 'true']) !!}
+                                {!! Form::model($project, ['route' => ['projects.update', $project->id], 'method' => 'PUT', 'files' => 'true']) !!}
             
                                     @include('system.projects.partial.form')
                                 {!! Form::close() !!}

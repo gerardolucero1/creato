@@ -4,7 +4,9 @@ namespace App\Http\Controllers\System;
 
 use App\User;
 use App\Project;
+use App\GuestList;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
@@ -55,7 +57,6 @@ class ProjectController extends Controller
      */
     public function store(ProjectStoreRequest $request)
     {
-        //dd($request);
         $project = Project::create($request->all());
 
         // Banner
@@ -66,7 +67,16 @@ class ProjectController extends Controller
             $project->fill(['banner' => asset('images/'.$nombre)])->save();
         }
 
-        return redirect()->route('project.edit', $project->id)
+        // Obtenemos el proyecto creado
+        $project = Project::orderBy('id', 'DESC')->first();
+
+        // Creamos la lista de invitados asociada al proyecto que acacabamos de crear
+        $guestList = new GuestList();
+        $guestList->project_id = $project->id;
+        $guestList->name = 'Lista de '. $project->title;
+        $guestList->save();
+
+        return redirect()->route('projects.edit', $project->id)
             ->with('info', 'Proyecto creado con exito');
     }
 
@@ -90,9 +100,22 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $project = Portfolio::find($id);
+        $project = Project::find($id);
+        $allUsers = User::orderBy('id', 'DESC')->get();
+        //dd($users);
+        
+        
+        $usersClient = [];
+        foreach ($allUsers as $user) {
+            if($user->hasRole('cliente')){
+                array_push($usersClient, $user);
+            }
+        }
+        
+        $fullUsers = collect($usersClient);
+        $users = $fullUsers->pluck('name', 'id');
 
-        return view('system.projects.edit', compact('project'));
+        return view('system.projects.edit', compact('project', 'users'));
     }
 
     /**
@@ -104,7 +127,29 @@ class ProjectController extends Controller
      */
     public function update(ProjectUpdateRequest $request, $id)
     {
-        //
+        $project = Project::find($id);
+
+        //Comprobamos que el slug no se repita pero ignoramos el slug propio
+        $v = \Validator::make($request->all(), [
+            'slug' => ['required', Rule::unique('projects')->ignore($project->id)],
+        ]);
+ 
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+
+        $project->fill($request->all())->save();
+        // Banner
+        if($archivo = $request->file('banner')){
+
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $project->fill(['banner' => asset('images/'.$nombre)])->save();
+        }
+
+        return redirect()->route('projects.edit', $project->id)
+            ->with('info', 'Proyecto actualizado con exito');
     }
 
     /**

@@ -2,20 +2,12 @@
 
 @section('styles')
     <style>
-        .portfolio{
+        .project-banner{
             width: 100%;
-            padding-top: 25%; /* 1:1 Aspect Ratio */
+            padding-top: 50%; /* 1:1 Aspect Ratio */
             background-size: cover;
             background-position: center;
             position: relative; /* If you want text inside of it */
-        }
-
-        .portfolio .options-container{
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
         }
     </style>
 @endsection
@@ -58,43 +50,40 @@
                 </div>
                 <div class="row">
                     @foreach ($projects as $project)
-                        <div class="col-md-6 col-xl-3">
-                            <div class="block text-center">
-                                <div class="block-content block-content-full block-sticky-options pt-30">
-                                    <div class="block-options">
-                                        <div class="dropdown">
-                                            <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-fw fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(27px, 28px, 0px);">
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    <i class="fa fa-fw fa-user mr-5"></i>Check out profile
-                                                </a>
-                                                <a class="dropdown-item" href="{{ route('projects.show', $project->id) }}">
-                                                    <i class="fa fa-fw fa-folder mr-5"></i>Check out project
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    <i class="fa fa-fw fa-envelope-o mr-5"></i>Send a message
-                                                </a>
-                                            </div>
+                        <div class="col-md-6 col-xl-4 js-appear-enabled animated fadeIn" data-toggle="appear">
+                            <div class="block block-rounded">
+                                <div class="block-content p-0 overflow-hidden">
+                                    <div class="project-banner" style="background-image: url('{{ $project->banner }}');">
+
+                                    </div>
+                                </div>
+                                <div class="block-content border-bottom">
+                                    <h4 class="font-size-h5 mb-10">{{ $project->title }}</h4>
+                                    <h5 class="font-size-h1 font-w300 mb-5">{{ $project->user->name }}</h5>
+                                    <p class="text-muted">
+                                        <i class="fa fa-map-pin mr-5"></i> {{ $project->place }}
+                                    </p>
+                                </div>
+                                <div class="block-content border-bottom">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <p>
+                                                <i class="fa fa-fw fa-users text-muted mr-5"></i> <strong>300</strong> Invitados
+                                            </p>
                                         </div>
                                     </div>
-                                    <img class="img-avatar" src="https://data.whicdn.com/images/261286359/superthumb.jpg" alt="">
                                 </div>
-                                <div class="block-content block-content-full block-content-sm bg-body-light">
-                                    <div class="font-w600 mb-5">{{ $project->title}}</div>
-                                    <div class="font-size-sm text-muted">{{ $project->user->name }}</div>
-                                </div>
-                                <div class="block-content">
-                                    <div class="row items-push">
+                                <div class="block-content block-content-full">
+                                    <div class="row">
                                         <div class="col-6">
-                                            <div class="mb-5"><i class="si si-notebook fa-2x"></i></div>
-                                            <div class="font-size-sm text-muted">4 Notes</div>
+                                            <a class="btn btn-sm btn-hero btn-noborder btn-secondary btn-block" href="{{ route('projects.show', $project->id) }}">
+                                                Detalles
+                                            </a>
                                         </div>
                                         <div class="col-6">
-                                            <div class="mb-5"><i class="si si-camera fa-2x"></i></div>
-                                            <div class="font-size-sm text-muted">14 Photos</div>
+                                            <a class="btn btn-sm btn-hero btn-noborder btn-primary btn-block" href="{{ route('projects.edit', $project->id) }}">
+                                                Editar
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

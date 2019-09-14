@@ -19,7 +19,8 @@ Auth::routes();
 // System routes
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::match(['get', 'post'], '/dashboard', 'System\SystemController@index');
+    
+    Route::match(['get', 'post'], '/dashboard', 'System\SystemController@index')->name('dashboard.admin');
 
     // Portfolio routes
     Route::get('dashboard/portafolio', 'System\PortfolioController@index')->name('portfolio.index');
@@ -47,6 +48,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/proyectos/show/{id}', 'System\ProjectController@show')->name('projects.show');
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
+    Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
+
+    // Client dashboard 
+    Route::get('cliente/', 'System\ClientController@index')->name('dashboard.client');
+
+        // Guests
+        Route::get('cliente/invitados', 'System\GuestController@index')->name('guests.index'); 
 
 });
 
