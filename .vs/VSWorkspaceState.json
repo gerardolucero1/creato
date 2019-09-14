@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app",
     "\\database",
     "\\database\\migrations",
     "\\resources",
@@ -9,8 +8,10 @@
     "\\resources\\views\\layouts",
     "\\resources\\views\\system",
     "\\resources\\views\\system\\quotation",
-    "\\resources\\views\\system\\users"
+    "\\resources\\views\\system\\users",
+    "\\resources\\views\\system\\users\\profile",
+    "\\resources\\views\\system\\users\\profile\\partial"
   ],
-  "SelectedNode": "\\resources\\views\\layouts\\app.blade.php",
+  "SelectedNode": "\\resources\\views\\system\\users\\profile\\edit.blade.php",
   "PreviewInSolutionExplorer": false
 }

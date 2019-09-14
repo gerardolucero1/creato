@@ -38,6 +38,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     // ProfileRoutes
     Route::get('dashboard/perfil', 'System\ProfileController@index')->name('users.Profile');
+    Route::get('dashboard/perfil/create', 'System\ProfileController@create')->name('profile.create');
+    Route::post('dashboard/perfil', 'System\ProfileController@store')->name('profile.store');
+    Route::get('dashboard/perfil/{id}', 'System\ProfileController@edit')->name('profile.edit');
+    Route::put('dashboard/perfil/{id}', 'System\ProfileController@update')->name('profile.update');
 
 });
 

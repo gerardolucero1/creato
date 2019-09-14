@@ -4,8 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Profile extends Model
 {
-        'last_name',
-        'phone'
+  protected $fillable = [
+        'last_name', 'phone', 'user_id'
+    ];
+
+     public function user()
+ {
+ return $this->belongsTo(User::class);
+ }
+
+       
 }

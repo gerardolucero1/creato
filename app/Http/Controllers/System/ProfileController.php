@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function index()
     {
         
-        return view('system.users.profile');
+        return view('system.users.profile.index');
     }
 
     /**
@@ -26,7 +26,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+     return view('system.users.profile.create');
+        
     }
 
     /**
@@ -37,7 +38,11 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+       $profile = Profile::create($request->all());
+
+        return view('system.users.profile.index');
+      
     }
 
     /**
@@ -48,7 +53,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -59,7 +64,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::find($id);
+        return view('system.users.profile.edit', compact('profile'));
     }
 
     /**
@@ -71,7 +77,9 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = Profile::find($id);
+        $profile->fill($request->all())->save();
+        return view('system.users.profile.index');
     }
 
     /**
