@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PortfolioUpdateRequest extends FormRequest
+class ProjectStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,12 @@ class PortfolioUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'     => 'required',
-            //'slug'      => 'required|unique:portfolios,slug,'.$this->portfolio,
-            'date'      => 'required',
-            'place'     => 'required',
-            //'banner'  => 'required|mimes:jpg,jpeg,png',
+            'client_id'     => 'required|integer',
+            'title'         => 'required',
+            'slug'          => 'required|unique:portfolios,slug',
+            'date'          => 'required',
+            'place'         => 'required',
+            'banner'        => 'required|mimes:jpg,jpeg,png',
         ];
     }
 }

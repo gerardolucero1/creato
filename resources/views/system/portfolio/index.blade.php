@@ -67,16 +67,35 @@
                                                 <a class="btn btn-sm btn-rounded btn-alt-primary min-width-75" href="{{ route('portfolio.edit', $portfolio->id) }}">
                                                     <i class="fa fa-pencil"></i> Edit
                                                 </a>
-                                                <a class="btn btn-sm btn-rounded btn-alt-primary min-width-75" href="javascript:void(0)">
-                                                    <i class="fa fa-plus"></i> Add
+                                                <a class="btn btn-sm btn-rounded btn-alt-primary min-width-75" href="{{ route('portfolio.show', $portfolio->id) }}">
+                                                    <i class="fa fa-eye"></i> Show
                                                 </a>
-                                                <form action="{{ route('portfolio.delete', $portfolio->id) }}" method="POST" class="d-inline-block">
+                                                <button onclick="event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Are you sure?',
+                                                            text: 'You wont be able to revert this!',
+                                                            type: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Yes, delete it!'
+                                                            }).then((result) => {
+                                                            if (result.value) {
+                                                                document.getElementById('delete-project-{{ $portfolio->id }}').submit();
+                                                                Swal.fire(
+                                                                'Deleted!',
+                                                                'Your file has been deleted.',
+                                                                'success'
+                                                                )
+                                                            }
+                                                        });
+                                                    "
+                                                    style="submit" class="btn btn-sm btn-rounded btn-alt-danger min-width-75">
+                                                    <i class="fa fa-times"></i> Delete
+                                                </button>
+                                                <form id="delete-project-{{ $portfolio->id }}" action="{{ route('portfolio.delete', $portfolio->id) }}" method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
-
-                                                    <button style="submit" class="btn btn-sm btn-rounded btn-alt-danger min-width-75">
-                                                        <i class="fa fa-times"></i> Delete
-                                                    </button>
                                                 </form>
                                             </div>
                                         </div>

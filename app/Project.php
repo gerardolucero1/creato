@@ -2,21 +2,22 @@
 
 namespace App;
 
-use App\PortfolioImage;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Project extends Model
 {
     protected $fillable = [
+        'client_id',
         'title',
         'slug',
         'place',
-        'banner',
         'date',
+        'banner',
     ];
 
-    public function images()
+    public function user()
     {
-        return $this->hasMany(PortfolioImage::class);
+        return $this->belongsTo(User::class, 'client_id');
     }
 }

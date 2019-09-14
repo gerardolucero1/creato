@@ -206,7 +206,7 @@
                         <ul class="nav-main">
                             <li>
                                 <a class="{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-                                    <i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span>
+                                    <i class="si si-grid"></i><span class="sidebar-mini-hide">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-main-heading">
@@ -214,7 +214,17 @@
                             </li>
                             <li>
                                 <a class="{{ request()->is('dashboard/portafolio') ? ' active' : '' }}" href="/dashboard/portafolio">
-                                    <i class="si si-cup"></i><span class="sidebar-mini-hide">Portafolio</span>
+                                    <i class="si si-folder"></i><span class="sidebar-mini-hide">Portafolio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/usuarios') ? ' active' : '' }}" href="/dashboard/usuarios">
+                                    <i class="si si-users"></i><span class="sidebar-mini-hide">Usuarios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/proyectos') ? ' active' : '' }}" href="/dashboard/proyectos">
+                                    <i class="si si-notebook"></i><span class="sidebar-mini-hide">Proyectos</span>
                                 </a>
                             </li>
                             <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
