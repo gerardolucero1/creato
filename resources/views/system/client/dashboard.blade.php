@@ -47,7 +47,7 @@
                                 <i class="fa fa-3x fa-users text-primary"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
-                                3 Invitados
+                                {{ count(Auth::user()->project->list->guests) }} Invitados
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
                                 Invitados

@@ -509,7 +509,9 @@
 
             <!-- Main Container -->
             <main id="main-container">
-                @yield('content')
+                <div id="app">
+                    @yield('content')
+                </div>
             </main>
             <!-- END Main Container -->
 

@@ -47,6 +47,11 @@ class UsersController extends Controller
 
         if($user = User::create($request->all())){
             $user->assignRole($request->rol);
+            if($request->has('password')){
+                $user->password = bcrypt($request->password);
+            }
+
+            $user->save();
 
             return redirect()->route('users.edit', $user->id)
                 ->with('info', 'Usuario creado con exito');
@@ -96,11 +101,12 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->syncRoles($request->rol);
-        $user->save();
 
         if($request->has('password')){
             $user->password = bcrypt($request->password);
         }
+
+        $user->save();
 
         return redirect()->route('users.edit', $user->id)
             ->with('info', 'Usuario actualizado con exito');

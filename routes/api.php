@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Rutas de la lista de invitados
+//Route::get('lista/{listum}', 'System\GuestController@show');
+Route::resource('lista', 'System\GuestController');
+Route::resource('acompanante', 'System\CompanionController');
+
