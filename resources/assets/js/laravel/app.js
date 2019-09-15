@@ -25,6 +25,7 @@ Vue.use(DataTable);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('guests-component', require('./components/client/GuestsComponent.vue').default);
+Vue.component('companion-component', require('./components/system/CompanionComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

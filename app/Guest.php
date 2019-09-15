@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Companion;
 use Illuminate\Database\Eloquent\Model;
 
 class Guest extends Model
@@ -20,5 +21,10 @@ class Guest extends Model
     public function guestList()
     {
         return $this->belongsTo(GuestList::class);
+    }
+
+    public function companions()
+    {
+        return $this->hasMany(Companion::class);
     }
 }

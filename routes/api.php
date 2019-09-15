@@ -16,4 +16,5 @@ use Illuminate\Http\Request;
 // Rutas de la lista de invitados
 //Route::get('lista/{listum}', 'System\GuestController@show');
 Route::resource('lista', 'System\GuestController');
+Route::resource('acompanante', 'System\CompanionController');
 

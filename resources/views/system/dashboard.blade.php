@@ -10,7 +10,7 @@
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-briefcase fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="1500">2</div>
+                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="1500">{{ count(App\Project::all()) }}</div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Proyectos</div>
                     </div>
                 </a>
@@ -21,7 +21,7 @@
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-folder fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="1500">10</div>
+                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="1500">{{ count(App\Portfolio::all()) }}</div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Portafolios</div>
                     </div>
                 </a>
@@ -43,7 +43,16 @@
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-users fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="4252">10</div>
+                        @php
+                            $users = App\User::all();
+                            $clients = [];
+                            foreach ($users as $user) {
+                                if($user->hasRole('cliente')){
+                                    array_push($clients, $user);
+                                }
+                            }
+                        @endphp
+                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="4252">{{ count($clients) }}</div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Clientes</div>
                     </div>
                 </a>
