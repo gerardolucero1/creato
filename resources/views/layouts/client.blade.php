@@ -13,6 +13,7 @@
             content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
+        <meta name="user" content="{{ Auth::user() }}">
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Project;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +51,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
+        // Get cliente project
+        Route::get('proyecto/cliente/{id}', function($id){
+            $project = Project::find($id);
+
+            return $project->user;
+        });
 
     // Client dashboard 
     Route::get('cliente/', 'System\ClientController@index')->name('dashboard.client');

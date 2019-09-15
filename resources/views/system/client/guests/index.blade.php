@@ -11,3 +11,9 @@
         </div>
     </main>
 @endsection
+
+@section('scripts')
+    <script>
+        jQuery(function(){ Codebase.helpers('table-tools'); });
+    </script>
+@endsection
