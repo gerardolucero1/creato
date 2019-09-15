@@ -29,8 +29,8 @@
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                        
-  </div>
-                                        <button onclick="event.preventDefault();
+  </div><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                                       <button onclick="event.preventDefault();
                                                         Swal.fire({
                                                             title: 'Tu cotización sera enviada',
                                                             text: 'Estaremos en contacto contigo pronto',
@@ -46,14 +46,14 @@
                                                                 'Listo!',
                                                                 'Tu cotizacióna sido enviada.',
                                                                 'success'
-                                                                )
-                                                            }
-                                                        });
+                                                                );
                                                     "
                                                     style="submit" class="btn btn-primary">
                                                     <i class="fa fa-times">Enviar</i>
                                                 </button>
-                                                
+                                          
+
+                                            
 
                   <!--boton de envio normal <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>

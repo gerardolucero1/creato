@@ -23,7 +23,7 @@
                 {{ Auth::user()->profile->last_name }} <br>
                 {{ Auth::user()->profile->phone }}
 
-                <a href="{{ route('profile.edit', Auth::user()->profile->id) }}" class="btn btn-primary" >mco</a>
+                <a href="{{ route('profile.edit', Auth::user()->profile->id) }}" class="btn btn-danger" >editar</a>
        
   </div>
                    
