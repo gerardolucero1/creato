@@ -16,6 +16,8 @@ class Guest extends Model
         'email',
         'phone',
         'guests',
+        'dataX',
+        'dataY',
     ];
 
     public function guestList()

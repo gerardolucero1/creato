@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\System;
 
-use App\User;
-use App\Guest;
-use App\GuestList;
+use App\MyList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class GuestController extends Controller
+class MyListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('system.client.guests.index', compact('user'));
+        $lists = MyList::where('client_id', Auth::user()->id)->orderBy('order')->get();
+        return $lists;
     }
 
     /**
@@ -40,7 +38,7 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
-        $guest = Guest::create($request->all());
+        $my_list = MyList::create($request->all());
         return;
     }
 
@@ -52,8 +50,7 @@ class GuestController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->first();
-        return GuestList::where('id', $user->project->id)->with('guests')->first();
+        //
     }
 
     /**
@@ -76,8 +73,24 @@ class GuestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $guest = Guest::find($id);
-        $guest->fill($request->all())->save();
+        //
+    }
+
+    /**
+     * Update all the order lists
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAll(Request $request)
+    {
+
+        foreach ($request->listas as $lista) {
+            $my_list = MyList::find($lista['id']);
+            $my_list->order = $lista['order'];
+            $my_list->save();
+        }
+
+        return response('Actualizado correctamente.', 200);
     }
 
     /**
@@ -88,8 +101,6 @@ class GuestController extends Controller
      */
     public function destroy($id)
     {
-        $guest = Guest::find($id);
-        $guest->delete();
+        //
     }
-
 }

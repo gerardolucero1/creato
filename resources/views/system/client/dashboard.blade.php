@@ -86,16 +86,16 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                    <a class="block block-link-shadow" href="javascript:void(0)">
+                    <a class="block block-link-shadow" href="{{ route('tables.index') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-cc-paypal text-gray-dark"></i>
+                                <i class="fa fa-3x fa-venus-mars text-gray-dark"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
-                                $49 Pending
+                                2 Sentados
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                                Payment
+                                Mesas
                             </p>
                         </div>
                     </a>
@@ -112,16 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="block block-bordered">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Mi lista de tareas</h3>
-                        </div>
-                        <div class="block-content">
-                            <p>Bordered block with header background..</p>
-                        </div>
-                    </div>
-                </div>
+                <my-list-component></my-list-component>
             </div>
             <div class="row">
                 <div class="col-md-4">

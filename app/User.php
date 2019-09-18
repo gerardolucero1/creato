@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\MyList;
 use App\Project;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function project()
     {
         return $this->hasOne(Project::class, 'client_id');
+    }
+
+    public function myLists()
+    {
+        return $this->hasMany(MyList::class, 'client_id');
     }
 }

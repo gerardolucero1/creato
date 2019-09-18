@@ -12,52 +12,114 @@
                         </div>
                     </div>
                     <div class="block-content">
-                        <div class="block-content" v-if="lista.length != 0">
+                        <div class="block-content" v-if="invitados.length != 0">
                             <h3 v-if="lista.guests.length == 0" class="text-center">Aun no tienes una lista de invitados</h3>
                             <div v-else class="col-lg-12">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <!-- TABLE ONE -->
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-vcenter">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center" style="width: 100px;"><i class="si si-user"></i></th>
-                                                        <th>Nombre</th>
-                                                        <th style="width: 30%;">Apellidos</th>
-                                                        <th style="width: 30%;">Email</th>
-                                                        <th style="width: 15%;">Telefono</th>
-                                                        <th style="width: 15%;">Estatus</th>
-                                                        <th>Invitados</th>
-                                                        <th class="text-center" style="width: 100px;">Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="guest in lista.guests" :key="guest.index">
-                                                        <td class="text-center">
-                                                            <img v-if="guest.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
-                                                            <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
-                                                        </td>
-                                                        <td class="font-w600">{{ guest.name }}</td>
-                                                        <td class="font-w600">{{ guest.lastName }} {{ guest.secondLastName }}</td>
-                                                        <td>{{ guest.email }}</td>
-                                                        <td>{{ guest.phone }}</td>
-                                                        <td>
-                                                            <span class="badge badge-success">Confirmado</span>
-                                                        </td>
-                                                        <td>{{ guest.guests }}</td>
-                                                        <td class="text-center">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Add" @click="asignarAcompanante(guest)">
+                                        <div class="row">
+                                            <div class="col-md-1 text-center">
+                                                <i class="si si-user"></i>
+                                            </div>
+                                            <div class="col-md-2 text-center font-weight-bold">
+                                                <p>Nombre</p>
+                                            </div>
+                                            <div class="col-md-2 text-center font-weight-bold">
+                                                <p>Apellidos</p>
+                                            </div>
+                                            <div class="col-md-2 text-center font-weight-bold">
+                                                <p>Email</p>
+                                            </div>
+                                            <div class="col-md-2 text-center font-weight-bold">
+                                                <p>Numero</p>
+                                            </div>
+                                            <div class="col-md-1 text-center font-weight-bold">
+                                                <p>Acomp...</p>
+                                            </div>
+                                            <div class="col-md-1 text-center font-weight-bold">
+                                                <p>Estatus</p>
+                                            </div>
+                                            <div class="col-md-1 text-center font-weight-bold">
+                                                <p>Acciones</p>
+                                            </div>
+                                        </div>
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card mt-2" v-for="(guest, index) in invitados" :key="index">
+                                                <div class="row">
+                                                    <div class="col-md-1 text-center">
+                                                        <img v-if="guest.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                        <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <p>{{ guest.name }}</p>
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <p>{{ guest.lastName }} {{ guest.secondLastName }}</p>
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <p>{{ guest.email }}</p>
+                                                    </div>
+                                                    <div class="col-md-2 text-center">
+                                                        <p>{{ guest.phone }}</p>
+                                                    </div>
+                                                    <div class="col-md-1 text-center">
+                                                        <p>{{ guest.companions.length }}/{{ guest.guests }}</p>
+                                                    </div>
+                                                    <div class="col-md-1 text-center">
+                                                        <span class="badge badge-pill badge-danger">Pendiente</span>
+                                                    </div>
+                                                    <div class="col-md-1 text-center">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" @click="asignarAcompanante(guest)">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="collapse" :data-target="'#companions' + guest.id" aria-expanded="false" :aria-controls="'companions' + guest.id">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div :id="'companions' + guest.id" class="collapse container bg-gray" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="row" v-for="(companion, index) in guest.companions" :key="index">
+                                                            <div class="col-md-1 text-center">
+                                                                <img v-if="companion.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                                <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
+                                                            </div>
+                                                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                                <p>{{ companion.name }}</p>
+                                                            </div>
+                                                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                                <p>{{ companion.lastName }} {{ companion.secondLastName }}</p>
+                                                            </div>
+                                                            <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                                                <p>{{ companion.email }}</p>
+                                                            </div>
+                                                            <div class="col-md-1 text-center d-flex justify-content-center align-items-center">
+                                                                <p>{{ companion.phone }}</p>
+                                                            </div>
+                                                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                                <span class="badge badge-pill badge-danger">Pendiente</span>
+                                                            </div>
+                                                            <div class="col-md-1 text-center">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>   
                             </div>
@@ -65,6 +127,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
 
         <!-- Modal agregar acompañante -->
@@ -169,6 +233,7 @@
             return{
                 user: '',
                 lista: [],
+                invitados: '',
                 acompanante: {
                     'guest_id': '',
                     'name': '',
@@ -184,7 +249,6 @@
         },
         created(){
             this.obtenerCliente();
-            this.obtenerAcompanantes();
         },
         methods: {
             obtenerCliente: function(){
@@ -204,6 +268,7 @@
 
                 axios.get(URL).then((response) => {
                     this.lista = response.data;
+                    this.obtenerAcompanantes();
                 }).catch((error) => {
                     console.log(error.data);
                 })
@@ -215,10 +280,10 @@
             },
 
             obtenerAcompanantes: function(){
-                let URL = '/api/lista/' + this.lista.id,
+                let URL = '/lista/acompanantes/' + this.lista.id;
 
                 axios.get(URL).then((response) => {
-                    this.acompanantes = response.data;
+                    this.invitados = response.data;
                 }).catch((error) => {
                     console.log(error.data)
                 })
@@ -236,7 +301,7 @@
                         'success'
                     );
                     $('#agregarAcompanante').modal('hide');
-                    this.obtenerLista();
+                    this.obtenerAcompanantes();
                 }).catch((error) => {
                     console.log(error.data);
                 })

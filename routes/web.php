@@ -1,6 +1,8 @@
 <?php
 
+use App\Guest;
 use App\Project;
+use App\GuestList;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,11 +60,26 @@ Route::group(['middleware' => ['auth']], function () {
             return $project->user;
         });
 
+        // Get companions list
+        Route::get('lista/acompanantes/{id}', function($id){
+            $list = GuestList::find($id);
+            $guests = Guest::where('guestList_id', $list->id)->with('companions')->get();
+
+            return $guests;
+        });
+    // My List routes
+    Route::resource('mi-lista', 'System\MyListController');
+    Route::put('actualizar-listas', 'System\MyListController@updateAll');
+
     // Client dashboard 
     Route::get('cliente/', 'System\ClientController@index')->name('dashboard.client');
 
         // Guests
         Route::get('cliente/invitados', 'System\GuestController@index')->name('guests.index'); 
+
+    // Tables routes
+    Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');
+    Route::put('cliente/tables/{id}', 'System\TablesController@update')->name('tables.update');
 
 });
 

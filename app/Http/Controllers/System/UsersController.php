@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\User;
+use App\MyList;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -52,6 +53,18 @@ class UsersController extends Controller
             }
 
             $user->save();
+
+            $ultimoUsuario = User::orderBy('id', 'DESC')->first();
+
+            if($ultimoUsuario->hasRole('cliente')){
+                $my_list = new MyList();
+                $my_list->client_id = $ultimoUsuario->id;
+                $my_list->name = 'Mi primer lista';
+                $my_list->order = 1;
+                $my_list->category = 'GENERAL';
+                $my_list->save();
+            }
+            
 
             return redirect()->route('users.edit', $user->id)
                 ->with('info', 'Usuario creado con exito');
