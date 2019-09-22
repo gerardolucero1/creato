@@ -53,7 +53,9 @@
                                                     <td>{{ guest.email }}</td>
                                                     <td>{{ guest.phone }}</td>
                                                     <td>
-                                                        <span class="badge badge-success">Confirmado</span>
+                                                        <span v-if="guest.status == 'CONFIRMADO'" class="badge badge-success">Confirmado</span>
+                                                        <span v-if="guest.status == 'PENDIENTE'" class="badge badge-warning">Pendiente</span>
+                                                        <span v-if="guest.status == 'CANCELADO'" class="badge badge-danger">Cancelado</span>
                                                     </td>
                                                     <td>{{ guest.guests }}</td>
                                                     <td class="text-center">
@@ -173,6 +175,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-material">
+                                        <select class="form-control" name="status" v-model="invitado.status">
+                                            <option value="CONFIRMADO">Confirmado</option>
+                                            <option value="PENDIENTE">Pendiente</option>
+                                            <option value="CANCELADO">Cancelado</option>
+                                        </select>
+                                        <label for="material-select">Please Select</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -276,6 +288,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-material">
+                                        <select class="form-control" name="status" v-model="invitadoEdicion.status">
+                                            <option value="CONFIRMADO">Confirmado</option>
+                                            <option value="PENDIENTE">Pendiente</option>
+                                            <option value="CANCELADO">Cancelado</option>
+                                        </select>
+                                        <label for="material-select">Please Select</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -307,6 +329,7 @@
                     'phone': '',
                     'genere': '',
                     'guests': '',
+                    'status': 'PENDIENTE',
                 },
                 invitadoEdicion: '',
             }

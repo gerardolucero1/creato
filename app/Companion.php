@@ -15,6 +15,10 @@ class Companion extends Model
         'genere',
         'email',
         'phone',
+        'dataX',
+        'dataY',
+        'seated',
+        'status',
     ];
 
     public function guest()

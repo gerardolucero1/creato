@@ -22,6 +22,10 @@ class CreateCompanionsTable extends Migration
             $table->enum('genere', ['MALE', 'FEMALE']);
             $table->string('email');
             $table->string('phone');
+            $table->string('dataX')->nullable();
+            $table->string('dataY')->nullable();
+            $table->boolean('seated')->nullable();
+            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO']);
             $table->timestamps();
 
             //Relation

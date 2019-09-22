@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Guest;
+use App\Companion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,6 @@ class TablesController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $guests = $user->project->list->guests;
         return view('system.client.tables.index', compact('guests'));
     }
 
@@ -73,10 +72,20 @@ class TablesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $guest = Guest::find($id);
-        $guest->dataX = $request->dataX;
-        $guest->dataY = $request->dataY;
-        $guest->save();
+        if($request->tipo == 'invitado'){
+            $guest = Guest::find($id);
+            $guest->dataX = $request->dataX;
+            $guest->dataY = $request->dataY;
+            $guest->seated = $request->seated;
+            $guest->save();
+        }else if($request->tipo == 'acompanante'){
+            $companion = Companion::find($id);
+            $companion->dataX = $request->dataX;
+            $companion->dataY = $request->dataY;
+            $companion->seated = $request->seated;
+            $companion->save();
+        }
+        
     }
 
     /**
@@ -85,8 +94,30 @@ class TablesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if($request->tipo == 'invitado'){
+            $guest = Guest::with('companions')->find($id);
+            $guest->dataX = null;
+            $guest->dataY = null;
+            $guest->seated = false;
+            $guest->save();
+
+            return $guest;
+        }else if($request->tipo == 'acompanante'){
+            $companion = Companion::find($id);
+            $companion->dataX = null;
+            $companion->dataY = null;
+            $companion->seated = false;
+            $companion->save();
+
+            return $companion;
+        }
+    }
+
+    public function invitados()
+    {
+        $user = Auth::user();
+        return $guests = Guest::orderBy('id', 'DESC')->where('guestList_id', $user->project->list->id)->where('status', 'CONFIRMADO')->with('companions')->get();
     }
 }

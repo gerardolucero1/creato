@@ -23,6 +23,10 @@ class CreateGuestsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->integer('guests');
+            $table->string('dataX')->nullable();
+            $table->string('dataY')->nullable();
+            $table->boolean('seated')->nullable();
+            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO']);
             $table->timestamps();
 
             //Relation

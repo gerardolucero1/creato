@@ -2,7 +2,9 @@
 
 use App\Guest;
 use App\Project;
+use App\Companion;
 use App\GuestList;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,10 +78,26 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Guests
         Route::get('cliente/invitados', 'System\GuestController@index')->name('guests.index'); 
+        // Update guest status
+        Route::put('actualizar-estatus-invitado/{id}', function(Request $request, $id){
+            $guest = Guest::find($id);
+            $guest->status = $request->status;
+            $guest->save();
+            return;
+        });
+        // Update companion status
+        Route::put('actualizar-estatus-acompanante/{id}', function(Request $request, $id){
+            $companion = Companion::find($id);
+            $companion->status = $request->status;
+            $companion->save();
+            return;
+        });
 
     // Tables routes
     Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');
+    Route::get('cliente/tables/invitados', 'System\TablesController@invitados')->name('tables.invitados');
     Route::put('cliente/tables/{id}', 'System\TablesController@update')->name('tables.update');
+    Route::put('cliente/tables/limpiar/{id}', 'System\TablesController@destroy')->name('tables.delete');
 
 });
 

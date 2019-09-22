@@ -70,8 +70,10 @@ class CompanionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $companion = Companion::find($id);
+        $companion->fill($request->all())->save();
+        return;
     }
 
     /**
@@ -82,6 +84,8 @@ class CompanionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $companion = Companion::find($id);
+        $companion->delete();
+        return;
     }
 }

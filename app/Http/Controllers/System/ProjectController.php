@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\User;
+use App\MyList;
 use App\Project;
 use App\GuestList;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class ProjectController extends Controller
         $guestList = new GuestList();
         $guestList->project_id = $project->id;
         $guestList->name = 'Lista de '. $project->title;
-        $guestList->save();
+        $guestList->save();        
 
         return redirect()->route('projects.edit', $project->id)
             ->with('info', 'Proyecto creado con exito');
