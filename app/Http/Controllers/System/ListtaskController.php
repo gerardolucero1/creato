@@ -4,9 +4,9 @@ namespace App\Http\Controllers\system;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Quotation;
+use App\ListTask;
 
-class QuotationController extends Controller
+class ListtaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $quotations = Quotation::orderBy('id', 'DESC')->get();
-        return view('system.quotation.index', compact('quotations'));
+        $listtask = ListTask::orderBy('id', 'DESC')->get();
+            return view('system.task.list')->  with ('listtask',$listtask);
     }
 
     /**
@@ -37,9 +37,8 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-       // $quotation =  new Quotation();
-       $quotation = Quotation::create($request->all());
-       return;
+        $lists = ListTask::create($request->all());
+        return;
     }
 
     /**
@@ -50,8 +49,8 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-       $quotations = Quotation::find($id);
-       return view('system.quotation.show', compact('quotations'));
+        $listtask = ListTask::where('blockList_id', $id)->get();
+        return view('system.task.list')-> with ('listtask',$listtask);
     }
 
     /**
@@ -85,8 +84,8 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        $quotation = Quotation::find($id);
-        $quotation->delete();
-        return back();
+        $lists = ListTask::find($id);
+        $lists->delete();
+        return;
     }
 }

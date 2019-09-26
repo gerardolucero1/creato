@@ -78,6 +78,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/perfil/{id}', 'System\ProfileController@edit')->name('profile.edit');
     Route::put('dashboard/perfil/{id}', 'System\ProfileController@update')->name('profile.update');
 
+    // Task Routes
+        // Block
+    Route::post('dashboard/bloque', 'System\BlocktaskController@store')->name('block.store');
+    Route::get('dashboard/bloque', 'System\BlocktaskController@index')->name('block.index');
+    Route::delete('dashboard/bloque/{id}', 'System\BlocktaskController@destroy')->name('block.destroy');
+        // List
+    Route::post('dashboard/lista', 'System\ListtaskController@store')->name('list.store');
+    Route::get('dashboard/lista', 'System\ListtaskController@index')->name('list.index');
+    Route::get('dashboard/lista/{id}', 'System\ListtaskController@show')->name('list.show');
+    Route::delete('dashboard/lista/lista/{id}', 'System\ListtaskController@destroy')->name('list.destroy');
+        // Task
+    Route::get('dashboard/tarea', 'System\TaskController@index')->name('task.index');
+    Route::post('dashboard/lista/tarea', 'System\TaskController@store')->name('task.store');
+    Route::delete('dashboard/lista/tarea/tarea/{id}', 'System\TaskController@destroy')->name('task.destroy');
+    Route::get('dashboard/lista/tarea/{id}', 'System\TaskController@show')->name('task.show');
+
 });
 
 

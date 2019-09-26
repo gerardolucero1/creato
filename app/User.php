@@ -44,4 +44,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+    public function block_list()
+    {
+        return $this->hasOne(BlockList::class, 'client_id');
+    }
 }

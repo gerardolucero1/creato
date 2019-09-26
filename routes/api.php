@@ -18,3 +18,7 @@ use Illuminate\Http\Request;
 Route::resource('lista', 'System\GuestController');
 Route::resource('acompanante', 'System\CompanionController');
 
+// Task Routes
+Route::resource('tarea', 'System\TaskController');
+
+

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\system;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Quotation;
+use App\BlockList;
 
-class QuotationController extends Controller
+class BlocktaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,11 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $quotations = Quotation::orderBy('id', 'DESC')->get();
-        return view('system.quotation.index', compact('quotations'));
+       /* $block = BlockList::orderBy('id', 'DESC')->get();
+        return $block;*/
+        $block = BlockList::orderBy('id', 'DESC')->get();
+            return view('system.task.block')-> with ('block',$block);
+        
     }
 
     /**
@@ -37,9 +40,10 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-       // $quotation =  new Quotation();
-       $quotation = Quotation::create($request->all());
-       return;
+       /* $registro->name = $request['name'];
+        $registro->client_id = $request['client_id'];*/
+        $block = BlockList::create($request->all());
+        return;
     }
 
     /**
@@ -50,8 +54,7 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-       $quotations = Quotation::find($id);
-       return view('system.quotation.show', compact('quotations'));
+        //
     }
 
     /**
@@ -85,8 +88,8 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        $quotation = Quotation::find($id);
-        $quotation->delete();
-        return back();
+        $block = BLockList::find($id);
+        $block->delete();
+        return;
     }
 }

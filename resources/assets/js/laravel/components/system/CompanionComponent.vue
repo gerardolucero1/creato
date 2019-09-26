@@ -215,7 +215,7 @@
             },
 
             obtenerAcompanantes: function(){
-                let URL = '/api/lista/' + this.lista.id,
+                let URL = '/api/lista/' + this.lista.id;
 
                 axios.get(URL).then((response) => {
                     this.acompanantes = response.data;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\system;
+namespace App\Http\Controllers\System;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Quotation;
+use App\task;
 
-class QuotationController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,11 @@ class QuotationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $quotations = Quotation::orderBy('id', 'DESC')->get();
-        return view('system.quotation.index', compact('quotations'));
+        {
+            
+            $task = Task::orderBy('id', 'DESC')->get();
+            return view('system.task.task')-> with ('task',$task);
+        
     }
 
     /**
@@ -37,9 +39,8 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-       // $quotation =  new Quotation();
-       $quotation = Quotation::create($request->all());
-       return;
+        $task = Task::create($request->all());
+        return;
     }
 
     /**
@@ -50,8 +51,9 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-       $quotations = Quotation::find($id);
-       return view('system.quotation.show', compact('quotations'));
+        
+        $task = Task::where('listTask_id', $id)->get();
+        return view('system.task.task')-> with ('task',$task);
     }
 
     /**
@@ -62,7 +64,9 @@ class QuotationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+        //form
+        return $task;
     }
 
     /**
@@ -85,8 +89,8 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        $quotation = Quotation::find($id);
-        $quotation->delete();
-        return back();
+        $task = Task::find($id);
+        $task->delete();
+        return;
     }
 }

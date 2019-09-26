@@ -26,6 +26,9 @@ Vue.use(DataTable);
 
 Vue.component('guests-component', require('./components/client/GuestsComponent.vue').default);
 Vue.component('companion-component', require('./components/system/CompanionComponent.vue').default);
+Vue.component('block-component', require('./components/system/BlockComponent.vue').default);
+Vue.component('list-component', require('./components/system/ListComponent.vue').default);
+Vue.component('task-component', require('./components/system/TaskComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
