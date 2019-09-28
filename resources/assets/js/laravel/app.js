@@ -29,14 +29,18 @@ Vue.component('companion-component', require('./components/system/CompanionCompo
 Vue.component('my-list-component', require('./components/client/MyListComponent.vue').default);
 Vue.component('tables-component', require('./components/client/TablesComponent.vue').default);
 
+//Web Components
+Vue.component('app-component', require('./components/web/AppComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+import router from './routes'
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
 });
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="container">
-    <h1>Hola Mundo este es el index</h1>
-</section>
+    <section class="container">
+        <app-component></app-component>
+    </section>
 @endsection

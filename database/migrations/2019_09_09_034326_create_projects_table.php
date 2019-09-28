@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('banner');
             $table->date('date');
             $table->string('place');
+            $table->string('plans')->nullable();
 
             $table->timestamps();
 

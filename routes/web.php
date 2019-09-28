@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
+    Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
+
         // Get cliente project
         Route::get('proyecto/cliente/{id}', function($id){
             $project = Project::find($id);
@@ -82,6 +84,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('actualizar-estatus-invitado/{id}', function(Request $request, $id){
             $guest = Guest::find($id);
             $guest->status = $request->status;
+            if($request != 'CONFIRMADO'){
+                $guest->dataX = null;
+                $guest->dataY = null;
+                $guest->seated = false;
+            }
             $guest->save();
             return;
         });
@@ -89,6 +96,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('actualizar-estatus-acompanante/{id}', function(Request $request, $id){
             $companion = Companion::find($id);
             $companion->status = $request->status;
+            if($request != 'CONFIRMADO'){
+                $companion->dataX = null;
+                $companion->dataY = null;
+                $companion->seated = false;
+            }
             $companion->save();
             return;
         });
@@ -98,6 +110,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cliente/tables/invitados', 'System\TablesController@invitados')->name('tables.invitados');
     Route::put('cliente/tables/{id}', 'System\TablesController@update')->name('tables.update');
     Route::put('cliente/tables/limpiar/{id}', 'System\TablesController@destroy')->name('tables.delete');
+    Route::get('cliente/tables/proyecto', 'System\TablesController@project')->name('tables.project');
 
 });
 

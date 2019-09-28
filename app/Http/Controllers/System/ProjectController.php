@@ -163,4 +163,27 @@ class ProjectController extends Controller
     {
         //
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePlans(Request $request, $id)
+    {
+        $project = Project::find($id);
+
+        // Planos
+        if($archivo = $request->file('plans')){
+
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $project->fill(['plans' => asset('images/'.$nombre)])->save();
+        }
+
+        return back()
+            ->with('info', 'Planos cargados con exito');
+    }
 }

@@ -118,6 +118,16 @@ class TablesController extends Controller
     public function invitados()
     {
         $user = Auth::user();
-        return $guests = Guest::orderBy('id', 'DESC')->where('guestList_id', $user->project->list->id)->where('status', 'CONFIRMADO')->with('companions')->get();
+        return $guests = Guest::orderBy('id', 'DESC')->where('guestList_id', $user->project->list->id)
+                ->where('status', 'CONFIRMADO')
+                ->with('companions')
+                ->get();
+    }
+
+    public function project()
+    {
+        $user = Auth::user();
+
+        return $user->project;
     }
 }

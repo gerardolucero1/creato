@@ -15,6 +15,7 @@ class Project extends Model
         'place',
         'date',
         'banner',
+        'plans',
     ];
 
     public function user()

@@ -19,7 +19,6 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
 
         <!-- Fonts and Styles -->
-        @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="{{ mix('/css/codebase.css') }}">
 
@@ -150,10 +149,9 @@
                             <!-- END Close Sidebar -->
 
                             <!-- Logo -->
-                            <div class="content-header-item">
-                                <a class="link-effect font-w700" href="/dashboard">
-                                    <i class="si si-fire text-primary"></i>
-                                    <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                            <div class="content-header-item" style="margin-top: -10px;">
+                                <a class="" href="{{ route('dashboard.admin') }}">
+                                    <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="170px" alt="logo-creato" srcset="">
                                 </a>
                             </div>
                             <!-- END Logo -->

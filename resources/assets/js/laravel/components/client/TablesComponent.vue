@@ -2,8 +2,6 @@
     .drag-zone{
         background-color: blue;
         width: 100%;
-        padding-top: 100%; /* 1:1 Aspect Ratio */
-        position: relative; /* If you want text inside of it */
     }
 
     .picture{
@@ -11,11 +9,15 @@
         top: 0;
         left: 0;
         touch-action: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     .picture img{
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
     }
 
     .sidebar-invitados{
@@ -73,6 +75,15 @@
         background-color: white;
         overflow-y: scroll;
     }
+
+    .nombre-invitado{
+        display: block;
+        background-color: rgba(255, 255, 255, 0.5);
+        color: black;
+        border: 1px solid rgba(226, 226, 226, 1);
+        text-align: center;
+        font-size: 10px;
+    }
 </style>
 
 <template>
@@ -88,7 +99,7 @@
                 <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
                     <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge badge-primary badge-pill text-right" style="cursor: pointer;" @click="sentarInvitado(invitado)">ASIGNAR</span>
                         <ul class="list-group" v-for="(companion, index) in invitado.companions" :key="index">
-                            <li class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge badge-primary badge-pill" style="cursor: pointer;" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
+                            <li v-if="companion.status == 'CONFIRMADO'" class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge badge-primary badge-pill" style="cursor: pointer;" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
                         </ul>
                     </li>
                 </ul>
@@ -96,23 +107,33 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-12">
-                <section class="drag-zone">
+                <section class="drag-zone" id="wrap-zone">
+                    <img v-if="proyecto.plans" :src="proyecto.plans" width="100%" alt="">
+                    <img v-else src="http://localhost:3000/images/creato.jpg" width="100%" alt="">
+                    
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
-                        <div v-if="invitado.companions" class="picture draggable" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                        <div v-if="invitado.companions" class="picture draggable" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
                             <img v-if="invitado.genere == 'MALE'" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                             <img v-else src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                            <label class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            <!--
                             <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'invitado')">Eliminar</button>
                             </div>
+                            -->
                         </div>
-                        <div v-else class="picture draggable" :data-tipo="'acompanante'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                        <div v-else class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
                             <img v-if="invitado.genere == 'MALE'" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                             <img v-else src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                            <label class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            <!--
                             <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'acompanante')">Eliminar</button>
                             </div>
+                            -->
                         </div>
                     </div>
+                    
                 </section>
             </div>
         </div>
@@ -134,17 +155,31 @@
                 invitadosSentados: [],
                 invitado: '',
                 isActive: false,
+                proyecto: '',
             }
+        },
+        computed:{
+            
         },
         created(){
             this.obtenerInvitados();
+            this.obtenerProyecto();
         },
         mounted(){
+            //Ajustamos el contenedor al tamaño real en px de su 100% en cualquier monitor
+            let wrap = document.getElementById('wrap-zone');
+            let medidaX = wrap.offsetWidth;
+            console.log(medidaX);
+
+            wrap.style.width = medidaX + 'px';
+
             // target elements with the "draggable" class
             interact('.draggable')
             .draggable({
+
                 // enable inertial throwing
                 inertia: true,
+
                 // enable autoScroll
                 autoScroll: true,
 
@@ -183,6 +218,7 @@
                 target.style.webkitTransform =
                     target.style.transform =
                     'translate(' + x + 'px, ' + y + 'px)'
+                
 
                 // update the posiion attributes
                 target.setAttribute('data-x', x)
@@ -194,18 +230,72 @@
 
             interact('.draggable')
                 .on('doubletap', (event) => {
-                    
+                    let dataID = event.currentTarget.dataset.id;
+                    let index = event.currentTarget.dataset.index;
+                    let tipo = event.currentTarget.dataset.tipo;
+
+                    let URL = '/cliente/tables/limpiar/' + dataID;
+
+                    axios.put(URL, {
+                        'tipo': tipo,
+                    }).then((response) => {   
+                        Swal.fire({
+                            title: 'Correcto',
+                            text: 'El invitado ya no se encuentra asignado',
+                            type: 'success',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            onClose: () => {
+                                console.log('Yheaaaa');
+                                this.invitadosSentados.splice(index, 1);
+                                //this.obtenerInvitados();
+                                location.reload();
+                            }
+                        })           
+                        
+                    }).catch((error) => {
+                        console.log(error.data);
+                    })
+                })
+                .on('hold', (event) => {
+                    const { value: table } = Swal.fire({
+                        title: 'Ingresa el nombre o numero de la mesa',
+                        input: 'number',
+                        showCancelButton: true,
+                        inputValidator: (value) => {
+                            if (!value) {
+                                return 'El nombre o numero de mesa no puede ir vacio'
+                            }else{
+                                console.log(value);
+                            }
+                        }
+                    })
                 })
 
         },
 
         methods: {
+            obtenerMedidas: function(){
+                let wrap = document.getElementById('wrap-zone');
+                alert(wrap.offsetWidth);
+            },
+
             activarSidebar: function(){
                 if(this.isActive){
                     this.isActive = false;
                 }else{
                     this.isActive = true;
                 }
+            },
+
+            obtenerProyecto: function(){
+                let URL = '/cliente/tables/proyecto';
+
+                axios.get(URL).then((response) => {
+                    this.proyecto = response.data;
+                }).catch((error) => {
+                    console.log(error.data);
+                })
             },
 
             obtenerInvitados: function(){

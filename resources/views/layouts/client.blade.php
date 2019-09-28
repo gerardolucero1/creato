@@ -141,10 +141,9 @@
             <header id="page-header">
                 <div class="content-header">
                     <div class="content-header-section">
-                        <div class="content-header-item mr-5">
-                            <a class="link-effect font-w700" href="index.php">
-                                <i class="si si-fire text-primary"></i>
-                                <span class="font-size-xl text-dual-primary-dark">creato</span><span class="font-size-xl text-primary">studio</span>
+                        <div class="content-header-item mr-5" style="margin-top: -25px;">
+                            <a class="" href="{{ route('dashboard.client') }}">
+                                <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="170px" alt="" srcset="">
                             </a>
                         </div>
                     </div>
