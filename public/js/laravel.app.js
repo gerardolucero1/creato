@@ -3277,6 +3277,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/auth */ "./resources/assets/js/laravel/mixins/auth.js");
+/* harmony import */ var _mixins_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mixins_auth__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3295,7 +3297,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_auth__WEBPACK_IMPORTED_MODULE_0___default.a]
+});
 
 /***/ }),
 
@@ -64994,11 +65002,7 @@ var render = function() {
                   attrs: { src: _vm.proyecto.plans, width: "100%", alt: "" }
                 })
               : _c("img", {
-                  attrs: {
-                    src: "http://localhost:3000/images/creato.jpg",
-                    width: "100%",
-                    alt: ""
-                  }
+                  attrs: { src: "/images/creato.jpg", width: "100%", alt: "" }
                 }),
             _vm._v(" "),
             _vm._l(_vm.invitadosSentados, function(invitado, index) {
@@ -65033,15 +65037,13 @@ var render = function() {
                         invitado.genere == "MALE"
                           ? _c("img", {
                               attrs: {
-                                src:
-                                  "https://image.flaticon.com/icons/png/512/219/219957.png",
+                                src: "/images/avatars/male.png",
                                 alt: ""
                               }
                             })
                           : _c("img", {
                               attrs: {
-                                src:
-                                  "https://image.flaticon.com/icons/png/512/219/219961.png",
+                                src: "/images/avatars/female.png",
                                 alt: ""
                               }
                             }),
@@ -65085,15 +65087,13 @@ var render = function() {
                         invitado.genere == "MALE"
                           ? _c("img", {
                               attrs: {
-                                src:
-                                  "https://image.flaticon.com/icons/png/512/219/219957.png",
+                                src: "/images/avatars/male.png",
                                 alt: ""
                               }
                             })
                           : _c("img", {
                               attrs: {
-                                src:
-                                  "https://image.flaticon.com/icons/png/512/219/219961.png",
+                                src: "/images/avatars/female.png",
                                 alt: ""
                               }
                             }),
@@ -66597,24 +66597,23 @@ var render = function() {
           _c("button", { staticClass: "link" }, [_vm._v("ABOUT")])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _vm.isAuthenticated
+          ? _c("a", { attrs: { href: "/dashboard" } }, [
+              _c("button", { staticClass: "link novias-creato" }, [
+                _vm._v("NOVIAS CREATO")
+              ])
+            ])
+          : _c("a", { attrs: { href: "/login" } }, [
+              _c("button", { staticClass: "link novias-creato" }, [
+                _vm._v("NOVIAS CREATO")
+              ])
+            ])
       ],
       1
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/login" } }, [
-      _c("button", { staticClass: "link novias-creato" }, [
-        _vm._v("NOVIAS CREATO")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -85605,6 +85604,9 @@ module.exports = {
   computed: {
     user: function user() {
       return JSON.parse(_user.content);
+    },
+    isAuthenticated: function isAuthenticated() {
+      return !!_user.content;
     }
   }
 };

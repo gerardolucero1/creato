@@ -93,9 +93,9 @@
                         <!-- User Info -->
                         <div class="content-header-item">
                             <a class="img-link mr-5" href="javascript:void(0)">
-                                <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
+                                <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
                             </a>
-                            <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">John Smith</a>
+                            <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                         </div>
                         <!-- END User Info -->
                     </div>
@@ -151,7 +151,7 @@
                             <!-- Logo -->
                             <div class="content-header-item" style="margin-top: -10px;">
                                 <a class="" href="{{ route('dashboard.admin') }}">
-                                    <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="170px" alt="logo-creato" srcset="">
+                                    <img src="/images/logo-creato.webp" width="170px" alt="logo-creato" srcset="">
                                 </a>
                             </div>
                             <!-- END Logo -->
@@ -164,14 +164,14 @@
                     <div class="content-side content-side-full content-side-user px-10 align-parent">
                         <!-- Visible only in mini mode -->
                         <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                            <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
+                            <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
                         </div>
                         <!-- END Visible only in mini mode -->
 
                         <!-- Visible only in normal mode -->
                         <div class="sidebar-mini-hidden-b text-center">
                             <a class="img-link" href="javascript:void(0)">
-                                <img class="img-avatar" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
+                                <img class="img-avatar" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
@@ -225,6 +225,7 @@
                                     <i class="si si-notebook"></i><span class="sidebar-mini-hide">Proyectos</span>
                                 </a>
                             </li>
+                            <!--
                             <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span class="sidebar-mini-hide">Examples</span></a>
                                 <ul>
@@ -239,12 +240,13 @@
                                     </li>
                                 </ul>
                             </li>
+                        -->
                             <li class="nav-main-heading">
-                                <span class="sidebar-mini-visible">MR</span><span class="sidebar-mini-hidden">More</span>
+                                <span class="sidebar-mini-visible">WB</span><span class="sidebar-mini-hidden">Web</span>
                             </li>
                             <li>
                                 <a href="/">
-                                    <i class="si si-globe"></i><span class="sidebar-mini-hide">Landing</span>
+                                    <i class="si si-globe"></i><span class="sidebar-mini-hide">Creato Studio</span>
                                 </a>
                             </li>
                         </ul>
@@ -270,76 +272,12 @@
 
                         <!-- Open Search Section -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        
                         <!-- END Open Search Section -->
 
                         <!-- Layout Options (used just for demonstration) -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-circle btn-dual-secondary" id="page-header-options-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-wrench"></i>
-                            </button>
-                            <div class="dropdown-menu min-width-300" aria-labelledby="page-header-options-dropdown">
-                                <h5 class="h6 text-center py-10 mb-10 border-b text-uppercase">Settings</h5>
-                                <h6 class="dropdown-header">Color Themes</h6>
-                                <div class="row no-gutters text-center mb-5">
-                                    <div class="col-2 mb-5">
-                                        <a class="text-default" data-toggle="theme" data-theme="default" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 mb-5">
-                                        <a class="text-elegance" data-toggle="theme" data-theme="/css/themes/elegance.css" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 mb-5">
-                                        <a class="text-pulse" data-toggle="theme" data-theme="/css/themes/pulse.css" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 mb-5">
-                                        <a class="text-flat" data-toggle="theme" data-theme="/css/themes/flat.css" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 mb-5">
-                                        <a class="text-corporate" data-toggle="theme" data-theme="/css/themes/corporate.css" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 mb-5">
-                                        <a class="text-earth" data-toggle="theme" data-theme="/css/themes/earth.css" href="javascript:void(0)">
-                                            <i class="fa fa-2x fa-circle"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <h6 class="dropdown-header">Header</h6>
-                                <div class="row gutters-tiny text-center mb-5">
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary" data-toggle="layout" data-action="header_fixed_toggle">Fixed Mode</button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary d-none d-lg-block mb-10" data-toggle="layout" data-action="header_style_classic">Classic Style</button>
-                                    </div>
-                                </div>
-                                <h6 class="dropdown-header">Sidebar</h6>
-                                <div class="row gutters-tiny text-center mb-5">
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_off">Light</button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_on">Dark</button>
-                                    </div>
-                                </div>
-                                <div class="d-none d-xl-block">
-                                    <h6 class="dropdown-header">Main Content</h6>
-                                    <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="content_layout_toggle">Toggle Layout</button>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <!-- END Layout Options -->
                     </div>
                     <!-- END Left Section -->
@@ -350,7 +288,7 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block">J. Smith</span>
+                                <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
@@ -360,24 +298,26 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                     <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                                    <span class="badge badge-primary">3</span>
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="si si-note mr-5"></i> Invoices
+                                    <span class="badge badge-primary">1</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
 
                                 <!-- Toggle Side Overlay -->
                                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                                 <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                                    <i class="si si-wrench mr-5"></i> Settings
+                                    <i class="si si-note mr-5"></i> Notes
                                 </a>
                                 <!-- END Side Overlay -->
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="si si-logout mr-5"></i> Sign Out
-                                </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                            <i class="si si-logout"></i> Sign Out
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </div>
                         </div>
                         <!-- END User Dropdown -->
@@ -386,7 +326,7 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-flag"></i>
-                                <span class="badge badge-primary badge-pill">5</span>
+                                <span class="badge badge-primary badge-pill">1</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-300" aria-labelledby="page-header-notifications">
                                 <h5 class="h6 text-center py-10 mb-0 border-b text-uppercase">Notifications</h5>
@@ -397,52 +337,8 @@
                                                 <i class="fa fa-fw fa-check text-success"></i>
                                             </div>
                                             <div class="media-body pr-10">
-                                                <p class="mb-0">You’ve upgraded to a VIP account successfully!</p>
+                                                <p class="mb-0">A new message from <strong>Monica Perez</strong></p>
                                                 <div class="text-muted font-size-sm font-italic">15 min ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
-                                            <div class="ml-5 mr-15">
-                                                <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
-                                            </div>
-                                            <div class="media-body pr-10">
-                                                <p class="mb-0">Please check your payment info since we can’t validate them!</p>
-                                                <div class="text-muted font-size-sm font-italic">50 min ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
-                                            <div class="ml-5 mr-15">
-                                                <i class="fa fa-fw fa-times text-danger"></i>
-                                            </div>
-                                            <div class="media-body pr-10">
-                                                <p class="mb-0">Web server stopped responding and it was automatically restarted!</p>
-                                                <div class="text-muted font-size-sm font-italic">4 hours ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
-                                            <div class="ml-5 mr-15">
-                                                <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
-                                            </div>
-                                            <div class="media-body pr-10">
-                                                <p class="mb-0">Please consider upgrading your plan. You are running out of space.</p>
-                                                <div class="text-muted font-size-sm font-italic">16 hours ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
-                                            <div class="ml-5 mr-15">
-                                                <i class="fa fa-fw fa-plus text-primary"></i>
-                                            </div>
-                                            <div class="media-body pr-10">
-                                                <p class="mb-0">New purchases! +$250</p>
-                                                <div class="text-muted font-size-sm font-italic">1 day ago</div>
                                             </div>
                                         </a>
                                     </li>
@@ -458,7 +354,7 @@
                         <!-- Toggle Side Overlay -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                            <i class="fa fa-tasks"></i>
+                            <i class="fa fa-sticky-note"></i>
                         </button>
                         <!-- END Toggle Side Overlay -->
                     </div>
@@ -517,10 +413,10 @@
             <footer id="page-footer" class="opacity-0">
                 <div class="content py-20 font-size-xs clearfix">
                     <div class="float-right">
-                        Crafted with <i class="fa fa-heart text-pulse"></i> by <a class="font-w600" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
+                        Crafted with <i class="fa fa-heart text-pulse"></i> by <a class="font-w600" href="https://www.3dlog.mx" target="_blank">3dlog</a>
                     </div>
                     <div class="float-left">
-                        <a class="font-w600" href="https://1.envato.market/95j" target="_blank">Codebase</a> &copy; <span class="js-year-copy"></span>
+                        <a class="font-w600" href="https://1.envato.market/95j" target="_blank">Creato Studio</a> &copy; <span class="js-year-copy"></span>
                     </div>
                 </div>
             </footer>

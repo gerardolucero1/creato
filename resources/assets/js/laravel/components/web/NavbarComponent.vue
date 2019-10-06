@@ -9,7 +9,10 @@
                 <button class="link">ABOUT</button>
             </router-link>
 
-            <a href="/login">
+            <a v-if="isAuthenticated" href="/dashboard">
+                <button class="link novias-creato">NOVIAS CREATO</button>
+            </a>
+            <a v-else href="/login">
                 <button class="link novias-creato">NOVIAS CREATO</button>
             </a>
         </nav>
@@ -17,8 +20,12 @@
 </template>
 
 <script>
-export default {
+import auth from '../../mixins/auth';
 
+export default {
+    mixins: [
+            auth
+        ],
 }
 </script>
 
