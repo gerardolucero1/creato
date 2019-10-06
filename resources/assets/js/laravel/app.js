@@ -31,6 +31,7 @@ Vue.component('tables-component', require('./components/client/TablesComponent.v
 
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);
+Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

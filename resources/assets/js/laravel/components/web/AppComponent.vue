@@ -1,8 +1,7 @@
 <template>
     <main>
-        <router-link :to="{ name: 'home' }">Home</router-link>
-        <router-link :to="{ name: 'about' }">About</router-link>
-
+        <navbar-component></navbar-component>
+        
         <router-view></router-view>
     </main>
 </template>

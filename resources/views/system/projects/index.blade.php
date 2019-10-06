@@ -68,7 +68,18 @@
                                     <div class="row">
                                         <div class="col-12 text-center">
                                             <p>
-                                                <i class="fa fa-fw fa-users text-muted mr-5"></i> <strong>300</strong> Invitados
+                                                @php
+                                                    $totalGuests = 0;
+                                                    $totalCompanions = 0;
+
+                                                    foreach ($project->list->guests as $guest) {
+                                                        $companions = count($guest->companions);
+                                                        $totalCompanions = $totalCompanions + $companions;
+                                                    }
+                                                    
+                                                    $totalGuests = count($project->list->guests) + $totalCompanions;
+                                                @endphp
+                                                <i class="fa fa-fw fa-users text-muted mr-5"></i> <strong>{{ $totalGuests }}</strong> Invitados
                                             </p>
                                         </div>
                                     </div>

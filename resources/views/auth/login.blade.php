@@ -27,16 +27,15 @@
                     Get Inspired and Create.
                 </p>
                 <p class="font-italic text-white-op">
-                    Copyright &copy; <span class="js-year-copy">2019</span>
+                    Copyright &copy; <span class="js-year-copy">2019</span> Creato Studio - Todos los derechos reservados.
                 </p>
             </div>
         </div>
         <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-white invisible" data-toggle="appear" data-class="animated fadeInRight">
             <div class="content content-full">
                 <div class="px-30 py-10">
-                    <a class="link-effect font-w700" href="index.php">
-                        <i class="si si-fire"></i>
-                        <span class="font-size-xl text-primary-dark">Crea</span><span class="font-size-xl">to</span>
+                    <a class="font-w700" href="index.php">
+                        <img class="creato-logo" src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="190px" alt="Creato-studio-logo">
                     </a>
                     <h1 class="h3 font-w700 mt-30 mb-10">Welcome to Creato</h1>
                     <h2 class="h5 font-w400 text-muted mb-0">Please sign</h2>
