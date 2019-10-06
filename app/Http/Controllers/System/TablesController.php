@@ -17,7 +17,7 @@ class TablesController extends Controller
      */
     public function index()
     {
-        return view('system.client.tables.index', compact('guests'));
+        return view('system.client.tables.index');
     }
 
     /**
