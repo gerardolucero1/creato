@@ -78,10 +78,9 @@
                                                     data-action="sidebar_close">
                                                     <i class="fa fa-times text-danger"></i>
                                                 </button>
-                                                <div class="content-header-item">
-                                                    <a class="link-effect font-w700" href="index.php">
-                                                        <i class="si si-fire text-primary"></i>
-                                                        <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                                                <div class="content-header-item mr-5" style="margin-top: -10px;">
+                                                    <a class="" href="{{ route('dashboard.client') }}">
+                                                        <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -89,20 +88,8 @@
                                         <div class="content-side content-side-full">
                                             <ul class="nav-main">
                                                 <li>
-                                                    <a href="">
-                                                        <i class="si si-cup"></i>Dashboard</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="si si-rocket"></i>Features</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="si si-wallet"></i>Pricing</a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <i class="si si-grid"></i>Plan</a>
+                                                    <a href="{{ route('dashboard.client') }}">
+                                                        <i class="si si-grid"></i>Inicio</a>
                                                 </li>
                                                 <li>
                                                     <a href="">
@@ -112,7 +99,7 @@
                                                     <a href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
                                                                       document.getElementById('logout-form').submit();">
-                                                            <i class="si si-logout"></i>
+                                                            <i class="si si-logout"></i>Salir
                                                     </a>
                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                             @csrf
@@ -143,7 +130,7 @@
                     <div class="content-header-section">
                         <div class="content-header-item mr-5" style="margin-top: -25px;">
                             <a class="" href="{{ route('dashboard.client') }}">
-                                <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="170px" alt="" srcset="">
+                                <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
                             </a>
                         </div>
                     </div>
@@ -156,24 +143,12 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="">
-                                            <i class="si si-cup"></i>Dashboard</a>
+                                        <a href="{{ route('dashboard.client') }}">
+                                            <i class="si si-grid"></i>Inicio</a>
                                     </li>
                                     <li>
                                         <a href="">
-                                            <i class="si si-rocket"></i>Features</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <i class="si si-wallet"></i>Pricing</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <i class="si si-grid"></i>Plan</a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <i class="si si-user"></i>Account</a>
+                                            <i class="si si-user"></i>Perfil</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -244,10 +219,10 @@
                         Crafted with
                         <i class="fa fa-heart text-pulse"></i>
                         by
-                        <a class="font-w600" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
+                        <a class="font-w600" href="https://www.3dlog.mx" target="_blank">3dlog</a>
                     </div>
                     <div class="float-left">
-                        <a class="font-w600" href="https://1.envato.market/95j" target="_blank">Codebase 3.2</a>
+                        <a class="font-w600" href="#" target="_blank">Creato Studio</a>
                         ©
                         <span class="js-year-copy js-year-copy-enabled">2019</span>
                     </div>

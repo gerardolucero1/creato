@@ -46,9 +46,13 @@ class PortfolioController extends Controller
         // Banner
         if($archivo = $request->file('banner')){
 
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $portfolio->fill(['banner' => asset('images/'.$nombre)])->save();
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+            $portfolio->fill(['banner' => asset($url.$path)])->save();
         }
 
         return redirect()->route('portfolio.edit', $portfolio->id)
@@ -106,9 +110,13 @@ class PortfolioController extends Controller
         // Banner
         if($archivo = $request->file('banner')){
 
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $portfolio->fill(['banner' => asset('images/'.$nombre)])->save();
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+            $portfolio->fill(['banner' => asset($url.$path)])->save();
         }
 
         return redirect()->route('portfolio.edit', $portfolio->id)
@@ -132,13 +140,18 @@ class PortfolioController extends Controller
 
     public function upload($id, Request $request){
         if($archivo = $request->file('file')){
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
         }
 
         $portfolioImage = new PortfolioImage();
         $portfolioImage->portfolio_id = $id;
-        $portfolioImage->fill(['file_name' => asset('images/'.$nombre)])->save();
+        $portfolioImage->fill(['file_name' => asset($url.$path)])->save();
     }
 
     public function destroyImage($id){

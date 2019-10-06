@@ -109,12 +109,12 @@
             <div class="col-md-12">
                 <section class="drag-zone" id="wrap-zone">
                     <img v-if="proyecto.plans" :src="proyecto.plans" width="100%" alt="">
-                    <img v-else src="http://localhost:3000/images/creato.jpg" width="100%" alt="">
+                    <img v-else src="/images/creato.jpg" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
                         <div v-if="invitado.companions" class="picture draggable" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img v-if="invitado.genere == 'MALE'" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
-                            <img v-else src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                            <img v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                            <img v-else src="/images/avatars/female.png" alt="">
                             <label class="nombre-invitado" for="">{{ invitado.name }}</label>
                             <!--
                             <div class="acciones">
@@ -123,8 +123,8 @@
                             -->
                         </div>
                         <div v-else class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img v-if="invitado.genere == 'MALE'" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
-                            <img v-else src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                            <img v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                            <img v-else src="/images/avatars/female.png" alt="">
                             <label class="nombre-invitado" for="">{{ invitado.name }}</label>
                             <!--
                             <div class="acciones">

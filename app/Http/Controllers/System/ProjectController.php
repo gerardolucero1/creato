@@ -58,14 +58,28 @@ class ProjectController extends Controller
      */
     public function store(ProjectStoreRequest $request)
     {
+
         $project = Project::create($request->all());
 
-        // Banner
+        /* Banner
         if($archivo = $request->file('banner')){
 
             $nombre = time().$archivo->getClientOriginalName();
             $archivo->move('images', $nombre);
             $project->fill(['banner' => asset('images/'.$nombre)])->save();
+        }
+        */
+
+        // Store in AWS S3
+        if($archivo = $request->file('banner')){
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+            $project->fill(['banner' => asset($url.$path)])->save();
         }
 
         // Obtenemos el proyecto creado
@@ -144,9 +158,13 @@ class ProjectController extends Controller
         // Banner
         if($archivo = $request->file('banner')){
 
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $project->fill(['banner' => asset('images/'.$nombre)])->save();
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+            $project->fill(['banner' => asset($url.$path)])->save();
         }
 
         return redirect()->route('projects.edit', $project->id)
@@ -178,9 +196,13 @@ class ProjectController extends Controller
         // Planos
         if($archivo = $request->file('plans')){
 
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $project->fill(['plans' => asset('images/'.$nombre)])->save();
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+            $project->fill(['plans' => asset($url.$path)])->save();
         }
 
         return back()

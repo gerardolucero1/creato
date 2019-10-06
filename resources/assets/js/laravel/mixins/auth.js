@@ -4,6 +4,9 @@ module.exports = {
     computed: {
         user(){
             return JSON.parse(user.content);
+        },
+        isAuthenticated(){
+            return !! user.content
         }
     },
 }

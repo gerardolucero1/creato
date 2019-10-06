@@ -2,7 +2,7 @@
 
 @section('content')
 <main id="main-container" style="min-height: 389px;">
-    <div class="content">
+    <div class="container mt-4">
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-6 col-xl-3">
                 <a class="block block-link-shadow text-right" href="javascript:void(0)">
@@ -61,7 +61,7 @@
     </div>
     <!-- Action buttons-->
     <div class="bg-body-dark mb-4">
-        <div class="content">
+        <div class="container pt-4">
             <div class="row">
                 <div class="col-6 col-md-4 col-xl-2">
                     <a class="block block-rounded text-center" href="javascript:void(0)">
@@ -133,7 +133,7 @@
         </div>
     </div>
 
-    <div class="main-container">
+    <div class="container">
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-md-6">
                 <div class="block">
