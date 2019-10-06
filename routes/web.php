@@ -19,13 +19,9 @@ use Illuminate\Http\Request;
 
 // Web routes
 
-/*
-Route::get('/', 'web\IndexController@index');
-*/
 
-Route::get('/', function () {
-    return view('web.index');
-});
+Route::get('/', 'Web\IndexController@index');
+
 Auth::routes();
 
 // System routes
