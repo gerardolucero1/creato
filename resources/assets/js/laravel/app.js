@@ -9,6 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import DataTable from 'laravel-vue-datatable';
+
+Vue.use(DataTable);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,16 +24,24 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('guests-component', require('./components/client/GuestsComponent.vue').default);
+Vue.component('companion-component', require('./components/system/CompanionComponent.vue').default);
+Vue.component('my-list-component', require('./components/client/MyListComponent.vue').default);
+Vue.component('tables-component', require('./components/client/TablesComponent.vue').default);
+
+//Web Components
+Vue.component('app-component', require('./components/web/AppComponent.vue').default);
+Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import router from './routes'
 
-/*
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
 });
-*/
+

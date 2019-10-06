@@ -1,6 +1,12 @@
 
 window._ = require('lodash');
 
+// Other dependecies
+
+window.Swal = require('sweetalert2');
+window.moment = require('moment');
+moment.locale('es');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

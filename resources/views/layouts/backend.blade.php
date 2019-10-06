@@ -19,13 +19,15 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
 
         <!-- Fonts and Styles -->
-        @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="{{ mix('/css/codebase.css') }}">
 
+        <!-- Drop Zone -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('/css/themes/corporate.css') }}"> -->
-        @yield('css_after')
+        @yield('styles')
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
@@ -147,10 +149,9 @@
                             <!-- END Close Sidebar -->
 
                             <!-- Logo -->
-                            <div class="content-header-item">
-                                <a class="link-effect font-w700" href="/dashboard">
-                                    <i class="si si-fire text-primary"></i>
-                                    <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                            <div class="content-header-item" style="margin-top: -10px;">
+                                <a class="" href="{{ route('dashboard.admin') }}">
+                                    <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="170px" alt="logo-creato" srcset="">
                                 </a>
                             </div>
                             <!-- END Logo -->
@@ -174,7 +175,7 @@
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="javascript:void(0)">J. Smith</a>
+                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -183,9 +184,14 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="javascript:void(0)">
-                                        <i class="si si-logout"></i>
+                                    <a class="link-effect text-dual-primary-dark" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                            <i class="si si-logout"></i>
                                     </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                 </li>
                             </ul>
                         </div>
@@ -198,11 +204,26 @@
                         <ul class="nav-main">
                             <li>
                                 <a class="{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-                                    <i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span>
+                                    <i class="si si-grid"></i><span class="sidebar-mini-hide">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-main-heading">
                                 <span class="sidebar-mini-visible">VR</span><span class="sidebar-mini-hidden">Various</span>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/portafolio') ? ' active' : '' }}" href="/dashboard/portafolio">
+                                    <i class="si si-folder"></i><span class="sidebar-mini-hide">Portafolio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/usuarios') ? ' active' : '' }}" href="/dashboard/usuarios">
+                                    <i class="si si-users"></i><span class="sidebar-mini-hide">Usuarios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="{{ request()->is('dashboard/proyectos') ? ' active' : '' }}" href="/dashboard/proyectos">
+                                    <i class="si si-notebook"></i><span class="sidebar-mini-hide">Proyectos</span>
+                                </a>
                             </li>
                             <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span class="sidebar-mini-hide">Examples</span></a>
@@ -486,7 +507,9 @@
 
             <!-- Main Container -->
             <main id="main-container">
-                @yield('content')
+                <div id="app">
+                    @yield('content')
+                </div>
             </main>
             <!-- END Main Container -->
 
@@ -511,6 +534,9 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
 
-        @yield('js_after')
+        <!-- Drop Zone -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+
+        @yield('scripts')
     </body>
 </html>
