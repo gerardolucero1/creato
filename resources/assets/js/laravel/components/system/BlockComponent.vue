@@ -85,7 +85,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="lista">bloque al que pertenese</label>
-                                <input v-model="lista.blockList_id" type="text" class="form-control" id="lista" name="blockList_id" placeholder="bloque">
+                                
+                               <select v-model="lista.blockList_id" name="listTask_id" id="lista">
+                                   <option value="">elije el bloque</option>
+                                    <option  v-for="bloque in bloques" :key="bloque.index" :value="bloque.id">{{bloque.name}}</option>
+                               </select>
                             </div>
                         </div>
                             <div class="modal-footer">

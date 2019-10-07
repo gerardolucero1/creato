@@ -2360,6 +2360,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["bloques"],
   data: function data() {
@@ -50113,32 +50117,53 @@ var render = function() {
                     _vm._v("bloque al que pertenese")
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.lista.blockList_id,
-                        expression: "lista.blockList_id"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "lista",
-                      name: "blockList_id",
-                      placeholder: "bloque"
-                    },
-                    domProps: { value: _vm.lista.blockList_id },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.lista.blockList_id,
+                          expression: "lista.blockList_id"
                         }
-                        _vm.$set(_vm.lista, "blockList_id", $event.target.value)
+                      ],
+                      attrs: { name: "listTask_id", id: "lista" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.lista,
+                            "blockList_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("elije el bloque")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.bloques, function(bloque) {
+                        return _c(
+                          "option",
+                          { key: bloque.index, domProps: { value: bloque.id } },
+                          [_vm._v(_vm._s(bloque.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -51064,7 +51089,7 @@ var render = function() {
                       _vm._l(_vm.listas, function(lista) {
                         return _c(
                           "option",
-                          { key: lista.index, attrs: { value: "2" } },
+                          { key: lista.index, domProps: { value: lista.id } },
                           [_vm._v(_vm._s(lista.name))]
                         )
                       })
