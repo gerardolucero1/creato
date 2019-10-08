@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('category');
+            $table->string('complete');
             $table->timestamps();
 
             $table->foreign('listTask_id')->references('id')->on('list_tasks')

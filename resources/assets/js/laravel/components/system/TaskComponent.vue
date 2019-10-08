@@ -1,6 +1,6 @@
 <template>
    <div id="crud" class="row">
-       <div class="col-xs-12">
+       <div class="col-sm-12">
            <h1>Tareas</h1>
        </div>
        <div class="col-sm-7">
@@ -24,6 +24,10 @@
                        </td>
                        <td width="10px">
                            <button @click="eliminarTarea(tarea)" class="btn btn-danger btn-sm">eliminar</button>
+                       </td>
+                       <td width="10px">
+                           <input type="checkbox" v-model="tarea.complete" :value="value">
+                           <label>terminado</label>
                        </td>
                    </tr>
                </tbody>
@@ -69,7 +73,8 @@
 
 <script>
     export default {
-         props:["tareas"],
+        props:["tareas",'checked','value', 'label'],
+
         data(){
             return{
 
@@ -78,12 +83,21 @@
                     'name': '',
                     'slug': '',
                     'category': '',
+                    'complete':'',
                 },
-  
+
+                prop: "checked"
             }
         },
         created(){
             this.obtenerTareas()
+        },
+
+        computed:{
+            internalValue:{
+                get(){return this.checked},
+                set(t){this.tarea("complete",t)}
+            }
         },
 
         methods: {
@@ -134,7 +148,3 @@
 
     };
 </script>
-
-<style>
-
-</style>

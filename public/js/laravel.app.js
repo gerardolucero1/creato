@@ -2786,6 +2786,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["listas"],
   data: function data() {
@@ -2799,7 +2800,8 @@ __webpack_require__.r(__webpack_exports__);
         'listTask_id': '',
         'name': '',
         'slug': '',
-        'category': ''
+        'category': '',
+        'complete': 'false'
       }
     };
   },
@@ -2936,20 +2938,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["tareas"],
+  props: ["tareas", 'checked', 'value', 'label'],
   data: function data() {
     return {
       tarea: {
         'listTask_id': '',
         'name': '',
         'slug': '',
-        'category': ''
-      }
+        'category': '',
+        'complete': ''
+      },
+      prop: "checked"
     };
   },
   created: function created() {
     this.obtenerTareas();
+  },
+  computed: {
+    internalValue: {
+      get: function get() {
+        return this.checked;
+      },
+      set: function set(t) {
+        this.tarea("complete", t);
+      }
+    }
   },
   methods: {
     agregarTarea: function agregarTarea() {
@@ -50203,8 +50221,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12" }, [
-      _c("h1", [_vm._v("Tareas")])
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("h1", [_vm._v("Bloques de Tareas")])
     ])
   },
   function() {
@@ -51135,8 +51153,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12" }, [
-      _c("h1", [_vm._v("Tareas")])
+    return _c("div", { staticClass: "col-sm-12" }, [
+      _c("h1", [_vm._v("Listas de Tareas")])
     ])
   },
   function() {
@@ -51230,6 +51248,52 @@ var render = function() {
                   },
                   [_vm._v("eliminar")]
                 )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { width: "10px" } }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: tarea.complete,
+                      expression: "tarea.complete"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    value: _vm.value,
+                    checked: Array.isArray(tarea.complete)
+                      ? _vm._i(tarea.complete, _vm.value) > -1
+                      : tarea.complete
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = tarea.complete,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = _vm.value,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(tarea, "complete", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              tarea,
+                              "complete",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(tarea, "complete", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("terminado")])
               ])
             ])
           }),
@@ -51244,7 +51308,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12" }, [
+    return _c("div", { staticClass: "col-sm-12" }, [
       _c("h1", [_vm._v("Tareas")])
     ])
   },

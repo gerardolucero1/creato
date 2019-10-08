@@ -1,7 +1,8 @@
 <template>
    <div id="crud" class="row">
-       <div class="col-xs-12">
-           <h1>Tareas</h1>
+       
+       <div class="col-sm-12">
+           <h1>Listas de Tareas</h1>
        </div>
        <div class="col-sm-7">
            
@@ -94,6 +95,7 @@
                     'name': '',
                     'slug': '',
                     'category': '',
+                    'complete': 'false',
                 },
   
             }

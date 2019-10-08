@@ -1,7 +1,7 @@
 <template>
    <div id="crud" class="row">
-       <div class="col-xs-12">
-           <h1>Tareas</h1>
+       <div class="col-sm-12">
+           <h1>Bloques de Tareas</h1>
        </div>
        <div class="col-sm-7">
             <button type="button" class="btn btn-primary pull-right" @click="agregarLista()">
