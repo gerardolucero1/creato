@@ -21,5 +21,5 @@
 @endsection
 
 @section('content')
-<list-component :listas="{{$listtask}}"></list-component>
+<list-component></list-component>
 @endsection

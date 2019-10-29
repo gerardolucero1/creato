@@ -29,6 +29,7 @@ Vue.component('companion-component', require('./components/system/CompanionCompo
 Vue.component('block-component', require('./components/system/BlockComponent.vue').default);
 Vue.component('list-component', require('./components/system/ListComponent.vue').default);
 Vue.component('task-component', require('./components/system/TaskComponent.vue').default);
+Vue.component('quotation-component', require('./components/system/QuotationComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

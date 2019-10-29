@@ -5,6 +5,7 @@ namespace App\Http\Controllers\system;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\BlockList;
+use App\User;
 
 class BlocktaskController extends Controller
 {
@@ -17,8 +18,8 @@ class BlocktaskController extends Controller
     {
        /* $block = BlockList::orderBy('id', 'DESC')->get();
         return $block;*/
-        $block = BlockList::orderBy('id', 'DESC')->get();
-            return view('system.task.block')-> with ('block',$block);
+        
+            return view('system.task.block');
         
     }
 
@@ -77,7 +78,9 @@ class BlocktaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $block = BlockList::find($id);
+        $block->fill($request->all())->save();
+        return;
     }
 
     /**
@@ -91,5 +94,15 @@ class BlocktaskController extends Controller
         $block = BLockList::find($id);
         $block->delete();
         return;
+    }
+
+    public function getBlock(){
+        $blocks= BlockList::all();
+        return $blocks;
+    }
+
+    public function getUsers(){
+        $users= User::all();
+        return $users;
     }
 }

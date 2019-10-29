@@ -66,10 +66,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     // Quotation Routes
-    Route::get('dashboard/cotizaciones', 'System\QuotationController@index')->name('quotation.index');
+    Route::get('dashboard/cotizacion', 'System\QuotationController@index')->name('quotation.index');
     Route::post('Quotation', 'System\QuotationController@store')->name('quotation.store');
-    Route::delete('dashboard/cotizaciones/{id}', 'System\QuotationController@destroy')->name('quotation.delete');
-    Route::get('Quotation{id}', 'System\QuotationController@show')->name('quotation.show');
+    Route::delete('dashboard/cotizacion/{id}', 'System\QuotationController@destroy')->name('quotation.delete');
+    Route::get('quotation/{id}', 'System\QuotationController@show')->name('quotation.show');
+    Route::get('dashboard/cotizaciones', 'System\QuotationController@getQuotation')->name('quotation.getQuotation');
 
     // ProfileRoutes
     Route::get('dashboard/perfil', 'System\ProfileController@index')->name('users.Profile');
@@ -80,19 +81,29 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Task Routes
         // Block
-    Route::post('dashboard/bloque', 'System\BlocktaskController@store')->name('block.store');
-    Route::get('dashboard/bloque', 'System\BlocktaskController@index')->name('block.index');
-    Route::delete('dashboard/bloque/{id}', 'System\BlocktaskController@destroy')->name('block.destroy');
+    Route::get('dashboard/block', 'System\BlocktaskController@index')->name('block.index');
+    Route::get('dashboard/blocks/get', 'System\BlocktaskController@getBlock')->name('block.getBlock');
+    Route::get('dashboard/users/get', 'System\BlocktaskController@getUsers')->name('block.getUsers');
+    Route::post('dashboard/block/save', 'System\BlocktaskController@store')->name('block.store');
+    Route::put('dashboard/block/update/{id}', 'System\BlocktaskController@update')->name('block.update');
+    Route::delete('dashboard/block/delete/{id}', 'System\BlocktaskController@destroy')->name('block.destroy');
+
         // List
-    Route::post('dashboard/lista', 'System\ListtaskController@store')->name('list.store');
     Route::get('dashboard/lista', 'System\ListtaskController@index')->name('list.index');
+    Route::get('dashboard/list/get/{id}', 'System\ListtaskController@getLists')->name('list.getLists');
+    Route::put('dashboard/list/update/{id}', 'System\ListTaskController@update')->name('list.update');
+    Route::post('dashboard/lista/store', 'System\ListtaskController@store')->name('list.store');
     Route::get('dashboard/lista/{id}', 'System\ListtaskController@show')->name('list.show');
-    Route::delete('dashboard/lista/lista/{id}', 'System\ListtaskController@destroy')->name('list.destroy');
+    Route::delete('dashboard/lista/delete/{id}', 'System\ListtaskController@destroy')->name('list.destroy');
+    
+
         // Task
     Route::get('dashboard/tarea', 'System\TaskController@index')->name('task.index');
-    Route::post('dashboard/lista/tarea', 'System\TaskController@store')->name('task.store');
+    Route::post('dashboard/lista/tarea/store', 'System\TaskController@store')->name('task.store');
     Route::delete('dashboard/lista/tarea/tarea/{id}', 'System\TaskController@destroy')->name('task.destroy');
     Route::get('dashboard/lista/tarea/{id}', 'System\TaskController@show')->name('task.show');
+    Route::put('dashboard/lista/tarea/{id}', 'System\TaskController@update')->name('task.update');
+    Route::get('dashboard/tareas/{id}', 'System\TaskController@getTask')->name('task.getTask');
 
 });
 

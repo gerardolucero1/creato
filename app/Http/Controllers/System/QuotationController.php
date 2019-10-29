@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\system;
 
 use Illuminate\Http\Request;
+use app\Http\Request\QuotationStoreRequest;
+use app\Http\Request\QuotationUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Quotation;
 
@@ -15,8 +17,11 @@ class QuotationController extends Controller
      */
     public function index()
     {
+        return view('system.quotation.index');
+        /*
         $quotations = Quotation::orderBy('id', 'DESC')->get();
         return view('system.quotation.index', compact('quotations'));
+        */
     }
 
     /**
@@ -51,7 +56,7 @@ class QuotationController extends Controller
     public function show($id)
     {
        $quotations = Quotation::find($id);
-       return view('system.quotation.show', compact('quotations'));
+       return $quotations;
     }
 
     /**
@@ -88,5 +93,11 @@ class QuotationController extends Controller
         $quotation = Quotation::find($id);
         $quotation->delete();
         return back();
+    }
+
+    public function getQuotation(){
+
+        $quotations = Quotation::all();
+        return $quotations;
     }
 }

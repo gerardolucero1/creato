@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index()
         {
             
-            $task = Task::orderBy('id', 'DESC')->get();
+            
             return view('system.task.task')-> with ('task',$task);
         
     }
@@ -52,8 +52,7 @@ class TaskController extends Controller
     public function show($id)
     {
         
-        $task = Task::where('listTask_id', $id)->get();
-        return view('system.task.task')-> with ('task',$task);
+        return view('system.task.task');
     }
 
     /**
@@ -78,7 +77,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $task = Task::find($id);
+        $task->fill($request->all())->save();
+        return;
     }
 
     /**
@@ -92,5 +94,10 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return;
+    }
+
+    public function getTask($id){
+        $task = Task::where('listTask_id', $id)->where('listTask_id',$id)->get();
+        return $task;
     }
 }

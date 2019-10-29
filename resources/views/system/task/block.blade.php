@@ -21,5 +21,5 @@
 @endsection
 
 @section('content')
-<block-component :bloques="{{$block}}"></block-component>
+<block-component></block-component>
 @endsection

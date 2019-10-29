@@ -15,8 +15,8 @@ class ListtaskController extends Controller
      */
     public function index()
     {
-        $listtask = ListTask::orderBy('id', 'DESC')->get();
-            return view('system.task.list')->  with ('listtask',$listtask);
+        
+            return view('system.task.list');
     }
 
     /**
@@ -61,7 +61,9 @@ class ListtaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listtask = ListTask::find($id);
+        //form
+        return $listtask;
     }
 
     /**
@@ -73,7 +75,9 @@ class ListtaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $listtask = ListTask::find($id);
+        $listtask->fill($request->all())->save();
+        return;
     }
 
     /**
@@ -87,5 +91,11 @@ class ListtaskController extends Controller
         $lists = ListTask::find($id);
         $lists->delete();
         return;
+    }
+
+    public function getLists($id){
+        $listtask = ListTask::orderBy('id', 'DESC')->where('blockList_id',$id)->get();
+        return $listtask;
+
     }
 }

@@ -242,7 +242,7 @@
                                 </ul>
                             </li>
                                                         <li>
-                                <a class="{{ request()->is('dashboard/cotizaciones') ? ' active' : '' }}" href="/dashboard/cotizaciones">
+                                <a class="{{ request()->is('dashboard/cotizacion') ? ' active' : '' }}" href="/dashboard/cotizacion">
                                     <i class="si si-calendar"></i><span class="sidebar-mini-hide">Cotizaciones</span>
                                 </a>
                             </li>
@@ -542,6 +542,9 @@
             <!-- END Footer -->
         </div>
         <!-- END Page Container -->
+        <!-- Codebase Core JS -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
         <!-- Codebase Core JS -->
         <script src="{{ mix('js/codebase.app.js') }}"></script>

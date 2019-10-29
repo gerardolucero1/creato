@@ -21,5 +21,5 @@
 @endsection
 
 @section('content')
-<task-component :tareas="{{$task}}"></task-component>
+<task-component></task-component>
 @endsection
