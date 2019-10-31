@@ -211,6 +211,7 @@
                 </div>
             </header>
             <div id="app">
+                <clients-online-component style="display: none;"></clients-online-component>
                 @yield('content')
             </div>
             <footer id="page-footer" class="bg-white opacity-0" style="opacity: 1;">

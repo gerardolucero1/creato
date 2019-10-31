@@ -57,6 +57,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
     Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
 
+    // Events routes
+    Route::resource('dashboard/events', 'System\EventController');
+
         // Get cliente project
         Route::get('proyecto/cliente/{id}', function($id){
             $project = Project::find($id);
@@ -105,11 +108,18 @@ Route::group(['middleware' => ['auth']], function () {
             return;
         });
 
+    //Lista de invitados
+    Route::resource('cliente/lista', 'System\GuestController');
+
+    //Lista de acompanantes
+    Route::resource('cliente/acompanante', 'System\CompanionController');
+
     // Tables routes
     Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');
     Route::get('cliente/tables/invitados', 'System\TablesController@invitados')->name('tables.invitados');
     Route::put('cliente/tables/{id}', 'System\TablesController@update')->name('tables.update');
     Route::put('cliente/tables/limpiar/{id}', 'System\TablesController@destroy')->name('tables.delete');
+    Route::put('cliente/tables/asignar-mesa/{id}', 'System\TablesController@asignarMesa')->name('tables.asignarMesa');
     Route::get('cliente/tables/proyecto', 'System\TablesController@project')->name('tables.project');
 
 });

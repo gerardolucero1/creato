@@ -84,6 +84,37 @@
         text-align: center;
         font-size: 10px;
     }
+
+    .resultadoInvitados{
+        position: absolute;
+        z-index: 3000;
+        background-color: white;
+        overflow: scroll; 
+        max-height: 300px;
+        -webkit-box-shadow: 0px 5px 5px -2px rgba(38,38,38,1);
+-moz-box-shadow: 0px 5px 5px -2px rgba(38,38,38,1);
+box-shadow: 0px 5px 5px -2px rgba(38,38,38,1);
+padding: 0;
+
+    }
+
+    .contenedor-invitado{
+        border-bottom:none;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: 100%;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+    .contenedor-invitado:hover{
+        border-bottom:none; 
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background:#F2F2F2;
+        cursor: pointer;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
 </style>
 
 <template>
@@ -96,6 +127,38 @@
             </div>
             <div class="lista-invitados">
                 <h2 class="text-center mt-1">Mis invitados</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <buscador-component
+                            :limpiar="limpiar"
+                            placeholder="Buscar invitado"
+                            event-name="resultadoInvitados"
+                            :list="listaInvitados"
+                            :keys="['name', 'lastName', 'secondLastName', 'phone' , 'email']"
+                            class="form-control"
+                        ></buscador-component>
+
+                        <!-- Resultado Busqueda -->
+                        <div class="row" v-if="resultadoInvitados.length < listaInvitados.length">
+                            <div v-if="resultadoInvitados.length !== 0" class="col-md-12 resultadoInvitados">
+                                <div v-for="invitado in resultadoInvitados.slice(0,5)" :key="invitado.index">
+                                    <div class="row contenedor-invitado" v-on:click="sentarInvitado(invitado)" style="margin:0">
+                                        <div class="col-md-3">
+                                            <img class="img-fluid" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="" width="70%">
+                                            <img class="img-fluid" v-else src="/images/avatars/female.png" alt="" width="70%">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p style="padding:0; margin:0; line-height:14px; font-size:13px; "><span style="font-weight:bolder"> {{ invitado.name }} {{ invitado.lastName }} {{ invitado.secondLastName }}</span></p>
+                                            <p style="padding:0; margin:0; line-height:14px; font-size:11px; ">{{ invitado.email }}</p>
+                                            <p style="padding:0; margin:0; line-height:14px; font-size:11px; ">{{ invitado.phone }}</p>                                         
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
                     <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge badge-primary badge-pill text-right" style="cursor: pointer;" @click="sentarInvitado(invitado)">ASIGNAR</span>
                         <ul class="list-group" v-for="(companion, index) in invitado.companions" :key="index">
@@ -142,13 +205,13 @@
 
 <script>
     import interact from 'interactjs';
+    import BuscadorComponent from '../Shared/BuscadorComponent.vue';
 
     export default {
-        /*
-        props: [
-            'invitados',
-        ],
-        */
+        components: {
+            BuscadorComponent,
+        },
+
         data(){
             return{
                 invitados: [],
@@ -156,6 +219,9 @@
                 invitado: '',
                 isActive: false,
                 proyecto: '',
+                listaInvitados: [],
+                resultadoInvitados: [],
+                limpiar: false,
             }
         },
         computed:{
@@ -164,6 +230,10 @@
         created(){
             this.obtenerInvitados();
             this.obtenerProyecto();
+
+            this.$on('resultadoInvitados', resultadoInvitados => {
+                this.resultadoInvitados = resultadoInvitados
+            });
         },
         mounted(){
             //Ajustamos el contenedor al tamaño real en px de su 100% en cualquier monitor
@@ -173,7 +243,7 @@
 
             wrap.style.width = medidaX + 'px';
 
-            // target elements with the "draggable" class
+            // Apuntamos al elemento con la clase "draggable"
             interact('.draggable')
             .draggable({
 
@@ -258,6 +328,12 @@
                     })
                 })
                 .on('hold', (event) => {
+                    let dataID = event.currentTarget.dataset.id;
+                    let index = event.currentTarget.dataset.index;
+                    let tipo = event.currentTarget.dataset.tipo;
+
+                    let URL = '/cliente/tables/asignar-mesa/' + dataID;
+
                     const { value: table } = Swal.fire({
                         title: 'Ingresa el nombre o numero de la mesa',
                         input: 'number',
@@ -266,7 +342,24 @@
                             if (!value) {
                                 return 'El nombre o numero de mesa no puede ir vacio'
                             }else{
-                                console.log(value);
+                                axios.put(URL, {
+                                    'tipo': tipo,
+                                    'tableName': value,
+                                }).then((response) => {   
+                                    Swal.fire({
+                                        title: 'Correcto',
+                                        text: 'Mesa asignada',
+                                        type: 'success',
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                        onClose: () => {
+                                            this.obtenerInvitados();
+                                        }
+                                    })           
+                                    
+                                }).catch((error) => {
+                                    console.log(error.data);
+                                })
                             }
                         }
                     })
@@ -275,6 +368,28 @@
         },
 
         methods: {
+            crearArregloInvitados: function(){
+                if(this.invitados.length != 0){
+                    let misInvitados = [];
+                    let misAcompanantes = [];
+                    this.invitados.forEach((element) => {
+                        let invitado = JSON.parse(JSON.stringify(element));
+
+                        misInvitados.push(invitado);
+                    });
+
+                    this.invitados.forEach((element) => {
+                        element.companions.forEach((item) => {
+                            let invitado = JSON.parse(JSON.stringify(item));
+
+                            misAcompanantes.push(invitado);
+                        });
+                    });
+
+                    this.listaInvitados = misInvitados.concat(misAcompanantes);
+                }
+            },
+
             obtenerMedidas: function(){
                 let wrap = document.getElementById('wrap-zone');
                 alert(wrap.offsetWidth);
@@ -303,6 +418,7 @@
 
                 axios.get(URL).then((response) => {
                     this.invitados = response.data;
+                    this.crearArregloInvitados(); 
 
                     // Recorremos el array de invitados y detectamos los que ya se encuentran sentados,
                     // y hacemos un push al arreglo 
@@ -321,7 +437,7 @@
                             }
                         });
                     })
-                    
+                  
                 }).catch((error) => {
                     console.log(error.data);
                 });
@@ -348,6 +464,7 @@
             },
 
             sentarInvitado: function(invitado){
+                this.limpiar = true;
                 if(this.invitadosSentados.some((element) => {
                     return element == invitado
                 })){
@@ -359,6 +476,10 @@
                 }else{
                     this.invitadosSentados.push(invitado);
                 }
+
+                setTimeout(() => {
+                    this.limpiar = false;
+                }, 1000);
             },
 
             sentarAcompanante: function(companion){

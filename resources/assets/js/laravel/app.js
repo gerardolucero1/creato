@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,6 +7,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import VueFuse from 'vue-fuse';
+
+Vue.use(VueFuse);
 
 import DataTable from 'laravel-vue-datatable';
 
@@ -28,6 +31,7 @@ Vue.component('guests-component', require('./components/client/GuestsComponent.v
 Vue.component('companion-component', require('./components/system/CompanionComponent.vue').default);
 Vue.component('my-list-component', require('./components/client/MyListComponent.vue').default);
 Vue.component('tables-component', require('./components/client/TablesComponent.vue').default);
+Vue.component('clients-online-component', require('./components/system/ClientsOnlineComponent.vue').default);
 
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);
@@ -44,4 +48,3 @@ const app = new Vue({
     el: '#app',
     router,
 });
-

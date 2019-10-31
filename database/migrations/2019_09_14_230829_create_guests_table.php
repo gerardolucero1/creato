@@ -16,17 +16,17 @@ class CreateGuestsTable extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('guestList_id')->unsigned();
-            $table->string('name');
-            $table->string('lastName');
-            $table->string('secondLastName');
-            $table->enum('genere', ['MALE', 'FEMALE']);
-            $table->string('email');
-            $table->string('phone');
-            $table->integer('guests');
+            $table->string('name')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('secondLastName')->nullable();
+            $table->enum('genere', ['MALE', 'FEMALE'])->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('guests')->nullable();
             $table->string('dataX')->nullable();
             $table->string('dataY')->nullable();
             $table->boolean('seated')->nullable();
-            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO']);
+            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->nullable();
             $table->timestamps();
 
             //Relation
