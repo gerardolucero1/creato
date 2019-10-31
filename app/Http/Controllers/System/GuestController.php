@@ -8,6 +8,7 @@ use App\GuestList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class GuestController extends Controller
 {
@@ -40,7 +41,25 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
-        $guest = Guest::create($request->all());
+        $request = Input::json()->all();
+
+        foreach ($request as $invitado) {
+            $guest                      = new Guest();
+            $guest->guestList_id        = $invitado['guestList_id'];
+            $guest->name                = $invitado['name'];
+            $guest->lastName            = $invitado['lastName'];
+            $guest->secondLastName      = $invitado['secondLastName'];
+            $guest->genere              = $invitado['genere'];
+            $guest->email               = $invitado['email'];
+            $guest->phone               = $invitado['phone'];
+            $guest->guests              = $invitado['guests'];
+            $guest->dataX               = $invitado['dataX'];
+            $guest->dataY               = $invitado['dataY'];
+            $guest->seated              = $invitado['seated'];
+            $guest->status              = $invitado['status'];
+
+            $guest->save();
+        }
         return;
     }
 

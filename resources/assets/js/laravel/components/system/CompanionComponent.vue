@@ -392,7 +392,7 @@
             },
 
             actualizarAcompanante: function(){
-                let URL = '/api/acompanante/' + this.acompananteEdicion.id;
+                let URL = '/cliente/acompanante/' + this.acompananteEdicion.id;
 
                 axios.put(URL, this.acompananteEdicion).then((response) => {
                     Swal.fire(
@@ -408,7 +408,7 @@
             },
 
             eliminarAcompanante: function(companion){
-                let URL = '/api/acompanante/' + companion.id;
+                let URL = '/cliente/acompanante/' + companion.id;
 
                 Swal.fire({
                     title: '¿Quieres eliminar a ' + companion.name + '?',
@@ -490,7 +490,7 @@
             },
 
             obtenerLista: function(){
-                let URL = '/api/lista/' + this.user.id;
+                let URL = '/cliente/lista/' + this.user.id;
 
                 axios.get(URL).then((response) => {
                     this.lista = response.data;
@@ -517,7 +517,7 @@
             },
 
             agregarAcompanante: function(){
-                let URL = '/api/acompanante';
+                let URL = '/cliente/acompanante';
 
                 this.acompanante.guest_id = this.invitado.id;
 

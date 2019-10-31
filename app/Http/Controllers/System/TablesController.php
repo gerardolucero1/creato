@@ -101,6 +101,7 @@ class TablesController extends Controller
             $guest->dataX = null;
             $guest->dataY = null;
             $guest->seated = false;
+            $guest->tableName = null;
             $guest->save();
 
             return $guest;
@@ -109,6 +110,7 @@ class TablesController extends Controller
             $companion->dataX = null;
             $companion->dataY = null;
             $companion->seated = false;
+            $companion->tableName = null;
             $companion->save();
 
             return $companion;
@@ -129,5 +131,21 @@ class TablesController extends Controller
         $user = Auth::user();
 
         return $user->project;
+    }
+
+    public function asignarMesa(Request $request, $id){
+        if($request->tipo == 'invitado'){
+            $guest = Guest::with('companions')->find($id);
+            $guest->tableName = $request->tableName;
+            $guest->save();
+
+            return $guest;
+        }else if($request->tipo == 'acompanante'){
+            $companion = Companion::find($id);
+            $companion->tableName = $request->tableName;
+            $companion->save();
+
+            return $companion;
+        }
     }
 }

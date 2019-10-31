@@ -134,6 +134,7 @@
     </div>
 
     <div class="container">
+        <!--
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-md-6">
                 <div class="block">
@@ -230,6 +231,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-md-4">
                 <div class="block">
@@ -286,6 +288,12 @@
                 </div>
             </div>
         </div>
+        -->
+        <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
+            <div class="col-md-12">
+                
+            </div>
+        </div>
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-md-6">
                 <a class="block block-link-shadow overflow-hidden" href="javascript:void(0)">
@@ -294,14 +302,14 @@
                         <div class="row py-20">
                             <div class="col-6 text-right border-r">
                                 <div class="js-appear-enabled animated fadeInLeft" data-toggle="appear" data-class="animated fadeInLeft">
-                                    <div class="font-size-h3 font-w600">16</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Projects</div>
+                                    <div class="font-size-h3 font-w600">{{ count(App\Portfolio::all()) }}</div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Portafolios</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="js-appear-enabled animated fadeInRight" data-toggle="appear" data-class="animated fadeInRight">
-                                    <div class="font-size-h3 font-w600">2</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Active</div>
+                                    <div class="font-size-h3 font-w600">{{ count(App\Project::all()) }}</div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Proyectos</div>
                                 </div>
                             </div>
                         </div>
@@ -332,70 +340,11 @@
                 </a>
             </div>
         </div>
-        <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="be_pages_generic_inbox.php">
-                    <div class="block-content ribbon ribbon-bookmark ribbon-success ribbon-left">
-                        <div class="ribbon-box">15</div>
-                        <p class="mt-5">
-                            <i class="si si-envelope-letter fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Inbox</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="be_pages_generic_profile.php">
-                    <div class="block-content">
-                        <p class="mt-5">
-                            <i class="si si-user fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Profile</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="be_pages_forum_categories.php">
-                    <div class="block-content ribbon ribbon-bookmark ribbon-primary ribbon-left">
-                        <div class="ribbon-box">3</div>
-                        <p class="mt-5">
-                            <i class="si si-bubbles fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Forum</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="be_pages_generic_search.php">
-                    <div class="block-content">
-                        <p class="mt-5">
-                            <i class="si si-magnifier fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Search</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="be_comp_charts.php">
-                    <div class="block-content">
-                        <p class="mt-5">
-                            <i class="si si-bar-chart fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Live Stats</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-                <a class="block block-link-shadow text-center" href="javascript:void(0)">
-                    <div class="block-content">
-                        <p class="mt-5">
-                            <i class="si si-settings fa-3x"></i>
-                        </p>
-                        <p class="font-w600">Settings</p>
-                    </div>
-                </a>
-            </div>
         </div>
     </div>
 </main>
+@endsection
+
+@section('scripts')
+   
 @endsection
