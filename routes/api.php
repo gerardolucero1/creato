@@ -17,3 +17,7 @@ use Illuminate\Http\Request;
 //Route::get('lista/{listum}', 'System\GuestController@show');
 
 
+// Task Routes
+Route::resource('tarea', 'System\TaskController');
+
+

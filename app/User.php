@@ -41,9 +41,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     public function project()
     {
         return $this->hasOne(Project::class, 'client_id');
+    }
+
+    public function block_list()
+    {
+        return $this->hasOne(BlockList::class, 'client_id');
     }
 
     public function myLists()

@@ -47,7 +47,7 @@
                                 <i class="fa fa-3x fa-users text-primary"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
-                                {{ count(Auth::user()->project->list->guests) }} Invitados
+                                2 Invitados
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
                                 Invitados
@@ -74,13 +74,13 @@
                     <a class="block block-link-shadow" href="javascript:void(0)">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-tasks text-pulse"></i>
+                                <i class="fa fa-3x fa-envelope-open text-pulse"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
-                                Tareas
+                                Mensajes
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                                Mis Tareas
+                                <span class="badge badge-pill badge-danger">2</span> Mensajes
                             </p>
                         </div>
                     </a>
@@ -89,7 +89,7 @@
                     <a class="block block-link-shadow" href="{{ route('tables.index') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-venus-mars text-gray-dark"></i>
+                                <i class="fas fa-3x fa-chair text-gray-dark"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
                                 2 Sentados
@@ -113,65 +113,6 @@
                     </div>
                 </div>
                 <my-list-component></my-list-component>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="block">
-                        <div class="block-content block-content-full">
-                            <div class="py-20 text-center">
-                                <div class="mb-20">
-                                    <i class="fa fa-coffee fa-3x"></i>
-                                </div>
-                                <div class="font-size-h4 font-w600">Pro Plan</div>
-                                <div class="text-muted">Active plan.</div>
-                                <div class="pt-20">
-                                    <a class="btn btn-rounded btn-alt-primary" href="javascript:void(0)">
-                                        <i class="fa fa-arrow-up mr-5"></i>
-                                        Upgrade to VIP
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="block">
-                        <div class="block-content block-content-full">
-                            <div class="py-20 text-center">
-                                <div class="mb-20">
-                                    <i class="fa fa-twitter fa-3x"></i>
-                                </div>
-                                <div class="font-size-h4 font-w600">+107 followers</div>
-                                <div class="text-muted">Awesome!</div>
-                                <div class="pt-20">
-                                    <a class="btn btn-rounded btn-alt-primary" href="javascript:void(0)">
-                                        <i class="fa fa-link mr-5"></i>
-                                        Check them out
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="block">
-                        <div class="block-content block-content-full">
-                            <div class="py-20 text-center">
-                                <div class="mb-20">
-                                    <i class="fa fa-envelope-open fa-3x"></i>
-                                </div>
-                                <div class="font-size-h4 font-w600">10,000 Subscribers</div>
-                                <div class="text-muted">Keep it up!</div>
-                                <div class="pt-20">
-                                    <a class="btn btn-rounded btn-alt-primary" href="javascript:void(0)">
-                                        <i class="fa fa-cog mr-5"></i>
-                                        Manage list
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">

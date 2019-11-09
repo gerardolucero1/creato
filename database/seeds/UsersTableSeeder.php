@@ -14,6 +14,8 @@ class UsersTableSeeder extends Seeder
     {
         factory(App\User::class, 10)->create();
 
+        /*
+
         // Usuario con el rol cliente
         $cliente = User::create([
             'name' => 'Cliente',
@@ -31,6 +33,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $editor->assignRole('editor');
+
+        */
 
         // Usuario con el rol admin
         $admin = User::create([
