@@ -20,6 +20,7 @@ class Guest extends Model
         'dataY',
         'seated',
         'status',
+        'origin',
     ];
 
     public function guestList()
