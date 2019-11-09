@@ -57,6 +57,7 @@ class GuestController extends Controller
             $guest->dataY               = $invitado['dataY'];
             $guest->seated              = $invitado['seated'];
             $guest->status              = $invitado['status'];
+            $guest->origin              = $invitado['origin'];
 
             $guest->save();
         }

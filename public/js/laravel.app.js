@@ -2215,6 +2215,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2231,6 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
         dataY: 0,
         seated: false,
         status: 'PENDIENTE',
+        origin: 'NOVIA',
         guestList_id: ''
       },
       guests: [],
@@ -74062,6 +74070,62 @@ var render = function() {
                                           )
                                         ]),
                                         _vm._v(" "),
+                                        _c("td", [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: item.origin,
+                                                  expression: "item.origin"
+                                                }
+                                              ],
+                                              staticStyle: { width: "110%" },
+                                              attrs: { name: "", id: "" },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    item,
+                                                    "origin",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "NOVIA" } },
+                                                [_vm._v("Novia")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "NOVIO" } },
+                                                [_vm._v("Novio")]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
                                         _c(
                                           "td",
                                           { staticClass: "text-center" },
@@ -74739,6 +74803,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Invitados")]),
         _vm._v(" "),
         _c("th", [_vm._v("Genero")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Origen")]),
         _vm._v(" "),
         _c(
           "th",

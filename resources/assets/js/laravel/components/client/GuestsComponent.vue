@@ -124,6 +124,7 @@
                                                             <th>Telefono</th>
                                                             <th>Invitados</th>
                                                             <th>Genero</th>
+                                                            <th>Origen</th>
                                                             <th class="text-center" style="width: 100px;">Acciones</th>
                                                         </tr>
                                                     </thead>
@@ -151,6 +152,12 @@
                                                                 <select name="" id="" v-model="item.genere" style="width: 110%;">
                                                                     <option value="MALE">Hombre</option>
                                                                     <option value="FEMALE">Mujer</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select name="" id="" v-model="item.origin" style="width: 110%;">
+                                                                    <option value="NOVIA">Novia</option>
+                                                                    <option value="NOVIO">Novio</option>
                                                                 </select>
                                                             </td>
                                                             <td class="text-center">
@@ -314,6 +321,7 @@ export default {
                 dataY: 0,
                 seated: false,
                 status: 'PENDIENTE',
+                origin: 'NOVIA',
                 guestList_id: '',
 
             },
