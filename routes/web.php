@@ -191,6 +191,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Graficas
     Route::get('dashboard/estadisticas', 'System\SystemController@estadisticasIndex')->name('estadisticas.index');
+        //Obtener datos
+        Route::get('grafica-obtener-datos', 'System\SystemController@obtenerDatos');
 
 });
 

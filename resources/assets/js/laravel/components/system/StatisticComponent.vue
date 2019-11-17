@@ -64,29 +64,41 @@ export default {
     },
     data(){
         return{
-            datacollection: null
+            datacollection: null,
+            datos: [],
         }
     },
     mounted () {
-        this.fillData()
+        this.crearGrafica()
+        this.obtenerDatos()
     },
     methods: {
-        fillData (){
+        crearGrafica (){
             this.datacollection = {
             labels: ['Enero','Febrero','Marzo','Abril','Mayo', 'Junio' , 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             datasets: [
                     {
-                    label: '2018',
-                    backgroundColor: '#FF0066',
-                    data: [ 2, 1, 0, 2, 3, 2, 2, 1, 2, 2, 3, 2]
+                        label: '2018',
+                        backgroundColor: '#FF0066',
+                        data: [ 2, 1, 0, 2, 3, 2, 2, 1, 2, 2, 3, 2]
                     },
                     {
-                    label: '2019',
-                    backgroundColor: '#F57677',
-                    data: [ 1, 0, 3, 3, 2, 1, 1, 2, 3, 4, 1, 0]
+                        label: '2019',
+                        backgroundColor: '#F57677',
+                        data: [ 1, 0, 3, 3, 2, 1, 1, 2, 3, 4, 1, 0]
                     },
                 ]
             }
+        },
+
+        obtenerDatos: function(){
+            let URL = '/grafica-obtener-datos'
+
+            axios.get(URL).then((response) => {
+                this.datos = response.data
+            }).catch((error) => {
+                console.log(error.data);
+            })
         }
     }
 }
