@@ -101,19 +101,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="block block-bordered">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Lista de pendientes</h3>
-                        </div>
-                        <div class="block-content">
-                            <p>Bordered block with header background..</p>
-                        </div>
-                    </div>
-                </div>
-                <my-list-component></my-list-component>
-            </div>
+            <my-block-list-component></my-block-list-component>
             <div class="row">
                 <div class="col-md-6">
                     <a class="block block-rounded" href="javascript:void(0)">

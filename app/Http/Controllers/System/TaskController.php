@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\System;
 
+use App\task;
+use App\ListTask;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\task;
 
 class TaskController extends Controller
 {
@@ -99,5 +100,10 @@ class TaskController extends Controller
     public function getTask($id){
         $task = Task::where('listTask_id', $id)->where('listTask_id',$id)->get();
         return $task;
+    }
+
+    public function obtenerLista($id){
+        $lista = ListTask::with('tasks')->with('block_list')->findOrFail($id);
+        return $lista;
     }
 }

@@ -16,15 +16,16 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('listTask_id')->unsigned();
-            $table->string('name');
-            $table->string('slug');
-            $table->string('category');
-            $table->string('complete');
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('category')->nullable();
+            $table->boolean('complete')->nullable();
+            $table->boolean('favorite')->nullable();
             $table->timestamps();
 
             $table->foreign('listTask_id')->references('id')->on('list_tasks')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
         });
     }

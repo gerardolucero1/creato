@@ -97,12 +97,24 @@ class BlocktaskController extends Controller
     }
 
     public function getBlock(){
-        $blocks= BlockList::all();
+        $blocks= BlockList::with('user')->with('lists_task')->orderBy('id', 'DESC')->get();
         return $blocks;
     }
 
     public function getUsers(){
-        $users= User::all();
+        $allUsers = User::orderBy('id', 'DESC')->get();
+        //dd($users);
+        
+        
+        $usersClient = [];
+        foreach ($allUsers as $user) {
+            if($user->hasRole('cliente')){
+                array_push($usersClient, $user);
+            }
+        }
+        
+        $users = collect($usersClient);
+
         return $users;
     }
 }

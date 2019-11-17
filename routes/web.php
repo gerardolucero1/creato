@@ -1,6 +1,7 @@
 <?php
 
 use App\Guest;
+use App\Task;
 use App\Project;
 use App\Companion;
 use App\GuestList;
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/usuarios', 'System\UsersController@store')->name('users.store');
     Route::put('dashboard/usuarios/{id}', 'System\UsersController@update')->name('users.update');
     Route::delete('dashboard/usuarios/{id}', 'System\UsersController@destroy')->name('users.delete');
+        //Clientes routes
+        Route::get('dashboard/clientes', 'System\UsersController@clientesIndex')->name('clientes.index');
 
     // Projects routes
     Route::get('dashboard/proyectos', 'System\ProjectController@index')->name('projects.index');
@@ -122,6 +125,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('cliente/tables/asignar-mesa/{id}', 'System\TablesController@asignarMesa')->name('tables.asignarMesa');
     Route::get('cliente/tables/proyecto', 'System\TablesController@project')->name('tables.project');
 
+    //Obtener listas del cliente
+    Route::get('cliente/obtener-listas/{id}', 'System\ClientController@obtenerListas')->name('client.obtenerListas');
+        //Vista tarea
+        Route::get('cliente/tareas/{id}', 'System\ClientController@tareas')->name('client.tareas');
+        Route::get('obtener-tareas/{id}', 'System\ClientController@obtenerTareas')->name('client.obtenerTareas');
+        Route::get('completar-tarea/{id}', function($id){
+            $tarea = Task::findOrFail($id);
+            $tarea->complete = true;
+            $tarea->save();
+            return;
+        });
+
+        Route::get('retornar-tarea/{id}', function($id){
+            $tarea = Task::findOrFail($id);
+            $tarea->complete = false;
+            $tarea->save();
+            return;
+        });
+
 
     // Quotation Routes
     Route::get('dashboard/cotizacion', 'System\QuotationController@index')->name('quotation.index');
@@ -153,6 +175,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/lista/store', 'System\ListtaskController@store')->name('list.store');
     Route::get('dashboard/lista/{id}', 'System\ListtaskController@show')->name('list.show');
     Route::delete('dashboard/lista/delete/{id}', 'System\ListtaskController@destroy')->name('list.destroy');
+
+        Route::get('dashboard/obtener-bloque/{id}', 'System\ListtaskController@obtenerBloque')->name('obtenerBloque');
     
 
         // Task
@@ -162,6 +186,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/lista/tarea/{id}', 'System\TaskController@show')->name('task.show');
     Route::put('dashboard/lista/tarea/{id}', 'System\TaskController@update')->name('task.update');
     Route::get('dashboard/tareas/{id}', 'System\TaskController@getTask')->name('task.getTask');
+
+        Route::get('dashboard/obtener-lista/{id}', 'System\TaskController@obtenerLista')->name('obtenerLista');
+
+    //Graficas
+    Route::get('dashboard/estadisticas', 'System\SystemController@estadisticasIndex')->name('estadisticas.index');
 
 });
 

@@ -216,7 +216,12 @@
                                 </li>
                                 <li>
                                     <a class="{{ request()->is('dashboard/usuarios') ? ' active' : '' }}" href="/dashboard/usuarios">
-                                        <i class="si si-users"></i><span class="sidebar-mini-hide">Usuarios</span>
+                                        <i class="si si-emoticon-smile"></i><span class="sidebar-mini-hide">Usuarios</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{ request()->is('dashboard/clientes') ? ' active' : '' }}" href="/dashboard/clientes">
+                                        <i class="si si-users"></i><span class="sidebar-mini-hide">Clientes</span>
                                     </a>
                                 </li>
                                 <li>
@@ -224,8 +229,8 @@
                                         <i class="si si-notebook"></i><span class="sidebar-mini-hide">Proyectos</span>
                                     </a>
                                 </li>
-                                <!--
-                                <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
+                                
+                                {{--  <li class="{{ request()->is('examples/*') ? ' open' : '' }}">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span class="sidebar-mini-hide">Examples</span></a>
                                     <ul>
                                         <li>
@@ -238,8 +243,8 @@
                                             <a class="{{ request()->is('examples/blank') ? ' active' : '' }}" href="/examples/blank">Blank</a>
                                         </li>
                                     </ul>
-                                </li>
-                            -->
+                                </li>  --}}
+                            
                                 <li class="nav-main-heading">
                                     <span class="sidebar-mini-visible">WB</span><span class="sidebar-mini-hidden">Web</span>
                                 </li>

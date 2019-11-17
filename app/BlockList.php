@@ -13,11 +13,11 @@ class BlockList extends Model
     
         public function user()
         {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class, 'client_id');
         }
         public function lists_task()
         {
-            return $this->hasMany(ListTask::class, 'listTask_id');
+            return $this->hasMany(ListTask::class, 'blockList_id');
         }
     
 }

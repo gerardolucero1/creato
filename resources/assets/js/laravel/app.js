@@ -32,14 +32,19 @@ Vue.component('companion-component', require('./components/system/CompanionCompo
 Vue.component('my-list-component', require('./components/client/MyListComponent.vue').default);
 Vue.component('tables-component', require('./components/client/TablesComponent.vue').default);
 Vue.component('clients-online-component', require('./components/system/ClientsOnlineComponent.vue').default);
-
-//Web Components
-Vue.component('app-component', require('./components/web/AppComponent.vue').default);
-Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
+Vue.component('my-block-list-component', require('./components/client/MyBlockListComponent.vue').default);
+Vue.component('my-task-component', require('./components/client/MyTaskComponent.vue').default);
 Vue.component('block-component', require('./components/system/BlockComponent.vue').default);
 Vue.component('list-component', require('./components/system/ListComponent.vue').default);
 Vue.component('task-component', require('./components/system/TaskComponent.vue').default);
 Vue.component('quotation-component', require('./components/system/QuotationComponent.vue').default);
+Vue.component('calendar-component', require('./components/system/CalendarComponent.vue').default);
+Vue.component('statistic-component', require('./components/system/StatisticComponent.vue').default);
+
+//Web Components
+Vue.component('app-component', require('./components/web/AppComponent.vue').default);
+Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

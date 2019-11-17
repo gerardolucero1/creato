@@ -20,4 +20,6 @@ use Illuminate\Http\Request;
 // Task Routes
 Route::resource('tarea', 'System\TaskController');
 
+Route::apiResource('/calendar', 'System\CalendarController');
+
 

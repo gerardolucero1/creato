@@ -21,6 +21,12 @@ class UsersController extends Controller
         return view('system.users.index', compact('users'));
     }
 
+    public function clientesIndex()
+    {
+        $users = User::orderBy('id', 'DESC')->get();
+        return view('system.users.clientesIndex', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

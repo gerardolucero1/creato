@@ -5,6 +5,7 @@ namespace App\Http\Controllers\System;
 use App\User;
 use App\MyList;
 use App\Project;
+use App\Calendar;
 use App\GuestList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -61,15 +62,6 @@ class ProjectController extends Controller
 
         $project = Project::create($request->all());
 
-        /* Banner
-        if($archivo = $request->file('banner')){
-
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $project->fill(['banner' => asset('images/'.$nombre)])->save();
-        }
-        */
-
         // Store in AWS S3
         if($archivo = $request->file('banner')){
 
@@ -84,6 +76,13 @@ class ProjectController extends Controller
 
         // Obtenemos el proyecto creado
         $project = Project::orderBy('id', 'DESC')->first();
+
+        $calendar = new Calendar();
+        $calendar->eventName = $project->title;
+        $calendar->startDate = $project->date;
+        $calendar->endDate = $project->date;
+        $calendar->type = 'BODA';
+        $calendar->save();
 
         // Creamos la lista de invitados asociada al proyecto que acacabamos de crear
         $guestList = new GuestList();

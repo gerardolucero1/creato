@@ -30,4 +30,8 @@ class SystemController extends Controller
         }
 
     }
+
+    public function estadisticasIndex(){
+        return view('system.statistics.index');
+    }
 }

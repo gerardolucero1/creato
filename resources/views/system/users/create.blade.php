@@ -26,26 +26,10 @@
     <section class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block block-themed">
-                    <div class="block-header bg-gd-sea">
-                        <h3 class="block-title">Usuarios</h3>
-                        <div class="block-options">
-                            <a href="{{ route('portfolio.create') }}" class="btn-block-option">
-                                <i class="si si-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="block-content pb-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                {!! Form::open(['route' => 'users.store', 'files' => 'true']) !!}
-            
-                                    @include('system.users.partial.form')
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {!! Form::open(['route' => 'users.store', 'files' => 'true']) !!}
+
+                    @include('system.users.partial.form')
+                {!! Form::close() !!}
             </div>
         </div>
     </section>
