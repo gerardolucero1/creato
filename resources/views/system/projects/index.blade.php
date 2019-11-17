@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="block-content border-bottom">
                                     <h4 class="font-size-h5 mb-10">{{ $project->title }}</h4>
-                                    <h5 class="font-size-h1 font-w300 mb-5">{{ $project->user->name }}</h5>
+                                    <h5 class="font-size-h3 font-w300 mb-5">{{ $project->user->name }}</h5>
                                     <p class="text-muted">
                                         <i class="fa fa-map-pin mr-5"></i> {{ $project->place }}
                                     </p>

@@ -431,12 +431,16 @@
         <!-- Codebase Core JS -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-
+        
         <!-- Codebase Core JS -->
         <script src="{{ mix('js/codebase.app.js') }}"></script>
 
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="{{ asset('js/otros.app.js') }}"></script>
 
         <!-- Drop Zone -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
