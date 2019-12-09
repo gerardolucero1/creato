@@ -336,7 +336,7 @@ padding: 0;
 
                     const { value: table } = Swal.fire({
                         title: 'Ingresa el nombre o numero de la mesa',
-                        input: 'number',
+                        input: 'text',
                         showCancelButton: true,
                         inputValidator: (value) => {
                             if (!value) {

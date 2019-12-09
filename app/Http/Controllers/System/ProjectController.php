@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ProjectController extends Controller
 {
@@ -206,5 +207,16 @@ class ProjectController extends Controller
 
         return back()
             ->with('info', 'Planos cargados con exito');
+    }
+
+    public function review($id){
+        $project = Project::find($id);
+        return view('system.projects.review', compact('project'));
+    }
+
+    public function pdf($id){
+        $project = Project::find($id);
+        $pdf = PDF::loadView('system.projects.PDF.guestList', compact('project'));
+        return $pdf->stream();
     }
 }

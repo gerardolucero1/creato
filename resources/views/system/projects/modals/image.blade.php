@@ -35,7 +35,7 @@
                 <div class="block block-themed block-transparent mb-0">
                     <div class="block-header bg-primary-dark">
                         <h3 class="block-title text-center">
-                            Nuevo invitado
+                            Agregar planos
                         </h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">

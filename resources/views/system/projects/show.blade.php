@@ -1,5 +1,14 @@
 @extends('layouts.backend')
 
+@section('styles')
+    <style>
+        .list-group-item a{
+            color: black;
+            font-size: 19px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="bg-image" style="background-image: url('{{ $project->banner }}');">
         <div class="bg-black-op-75">
@@ -38,6 +47,18 @@
         @endif
 
         <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="#obtenerListaInvitados">
+                            Obtener lista de invitados
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
             <div class="col-md-6">
                 <div class="block">
                     <div class="block-header block-header-default">
@@ -59,27 +80,37 @@
             </div>
             <div class="col-md-6">
                 <div class="block">
-                    <div class="block-header block-header-default block-header-rtl">
-                        <h3 class="block-title">Title</h3>
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Lista de tareas</h3>
                         <div class="block-options">
-                            <button type="button" class="btn btn-sm btn-secondary">Edit</button>
-                            <button type="button" class="btn btn-sm btn-secondary">Settings</button>
+                            {{--  <button type="button" class="btn btn-sm btn-secondary">Edit</button>
+                            <button type="button" class="btn btn-sm btn-secondary">Settings</button>  --}}
                         </div>
                     </div>
                     <div class="block-content">
-                        <p>With Bootstrap buttons to the left..</p>
+                        <ul class="list-group list-group-flush">
+                            @foreach ($project->user->block_list->lists_task as $list)
+                                <li class="list-group-item list-group-item-action">
+                                    <a href="{{ route('task.show', $list->id) }}">
+                                        <i class="fa fa-list-ul"></i> {{ $list->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="row">
             <div class="col-md-12">
-                <companion-component></companion-component>
+                <companion-component :project="{{ $project }}"></companion-component>
             </div>
         </div>
     </div>
 
     @include('system.projects.modals.image')
+    @include('system.projects.modals.seated')
 @endsection
 
 @section('scripts')

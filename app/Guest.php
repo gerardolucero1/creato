@@ -21,6 +21,7 @@ class Guest extends Model
         'seated',
         'status',
         'origin',
+        'table',
     ];
 
     public function guestList()

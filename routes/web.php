@@ -58,7 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
-    Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
+        Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
+        Route::get('dashboard/proyectos/resumen/{id}', 'System\ProjectController@review')->name('projects.review');
+        Route::get('dashboard/proyectos/pdf/{id}', 'System\ProjectController@pdf')->name('projects.pdf');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
