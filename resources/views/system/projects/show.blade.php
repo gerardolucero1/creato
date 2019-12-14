@@ -89,13 +89,15 @@
                     </div>
                     <div class="block-content">
                         <ul class="list-group list-group-flush">
-                            @foreach ($project->user->block_list->lists_task as $list)
-                                <li class="list-group-item list-group-item-action">
-                                    <a href="{{ route('task.show', $list->id) }}">
-                                        <i class="fa fa-list-ul"></i> {{ $list->name }}
-                                    </a>
-                                </li>
-                            @endforeach
+                            @if($project->user->block_list)
+                                @foreach ($project->user->block_list->lists_task as $list)
+                                    <li class="list-group-item list-group-item-action">
+                                        <a href="{{ route('task.show', $list->id) }}">
+                                            <i class="fa fa-list-ul"></i> {{ $list->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

@@ -18,13 +18,13 @@
                         $guests = [];
                         foreach($project->list->guests as $guest){
                             if($guest->status == 'CONFIRMADO'){
-                                if($guest->seated == false){
+                                if($guest->seated == true && $guest->tableName == null || $guest->seated == false){
                                     array_push($guests, $guest);
                                 }
                             }
                             foreach ($guest->companions as $companion) {
                                 if($companion->status == 'CONFIRMADO'){
-                                    if($companion->seated == false){
+                                    if($companion->seated == true && $companion->tableName == null || $companion->seated == false){
                                         array_push($guests, $companion);
                                     }
                                 }
@@ -33,31 +33,32 @@
                     @endphp
                     @if(count($guests) != 0)
                         <p>Estos invitados se encuentran confirmados pero no han sido asignados a una mesa.</p>
-                    @endif
-                    <table class="table table-bordered table-vcenter">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width: 50px;">#</th>
-                                <th>Nombre</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Telefono</th>
-                                <th class="text-center" style="width: 100px;">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($guests as $guest)
+
+                        <table class="table table-bordered table-vcenter">
+                            <thead>
                                 <tr>
-                                    <th class="text-center" scope="row">4</th>
-                                    <td>{{ $guest->name }} {{ $guest->lastName }} {{ $guest->secondLastName }}</td>
-                                    <td class="d-none d-sm-table-cell">
-                                        {{ $guest->phone }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ $guest->email }}
-                                    </td>
+                                    <th>Nombre</th>
+                                    <th class="d-none d-sm-table-cell" style="width: 15%;">Telefono</th>
+                                    <th class="text-center" style="width: 100px;">Email</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($guests as $guest)
+                                    <tr>
+                                        <td>{{ $guest->name }} {{ $guest->lastName }} {{ $guest->secondLastName }}</td>
+                                        <td class="d-none d-sm-table-cell">
+                                            {{ $guest->phone }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $guest->email }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p>Todos los invitados confirmados se encuentran sentados y con una mesa asignada</p>
+                    @endif
                 </div>
             </div>
             <div class="modal-footer">
