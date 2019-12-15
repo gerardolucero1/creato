@@ -39,9 +39,17 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
     
-       $profile = Profile::create($request->all());
+        $profile = Profile::create($request->all());
+        //Imagen
+        if($archivo = $request->file('file')){
 
-        return view('system.users.profile.index');
+            
+            $nombre =  $archivo->getClientOriginalName().'.' . $archivo->getClientOriginalExtension();
+            $archivo->move(public_path('file/'), $nombre);
+            $profile->fill(['file' => asset('file/'.$nombre)])->save();
+        }
+
+        return redirect()->route('system.users.profile.index');
       
     }
 
@@ -76,9 +84,26 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $profile = Profile::find($id);
-        $profile->fill($request->all())->save();
+    { 
+        $profile = Profile::where('user_id', $id)->first();
+        
+         //Imagen
+         if($archivo = $request->file('banner')){
+            
+            $nombre =  $archivo->getClientOriginalName();
+            $archivo->move(public_path('file/'), $nombre);
+            $profile->fill(['banner' => asset('file/'.$nombre)])->save();
+        }
+        
+        
+        if($archivo = $request->file('photo')){
+
+            $nombre =  $archivo->getClientOriginalName();
+            $archivo->move(public_path('file/'), $nombre);
+            $profile->fill(['photo' => asset('file/'.$nombre)])->save();
+        }
+        
+
         return view('system.users.profile.index');
     }
 
@@ -91,5 +116,12 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /* Perfil de cliente */
+    public function indexClient()
+    {
+        
+        return view('system.client.profile.index');
     }
 }
