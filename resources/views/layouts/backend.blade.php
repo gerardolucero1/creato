@@ -105,7 +105,7 @@
     
                     <!-- Side Content -->
                     <div class="content-side">
-                        <clients-online-component></clients-online-component>
+                        {{--  <clients-online-component></clients-online-component>  --}}
                     </div>
                     <!-- END Side Content -->
                 </aside>

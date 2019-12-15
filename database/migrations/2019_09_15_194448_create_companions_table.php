@@ -25,6 +25,7 @@ class CreateCompanionsTable extends Migration
             $table->string('dataX')->nullable();
             $table->string('dataY')->nullable();
             $table->boolean('seated')->nullable();
+            $table->string('tableName')->nullable();
             $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO']);
             $table->timestamps();
 
