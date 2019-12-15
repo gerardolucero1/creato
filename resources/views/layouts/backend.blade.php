@@ -300,7 +300,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('conversation.index') }}">
                                         <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
                                         <span class="badge badge-primary">1</span>
                                     </a>

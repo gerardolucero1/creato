@@ -196,6 +196,20 @@ Route::group(['middleware' => ['auth']], function () {
         //Obtener datos
         Route::get('grafica-obtener-datos', 'System\SystemController@obtenerDatos');
 
+    // Messages admin
+    Route::get('dashboard/conversaciones', 'System\ConversationController@index')->name('conversation.index');
+    Route::get('dashboard/conversations', 'System\ConversationController@conversation')->name('conversation.get');
+    Route::get('dashboard/mensajes', 'System\MessageController@index')->name('message.index');
+    Route::post('dashboard/mensajes', 'System\MessageController@store')->name('message.store');
+    
+    
+        
+    //menssages clients
+    Route::get('dashboard/mensajes/cliente', 'System\ConversationController@indexClient')->name('messages.client');
+    Route::get('dashboard/mensajes/conversations', 'System\ConversationController@conversation')->name('conversation.get');
+    Route::get('dashboard/mensajes/mensajes', 'System\MessageController@index')->name('message.index');
+    Route::post('dashboard/mensajes/mensajes', 'System\MessageController@store')->name('message.store');
+
 });
 
 
