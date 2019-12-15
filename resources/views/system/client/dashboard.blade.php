@@ -71,7 +71,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                    <a class="block block-link-shadow" href="javascript:void(0)">
+                    <a class="block block-link-shadow" href="{{ route('messages.client') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-envelope-open text-pulse"></i>

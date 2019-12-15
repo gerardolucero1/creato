@@ -44,6 +44,14 @@ Vue.component('statistic-component', require('./components/system/StatisticCompo
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);
 Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
+// Mensajes
+Vue.component('contact-component', require('./components/system/ContactComponent.vue').default);
+Vue.component('contact-list-component', require('./components/system/ContactListComponent.vue').default);
+Vue.component('active-conversation-component', require('./components/system/ActiveConversationComponent.vue').default);
+Vue.component('message-conversation-component', require('./components/system/MessageConversationComponent.vue').default);
+Vue.component('messenger-component', require('./components/system/MessengerComponent.vue').default);
+
+
 
 
 /**
