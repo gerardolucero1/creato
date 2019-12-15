@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 // Other dependecies
@@ -13,8 +12,8 @@ moment.locale('es');
  * code may be modified to fit the specific needs of your application.
  */
 
- // Already included in Codebase Core JS
- /*
+// Already included in Codebase Core JS
+/*
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
@@ -59,7 +58,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '9251feab25005f2cfa62',
-    cluster: 'us2',
+    key: '54dd35399e14bdb19a36',
+    cluster: 'us3',
     encrypted: true
 });
