@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Message;
+use App\Observers\MessageObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Message;
