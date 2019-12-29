@@ -154,12 +154,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('quotation/{id}', 'System\QuotationController@show')->name('quotation.show');
     Route::get('dashboard/cotizaciones', 'System\QuotationController@getQuotation')->name('quotation.getQuotation');
 
-    // ProfileRoutes
+    // Profile Routes Admin
     Route::get('dashboard/perfil', 'System\ProfileController@index')->name('users.Profile');
     Route::get('dashboard/perfil/create', 'System\ProfileController@create')->name('profile.create');
     Route::post('dashboard/perfil', 'System\ProfileController@store')->name('profile.store');
     Route::get('dashboard/perfil/{id}', 'System\ProfileController@edit')->name('profile.edit');
     Route::put('dashboard/perfil/{id}', 'System\ProfileController@update')->name('profile.update');
+
+    // Profile Clients
+    Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('Client.Profile');
 
     // Task Routes
         // Block
@@ -209,6 +212,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/mensajes/conversations', 'System\ConversationController@conversation')->name('conversation.get');
     Route::get('dashboard/mensajes/mensajes', 'System\MessageController@index')->name('message.index');
     Route::post('dashboard/mensajes/mensajes', 'System\MessageController@store')->name('message.store');
+
+    // Notifications
+    Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+    // Notificaciones cliente
+    Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
 
 });
 

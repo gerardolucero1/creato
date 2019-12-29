@@ -1,11 +1,5 @@
 <template>
-<div>
-    <form class="my-3 mx-2">
-        <div class="form-group">
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar contacto...">
-        </div>
-    </form>     
-
+<div>    
     <ul class="list-group">
         <contact-component 
         v-for="conversation in conversations" 

@@ -5,11 +5,14 @@
                 <img src="https://www.jumpstarttech.com/files/2018/08/Network-Profile.png" class="rounded-circle" style="width:60px; height:60px;">
             </div>
             <div class="col-md-6 d-none d-md-block" aling-self="center" >
-                <p class="mb-1">{{ conversation.contact_name }}</p>
+                <p class="mb-1">
+                        <img class="rounded-circle" style="width:10px; height:10px; background-color:gray;">
+                    {{ conversation.contact_name }}
+                </p>
                 <p class="text-muted small mb-1">{{ conversation.last_message }}</p>
             </div>
             <div class="col-md-3 d-none d-md-block">
-                <p class="text-muted small">{{ conversation.last_time }}</p>
+                <p class="text-muted small">{{ lastTime }}</p>
             </div>
         </div>
     </li>
@@ -25,6 +28,11 @@ export default {
         return{
            
         };
+    },
+    computed: {
+        lastTime(){
+            return moment(this.conversation.last_time, "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
+        }
     }
 }
 </script>

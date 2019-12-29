@@ -91,7 +91,7 @@
                                                         <i class="si si-grid"></i>Inicio</a>
                                                 </li>
                                                 <li>
-                                                    <a href="">
+                                                    <a href="{{ route('Client.Profile') }}">
                                                         <i class="si si-user"></i>Perfil</a>
                                                 </li>
                                                 <li>

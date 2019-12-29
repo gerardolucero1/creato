@@ -1,8 +1,13 @@
 <?php
 namespace App\Observers;
+
 use App\Message;
+use App\User;
 use App\Conversation;
 use App\Events\MessageSent;
+use App\Notifications\NewMessage;
+use Illuminate\Support\Facades\Notification;
+
 class MessageObserver
 {
     /**
@@ -29,5 +34,9 @@ class MessageObserver
             $conversation->save();
         }
         event(new MessageSent($message));
+
+        $users = User::where('id', $message->to_id)->first();
+
+        Notification::send($users, new NewMessage($message));
     }
 }

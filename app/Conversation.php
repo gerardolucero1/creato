@@ -4,6 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 class Conversation extends Model
 {
     protected $appends = ['contact_name'];
+    //obtener imagen
+    public function getContactImageAttribute($key)
+    {
+        return 'users'.$this->contact()->first(['photo'])->profile->photo;
+    }
     // Definicion de un asesor
     public function getContactNameAttribute($key)
     {
