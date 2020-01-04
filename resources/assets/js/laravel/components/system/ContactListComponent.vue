@@ -1,19 +1,13 @@
 <template>
 <div>    
-    <ul class="list-group">
-        <contact-component 
-        v-for="conversation in conversations" 
-        :key="conversation.id"
-        :conversation="conversation"
-        @click.native="selectConversation(conversation)">
-
-        </contact-component>
-        <!--
-        <contact-component variant="active"></contact-component>
-        <contact-component variant="active"></contact-component>
-        <contact-component variant="secundary"></contact-component>
-        -->
-    </ul>
+    <div class="block-content block-content-full scroll-auto">
+            <contact-component 
+            v-for="conversation in conversations" 
+            :key="conversation.id"
+            :conversation="conversation"
+            @click.native="selectConversation(conversation)">
+            </contact-component>
+    </div>
 </div>
 </template>
 
@@ -32,7 +26,11 @@ export default {
         selectConversation(conversation){
            // console.log('conversation');
            this.$emit('conversationSelected', conversation);
-        }
+        },
+        scrollTopBottom(){
+            const scrollAuto = document.querySelector('.scroll-auto');
+            scrollAuto.scrollTop = scrollAuto.scrollHeight;
+        },
     }
 }
 </script>

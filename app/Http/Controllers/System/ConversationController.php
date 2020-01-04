@@ -5,6 +5,7 @@ namespace App\Http\Controllers\System;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Conversation;
+use App\Profile;
 
 
 class ConversationController extends Controller
@@ -31,4 +32,11 @@ class ConversationController extends Controller
             'last_time'
         ]);
     }
+
+    public function getImg($id)
+    {
+        $user = User::with('profile')->where('id', $id)->get();
+        return $user;
+    }
+    
 }

@@ -1,24 +1,33 @@
 <template>
-      <div class="container fluid">
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <form class="my-3 mx-2">
-                    <div class="form-group">
-                        <input type="text" v-model="querySearch" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar contacto...">
+    <div>
+        <div class="row">  
+            <div class="col-md-5 col-xl-3">     
+                <div class="block d-none d-md-block" style="min-height: 600px;">
+                    <div class="block-content">
+                        <div class="js-inbox-nav d-none d-md-block">
+                            <div class="block">
+                                <div class="block-header block-header-default">
+                                    <div class="block-title">
+                                        <input type="text" v-model="querySearch" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar contacto...">
+                                    </div>
+                                </div>
+                                <contact-list-component @conversationSelected="changeActiveConversation($event)"
+                                :conversations="conversationsFiltered">
+                                </contact-list-component>
+                            </div>
+                        </div>
                     </div>
-                </form> 
-                <contact-list-component @conversationSelected="changeActiveConversation($event)"
-                :conversations="conversationsFiltered">
-
-                </contact-list-component>
+                </div>
             </div>
-            <div class="col-8">
-                <active-conversation-component v-if="selectedConversation"
-                :contact-id="selectedConversation.contact_id"
-                :contact-name="selectedConversation.contact_name"
-                :messages="messages"
-                @messageCreated="addMessage($event)">
-                </active-conversation-component>
+            <div class="col-md-7 col-xl-9">
+                <div class="block"  style="min-height: 600px;">
+                        <active-conversation-component v-if="selectedConversation"
+                        :contact-id="selectedConversation.contact_id"
+                        :contact-name="selectedConversation.contact_name"
+                        :messages="messages"
+                        @messageCreated="addMessage($event)">
+                        </active-conversation-component>
+                </div>
             </div>
         </div>
     </div>

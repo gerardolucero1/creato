@@ -1,5 +1,5 @@
 @extends('layouts.client')
 
 @section('content')
-<client-profile-component date="2020-12-26"></client-profile-component>
+<client-profile-component :user-id="{{ auth()->id() }}"></client-profile-component>
 @endsection

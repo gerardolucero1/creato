@@ -162,7 +162,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/perfil/{id}', 'System\ProfileController@update')->name('profile.update');
 
     // Profile Clients
-    Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('Client.Profile');
+    Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('client.profile');
+    Route::get('/cliente/perfil/get/{id}', 'System\ProfileController@getProfileClient')->name('Get.Profile');
+    Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
 
     // Task Routes
         // Block
@@ -204,6 +206,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/conversations', 'System\ConversationController@conversation')->name('conversation.get');
     Route::get('dashboard/mensajes', 'System\MessageController@index')->name('message.index');
     Route::post('dashboard/mensajes', 'System\MessageController@store')->name('message.store');
+
+    // Obtener imagen para messenger
+    Route::get('/contact/get/img/{id}', 'System\ConversationController@index')->name('conversation.getImg');
     
     
         
