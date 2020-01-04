@@ -33,6 +33,7 @@ class MessageObserver
             $conversation->last_time = $message->created_at;
             $conversation->save();
         }
+
         event(new MessageSent($message));
 
         $users = User::where('id', $message->to_id)->first();
