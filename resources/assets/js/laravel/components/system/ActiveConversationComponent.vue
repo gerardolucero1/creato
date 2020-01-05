@@ -1,10 +1,9 @@
 <template>
     <div class="row">
         <div class="col-12">
-            <main id="main-container" style="min-height: 600px;">
+            <main id="main-container">
                 <div class="js-chat-container content content-full js-appear-enabled animated fadeIn" data-toggle="appear" data-chat-height="auto">
                     <div class="block mb-0">
-                        <p class="bg-body-light">Conversacion activa</p>
                         <div class="tab-content overflow-hidden">
                             <div class="tab-pane fade show active" id="chat-window1" role="tabpanel">
                                 <div class="js-chat-talk block-content block-content-full text-wrap-break-word overflow-y-auto" data-chat-id="1" style="height: 480px;">

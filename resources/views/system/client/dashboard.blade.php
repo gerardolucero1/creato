@@ -80,7 +80,7 @@
                                 Mensajes
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                                <span class="badge badge-pill badge-danger">2</span> Mensajes
+                                <span class="badge badge-pill badge-danger"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span> Mensajes
                             </p>
                         </div>
                     </a>

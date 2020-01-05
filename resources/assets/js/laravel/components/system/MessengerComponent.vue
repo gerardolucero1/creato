@@ -1,19 +1,33 @@
 <template>
-      <div class="container fluid">
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <contact-list-component @conversationSelected="changeActiveConversation($event)"
-                :conversations="conversations">
-
-                </contact-list-component>
+    <div>
+        <div class="row">  
+            <div class="col-md-5 col-xl-3">     
+                <div class="block d-none d-md-block" style="min-height: 600px;">
+                    <div class="block-content">
+                        <div class="js-inbox-nav d-none d-md-block">
+                            <div class="block">
+                                <div class="block-header block-header-default">
+                                    <div class="block-title">
+                                        <input type="text" v-model="querySearch" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar contacto...">
+                                    </div>
+                                </div>
+                                <contact-list-component @conversationSelected="changeActiveConversation($event)"
+                                :conversations="conversationsFiltered">
+                                </contact-list-component>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-8">
-                <active-conversation-component v-if="selectedConversation"
-                :contact-id="selectedConversation.contact_id"
-                :contact-name="selectedConversation.contact_name"
-                :messages="messages"
-                @messageCreated="addMessage($event)">
-                </active-conversation-component>
+            <div class="col-md-7 col-xl-9">
+                <div class="block"  style="min-height: 600px;">
+                        <active-conversation-component v-if="selectedConversation"
+                        :contact-id="selectedConversation.contact_id"
+                        :contact-name="selectedConversation.contact_name"
+                        :messages="messages"
+                        @messageCreated="addMessage($event)">
+                        </active-conversation-component>
+                </div>
             </div>
         </div>
     </div>
@@ -28,20 +42,33 @@ export default {
         return{
             selectedConversation: null,
             messages: [],
-            conversations: []
+            conversations: [],
+            querySearch: ''
         };
     },
     mounted(){
         this.getConversations();
 
-        Echo.channel('users.' + this.userId)
+        Echo.private(`users.${this.userId}`)
 		    .listen('MessageSent', (data) => {
                 console.log(data);
 		    	const message = data.message; 
                 message.writtenByMe = false;     
 	    		this.addMessage(message);
             });
+
+        Echo.join('messenger')
+            .here((users) => {
+                console.log('online', users)
+            })
+            .joining((user) => {
+                console.log(user.id);
+            })
+            .leaving((user) => {
+                console.log(user.id);
+            });
     },
+
     methods: {
         changeActiveConversation(conversation){
             this.selectedConversation = conversation;
@@ -74,7 +101,15 @@ export default {
                 this.conversations = Response.data;
             });
         },
-    }
+    },
 
+    computed:{
+        conversationsFiltered() {
+            return this.conversations.filter(
+                (conversation) => conversation.contact_name
+                                    .toLowerCase()
+                                    .includes(this.querySearch.toLowerCase()));
+        }
+    }
 }
 </script>
