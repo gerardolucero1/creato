@@ -3,8 +3,8 @@
             <main id="main-container" style="min-height: 250px;" v-for="user in users" :key="user.index">
                 <div class="bg-image bg-image-bottom" :style='{ backgroundImage: `url(${user.profile.banner})` }'>
                     <div class="bg-primary-dark-op py-30">
-                        <button type="button" class="btn btn-rounded btn-hero btn-sm btn-alt-primary mb-5" @click="cambiarBanner()">
-                                <i class="fa fa-plus mr-5"></i>
+                        <button type="button" class="btn btn-lg btn-circle btn-outline-info mr-5 mb-5 ml-4" @click="cambiarBanner()">
+                                <i class="fa fa-plus"></i>
                             </button>
                         <div class="content content-full text-center">
                             <div class="mb-15">
@@ -26,18 +26,30 @@
                     <div class="block">
                         <div class="block-header">
                             <h3 class="block-title">Descripción</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                    <i class="si si-pencil"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="block-content">
+                        <div class="block-content" style="min-height: 200px;">
                             <p>{{ user.profile.description }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="block">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Datos </h3>
+                        <div class="block">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Datos</h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="si si-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="block-content">
+                        <div class="block-content" style="min-height: 175px;">
                             Numero de telefono<p>{{ user.profile.phone }}</p>
                             Correo <p>{{ user.email }}</p>
                             Otros datos
@@ -255,8 +267,11 @@
                                 <h1 class="display-4 font-w700 text-white mb-10">Tu boda</h1>
                                 <h2 class="h4 font-w400 text-white-op pb-30 mb-20 border-white-op-b">We’re working on it! Coming soon..</h2>
                                 <div class="js-countdown mb-20">
-                                    <div class="row items-push text-right">
-                                        <Countdown end="August 22, 2020"></Countdown>
+                                    <div class="row text-white">
+                                        <div class="col-2"></div>
+                                        <div class="col-8 text-center">
+                                            <Countdown end="August 22, 2020"></Countdown>
+                                        </div>
                                     </div>
                                 </div>
                                 <a class="btn btn-hero btn-noborder btn-rounded btn-outline-warning" href="be_pages_generic_blank.php">

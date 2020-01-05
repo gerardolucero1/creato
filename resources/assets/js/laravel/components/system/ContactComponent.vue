@@ -2,7 +2,7 @@
     <ul class="nav-users">
         <li :class="{'':variant}"> 
             <a href="#">
-                    <img class="img-avatar" src="asd">
+                    <img class="img-avatar" :src="conversation.photo[0].photo">
                     <i class="fa fa-circle text-success"></i>
                     <p class="mb-1">
                         

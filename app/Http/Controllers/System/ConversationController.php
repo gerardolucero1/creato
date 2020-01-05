@@ -22,21 +22,10 @@ class ConversationController extends Controller
 
     public function conversation()
     {
-        return Conversation::where('user_id', auth()->id())
-        ->get([
-            'id',
-            'contact_id',
-            'has_blocked',
-            'listen_notifications',
-            'last_message',
-            'last_time'
-        ]);
-    }
+        $conversations = Conversation::where('user_id', auth()->id())
+        ->get();
 
-    public function getImg($id)
-    {
-        $user = User::with('profile')->where('id', $id)->get();
-        return $user;
+        //dd($conversations);
+        return $conversations;
     }
-    
 }
