@@ -54,7 +54,8 @@ Vue.component('messenger-component', require('./components/system/MessengerCompo
 Vue.component('inbox-component', require('./components/system/InboxNotificationComponent.vue').default);
 // Perfil cliente
 Vue.component('client-profile-component', require('./components/system/ClientProfileComponent.vue').default);
-
+//Galeria cliente
+Vue.component('client-gallery-component', require('./components/system/GalleryComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
