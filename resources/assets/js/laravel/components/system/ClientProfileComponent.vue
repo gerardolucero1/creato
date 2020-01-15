@@ -73,190 +73,7 @@
                     </div>
                 </div>
             </div>
-        
-            <h2 class="content-heading">Mi evento<small>Galeria</small></h2>
-        <div class="row items-push js-gallery js-gallery-enabled">
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTc2oirVaWUN_aOxTpXvC_mCWv5rS5raEjnTGzHayUyzJNgauKA" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTc2oirVaWUN_aOxTpXvC_mCWv5rS5raEjnTGzHayUyzJNgauKA">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5MsJ8HUqsAxdFd7iuy_Uj9YGyMSQj0KjvDjZJzZmnEK3hIj_L" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5MsJ8HUqsAxdFd7iuy_Uj9YGyMSQj0KjvDjZJzZmnEK3hIj_L">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRb3w4JV8QcYHlMtiDnx9PSnlL_h71AaDD-WjAcw9Y7L3p0JzI" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRb3w4JV8QcYHlMtiDnx9PSnlL_h71AaDD-WjAcw9Y7L3p0JzI">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzqwkKMqVTA0y2Tf5YPXQR-B5dUKcUcMN226KnLhadhDPf4AJI" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzqwkKMqVTA0y2Tf5YPXQR-B5dUKcUcMN226KnLhadhDPf4AJI">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHOxaJ6_HvQUFnbaRfQzrMCd0zV41QH76lheWD9OpkLniQKrNE" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHOxaJ6_HvQUFnbaRfQzrMCd0zV41QH76lheWD9OpkLniQKrNE">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqj63IgDlzdA8vEVDjv_Lbmtbt-IAfhI-lcAX2zRhxa1x2V22L" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqj63IgDlzdA8vEVDjv_Lbmtbt-IAfhI-lcAX2zRhxa1x2V22L">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://cdn0.bodas.com.mx/emp/fotos/5/9/9/7/t30_2x_1_5_125997_v13.jpg" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://cdn0.bodas.com.mx/emp/fotos/5/9/9/7/t30_2x_1_5_125997_v13.jpg">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQY_wNBzPPHU7tj0LNNNZ5J3kew-YD-jgNVnit5YG6szEynefOz" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQY_wNBzPPHU7tj0LNNNZ5J3kew-YD-jgNVnit5YG6szEynefOz">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://www.expotuboda.com.mx/wp-content/uploads/2014/09/23fb9a79b87accb900c1a0678a5d61e7.jpg" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://www.expotuboda.com.mx/wp-content/uploads/2014/09/23fb9a79b87accb900c1a0678a5d61e7.jpg">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdFNygVAMuLzQZ74afz5uE8I9HZMttdu7U25znogPAO9dhUBtR" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdFNygVAMuLzQZ74afz5uE8I9HZMttdu7U25znogPAO9dhUBtR">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJvEiF-IMa5Auk1jfS_0iOe_dN253X3-VazIbi7-JX80MPf6So" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJvEiF-IMa5Auk1jfS_0iOe_dN253X3-VazIbi7-JX80MPf6So">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
-            <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                <img class="img-fluid options-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTSvcgTwJhs6pCoLK7amKid46PBy2i6yeObBFSW3gcjv8BipYUS" alt="">
-                <div class="options-overlay bg-black-op-75">
-                    <div class="options-overlay-content">
-                        <h3 class="h4 text-white mb-5">Image</h3>
-                        <h4 class="h6 text-white-op mb-15">More Details</h4>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTSvcgTwJhs6pCoLK7amKid46PBy2i6yeObBFSW3gcjv8BipYUS">
-                            <i class="fa fa-search-plus"></i> View
-                        </a>
-                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-            </div>
+                <client-gallery-component :userId="userId"></client-gallery-component>
             <h2 class="content-heading"></h2>
         <div class="bg-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTV2HfciS-At-CmTedfjd6HJqJXYOcKkltVrPgsRhjJJtNTeann');">
             <div class="hero bg-black-op">
@@ -425,7 +242,7 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                ).then(function(){
+                ).then(()  => {
                     $('#cambioPerfil').modal('hide');
                     this.obtenerDatos();
                 });
@@ -462,7 +279,7 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         }
                     }
-                ).then(function(){
+                ).then(() => {
                     $('#cambioBanner').modal('hide');
                     this.obtenerDatos();
                 });
