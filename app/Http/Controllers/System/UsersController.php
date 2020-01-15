@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\System;
 
 use App\User;
-use App\Profile;
-use App\Conversation;
 use App\MyList;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -48,8 +46,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
-
         $v = $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
@@ -74,35 +70,6 @@ class UsersController extends Controller
                 $my_list->category = 'GENERAL';
                 $my_list->save();
             }
-
-            $users = User::all();
-            foreach ($users as $user) {
-                if ($user->hasRole("super-admin")){
-                    $conversation = new Conversation;
-                    $conversation->user_id = $user->id;
-                    $conversation->contact_id = $ultimoUsuario->id; 
-                    $conversation->last_message = "primer mensaje";
-                    $conversation->last_time = "2019-12-20 06:28:30 	";
-                    $conversation->save();
-
-                    $conversation = new Conversation;
-                    $conversation->user_id = $ultimoUsuario->id;
-                    $conversation->contact_id = $user->id; 
-                    $conversation->save();
-
-                }
-            }
-
-            $profile = new Profile();
-            $profile->last_name = "apellido paterno";
-            $profile->second_name = "apellido materno";
-            $profile->photo = "http://localhost:8000/file/escanor.jpg";
-            $profile->banner = "http://localhost:8000/file/banner escanor.jpg";
-            $profile->description = "descripción";
-            $profile->phone = "123456789";
-            $profile->user_id = $ultimoUsuario->id;
-            $profile->save();
-
             
 
             return redirect()->route('users.edit', $user->id)
