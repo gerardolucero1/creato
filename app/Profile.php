@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+use App\Conversation;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -11,10 +13,10 @@ class Profile extends Model
         'last_name', 'second_name', 'photo', 'banner', 'description', 'phone', 'user_id'
     ];
 
-     public function user()
- {
- return $this->belongsTo(User::class);
- }
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
        
 }

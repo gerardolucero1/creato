@@ -50,8 +50,10 @@ Vue.component('contact-list-component', require('./components/system/ContactList
 Vue.component('active-conversation-component', require('./components/system/ActiveConversationComponent.vue').default);
 Vue.component('message-conversation-component', require('./components/system/MessageConversationComponent.vue').default);
 Vue.component('messenger-component', require('./components/system/MessengerComponent.vue').default);
-
-
+// header component
+Vue.component('inbox-component', require('./components/system/InboxNotificationComponent.vue').default);
+// Perfil cliente
+Vue.component('client-profile-component', require('./components/system/ClientProfileComponent.vue').default);
 
 
 /**

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\MyList;
+use App\Profile;
 use App\Project;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
