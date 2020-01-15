@@ -167,7 +167,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
         // Gallery
         Route::get('/cliente/perfil/galeria/{id}', 'System\GalleryController@index')->name('Get.Gallery');
-        Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
+        Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\GalleryController@store')->name('imagen.store');
+        Route::delete('/cliente/perfil/galeria/eliminar/{id}', 'System\GalleryController@destroy')->name('imagen.destroy');
 
     // Task Routes
         // Block

@@ -38,9 +38,8 @@ class GalleryController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $imagen = Gallery::where('user_id', $id)->first();
-        
-        
+           
+        $imagen = Gallery::create($request->all());
          //Imagen
          if($archivo = $request->file('image')){
             
@@ -48,9 +47,10 @@ class GalleryController extends Controller
             $archivo->move(public_path('file/'), $nombre);
             $imagen->fill(['image' => asset('file/'.$nombre)])->save();
         }
- 
-        
+
+
         return;
+      
     }
 
     /**
@@ -95,6 +95,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $imagen = Gallery::find($id);
+        $imagen->delete();
+        return;
     }
 }

@@ -11,12 +11,12 @@
                     <img class="img-fluid options-item" :src="imagen.image" alt="">
                     <div class="options-overlay bg-black-op-75">
                         <div class="options-overlay-content">
-                            <h3 class="h4 text-white mb-5">Image</h3>
+                            <h3 class="h4 text-white mb-5">Imagen</h3>
                             <h4 class="h6 text-white-op mb-15">More Details</h4>
-                            <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTc2oirVaWUN_aOxTpXvC_mCWv5rS5raEjnTGzHayUyzJNgauKA">
-                                <i class="fa fa-search-plus"></i> View
+                            <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" :href="imagen.image">
+                                <i class="fa fa-search-plus"></i> Ver
                             </a>
-                            <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>
+                            <a class="btn btn-sm btn-rounded btn-noborder btn-alt-danger min-width-75" @click="eliminarImagen(imagen)"><i class="fa fa-pencil"></i> Eliminar</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ props: {
         },
         obtenerImagen(a){
             let fileImagen = a.target.files[0];
-            this.imagenes.imagen = fileImagen;
+            this.gallery.image = fileImagen;
             this.cargarImagen(fileImagen);
         },
         cargarImagen(fileImagen){
@@ -106,7 +106,7 @@ props: {
   
                 let formData = new FormData();
                 formData.append('user_id', this.userId);
-                formData.append('imagen', this.imagenes.imagen);
+                formData.append('image', this.gallery.image);
 
                let URL = '/cliente/perfil/guardar/galeria/'+ this.userId;
 
@@ -122,6 +122,29 @@ props: {
                     this.obtenerDatos();
                 });
         },
+        eliminarImagen: function(imagen){
+                let URL = '/cliente/perfil/galeria/eliminar/' + imagen.id;
+                    Swal.fire({
+                        title: 'Estas seguro?',
+                        text: 'No podras revertir esto!',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, Eliminar!'
+                        }).then((result) => {
+                            if (result.value) {
+                                axios.delete(URL).then((response) => {
+                                    this.obtenerDatos();
+                                });
+                        Swal.fire(
+                        'Eliminado!',
+                        'La tarea se a eliminado',
+                        'success'
+                        )
+                            }
+            });       
+            },
     },
     computed: {
         imagenPreview(){
