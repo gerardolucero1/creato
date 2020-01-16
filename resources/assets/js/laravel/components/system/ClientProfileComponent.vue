@@ -189,7 +189,7 @@ export default {
 
             /* Objetos para obtener los datos que se van a cargar*/
                 user:{
-                    'mane': '',
+                    'name': '',
                         profile:{
                         'user_id': '',
                         'last_name': '',
