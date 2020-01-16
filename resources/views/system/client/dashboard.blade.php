@@ -89,7 +89,7 @@
                     <a class="block block-link-shadow" href="{{ route('tables.index') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
-                                <i class="fas fa-3x fa-chair text-gray-dark"></i>
+                            <i class="fa fa-3x fa-users text-primary"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
                                 2 Sentados
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <my-block-list-component></my-block-list-component>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <a class="block block-rounded" href="javascript:void(0)">
                         <div class="block-content block-content-full">
@@ -139,7 +139,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </main>
 @endsection
