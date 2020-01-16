@@ -82,7 +82,7 @@ class UsersController extends Controller
                     $conversation->user_id = $user->id;
                     $conversation->contact_id = $ultimoUsuario->id; 
                     $conversation->last_message = "primer mensaje";
-                    $conversation->last_time = "2019-12-20 06:28:30 	";
+                    $conversation->last_time = "2019-12-20 06:28:30";
                     $conversation->save();
 
                     $conversation = new Conversation;
