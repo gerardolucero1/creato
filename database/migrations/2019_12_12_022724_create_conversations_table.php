@@ -14,14 +14,16 @@ class CreateConversationsTable extends Migration
     public function up()
     {
         Schema::create('conversations', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); 
             
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             
             // contact
             $table->unsignedInteger('contact_id');
-            $table->foreign('contact_id')->references('id')->on('users');
+            $table->foreign('contact_id')->references('id')->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             // ultimo mensaje
             $table->text('last_message')->nullable();
