@@ -87,7 +87,7 @@
                                     <div class="row text-white">
                                         <div class="col-2"></div>
                                         <div class="col-8 text-center">
-                                            <Countdown end="August 22, 2020"></Countdown>
+                                            <Countdown :end="event[1]"></Countdown>
                                         </div>
                                     </div>
                                 </div>
@@ -183,16 +183,22 @@ export default {
             /* imagenes preview */ 
              perfilMiniatura:'',
              bannerMiniatura:'',
+             event:[
+                 'end_date', '2020-01-25'],
+             
 
             /* Objetos para obtener los datos que se van a cargar*/
                 user:{
-                    'user_id': '12',
-                    'last_name': '',
-                    'second_name': '',
-                    'photo': '',
-                    'banner': '',
-                    'description': '',
-                    'phone': '',
+                    'name': '',
+                        profile:{
+                        'user_id': '',
+                        'last_name': '',
+                        'second_name': '',
+                        'photo': '',
+                        'banner': '',
+                        'description': '',
+                        'phone': '',
+                        }
                 },
 
             /* Arreglo vacio para almacenar los datos a mostrar */
