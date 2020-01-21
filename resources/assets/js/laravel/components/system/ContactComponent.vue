@@ -1,6 +1,6 @@
 <template>
     <ul class="nav-users">
-        <li :class="{'':variant}"> 
+        <li :class="{'bg-primary-lighter' :variant}"> 
             <a href="#">
                     <img class="img-avatar" :src="conversation.photo[0].photo">
                     <i class="fa fa-circle text-success"></i>
@@ -19,8 +19,8 @@
 <script>
 export default {
     props:{
-        variant: String,
-        conversation: Object
+        conversation: Object,
+        selected: Boolean
     },
     data(){
         return{
@@ -30,6 +30,9 @@ export default {
     computed: {
         lastTime(){
             return moment(this.conversation.last_time, "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
+        },
+        variant() {
+            return this.selected;
         }
     }
 }

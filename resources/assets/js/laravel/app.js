@@ -56,6 +56,8 @@ Vue.component('inbox-component', require('./components/system/InboxNotificationC
 Vue.component('client-profile-component', require('./components/system/ClientProfileComponent.vue').default);
 //Galeria cliente
 Vue.component('client-gallery-component', require('./components/system/GalleryComponent.vue').default);
+    // Notificaciones
+    Vue.component('notifications-component', require('./components/system/NotificationsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

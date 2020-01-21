@@ -25,7 +25,7 @@ Auth::routes();
 
 // System routes
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () { 
     
     Route::match(['get', 'post'], '/dashboard', 'System\SystemController@index')->name('dashboard.admin');
 
@@ -224,6 +224,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Notifications
     Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+    Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+
+    
     // Notificaciones cliente
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
 

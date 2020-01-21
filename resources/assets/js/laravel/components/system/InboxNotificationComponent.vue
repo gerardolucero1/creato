@@ -15,7 +15,7 @@ export default {
         return {
             notification: []
         }
-    },
+    }, 
     created(){
             this.obtenerNotificacion()
         },
