@@ -58,6 +58,7 @@ Vue.component('client-profile-component', require('./components/system/ClientPro
 Vue.component('client-gallery-component', require('./components/system/GalleryComponent.vue').default);
     // Notificaciones
     Vue.component('notifications-component', require('./components/system/NotificationsComponent.vue').default);
+    Vue.component('indiv-notifications-component', require('./components/system/IndivNotificationComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
