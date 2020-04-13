@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="">
         <div class="row mt-4">
             <div class="col-md-12">
                 <div class="block">
@@ -18,9 +18,9 @@
                     <div class="block-header bg-info">
                         <h3 class="block-title">Lista de invitados</h3>
                         <div class="block-options">
-                            <button type="button" class="btn-block-option">
+                            <!-- <button type="button" class="btn-block-option">
                                 <i class="si si-plus"></i>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                     <div class="block-content" v-if="lista.length != 0">
@@ -67,9 +67,9 @@
                                                             <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarInvitado(guest)">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                            <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Add">
+                                                            <!-- <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" data-original-title="Add">
                                                                 <i class="fa fa-plus"></i>
-                                                            </button>
+                                                            </button> -->
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -107,6 +107,17 @@
                                     <input type="text" v-model="numeroInvitados" style="width: 100%;"><br>
                                     <button class="btn btn-sm btn-info btn-block mt-2" @click="anadirNumeroInvitados()">Añadir numero de invitados</button>
                                 </div>
+                                <div class="col-md-2 text-center offset-3">
+                                    <label for="">Agregar nuevo grupo</label><br>
+                                    <input type="text" v-model="nombreGrupo" style="width: 100%;"><br>
+                                    <button class="btn btn-sm btn-info btn-block mt-2" @click="anadirNuevoGrupo()">Añadir nuevo grupo</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="text-center">Grupos</p>
+                                    <ul class="d-flex" style="flex-wrap: wrap;">
+                                        <li class="ml-4" v-for="(group, index) in groups" :key="index" :value="group.name">{{ group.name }}</li>
+                                    </ul>
+                                </div>
                             </div>
                             
                             <div>
@@ -122,10 +133,11 @@
                                                             <th>Apellido Materno</th>
                                                             <th>Email</th>
                                                             <th>Telefono</th>
-                                                            <th>Invitados</th>
+                                                            <th style="width: 10px;">Invitados</th>
                                                             <th>Genero</th>
                                                             <th>Origen</th>
-                                                            <th class="text-center" style="width: 100px;">Acciones</th>
+                                                            <th>Grupo</th>
+                                                            <th class="text-center" style="width: 10px;">Acciones</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -158,6 +170,12 @@
                                                                 <select name="" id="" v-model="item.origin" style="width: 110%;">
                                                                     <option value="NOVIA">Novia</option>
                                                                     <option value="NOVIO">Novio</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select name="" id="" v-model="item.groupName" style="width: 110%;">
+                                                                    <option value="General">General</option>
+                                                                    <option v-for="(group, index) in groups" :key="index" :value="group.name">{{ group.name }}</option>
                                                                 </select>
                                                             </td>
                                                             <td class="text-center">
@@ -288,6 +306,15 @@
                                         <label for="material-select">Please Select</label>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-material">
+                                        <select class="form-control" name="status" v-model="invitadoEdicion.groupName">
+                                            <option value="General">General</option>
+                                            <option v-for="(group, index) in groups" :key="index" :value="group.name">{{ group.name }}</option>
+                                        </select>
+                                        <label for="material-select">Please Select</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -314,6 +341,7 @@ export default {
                 lastName: '',
                 secondLastName: '',
                 genere: '',
+                groupName: '',
                 email: '',
                 phone: '',
                 guests: '',
@@ -329,6 +357,10 @@ export default {
             numeroInvitados: '',
             lista: [],
             invitadoEdicion: '',
+
+            nombreGrupo: '',
+
+            groups: null,
         }
     },
 
@@ -338,15 +370,40 @@ export default {
 
     created(){
         this.obtenerLista();
+        this.obtenerGrupos();
     },
 
     methods: {
+        obtenerGrupos: function(){
+            let URL = '/cliente/groups/' + this.user.id;
+
+            axios.get(URL).then((response) => {
+                this.groups = response.data;
+                console.log('Estos son los grupos: ', this.groups);
+            }).catch((error) => {
+                console.log(error.data);
+            })
+        },
+
         obtenerLista: function(){
             let URL = '/cliente/lista/' + this.user.id;
 
             axios.get(URL).then((response) => {
                 this.lista = response.data;
                 console.log('Esta es lista: ', this.lista);
+            }).catch((error) => {
+                console.log(error.data);
+            })
+        },
+
+        anadirNuevoGrupo: function(){
+            let URL = '/cliente/groups'
+
+            axios.post(URL, {
+                nombre: this.nombreGrupo,
+            }).then((response) => {
+                this.nombreGrupo = ''
+                this.obtenerGrupos();
             }).catch((error) => {
                 console.log(error.data);
             })

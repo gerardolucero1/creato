@@ -56,6 +56,10 @@
         cursor: pointer;
     }
 
+    .mini-sidebar{
+        
+    }
+
     .close-sidebar-invitados{
         margin-left: -30vw;
         transition: all 0.6s;
@@ -156,7 +160,12 @@ padding: 0;
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="mini-sidebar col-md-12">
+                        <h5 class="text-center mt-1">Mis Grupos</h5>
+                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" @click="obtenerGrupo('Todos')">Todos</span>
+                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" @click="obtenerGrupo('General')">General</span>
+                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" v-for="(group, index) in groups" :key="index" @click="obtenerGrupo(group.name)">{{ group.name }}</span>
                     </div>
                 </div>
                 <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
@@ -204,6 +213,7 @@ padding: 0;
 </template>
 
 <script>
+    import auth from "../../mixins/auth";
     import interact from 'interactjs';
     import BuscadorComponent from '../Shared/BuscadorComponent.vue';
 
@@ -222,14 +232,23 @@ padding: 0;
                 listaInvitados: [],
                 resultadoInvitados: [],
                 limpiar: false,
+
+                groups: null,
             }
         },
+
         computed:{
             
         },
+
+        mixins: [
+            auth
+        ],
+
         created(){
             this.obtenerInvitados();
             this.obtenerProyecto();
+            this.obtenerGrupos();
 
             this.$on('resultadoInvitados', resultadoInvitados => {
                 this.resultadoInvitados = resultadoInvitados
@@ -368,6 +387,55 @@ padding: 0;
         },
 
         methods: {
+            obtenerGrupos: function(){
+                let URL = '/cliente/groups/' + this.user.id;
+
+                axios.get(URL).then((response) => {
+                    this.groups = response.data;
+                    console.log('Estos son los grupos: ', this.groups);
+                }).catch((error) => {
+                    console.log(error.data);
+                })
+            },
+
+            obtenerGrupo: function(args){
+                let URL = '/cliente/groups/group'
+
+                this.invitadosSentados = []
+
+                if(args == 'Todos'){
+                    this.obtenerInvitados()
+                    return
+                }
+
+                axios.post(URL, {
+                    nombre: args,
+                }).then((response) => {
+                    this.invitados = response.data;
+                    this.crearArregloInvitados(); 
+
+                    // Recorremos el array de invitados y detectamos los que ya se encuentran sentados,
+                    // y hacemos un push al arreglo 
+                    // invitadosSentados
+                    this.invitados.forEach((element) => {
+                        if(element.seated){
+                            this.invitadosSentados.push(element);
+                        }
+                    });
+
+                    // Hacemos el mismo procedimiento pero ahora con los acompañantes de cada invitado.
+                    this.invitados.forEach((element) => {
+                        element.companions.forEach((item) => {
+                            if(item.seated){
+                                this.invitadosSentados.push(item);
+                            }
+                        });
+                    })
+                }).catch((error) => {
+                    console.log(error.data);
+                })
+            },
+
             crearArregloInvitados: function(){
                 if(this.invitados.length != 0){
                     let misInvitados = [];

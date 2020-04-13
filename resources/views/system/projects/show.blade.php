@@ -15,7 +15,7 @@
             <div class="content content-top text-center">
                 <div class="py-100">
                     <h1 class="font-w700 text-white mb-10">{{ $project->title }}</h1>
-                    <h2 class="h4 font-w400 text-white-op">Explore the world and provide value at the same time.</h2>
+                    <h2 class="h4 font-w400 text-white-op">Andábamos sin buscarnos, pero sabiendo que andábamos para encontrarnos.</h2>
                     <div class="font-size-md text-muted">
                         <a class="text-body-bg-dark" href="be_pages_generic_profile.php">{{ $project->user->name }}</a> • <span id="projectDate"></span>
                     </div>
@@ -53,13 +53,16 @@
                         <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="#obtenerListaInvitados">
                             Obtener lista de invitados
                         </button>
+                        <button type="button" class="btn btn-secondary mr-5 mb-5" data-toggle="modal" data-target="#seleccionarListaInvitados">
+                            Seleccionar lista de invitados
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="block">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Planos de la boda</h3>
@@ -78,13 +81,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="block">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Lista de tareas</h3>
                         <div class="block-options">
-                            {{--  <button type="button" class="btn btn-sm btn-secondary">Edit</button>
-                            <button type="button" class="btn btn-sm btn-secondary">Settings</button>  --}}
+                            
                         </div>
                     </div>
                     <div class="block-content">
@@ -101,7 +103,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         
         <div class="row">
@@ -113,6 +115,7 @@
 
     @include('system.projects.modals.image')
     @include('system.projects.modals.seated')
+    @include('system.projects.modals.listGuests')
 @endsection
 
 @section('scripts')

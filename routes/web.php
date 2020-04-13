@@ -22,6 +22,9 @@ use Illuminate\Http\Request;
 Route::get('/', 'Web\IndexController@index');
 
 Auth::routes();
+Route::get('no-project', function() {
+    return view('system.no_project');
+})->name('no_project');
 
 // System routes
 
@@ -60,7 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
         Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
         Route::get('dashboard/proyectos/resumen/{id}', 'System\ProjectController@review')->name('projects.review');
-        Route::get('dashboard/proyectos/pdf/{id}', 'System\ProjectController@pdf')->name('projects.pdf');
+        Route::post('dashboard/proyectos/pdf', 'System\ProjectController@pdf')->name('projects.pdf');
+        Route::post('dashboard/proyectos/list', 'System\ProjectController@copyList')->name('projects.copyList');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
@@ -116,8 +120,16 @@ Route::group(['middleware' => ['auth']], function () {
     //Lista de invitados
     Route::resource('cliente/lista', 'System\GuestController');
 
+    //Importar excel invitados
+    Route::post('cliente/excel/import', 'System\GuestController@importExcel')->name('guests.import.excel');
+
     //Lista de acompanantes
     Route::resource('cliente/acompanante', 'System\CompanionController');
+
+    //Grupos invitados
+    Route::get('cliente/groups/{id}', 'System\GroupController@index')->name('groups.index');
+    Route::post('cliente/groups', 'System\GroupController@store')->name('groups.store');
+    Route::post('cliente/groups/group', 'System\GroupController@getGroup')->name('groups.getGroup');
 
     // Tables routes
     Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');

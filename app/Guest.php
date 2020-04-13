@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Group;
 use App\Companion;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,7 @@ class Guest extends Model
         'status',
         'origin',
         'table',
+        'groupName'
     ];
 
     public function guestList()

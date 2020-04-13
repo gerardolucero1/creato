@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\System;
 
 use App\User;
+use App\Guest;
 use App\MyList;
 use App\Project;
 use App\Calendar;
+use App\Companion;
 use App\GuestList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
-use Barryvdh\DomPDF\Facade as PDF;
 
 class ProjectController extends Controller
 {
@@ -104,7 +106,21 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        return view('system.projects.show', compact('project'));
+        //dd($project->user->name);
+        $allUsers = User::orderBy('id', 'DESC')->get();        
+        
+        $usersClient = [];
+        foreach ($allUsers as $user) {
+            if($user->hasRole('cliente')){
+                array_push($usersClient, $user);
+            }
+        }
+        
+        $fullUsers = collect($usersClient);
+        $users = $fullUsers->pluck('name', 'id');
+        unset($users[$project->user->id]);
+        //dd($users);
+        return view('system.projects.show', compact('project', 'users'));
     }
 
     /**
@@ -214,9 +230,57 @@ class ProjectController extends Controller
         return view('system.projects.review', compact('project'));
     }
 
-    public function pdf($id){
-        $project = Project::find($id);
-        $pdf = PDF::loadView('system.projects.PDF.guestList', compact('project'));
+    public function pdf(Request $request){
+        $project = Project::find($request->project_id);
+        $options = $request->options;
+
+        $pdf = PDF::loadView('system.projects.PDF.guestList', compact('project', 'options'));
         return $pdf->stream();
     }
+
+    public function copyList(Request $request){
+        $user = User::find($request->client_id);
+        $project = Project::find($request->project_id);
+
+        foreach ($user->project->list->guests as $guest) {
+            $new_guest = new Guest();
+            $new_guest->guestList_id = $project->list->id;
+            $new_guest->name = $guest->name;
+            $new_guest->lastName = $guest->lastName;
+            $new_guest->secondLastName = $guest->secondLastName;
+            $new_guest->genere = $guest->genere;
+            $new_guest->email = $guest->email;
+            $new_guest->phone = $guest->phone;
+            $new_guest->guests = $guest->guests;
+            $new_guest->dataX = null;
+            $new_guest->dataY = null;
+            $new_guest->seated = null;
+            $new_guest->status = 'PENDIENTE';
+            $new_guest->origin = $guest->origin;
+            $new_guest->tableName = null;
+            $new_guest->save();
+
+                foreach ($guest->companions as $companion) {
+                    $new_companion = new Companion();
+                    $new_companion->guest_id = $new_guest->id;
+                    $new_companion->name = $companion->name;
+                    $new_companion->lastName = $companion->lastName;
+                    $new_companion->secondLastName = $companion->secondLastName;
+                    $new_companion->genere = $companion->genere;
+                    $new_companion->email = $companion->email;
+                    $new_companion->phone = $companion->phone;
+                    $new_companion->dataX = null;
+                    $new_companion->dataY = null;
+                    $new_companion->seated = null;
+                    $new_companion->status = 'PENDIENTE';
+                    $new_companion->tableName = null;
+                    $new_companion->save();
+                }
+
+        }
+
+        return back()->with('success', 'Se ha copiado la lista de invitados con exito');
+        //dd($user->project->list->guests);
+    }
+
 }
