@@ -14,6 +14,7 @@
         font-family: Bodoni;
         font-weight: lighter;
         letter-spacing: 1px;
+        font-size: 2.3em;
     }
 
     h3{
@@ -21,7 +22,7 @@
         font-weight: lighter;
         letter-spacing: 1px;
         font-style: italic;
-        font-size: 23px;
+        font-size: 1.7em;
     }
 
     .box-container{
@@ -107,7 +108,7 @@
         background-size: cover;
     }
 
-    .project-name-container{
+    .project-name-container-right{
         position: absolute;
         top: 0;
         left: 0;
@@ -118,18 +119,69 @@
         align-items: center;
     }
 
-    .project-name-container p{
+    .project-name-container-right p{
         color: white;
         background-color: #BEC1C8;
-        padding: 5px 25px;
+        padding: 0.2em 0.6em;
         text-align: center;
         font-family: Bodoni;
-        font-size: 20px;
+        font-size: 1.2em;
         font-weight: lighter;
         letter-spacing: 1px;
         text-shadow: 1px 1px 10px #707070;
-        width: 250px;
-        margin-right: -125px;
+        width: 14em;
+        margin-right: -7em;
+    }
+
+    .project-name-container-left{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .project-name-container-left p{
+        color: white;
+        background-color: red;
+        padding: 0.2em 0.6em;
+        text-align: center;
+        font-family: Bodoni;
+        font-size: 1.2em;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 10px #707070;
+        width: 14em;
+        margin-left: -7em;
+    }
+
+    .project-name-container-center{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .project-name-container-center p{
+        color: white;
+        background-color: blue;
+        padding: 0.2em 0.6em;
+        text-align: center;
+        font-family: Bodoni;
+        font-size: 1.2em;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 10px #707070;
+        width: 13em;
+        margin-bottom: -5%;
+        transform: rotate(90deg);
     }
 
     .arrow{
@@ -158,7 +210,7 @@
                             <div class="row">
                                <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
-                                        <div class="project-name-container">
+                                        <div class="project-name-container-right">
                                             <p>daniela + jacobo</p>
                                         </div>
                                     </div>
@@ -170,7 +222,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
-
+                                        <div class="project-name-container-right">
+                                            <p>daniela + jacobo</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -182,15 +236,17 @@
                                <div class="col-md-12 text-center">
                                     <h2>Galeria de Proyectos</h2>
                                 </div>
-                                <div class="col-md-12 mt-5" style="padding-left: 30%; padding-right: 30%;">
-                                    <h3 class="text-left">Your love story</h3>
-                                    <h3 class="text-right">begins here...</h3>
+                                <div class="col-md-12 mt-5">
+                                    <h3 class="text-center" style="margin-left: -2.5em;">Your love story</h3>
+                                    <h3 class="text-center" style="margin-right: -2.5em;">begins here...</h3>
                                 </div>
                             </div>
-                            <div class="row" style="display: flex; justify-content: center;">
+                            <div class="row" style="display: flex; justify-content: center; margin-top: -17%;">
                                 <div class="col-md-6">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
-
+                                        <div class="project-name-container-center">
+                                            <p>daniela + jacobo</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +257,9 @@
                             <div class="row">
                                <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
-
+                                        <div class="project-name-container-left">
+                                            <p>daniela + jacobo</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +269,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
-
+                                        <div class="project-name-container-left">
+                                            <p>daniela + jacobo</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

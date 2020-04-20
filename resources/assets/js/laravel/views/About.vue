@@ -4,6 +4,19 @@
         padding: 0;
     }
 
+    h2{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-size: 2.3em;
+    }
+
+    .menu{
+        color: white;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+
     .box-container{
         background-color: white;
         width: 100vw;
@@ -70,20 +83,18 @@
         color: #545454;
     }
 
-    .box-content .row:nth-child(1) p{
-        font-family: Bodoni;
-        margin-top: 25px;
-        font-size: 25px;
+    .box-content .row:nth-child(1) h2{
+        margin-top: 0.8em;
     }
 
     .box-content .row:nth-child(2) p{
         font-family: Bodoni;
-        font-size: 17px;
+        font-size: 1.1em;
     }
 
     .box-content .row:nth-child(3) p{
         font-family: Bodoni;
-        font-size: 18px;
+        font-size: 1.1em;
     }
 
     .box-about-img {
@@ -101,7 +112,7 @@
             <div class="main-menu-container">
                 <div class="main-menu-btn">
                     <p>menú</p>
-                    <i class="fas fa-bars"></i>
+                    <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
                     <img src="/images/logo.png" alt="">
@@ -111,7 +122,7 @@
             <div class="box-content">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Acerca de Nosotros</p>
+                        <h2>Acerca de Nosotros</h2>
                     </div>
                 </div>
                 <div class="row">
