@@ -4,6 +4,12 @@
         padding: 0;
     }
 
+    .menu{
+        color: white;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+
     .box-container{
         background-color: white;
         width: 100vw;
@@ -88,7 +94,7 @@
             <div class="main-menu-container">
                 <div class="main-menu-btn">
                     <p>menú</p>
-                    <i class="fas fa-bars"></i>
+                    <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
                     <img src="/images/logo.png" alt="">

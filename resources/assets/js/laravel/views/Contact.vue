@@ -120,7 +120,7 @@
     }
 
     .box-about-img {
-        width: 90%;
+        width: 100%;
         padding-top: 90%; /* 1:1 Aspect Ratio */
         position: relative; /* If you want text inside of it */
         background-position: center;
