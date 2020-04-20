@@ -19,6 +19,7 @@ class Companion extends Model
         'dataY',
         'seated',
         'status',
+        'table',
     ];
 
     public function guest()

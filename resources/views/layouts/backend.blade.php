@@ -105,7 +105,7 @@
     
                     <!-- Side Content -->
                     <div class="content-side">
-                        <clients-online-component></clients-online-component>
+                        {{--  <clients-online-component></clients-online-component>  --}}
                     </div>
                     <!-- END Side Content -->
                 </aside>
@@ -297,31 +297,30 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                                     <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="si si-user mr-5"></i> Profile
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                                        <span class="badge badge-primary">1</span>
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-    
-                                    <!-- Toggle Side Overlay -->
-                                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                    <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                                        <i class="si si-note mr-5"></i> Notes
-                                    </a>
-                                    <!-- END Side Overlay -->
-    
-                                    <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();">
-                                                <i class="si si-logout"></i> Sign Out
+                                        <a class="dropdown-item" href="{{ route('users.Profile') }}">
+                                            <i class="si si-user mr-5"></i> Profile
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('conversation.index') }}">
+                                            <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
+                                            <span class="badge badge-primary"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span>
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                            <!-- Toggle Side Overlay -->
+                                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                            <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                                                <i class="si si-note mr-5"></i> Notes 
+                                            </a>
+                                            <!-- END Side Overlay -->
+                                
+                                            <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                        <i class="si si-logout"></i> Sign Out
+                                                </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
                                 </div>
                             </div>
                             <!-- END User Dropdown -->

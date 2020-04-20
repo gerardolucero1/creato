@@ -56,7 +56,8 @@
                                     <td>{{ tarea.category }}</td>
                                     <td>{{ tarea.slug }}</td>
                                     <td class="d-none d-sm-table-cell">
-                                        <span class="badge badge-info">Completada</span>
+                                        <span v-if="tarea.complete" class="badge badge-success">Completada</span>
+                                        <span v-else class="badge badge-info">Pendiente</span>
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">

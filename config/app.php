@@ -181,6 +181,12 @@ return [
         // Laravel Permissions
         Spatie\Permission\PermissionServiceProvider::class,
 
+        //DOMPDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        //Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -235,6 +241,12 @@ return [
         // Laravel Collective
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        //DOMPDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

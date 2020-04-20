@@ -91,7 +91,7 @@
                                                         <i class="si si-grid"></i>Inicio</a>
                                                 </li>
                                                 <li>
-                                                    <a href="">
+                                                    <a href="{{ route('client.profile') }}">
                                                         <i class="si si-user"></i>Perfil</a>
                                                 </li>
                                                 <li>
@@ -146,7 +146,7 @@
                                             <i class="si si-grid"></i>Inicio</a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="{{ route('client.profile') }}">
                                             <i class="si si-user"></i>Perfil</a>
                                     </li>
                                     <li>

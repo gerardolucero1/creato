@@ -16,6 +16,16 @@ export default new Router({
             component: require('./views/About.vue').default,
         },
         {
+            path: '/contact',
+            name: 'contact',
+            component: require('./views/Contact.vue').default,
+        },
+        {
+            path: '/projects',
+            name: 'projects',
+            component: require('./views/Projects.vue').default,
+        },
+        {
             path: '*',
             component: require('./views/Home.vue').default,
         },

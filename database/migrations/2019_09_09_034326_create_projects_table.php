@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->date('date');
             $table->string('place');
             $table->string('plans')->nullable();
+            $table->boolean('finished')->nullable();
 
             $table->timestamps();
 

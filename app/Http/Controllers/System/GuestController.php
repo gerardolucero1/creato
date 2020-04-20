@@ -6,8 +6,10 @@ use App\User;
 use App\Guest;
 use App\GuestList;
 use Illuminate\Http\Request;
+use App\Imports\GuestsImport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Input;
 
 class GuestController extends Controller
@@ -58,6 +60,7 @@ class GuestController extends Controller
             $guest->seated              = $invitado['seated'];
             $guest->status              = $invitado['status'];
             $guest->origin              = $invitado['origin'];
+            $guest->groupName           = $invitado['groupName'];
 
             $guest->save();
         }
@@ -110,6 +113,12 @@ class GuestController extends Controller
     {
         $guest = Guest::find($id);
         $guest->delete();
+    }
+
+    public function importExcel(Request $request){
+        $file = $request->file('excel');
+        Excel::import(new GuestsImport, $file);
+        return back();
     }
 
 }

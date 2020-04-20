@@ -22,6 +22,9 @@ use Illuminate\Http\Request;
 Route::get('/', 'Web\IndexController@index');
 
 Auth::routes();
+Route::get('no-project', function() {
+    return view('system.no_project');
+})->name('no_project');
 
 // System routes
 
@@ -58,7 +61,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
-    Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
+        Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
+        Route::get('dashboard/proyectos/resumen/{id}', 'System\ProjectController@review')->name('projects.review');
+        Route::post('dashboard/proyectos/pdf', 'System\ProjectController@pdf')->name('projects.pdf');
+        Route::post('dashboard/proyectos/list', 'System\ProjectController@copyList')->name('projects.copyList');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
@@ -114,8 +120,16 @@ Route::group(['middleware' => ['auth']], function () {
     //Lista de invitados
     Route::resource('cliente/lista', 'System\GuestController');
 
+    //Importar excel invitados
+    Route::post('cliente/excel/import', 'System\GuestController@importExcel')->name('guests.import.excel');
+
     //Lista de acompanantes
     Route::resource('cliente/acompanante', 'System\CompanionController');
+
+    //Grupos invitados
+    Route::get('cliente/groups/{id}', 'System\GroupController@index')->name('groups.index');
+    Route::post('cliente/groups', 'System\GroupController@store')->name('groups.store');
+    Route::post('cliente/groups/group', 'System\GroupController@getGroup')->name('groups.getGroup');
 
     // Tables routes
     Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');
@@ -152,12 +166,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('quotation/{id}', 'System\QuotationController@show')->name('quotation.show');
     Route::get('dashboard/cotizaciones', 'System\QuotationController@getQuotation')->name('quotation.getQuotation');
 
-    // ProfileRoutes
+    // Profile Routes Admin
     Route::get('dashboard/perfil', 'System\ProfileController@index')->name('users.Profile');
     Route::get('dashboard/perfil/create', 'System\ProfileController@create')->name('profile.create');
     Route::post('dashboard/perfil', 'System\ProfileController@store')->name('profile.store');
     Route::get('dashboard/perfil/{id}', 'System\ProfileController@edit')->name('profile.edit');
     Route::put('dashboard/perfil/{id}', 'System\ProfileController@update')->name('profile.update');
+
+    // Profile Clients
+    Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('client.profile');
+    Route::get('/cliente/perfil/get/{id}', 'System\ProfileController@getProfileClient')->name('Get.Profile');
+    Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
+        // Gallery
+        Route::get('/cliente/perfil/galeria/{id}', 'System\GalleryController@index')->name('Get.Gallery');
+        Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\GalleryController@store')->name('imagen.store');
+        Route::delete('/cliente/perfil/galeria/eliminar/{id}', 'System\GalleryController@destroy')->name('imagen.destroy');
 
     // Task Routes
         // Block
@@ -193,6 +216,28 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/estadisticas', 'System\SystemController@estadisticasIndex')->name('estadisticas.index');
         //Obtener datos
         Route::get('grafica-obtener-datos', 'System\SystemController@obtenerDatos');
+
+    // Messages admin
+    Route::get('dashboard/conversaciones', 'System\ConversationController@index')->name('conversation.index');
+    Route::get('dashboard/conversations', 'System\ConversationController@conversation')->name('conversation.get');
+    Route::get('dashboard/mensajes', 'System\MessageController@index')->name('message.index');
+    Route::post('dashboard/mensajes', 'System\MessageController@store')->name('message.store');
+
+    // Obtener imagen para messenger
+    Route::get('/contact/get/img/{id}', 'System\ConversationController@index')->name('conversation.getImg');
+    
+    
+        
+    //menssages clients
+    Route::get('dashboard/mensajes/cliente', 'System\ConversationController@indexClient')->name('messages.client');
+    Route::get('dashboard/mensajes/conversations', 'System\ConversationController@conversation')->name('conversation.get');
+    Route::get('dashboard/mensajes/mensajes', 'System\MessageController@index')->name('message.index');
+    Route::post('dashboard/mensajes/mensajes', 'System\MessageController@store')->name('message.store');
+
+    // Notifications
+    Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+    // Notificaciones cliente
+    Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
 
 });
 

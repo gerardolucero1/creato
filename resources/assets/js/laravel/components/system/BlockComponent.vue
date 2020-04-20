@@ -1,5 +1,5 @@
 <template>
-    <section class="container" v-if="bloques.length != 0">
+    <section class="container">
         <div class="row gutters-tiny">
             <div class="col-md-6 col-xl-3">
                 <a class="block block-link-shadow text-right" href="javascript:void(0)">

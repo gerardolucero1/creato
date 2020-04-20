@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -33,7 +34,13 @@ class LoginController extends Controller
                 return redirect()->route('dashboard.admin');
                 break;
             case 'cliente':
-                return redirect()->route('dashboard.client');
+                if($user->project == null){
+                    Auth::logout();
+                    return redirect()->route('no_project');
+                }else{
+                    return redirect()->route('dashboard.client');  
+                }
+                
                 break;
             
             default:

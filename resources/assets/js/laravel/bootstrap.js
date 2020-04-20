@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 // Other dependecies
@@ -13,8 +12,8 @@ moment.locale('es');
  * code may be modified to fit the specific needs of your application.
  */
 
- // Already included in Codebase Core JS
- /*
+// Already included in Codebase Core JS
+/*
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
@@ -59,8 +58,10 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'myKey',
-    wsHost: window.location.hostname,
-    wsPort: 6001,
-    disableStats: true,
+    key: '54dd35399e14bdb19a36',
+    cluster: 'us3',
+    encrypted: true
 });
+
+// Date & time format
+window.moment = require('moment');

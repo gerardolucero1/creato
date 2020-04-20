@@ -44,5 +44,13 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $admin->assignRole('super-admin');
+
+        $admin = User::create([
+            'name' => 'prueba chat',
+            'email' => 'ejemplo2@ejemplo',
+            'password' => bcrypt('111etics'),
+        ]);
+
+        $admin->assignRole('super-admin');
     }
 }

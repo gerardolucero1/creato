@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Message;
+use App\Observers\MessageObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Message::observe(MessageObserver::class);
         Schema::defaultStringLength(191);
     }
 }

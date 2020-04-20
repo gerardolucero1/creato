@@ -71,7 +71,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                    <a class="block block-link-shadow" href="javascript:void(0)">
+                    <a class="block block-link-shadow" href="{{ route('messages.client') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-envelope-open text-pulse"></i>
@@ -80,7 +80,7 @@
                                 Mensajes
                             </p>
                             <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
-                                <span class="badge badge-pill badge-danger">2</span> Mensajes
+                                <span class="badge badge-pill badge-danger"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span> Mensajes
                             </p>
                         </div>
                     </a>
@@ -89,7 +89,7 @@
                     <a class="block block-link-shadow" href="{{ route('tables.index') }}">
                         <div class="block-content block-content-full text-center">
                             <div class="p-20 mb-5">
-                                <i class="fas fa-3x fa-chair text-gray-dark"></i>
+                            <i class="fa fa-3x fa-users text-primary"></i>
                             </div>
                             <p class="font-size-lg font-w600 mb-0">
                                 2 Sentados
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <my-block-list-component></my-block-list-component>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <a class="block block-rounded" href="javascript:void(0)">
                         <div class="block-content block-content-full">
@@ -139,7 +139,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </main>
 @endsection
