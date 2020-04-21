@@ -86,13 +86,58 @@
         font-size: 16px;
         text-align: center;
     }
+
+    .menu-container{
+        background-color: #C8CECE;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 100px;
+        padding: 10px;
+        visibility: hidden;
+        z-index: 1000;
+    }
+
+    .active{
+        visibility: visible;
+    }
+
+    .menu-container ul{
+        margin-left: 40px;
+        list-style: none;
+    }
+
+    .menu-container ul li{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+        cursor: pointer;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a:hover{
+        text-decoration: none;
+    }
+
+    .main-menu-btn:hover{
+        cursor: pointer;
+    }
 </style>
 
 <template>
     <section class="box-container">
         <div class="box-main">
             <div class="main-menu-container">
-                <div class="main-menu-btn">
+                <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
                 </div>
@@ -102,6 +147,23 @@
             </div>
 
             <div class="box-content">
+                <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
+                    <ul>
+                        <li>
+                            <router-link to="/">- inicio</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/about">- nosotros</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/projects">- proyectos</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact">- contacto</router-link>
+                        </li>
+                    </ul>
+                </section>
+
                 <div class="box-tag-container">
                     <p>CREATO.MX</p>
                     <p>event design</p>
@@ -117,7 +179,7 @@ export default {
 
     data(){
         return{
-
+            menu: false,
         }
     },
 

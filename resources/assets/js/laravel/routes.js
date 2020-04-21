@@ -26,6 +26,12 @@ export default new Router({
             component: require('./views/Projects.vue').default,
         },
         {
+            path: '/projects/:id',
+            name: 'project',
+            component: require('./views/Project.vue').default,
+            props: true,
+        },
+        {
             path: '*',
             component: require('./views/Home.vue').default,
         },

@@ -4,7 +4,7 @@
         padding: 0;
     }
 
-    h2{
+     h2{
         font-family: Bodoni;
         font-weight: lighter;
         letter-spacing: 1px;
@@ -25,6 +25,7 @@
         background-image: url('/images/textura.png');
         background-size: cover;
         background-position: center;
+        position: relative;
     }
 
     .box-main{
@@ -74,6 +75,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        position: relative;
     }
 
     .box-tag-container{
@@ -83,16 +85,16 @@
         color: #545454;
     }
 
-    .box-content .row:nth-child(1) h2{
+    .box-content .box-1 h2{
         margin-top: 0.8em;
     }
 
-    .box-content .row:nth-child(2) p{
+    .box-content .box-2 p{
         font-family: Bodoni;
         font-size: 1.1em;
     }
 
-    .box-content .row:nth-child(3) p{
+    .box-content .box-3 p{
         font-family: Bodoni;
         font-size: 1.1em;
     }
@@ -104,13 +106,58 @@
         background-position: center;
         background-size: cover;
     }
+
+    .menu-container{
+        background-color: #C8CECE;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 100px;
+        padding: 10px;
+        /* visibility: hidden; */
+        z-index: 1000;
+    }
+
+    .active{
+        visibility: visible;
+    }
+
+    .menu-container ul{
+        margin-left: 40px;
+        list-style: none;
+    }
+
+    .menu-container ul li{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+        cursor: pointer;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a:hover{
+        text-decoration: none;
+    }
+
+    .main-menu-btn:hover{
+        cursor: pointer;
+    }
 </style>
 
 <template>
     <section class="box-container">
         <div class="box-main">
             <div class="main-menu-container">
-                <div class="main-menu-btn">
+                <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
                 </div>
@@ -120,12 +167,29 @@
             </div>
 
             <div class="box-content">
-                <div class="row">
+                <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
+                    <ul>
+                        <li>
+                            <router-link to="/">- inicio</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/about">- nosotros</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/projects">- proyectos</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact">- contacto</router-link>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- <div class="row box-1">
                     <div class="col-md-12 text-center">
                         <h2>Acerca de Nosotros</h2>
                     </div>
-                </div>
-                <div class="row">
+                </div> -->
+                <div class="row box-2">
                     <div class="col-md-12">
                         <p>Somos una firma mexicana de talentos enfocada en crear experiencias unicas. Tomamos tu inspiracion y emocion para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu escencia en cada elemento.</p>
                         <br>
@@ -134,7 +198,7 @@
                         <p>Creato es creacion; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row box-3">
                     <div class="col-md-3">
                         <div class="box-about-img" style="background-image: url('/images/paola.png');">
 
@@ -170,7 +234,7 @@ export default {
 
     data(){
         return{
-
+            menu: false,
         }
     },
 

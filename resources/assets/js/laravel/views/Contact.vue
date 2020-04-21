@@ -4,6 +4,27 @@
         padding: 0;
     }
 
+    h2{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-size: 2.3em;
+    }
+
+    h3{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-style: italic;
+        font-size: 1.3em;
+    }
+
+    .menu{
+        color: white;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+
     .box-container{
         background-color: white;
         width: 100vw;
@@ -13,6 +34,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: repeat-y;
+        position: relative;
     }
 
     .box-main{
@@ -68,32 +90,7 @@
         color: #545454;
     }
 
-    .box-content .row:nth-child(1) p:nth-child(1){
-        font-family: Bodoni;
-        margin-top: 25px;
-        font-size: 25px;
-        font-weight: lighter;
-        letter-spacing: 2px;
-    }
-
-    .box-content .row:nth-child(1) p:nth-child(2){
-        font-family: Bodoni;
-        font-size: 17px;
-        font-weight: lighter;
-        font-style: italic;
-        letter-spacing: 2px;
-    }
-
-    .box-content .row:nth-child(2){
-        margin-top: 25px;
-    }
-
-    .box-content .row:nth-child(2) p{
-        font-family: Bodoni;
-        font-size: 17px;
-    }
-
-    .box-content .row:nth-child(2) label{
+    .box-content .formulario label{
         width: 100px;
         font-family: Bodoni;
         font-size: 17px;
@@ -102,7 +99,7 @@
         margin-top: 20px;
     }
 
-    .box-content .row:nth-child(2) input, textarea{
+    .box-content .formulario input, textarea{
         background-color: transparent;
         border: none;
         border-bottom: 1px solid black;
@@ -126,15 +123,60 @@
         background-position: center;
         background-size: cover;
     }
+
+    .menu-container{
+        background-color: #C8CECE;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 100px;
+        padding: 10px;
+        visibility: hidden;
+        z-index: 1000;
+    }
+
+    .active{
+        visibility: visible;
+    }
+
+    .menu-container ul{
+        margin-left: 40px;
+        list-style: none;
+    }
+
+    .menu-container ul li{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+        cursor: pointer;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a:hover{
+        text-decoration: none;
+    }
+
+    .main-menu-btn:hover{
+        cursor: pointer;
+    }
 </style>
 
 <template>
     <section class="box-container">
         <div class="box-main">
             <div class="main-menu-container">
-                <div class="main-menu-btn">
+                <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
-                    <i class="fas fa-bars"></i>
+                    <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
                     <img src="/images/logo.png" alt="">
@@ -142,14 +184,32 @@
             </div>
 
             <div class="box-content">
+                <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
+                    <ul>
+                        <li>
+                            <router-link to="/">- inicio</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/about">- nosotros</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/projects">- proyectos</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact">- contacto</router-link>
+                        </li>
+                    </ul>
+                </section>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Nos encantaria escuchar de ti</p>
-                        <p>Contactanos para obtener mas informacion de nosotros y nuestros servicios.</p>
+                        <h2>Nos encantaria escuchar de ti</h2>
+                        <div class="col-md-12 mt-5">
+                            <h3 class="text-center">Contactanos para obtener mas informacion de nosotros y nuestros servicios.</h3>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 formulario">
                         <form action="">
                             <div class="d-flex">
                                 <label for="">Nombre</label>
@@ -168,7 +228,7 @@
                                 <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
                             </div>
                         </form>
-                        <div class="row box-social-media">
+                        <div class="row box-social-media mt-3">
                             <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img class="mr-1" src="/images/logo-fb.png" alt="">
@@ -195,7 +255,7 @@ export default {
 
     data(){
         return{
-
+            menu: false,
         }
     },
 

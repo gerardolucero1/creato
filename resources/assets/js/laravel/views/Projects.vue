@@ -33,6 +33,7 @@
         background-image: url('/images/textura.png');
         background-size: cover;
         background-position: center;
+        position: relative;
     }
 
     .box-main{
@@ -179,7 +180,7 @@
         font-weight: lighter;
         letter-spacing: 1px;
         text-shadow: 1px 1px 10px #707070;
-        width: 13em;
+        width: 12em;
         margin-bottom: -5%;
         transform: rotate(90deg);
     }
@@ -188,13 +189,58 @@
         font-size: 40px;
         color: #5D5D5D;
     }
+
+    .menu-container{
+        background-color: #C8CECE;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 100px;
+        padding: 10px;
+        visibility: hidden;
+        z-index: 1000;
+    }
+
+    .active{
+        visibility: visible;
+    }
+
+    .menu-container ul{
+        margin-left: 40px;
+        list-style: none;
+    }
+
+    .menu-container ul li{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+        cursor: pointer;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a:hover{
+        text-decoration: none;
+    }
+
+    .main-menu-btn:hover{
+        cursor: pointer;
+    }
 </style>
 
 <template>
     <section class="box-container">
         <div class="box-main">
             <div class="main-menu-container">
-                <div class="main-menu-btn">
+                <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
                 </div>
@@ -204,6 +250,22 @@
             </div>
 
             <div class="box-content">
+                <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
+                    <ul>
+                        <li>
+                            <router-link to="/">- inicio</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/about">- nosotros</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/projects">- proyectos</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact">- contacto</router-link>
+                        </li>
+                    </ul>
+                </section>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="box-content-projects">
@@ -211,7 +273,7 @@
                                <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
                                         <div class="project-name-container-right">
-                                            <p>daniela + jacobo</p>
+                                            <p style="background-color: #BEC1C8;">daniela + jacobo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +285,7 @@
                                 <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
                                         <div class="project-name-container-right">
-                                            <p>daniela + jacobo</p>
+                                            <p style="background-color: #C3A18F;">daniela + jacobo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +307,7 @@
                                 <div class="col-md-6">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
                                         <div class="project-name-container-center">
-                                            <p>daniela + jacobo</p>
+                                            <p style="background-color: #C8CECE;">daniela + jacobo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +320,7 @@
                                <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
                                         <div class="project-name-container-left">
-                                            <p>daniela + jacobo</p>
+                                            <p style="background-color: #B8AEA3;">daniela + jacobo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +332,7 @@
                                 <div class="col-md-12">
                                     <div class="box-about-img" style="background-image: url('/images/index.png');">
                                         <div class="project-name-container-left">
-                                            <p>daniela + jacobo</p>
+                                            <p style="background-color: #EDE3D8;">daniela + jacobo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -289,7 +351,7 @@ export default {
 
     data(){
         return{
-
+            menu: false,
         }
     },
 
