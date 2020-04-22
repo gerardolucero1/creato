@@ -184,7 +184,7 @@ export default {
              perfilMiniatura:'',
              bannerMiniatura:'',
              event:[
-                 'end_date', '2020-01-25'],
+                 'end_date', '2020-03-29'],
              
 
             /* Objetos para obtener los datos que se van a cargar*/
@@ -299,6 +299,18 @@ export default {
         imagenBanner(){
             return this.bannerMiniatura
         }
+    },
+    mounted(){
+        Echo.join('messenger')
+            .here((users) => {
+                //code here
+            })
+            .joining(
+                // code here
+            )
+            .leaving(
+                // code here
+            ); 
     }
 }
 </script>

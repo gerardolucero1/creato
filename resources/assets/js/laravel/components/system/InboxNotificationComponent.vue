@@ -30,7 +30,17 @@ export default {
         Echo.private('App.User.' + this.userId)
             .notification((notification) => {
                 this.obtenerNotificacion()  
-            }); 
+            });
+        Echo.join('messenger')
+            .here((users) => {
+                //code here
+            })
+            .joining(
+                // code here
+            )
+            .leaving(
+                // code here
+            ); 
     },
     methods:{
         obtenerNotificacion: function(){

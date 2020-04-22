@@ -3,7 +3,7 @@
         <li :class="{'bg-primary-lighter' :variant}"> 
             <a href="#">
                     <img class="img-avatar" :src="conversation.photo[0].photo">
-                    <i class="fa fa-circle text-success"></i>
+                    <i :class="[ conversation.online ? 'fa fa-circle text-success' : 'fa fa-circle text-muted' ]"></i>
                     <p class="mb-1">
                         
                         {{ conversation.contact_name }}
@@ -22,7 +22,7 @@ export default {
         conversation: Object,
         selected: Boolean
     },
-    data(){
+    data(){ 
         return{
 
         };

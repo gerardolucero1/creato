@@ -1,6 +1,18 @@
 <template>
     <div class="dropdown-menu dropdown-menu-right min-width-300" aria-labelledby="page-header-notifications">
         <h5 class="h6 text-center py-10 mb-0 border-b text-uppercase">Notifications</h5>
+        <ul class="list-unstyled my-20" v-if="notifications.length == 0">
+            <li>
+                <a class="text-body-color-dark media mb-15" :href="'dashboard/conversaciones'">
+                    <div class="ml-5 mr-15">
+                        <i class="fa fa-fw fa-check text-success"></i>
+                    </div>
+                    <div class="media-body pr-10"> 
+                        <p class="mb-0">No tienes nuevas notificaciones</p>
+                    </div>
+        </a>
+            </li>
+        </ul>
         <ul class="list-unstyled my-20">
             <indiv-notifications-component 
             v-for="notification in notifications" :key="notification.index" 
@@ -9,8 +21,8 @@
         <div class="dropdown-divider">
         </div>
             <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
-                <i class="fa fa-flag mr-5"></i> View All
-            </a>
+                <i class="fa fa-flag mr-5"></i> Ver todo
+            </a> 
     </div>
 </template>
 

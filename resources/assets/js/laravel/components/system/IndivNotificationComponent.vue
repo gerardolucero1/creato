@@ -1,6 +1,6 @@
 <template>
     <li>
-        <a class="text-body-color-dark media mb-15" :href="'dashboard/conversaciones'">
+        <a class="text-body-color-dark media mb-15" @click="Leido()">
             <div class="ml-5 mr-15">
                 <i class="fa fa-fw fa-check text-success"></i>
             </div>
@@ -32,6 +32,7 @@ export default {
     },
 
     methods:{
+        //:href="'dashboard/conversaciones'" 
         obtenerUsuario: function(){
             //let result = JSON.parse(this.notification.data);
             let Strings = this.notification.split (" ");
@@ -45,6 +46,11 @@ export default {
                     
                 });
             },
+        Leido: function(){
+            let Strings = this.notification.split (" ");
+            let result = JSON.parse(Strings);
+            console.log(Strings);
+        }
     },
 
     computed: {

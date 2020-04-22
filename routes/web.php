@@ -231,6 +231,19 @@ Route::group(['middleware' => ['auth']], function () {
     // Notificaciones cliente
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
 
+    // Notificaciones Email
+    Route::post('sendemail', function(Request $request){
+        $data = array(
+            'name' => "Prueba de email",
+        );
+        Mail::send('emails.welcome', $data, function($message){
+            $message->from('3dlogprueba@gmail.com', 'prueba de email');
+            $message->to('undle40@gmail.com')->subject('test de email');
+        });
+        return "EL correo fue enviado correctamente";
+    });
+
+
 });
 
 
