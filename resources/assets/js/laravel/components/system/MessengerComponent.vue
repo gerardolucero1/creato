@@ -59,14 +59,13 @@ export default {
 
         Echo.join('messenger')
             .here((users) => {
-                console.log('online', users)
+                users.forEach(user => this.changeStatus(user, true));
             })
-            .joining((user) => {
-                console.log(user.id);
-            })
-            .leaving((user) => {
-                console.log(user.id);
-            });
+            .joining(
+                (user) => this.changeStatus(user, true)
+            )
+            .leaving((user) => this.changeStatus(user, false)
+            );
     },
 
     methods: {
@@ -101,6 +100,15 @@ export default {
                 this.conversations = Response.data;
             });
         },
+        changeStatus(user, status){
+            //console.log('se conecto', user.id);
+            let index = this.conversations.findIndex((conversation) => {
+                return conversation.contact_id == user.id;
+            });
+            if (index >= 0)
+            this.$set(this.conversations[index], 'online', status);
+            //this.$set(this.)
+        }
     },
 
     computed:{

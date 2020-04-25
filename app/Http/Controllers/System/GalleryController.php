@@ -17,7 +17,7 @@ class GalleryController extends Controller
     public function index($id)
     {
         $gallery = Gallery::where('user_id', $id)->get();
-        return $gallery;
+        return $gallery; 
     }
 
     /**

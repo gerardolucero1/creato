@@ -44,7 +44,7 @@ class NewMessage extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'message_id' => $this->message->id,
+            'from_id' => $this->message->from_id,
         ];
     }
 

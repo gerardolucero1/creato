@@ -28,7 +28,7 @@ Route::get('no-project', function() {
 
 // System routes
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () { 
     
     Route::match(['get', 'post'], '/dashboard', 'System\SystemController@index')->name('dashboard.admin');
 
@@ -236,8 +236,25 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Notifications
     Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+    Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+
+    
     // Notificaciones cliente
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+
+    // Notificaciones Email
+    Route::post('sendemail', function(Request $request){
+        $data = array(
+            'name' => "Prueba de email",
+        );
+        Mail::send('emails.welcome', $data, function($message){
+            $message->from('3dlogprueba@gmail.com', 'prueba de email');
+            $message->to('undle40@gmail.com')->subject('test de email');
+        });
+        return "EL correo fue enviado correctamente";
+    });
+
 
 });
 
