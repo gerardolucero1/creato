@@ -83,7 +83,10 @@
     }
 
     .box-tag-container p:nth-child(2){
-        font-size: 16px;
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-size: 19px;
         text-align: center;
     }
 

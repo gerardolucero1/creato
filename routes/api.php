@@ -22,4 +22,9 @@ Route::resource('tarea', 'System\TaskController');
 
 Route::apiResource('/calendar', 'System\CalendarController');
 
+//Projects
+Route::get('/projects', 'Web\IndexController@projects');
+Route::get('/projects/{id}', 'Web\IndexController@project');
+Route::get('/projects/{id}/images', 'Web\IndexController@projectImages');
+
 

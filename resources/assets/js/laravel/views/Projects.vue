@@ -15,6 +15,7 @@
         font-weight: lighter;
         letter-spacing: 1px;
         font-size: 2.3em;
+        padding-top: 0.8em;
     }
 
     h3{
@@ -96,9 +97,9 @@
     .box-content-projects-center{
         width: 100%;
         height: calc(100vh - 150px);
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-around; */
     }
 
     .box-about-img {
@@ -107,6 +108,7 @@
         position: relative; /* If you want text inside of it */
         background-position: center;
         background-size: cover;
+        cursor: pointer;
     }
 
     .project-name-container-right{
@@ -188,6 +190,7 @@
     .arrow{
         font-size: 40px;
         color: #5D5D5D;
+        cursor: pointer;
     }
 
     .menu-container{
@@ -266,26 +269,26 @@
                         </li>
                     </ul>
                 </section>
-                <div class="row">
+                <div v-if="projects != null" class="row">
                     <div class="col-md-3">
                         <div class="box-content-projects">
                             <div class="row">
-                               <div class="col-md-12">
-                                    <div class="box-about-img" style="background-image: url('/images/index.png');">
+                                <div v-if="projects.data.length > 0" class="col-md-12" @click="goToProject(projects.data[0].id)">
+                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[0].banner + ')' }">
                                         <div class="project-name-container-right">
-                                            <p style="background-color: #BEC1C8;">daniela + jacobo</p>
+                                            <p style="background-color: #BEC1C8;">{{ projects.data[0].title }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <i class="arrow fas fa-caret-left"></i>
+                                <i v-show="count != 1" class="arrow fas fa-caret-left" @click="count--"></i>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="box-about-img" style="background-image: url('/images/index.png');">
+                                <div v-if="projects.data.length > 2" class="col-md-12" @click="goToProject(projects.data[2].id)">
+                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[2].banner + ')' }">
                                         <div class="project-name-container-right">
-                                            <p style="background-color: #C3A18F;">daniela + jacobo</p>
+                                            <p style="background-color: #C3A18F;">{{ projects.data[2].title }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -298,16 +301,16 @@
                                <div class="col-md-12 text-center">
                                     <h2>Galeria de Proyectos</h2>
                                 </div>
-                                <div class="col-md-12 mt-5">
+                                <div class="col-md-12" style="margin-top: 2em;">
                                     <h3 class="text-center" style="margin-left: -2.5em;">Your love story</h3>
                                     <h3 class="text-center" style="margin-right: -2.5em;">begins here...</h3>
                                 </div>
                             </div>
-                            <div class="row" style="display: flex; justify-content: center; margin-top: -17%;">
-                                <div class="col-md-6">
-                                    <div class="box-about-img" style="background-image: url('/images/index.png');">
+                            <div class="row" style="display: flex; justify-content: center; margin-top: calc((100vh - 150px) / 7);">
+                                <div v-if="projects.data.length > 4" class="col-md-6" @click="goToProject(projects.data[4].id)">
+                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[4].banner + ')' }">
                                         <div class="project-name-container-center">
-                                            <p style="background-color: #C8CECE;">daniela + jacobo</p>
+                                            <p style="background-color: #C8CECE;">{{ projects.data[4].title }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -317,22 +320,22 @@
                     <div class="col-md-3">
                         <div class="box-content-projects">
                             <div class="row">
-                               <div class="col-md-12">
-                                    <div class="box-about-img" style="background-image: url('/images/index.png');">
+                               <div v-if="projects.data.length > 1" class="col-md-12" @click="goToProject(projects.data[1].id)">
+                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[1].banner + ')' }">
                                         <div class="project-name-container-left">
-                                            <p style="background-color: #B8AEA3;">daniela + jacobo</p>
+                                            <p style="background-color: #B8AEA3;">{{ projects.data[1].title }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="display: flex; justify-content: flex-end;">
-                                <i class="arrow fas fa-caret-right"></i>
+                                <i v-show="count != lastPage" class="arrow fas fa-caret-right" @click="count++"></i>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="box-about-img" style="background-image: url('/images/index.png');">
+                                <div v-if="projects.data.length > 3" class="col-md-12" @click="goToProject(projects.data[3].id)">
+                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[3].banner + ')' }">
                                         <div class="project-name-container-left">
-                                            <p style="background-color: #EDE3D8;">daniela + jacobo</p>
+                                            <p style="background-color: #EDE3D8;">{{ projects.data[3].title }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -352,6 +355,19 @@ export default {
     data(){
         return{
             menu: false,
+            projects: null,
+            count: 1,
+            lastPage: null
+        }
+    },
+
+    mounted(){
+        this.getProjects()
+    },
+
+    watch:{
+        count(){
+            this.getProjects()
         }
     },
 
@@ -360,7 +376,25 @@ export default {
     },
 
     methods: {
+        async getProjects(){
+            try{
+                this.projects = null
+                let URL = `/api/projects?page=${this.count}`
+                let response = await axios.get(URL)
+                if (response) {
+                    this.projects = response.data
+                    this.lastPage = response.data.last_page
+                    console.log(response.data)
+                }
+            }
+            catch(e){
+                console.log(e)
+            }
+        },
 
+        goToProject(id){
+            this.$router.push({ name: 'project', params: { id: id } })
+        }
     }
 }
 </script>

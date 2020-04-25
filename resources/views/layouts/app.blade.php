@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Creato Studio</title>
+    <meta name="description" content="Creato web page">
+    <meta name="author" content="3DLOG">
     <meta name="user" content="{{ Auth::user() }}">
 
     <!-- Fonts -->

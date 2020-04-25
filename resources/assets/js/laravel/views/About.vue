@@ -4,7 +4,7 @@
         padding: 0;
     }
 
-     h2{
+    h2{
         font-family: Bodoni;
         font-weight: lighter;
         letter-spacing: 1px;
@@ -75,18 +75,19 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        position: relative;
+        /* position: relative; */
     }
 
-    .box-tag-container{
-        background-color: #E7D5CD;
-        padding: 20px 50px;
-        margin-left: -50px;
-        color: #545454;
+    .box-content .box-1{
+        height: calc((100vh - 150px) / 5.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
-    .box-content .box-1 h2{
-        margin-top: 0.8em;
+    .box-content .box-2{
+        height: calc((100vh - 150px) / 1.2);
     }
 
     .box-content .box-2 p{
@@ -114,7 +115,7 @@
         left: 0;
         margin-top: 100px;
         padding: 10px;
-        /* visibility: hidden; */
+        visibility: hidden;
         z-index: 1000;
     }
 
@@ -184,45 +185,50 @@
                     </ul>
                 </section>
 
-                <!-- <div class="row box-1">
-                    <div class="col-md-12 text-center">
-                        <h2>Acerca de Nosotros</h2>
-                    </div>
-                </div> -->
+                <div class="row box-1">
+                    <h2>Acerca de Nosotros</h2>
+                </div>
                 <div class="row box-2">
                     <div class="col-md-12">
-                        <p>Somos una firma mexicana de talentos enfocada en crear experiencias unicas. Tomamos tu inspiracion y emocion para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu escencia en cada elemento.</p>
-                        <br>
-                        <p>Planeamos y estructuramos cada uno de los aspectos tecnicos para que el proceso de creacion sea sinonimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minusculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
-                        <br>
-                        <p>Creato es creacion; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Somos una firma mexicana de talentos enfocada en crear experiencias unicas. Tomamos tu inspiracion y emocion para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu escencia en cada elemento.</p>
+                                <br>
+                                <p>Planeamos y estructuramos cada uno de los aspectos tecnicos para que el proceso de creacion sea sinonimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minusculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
+                                <br>
+                                <p>Creato es creacion; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="box-about-img" style="background-image: url('/images/paola.png');">
+
+                                </div>
+                                <p class="text-center">Ana Paola</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="box-about-img" style="background-image: url('/images/maria.png');">
+
+                                </div>
+                                <p class="text-center">Ana Maria</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="box-about-img" style="background-image: url('/images/gerardo.png');">
+
+                                </div>
+                                <p class="text-center">Gerardo</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="box-about-img" style="background-image: url('/images/todos.png');">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
-                <div class="row box-3">
-                    <div class="col-md-3">
-                        <div class="box-about-img" style="background-image: url('/images/paola.png');">
-
-                        </div>
-                        <p class="text-center">Ana Paola</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="box-about-img" style="background-image: url('/images/maria.png');">
-
-                        </div>
-                        <p class="text-center">Ana Maria</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="box-about-img" style="background-image: url('/images/gerardo.png');">
-
-                        </div>
-                        <p class="text-center">Gerardo</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="box-about-img" style="background-image: url('/images/todos.png');">
-
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

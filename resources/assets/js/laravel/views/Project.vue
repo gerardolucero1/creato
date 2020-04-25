@@ -8,7 +8,6 @@
         font-family: Bodoni;
         font-weight: lighter;
         letter-spacing: 1px;
-        font-size: 2.3em;
     }
 
     .menu{
@@ -85,15 +84,15 @@
     }
 
     .box-content .box-1{
-        height: calc((100vh - 150px) / 3);
+        height: calc((100vh - 150px) / 5.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     .box-content .box-2{
-        height: calc((100vh - 150px) / 1.5);
-    }
-
-    .box-content .box-1 h2{
-        margin-top: 0.8em;
+        height: calc((100vh - 150px) / 1.2);
     }
 
     .box-content .box-2 p{
@@ -105,19 +104,20 @@
         color: white;
         background-color: #BEC1C8;
         padding: 0.2em 0.6em;
-        text-align: center;
         font-family: Bodoni;
         font-size: 1.2em;
         font-weight: lighter;
         letter-spacing: 1px;
         text-shadow: 1px 1px 10px #707070;
+        display: inline-block;
+        text-align: center;
         width: 14em;
-        margin-top: 0.8em;
     }
 
     .arrow{
         font-size: 40px;
         color: #5D5D5D;
+        cursor: pointer;
     }
 
     .menu-container{
@@ -197,26 +197,25 @@
                         </li>
                     </ul>
                 </section>
-                <div class="row box-1">
-                    <div class="col-md-12 d-flex justify-content-center align-items-center flex-column">
-                        <h2>Galeria de Proyectos</h2>
-                        <p class="project-title">daniela + jacobo</p>
-                    </div>
+                <div v-if="project != null" class="row box-1">
+                    <h2>Galeria de Proyectos</h2>
+                    <p class="project-title">{{ project.title }}</p>
                 </div>
-                <div class="row box-2">
+                <div v-if="project != null" class="row box-2">
                     <gallery :images="images" :index="index" @close="index = null"></gallery>
                     <div class="col-md-1 arrow-content d-flex justify-content-start align-items-center">
-                        <i class="arrow fas fa-caret-left"></i>
+                        <i v-show="count != 1" class="arrow fas fa-caret-left" @click="count--"></i>
                     </div>
                     <div
                         class="col-md-2"
                         v-for="(image, imageIndex) in images"
                         :key="imageIndex"
                         @click="index = imageIndex"
-                        :style="{ backgroundImage: 'url(' + image + ')', height: 'calc((100vh - 150px) / 1.5)' }"
+                        style="cursor: pointer;"
+                        :style="{ backgroundImage: 'url(' + image + ')', height: 'calc((100vh - 150px) / 1.2)' }"
                     ></div>
                     <div class="col-md-1 arrow-content d-flex justify-content-end align-items-center">
-                        <i class="arrow fas fa-caret-right"></i>
+                        <i v-show="count != lastPage" class="arrow fas fa-caret-right" @click="count++"></i>
                     </div>
                 </div>
             </div>
@@ -233,14 +232,17 @@ export default {
     data: function () {
         return {
             images: [
-            'https://www.viajejet.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada-1440x810.jpg',
-            'https://www.dzoom.org.es/wp-content/uploads/2017/07/seebensee-2384369-810x540.jpg',
-            'https://images.samsung.com/is/image/samsung/p5/uk/explore/photography/lighting/landscape_photography/Explore_How_To_Take_Great_Landscape_Photography_KV.jpg',
-            'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/p/paisajes-espectaculares-del-mundo-1.jpg',
-            'https://ep01.epimg.net/elpais/imagenes/2018/03/01/album/1519910473_492871_1519910821_noticia_normal.jpg',
+            // 'https://www.viajejet.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada-1440x810.jpg',
+            // 'https://www.dzoom.org.es/wp-content/uploads/2017/07/seebensee-2384369-810x540.jpg',
+            // 'https://images.samsung.com/is/image/samsung/p5/uk/explore/photography/lighting/landscape_photography/Explore_How_To_Take_Great_Landscape_Photography_KV.jpg',
+            // 'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/p/paisajes-espectaculares-del-mundo-1.jpg',
+            // 'https://ep01.epimg.net/elpais/imagenes/2018/03/01/album/1519910473_492871_1519910821_noticia_normal.jpg',
             ],
             index: null,
             menu: false,
+            project: null,
+            count: 1,
+            lastPage: null
         };
     },
 
@@ -248,12 +250,55 @@ export default {
       'gallery': VueGallery
     },
 
+    mounted(){
+        this.getProject()
+        this.getProjectImages()
+    },
+
+    watch:{
+        count(){
+            this.getProjectImages()
+        }
+    },
+
     computed: {
 
     },
 
     methods: {
+        async getProject(){
+            try {
+                let URL = `/api/projects/${this.$route.params.id}`
+                let response = await axios.get(URL)
 
+                if (response) {
+                    this.project = response.data
+                    // this.project.images.forEach(element => {
+                    //     this.images.push(element.file_name)
+                    // });
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        async getProjectImages(){
+            try {
+                this.images = []
+                let URL = `/api/projects/${this.$route.params.id}/images?page=${this.count}`
+                let response = await axios.get(URL)
+
+                if (response) {
+                    console.log(response.data)
+                    this.lastPage = response.data.last_page
+                    response.data.data.forEach(element => {
+                        this.images.push(element.file_name)
+                    });
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 }
 </script>

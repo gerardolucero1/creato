@@ -6,12 +6,10 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Codebase - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Creato Studio</title>
 
-        <meta
-            name="description"
-            content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
+        <meta name="description" content="Creato web system">
+        <meta name="author" content="3DLOG">
         <meta name="robots" content="noindex, nofollow">
         <meta name="user" content="{{ Auth::user() }}">
 

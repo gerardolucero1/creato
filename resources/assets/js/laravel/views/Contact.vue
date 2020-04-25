@@ -83,14 +83,19 @@
         height: calc(100vh - 150px);
     }
 
-    .box-tag-container{
-        background-color: #E7D5CD;
-        padding: 20px 50px;
-        margin-left: -50px;
-        color: #545454;
+    .box-content .box-1{
+        height: calc((100vh - 150px) / 5.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
-    .box-content .formulario label{
+    .box-content .box-2{
+        height: calc((100vh - 150px) / 1.2);
+    }
+
+    .box-content .box-2 label{
         width: 100px;
         font-family: Bodoni;
         font-size: 17px;
@@ -99,7 +104,7 @@
         margin-top: 20px;
     }
 
-    .box-content .formulario input, textarea{
+    .box-content .box-2 input, textarea{
         background-color: transparent;
         border: none;
         border-bottom: 1px solid black;
@@ -200,16 +205,12 @@
                         </li>
                     </ul>
                 </section>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2>Nos encantaria escuchar de ti</h2>
-                        <div class="col-md-12 mt-5">
-                            <h3 class="text-center">Contactanos para obtener mas informacion de nosotros y nuestros servicios.</h3>
-                        </div>
-                    </div>
+                <div class="row box-1">
+                    <h2>Nos encantaria escuchar de ti</h2>
+                    <h3>Contactanos para obtener mas informacion de nosotros y nuestros servicios.</h3>
                 </div>
-                <div class="row">
-                    <div class="col-md-7 formulario">
+                <div class="row box-2">
+                    <div class="col-md-7">
                         <form action="">
                             <div class="d-flex">
                                 <label for="">Nombre</label>
