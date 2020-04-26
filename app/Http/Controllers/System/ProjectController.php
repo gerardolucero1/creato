@@ -219,4 +219,10 @@ class ProjectController extends Controller
         $pdf = PDF::loadView('system.projects.PDF.guestList', compact('project'));
         return $pdf->stream();
     }
+    // obtener fecha de evento para cliente
+    public function clientEvent($id)
+    {
+        $event = Project::where('client_id', $id)->get();
+        return $event;
+    }
 }
