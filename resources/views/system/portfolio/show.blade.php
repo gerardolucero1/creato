@@ -9,7 +9,7 @@
 
         .image-portfolio{
             width: 100%;
-            padding-top: 15%; /* 1:1 Aspect Ratio */
+            padding-top: 100%; /* 1:1 Aspect Ratio */
             position: relative; /* If you want text inside of it */
             background-size: cover;
             background-position: center;
@@ -33,7 +33,92 @@
 @endsection
 
 @section('content')
-    <section class="container">
+    <div class="content">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">{{ $portfolio->title }}</h3>
+            <div class="block-options">
+                <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn btn-sm btn-secondary">Editar portafolio</a>
+            </div>
+        </div>
+        <div class="block">
+            <div class="block-content block-content-full border-b clearfix">
+                <div class="btn-group float-right">
+                    <a class="btn btn-secondary" href="{{ route('portfolio.show', ($portfolio->id - 1)) }}">
+                        <i class="fa fa-arrow-left text-primary mr-5"></i> Prev
+                    </a>
+                    <a class="btn btn-secondary" href="{{ route('portfolio.show', ($portfolio->id + 1)) }}">
+                        Next <i class="fa fa-arrow-right text-primary ml-5"></i>
+                    </a>
+                </div>
+                <a class="btn btn-secondary" href="{{ route('portfolio.index') }}">
+                    <i class="fa fa-th-large text-primary mr-5 "></i> Portafolio
+                </a>
+            </div>
+            <div class="block-content block-content-full">
+                <div class="row mt-4">
+                    <div class="col-md-8 offset-md-2">
+                        <form action="{{ asset('/dashboard/portafolio/'.$portfolio->id.'/imagenes') }}"
+                                class="dropzone"
+                                id="my-awesome-dropzone">
+
+                                @csrf
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content-full border-t">
+                <div class="row text-center py-30 js-appear-enabled animated fadeIn" data-toggle="appear">
+                    {{-- <div class="col-6 col-md-4 col-xl-3 py-30">
+                        <div class="item item-rounded item-2x mx-auto bg-primary-lighter push">
+                            <i class="si si-rocket text-primary"></i>
+                        </div>
+                        <h5 class="mb-0">Bootstrap Powered</h5>
+                    </div> --}}
+                    <div class="block-content block-content-full">
+                        <div class="row js-gallery img-fluid-100 gutters-tiny js-gallery-enabled">
+                            @foreach ($portfolio->images as $image)
+                                <div class="col-md-3" style="padding: 10px;">
+                                    <div class="image-portfolio" style="background-image: url('{{ $image->file_name }}'); margin: 0;">
+                                        <div class="layer d-flex justify-content-center align-items-center">
+                                            <button onclick="event.preventDefault();
+                                                Swal.fire({
+                                                    title: 'Are you sure?',
+                                                    text: 'You wont be able to revert this!',
+                                                    type: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Yes, delete it!'
+                                                    }).then((result) => {
+                                                    if (result.value) {
+                                                        document.getElementById('delete-project-image-{{ $image->id }}').submit();
+                                                        Swal.fire(
+                                                        'Deleted!',
+                                                        'Your file has been deleted.',
+                                                        'success'
+                                                        )
+                                                    }
+                                                });
+                                            "
+                                            style="submit" class="btn btn-sm btn-rounded btn-alt-danger min-width-75">
+                                                <i class="fa fa-times"></i> Delete
+                                            </button>
+    
+                                            <form id="delete-project-image-{{ $image->id }}" action="{{ route('portfolio.delete.image', $image->id) }}" method="POST" class="d-inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <section class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="block block-themed pb-4">
@@ -146,15 +231,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
 
 @section('scripts')
     <script>
-        // "myAwesomeDropzone" es el ID de nuestro formulario usando la notación camelCase
+
         Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
-            maxFilesize: 2 // Tamaño máximo en MB
+            paramName: "file", 
+            maxFilesize: 5 
         };
     </script>
 @endsection

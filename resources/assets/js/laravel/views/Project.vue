@@ -176,7 +176,9 @@
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
-                    <img src="/images/logo.png" alt="">
+                    <router-link to="/">
+                        <img src="/images/logo.png" alt="">
+                    </router-link>
                 </div>
             </div>
 

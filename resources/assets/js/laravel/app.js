@@ -13,8 +13,11 @@ import VueFuse from 'vue-fuse';
 Vue.use(VueFuse);
 
 import DataTable from 'laravel-vue-datatable';
+import Vuelidate from 'vuelidate'
 
 Vue.use(DataTable);
+
+Vue.use(Vuelidate)
 
 /**
  * The following block of code may be used to automatically register your

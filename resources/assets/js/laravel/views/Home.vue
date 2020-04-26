@@ -21,7 +21,6 @@
     }
 
     .box-main{
-        background-color: black;
         width: 100%;
         height: calc(100vh - 100px);
     }
@@ -63,12 +62,12 @@
     }
 
     .box-content{
-        background-color: red;
         width: 100%;
         height: calc(100vh - 150px);
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        position: relative;
     }
 
     .box-tag-container{
@@ -76,6 +75,7 @@
         padding: 20px 50px;
         margin-left: -50px;
         color: #545454;
+        z-index: 1000;
     }
 
     .box-tag-container p:nth-child(1){
@@ -95,7 +95,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        margin-top: 100px;
+        margin-left: -50px;
         padding: 10px;
         visibility: hidden;
         z-index: 1000;
@@ -134,6 +134,39 @@
     .main-menu-btn:hover{
         cursor: pointer;
     }
+
+    .video-container{
+        /* background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 150px); */
+        background: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 150px);
+    }
+
+    .video{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .video-container iframe{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
 </style>
 
 <template>
@@ -166,7 +199,12 @@
                         </li>
                     </ul>
                 </section>
-
+                <div class="video-container">
+                    <div class="video">
+                        <iframe src="https://player.vimeo.com/video/280128196?autoplay=1&loop=1&title=0&byline=0&portrait=0" frameborder="0" allow="fullscreen;" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
                 <div class="box-tag-container">
                     <p>CREATO.MX</p>
                     <p>event design</p>

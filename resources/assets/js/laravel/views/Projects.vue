@@ -111,6 +111,28 @@
         cursor: pointer;
     }
 
+    .box-about-img img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        object-position: center;
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        filter: grayscale(100%);
+        transition: all 0.5s ease;
+    }
+
+    .box-about-img:hover img{
+        -webkit-filter: grayscale(0%);
+        -moz-filter: grayscale(0%);
+        filter: grayscale(0%);
+    }
+
     .project-name-container-right{
         position: absolute;
         top: 0;
@@ -248,7 +270,9 @@
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
-                    <img src="/images/logo.png" alt="">
+                    <router-link to="/">
+                        <img src="/images/logo.png" alt="">
+                    </router-link>
                 </div>
             </div>
 
@@ -274,7 +298,9 @@
                         <div class="box-content-projects">
                             <div class="row">
                                 <div v-if="projects.data.length > 0" class="col-md-12" @click="goToProject(projects.data[0].id)">
-                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[0].banner + ')' }">
+                                    <!-- <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[0].banner + ')' }"> -->
+                                    <div class="box-about-img">
+                                        <img :src="projects.data[0].banner" width="100%" alt="">
                                         <div class="project-name-container-right">
                                             <p style="background-color: #BEC1C8;">{{ projects.data[0].title }}</p>
                                         </div>
@@ -286,7 +312,9 @@
                             </div>
                             <div class="row">
                                 <div v-if="projects.data.length > 2" class="col-md-12" @click="goToProject(projects.data[2].id)">
-                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[2].banner + ')' }">
+                                    <!-- <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[2].banner + ')' }"> -->
+                                    <div class="box-about-img">
+                                        <img :src="projects.data[2].banner" width="100%" alt="">
                                         <div class="project-name-container-right">
                                             <p style="background-color: #C3A18F;">{{ projects.data[2].title }}</p>
                                         </div>
@@ -308,7 +336,9 @@
                             </div>
                             <div class="row" style="display: flex; justify-content: center; margin-top: calc((100vh - 150px) / 7);">
                                 <div v-if="projects.data.length > 4" class="col-md-6" @click="goToProject(projects.data[4].id)">
-                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[4].banner + ')' }">
+                                    <!-- <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[4].banner + ')' }"> -->
+                                    <div class="box-about-img">
+                                        <img :src="projects.data[4].banner" width="100%" alt="">    
                                         <div class="project-name-container-center">
                                             <p style="background-color: #C8CECE;">{{ projects.data[4].title }}</p>
                                         </div>
@@ -321,7 +351,9 @@
                         <div class="box-content-projects">
                             <div class="row">
                                <div v-if="projects.data.length > 1" class="col-md-12" @click="goToProject(projects.data[1].id)">
-                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[1].banner + ')' }">
+                                    <!-- <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[1].banner + ')' }"> -->
+                                    <div class="box-about-img">
+                                        <img :src="projects.data[1].banner" width="100%" alt="">
                                         <div class="project-name-container-left">
                                             <p style="background-color: #B8AEA3;">{{ projects.data[1].title }}</p>
                                         </div>
@@ -333,7 +365,9 @@
                             </div>
                             <div class="row">
                                 <div v-if="projects.data.length > 3" class="col-md-12" @click="goToProject(projects.data[3].id)">
-                                    <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[3].banner + ')' }">
+                                    <!-- <div class="box-about-img" :style="{ backgroundImage: 'url(' + projects.data[3].banner + ')' }"> -->
+                                    <div class="box-about-img">
+                                        <img :src="projects.data[3].banner" width="100%" alt="">
                                         <div class="project-name-container-left">
                                             <p style="background-color: #EDE3D8;">{{ projects.data[3].title }}</p>
                                         </div>

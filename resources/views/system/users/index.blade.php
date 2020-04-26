@@ -27,7 +27,7 @@
             <div class="content content-top text-center">
                 <div class="py-50">
                     <h1 class="font-w700 text-white mb-10">Equipo</h1>
-                    <h2 class="h4 font-w400 text-white-op">Creato studio, hacemos tu boda realidad.</h2>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Editores</a>
                     </li>
                     <li class="nav-item ml-auto">
-                        <a class="btn btn-sm btn-success" href="{{ route('users.create') }}">
+                        <a class="btn btn-sm btn-secondary" href="{{ route('users.create') }}">
                             Añadir usuario
                         </a>
                     </li>

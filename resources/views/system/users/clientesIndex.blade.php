@@ -27,13 +27,13 @@
             <div class="content content-top text-center">
                 <div class="py-50">
                     <h1 class="font-w700 text-white mb-10">Clientes</h1>
-                    <h2 class="h4 font-w400 text-white-op">Creato studio, hacemos tu boda realidad.</h2>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="content">
+    <div class="content content-full">
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Listado de clientes</h3>

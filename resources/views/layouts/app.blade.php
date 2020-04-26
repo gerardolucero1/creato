@@ -35,7 +35,7 @@
     
     <!-- Laravel Scaffolding JS -->
     <script src="{{ mix('js/laravel.app.js') }}"></script>
-
+    <script src="https://player.vimeo.com/api/player.js"></script>
     @yield('scripts')
 </body>
 </html>

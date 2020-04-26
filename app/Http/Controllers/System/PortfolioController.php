@@ -68,7 +68,9 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
-
+        if (is_null($portfolio)) {
+            return back();
+        }
         return view('system.portfolio.show',compact('portfolio'));
     }
 

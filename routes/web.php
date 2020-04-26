@@ -1,10 +1,11 @@
 <?php
 
-use App\Guest;
 use App\Task;
+use App\Guest;
 use App\Project;
 use App\Companion;
 use App\GuestList;
+use App\Mail\Contact as ContactEmail;
 use Illuminate\Http\Request;
 
 /*
@@ -20,6 +21,13 @@ use Illuminate\Http\Request;
 
 // Web routes
 Route::get('/', 'Web\IndexController@index');
+
+//Email contacto
+Route::post('/contact/send-email', function(Request $request){
+    $data = json_decode(file_get_contents("php://input"));
+    Mail::to('creatoeventos@gmail.com', 'Creato Studio')
+        ->send(new ContactEmail($data));
+});
 
 Auth::routes();
 Route::get('no-project', function() {
@@ -254,7 +262,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
         return "EL correo fue enviado correctamente";
     });
-
 
 });
 

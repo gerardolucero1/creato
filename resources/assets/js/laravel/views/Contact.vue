@@ -113,6 +113,11 @@
         margin-top: 10px;
     }
 
+    .box-content .box-2 textarea:focus{
+        background-color: transparent;
+
+    }
+
     .box-social-media p{
         font-family: Bodoni;
         font-size: 14px;
@@ -127,6 +132,22 @@
         position: relative; /* If you want text inside of it */
         background-position: center;
         background-size: cover;
+    }
+
+    .box-about-img img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        object-position: center;
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        filter: grayscale(100%);
+        /* transition: all 0.5s ease; */
     }
 
     .menu-container{
@@ -173,6 +194,22 @@
     .main-menu-btn:hover{
         cursor: pointer;
     }
+
+    .form-button{
+        width: 80%;
+        margin-top: 10px;
+        border: 1px solid black;
+        background-color: transparent;
+        color: black;
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+    }
+
+    .form-button:hover{
+        background-color: #E7D5CD;
+        color: black;
+    }
 </style>
 
 <template>
@@ -184,7 +221,9 @@
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
-                    <img src="/images/logo.png" alt="">
+                    <router-link to="/">
+                        <img src="/images/logo.png" alt="">
+                    </router-link>
                 </div>
             </div>
 
@@ -206,42 +245,51 @@
                     </ul>
                 </section>
                 <div class="row box-1">
-                    <h2>Nos encantaria escuchar de ti</h2>
-                    <h3>Contactanos para obtener mas informacion de nosotros y nuestros servicios.</h3>
+                    <h2>Nos encantaría escuchar de ti</h2>
+                    <h3>Contáctanos para obtener mas información de nosotros y nuestros servicios.</h3>
                 </div>
                 <div class="row box-2">
                     <div class="col-md-7">
-                        <form action="">
+                        <form action="" @submit.prevent="sendEmail">
                             <div class="d-flex">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" v-model="contact.name" required>
                             </div>
                             <div class="d-flex">
                                 <label for="">Correo</label>
-                                <input type="text" class="form-control">
+                                <input type="email" class="form-control" v-model="contact.email" required>
                             </div>
                             <div class="d-flex">
                                 <label for="">Celular</label>
-                                <input type="text" class="form-control">
+                                <input type="number" class="form-control" v-model="contact.telephone">
                             </div>
                             <div class="d-flex">
                                 <label for="">Mensaje</label>
-                                <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
+                            </div>
+                            <div class="d-flex">
+                                <label for="" style="visibility: hidden;">Mensaje</label>
+                                <button class="form-button" type="submit">ENVIAR</button>
                             </div>
                         </form>
                         <div class="row box-social-media mt-3">
                             <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <img class="mr-1" src="/images/logo-fb.png" alt="">
-                                    <img class="ml-1" src="/images/logo-insta.png" alt="">
+                                    <a href="#" target="_blank">
+                                        <img class="mr-1" src="/images/logo-fb.png" alt="">
+                                    </a>
+                                    <a href="#" target="_blank">
+                                        <img class="ml-1" src="/images/logo-insta.png" alt="">
+                                    </a>
+                                    
                                 </div>
                                 <p>@creato.mx</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div class="box-about-img" style="background-image: url('/images/index.png');">
-
+                        <div class="box-about-img">
+                            <img src="/images/index.png" width="100%" alt="">
                         </div>
                     </div>
                 </div>
@@ -251,12 +299,32 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
     name: 'Contact',
 
     data(){
         return{
             menu: false,
+            contact: {
+                name: '',
+                email: '',
+                telephone: '',
+                message: ''
+            }
+        }
+    },
+
+    validations: {
+        contact: {
+            name: {
+                required,
+            },
+            email: {
+                required,
+                email,
+            },
         }
     },
 
@@ -265,7 +333,12 @@ export default {
     },
 
     methods: {
-
+        sendEmail(){
+            let URL = '/contact/send-email'
+            axios.post(URL, this.contact).then((response) => {
+                console.log('email enviado')
+            })
+        }
     }
 }
 </script>

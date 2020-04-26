@@ -163,7 +163,9 @@
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
-                    <img src="/images/logo.png" alt="">
+                    <router-link to="/">
+                        <img src="/images/logo.png" alt="">
+                    </router-link>
                 </div>
             </div>
 
@@ -192,11 +194,11 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Somos una firma mexicana de talentos enfocada en crear experiencias unicas. Tomamos tu inspiracion y emocion para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu escencia en cada elemento.</p>
+                                <p>Somos una firma mexicana de talentos enfocada en crear experiencias únicas. Tomamos tu inspiración y emoción para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu esencia en cada elemento.</p>
                                 <br>
-                                <p>Planeamos y estructuramos cada uno de los aspectos tecnicos para que el proceso de creacion sea sinonimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minusculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
+                                <p>Planeamos y estructuramos cada uno de los aspectos técnicos para que el proceso de creación sea sinónimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minúsculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
                                 <br>
-                                <p>Creato es creacion; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
+                                <p>Creato es creación; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
                             </div>
                         </div>
 
