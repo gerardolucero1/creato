@@ -185,6 +185,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('client.profile');
     Route::get('/cliente/perfil/get/{id}', 'System\ProfileController@getProfileClient')->name('Get.Profile');
     Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
+    Route::get('cliente/event/get/{id}', 'System\ProjectController@clientEvent')->name('client.event');
         // Gallery
         Route::get('/cliente/perfil/galeria/{id}', 'System\GalleryController@index')->name('Get.Gallery');
         Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\GalleryController@store')->name('imagen.store');

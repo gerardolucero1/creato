@@ -283,4 +283,10 @@ class ProjectController extends Controller
         //dd($user->project->list->guests);
     }
 
+    // obtener fecha de evento para cliente
+    public function clientEvent($id)
+    {
+        $event = Project::where('client_id', $id)->get();
+        return $event;
+    }
 }

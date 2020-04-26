@@ -1,6 +1,6 @@
 <template>
-      <div class="content">
-            <main id="main-container" style="min-height: 250px;" v-for="user in users" :key="user.index">
+      <div class="content" v-if="user != null">
+            <main id="main-container" style="min-height: 250px;">
                 <div class="bg-image bg-image-bottom" :style='{ backgroundImage: `url(${user.profile.banner})` }'>
                     <div class="bg-primary-dark-op py-30">
                         <button type="button" class="btn btn-lg btn-circle btn-outline-info mr-5 mb-5 ml-4" @click="cambiarBanner()">
@@ -14,14 +14,14 @@
                             </div>
                             <h1 class="h3 text-white font-w700 mb-10">{{ user.name }} {{ user.profile.last_name }}</h1>
                             <h2 class="h5 text-white-op">
-                                Aqui va la fecha del evento
+                                {{ event.date }}
                             </h2>
                         </div>
                     </div>
                 </div>
             </main>
             <h2 class="content-heading">Datos</h2>
-            <div class="row"  v-for="user in users" :key="user.index">
+            <div class="row">
                 <div class="col-md-9">
                     <div class="block">
                         <div class="block-header">
@@ -87,12 +87,10 @@
                                     <div class="row text-white">
                                         <div class="col-2"></div>
                                         <div class="col-8 text-center">
-                                            <Countdown :end="event[1]"></Countdown>
+                                            <Countdown :end="event.date"></Countdown>
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-hero btn-noborder btn-rounded btn-outline-warning" href="be_pages_generic_blank.php">
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -183,8 +181,6 @@ export default {
             /* imagenes preview */ 
              perfilMiniatura:'',
              bannerMiniatura:'',
-             event:[
-                 'end_date', '2020-03-29'],
              
 
             /* Objetos para obtener los datos que se van a cargar*/
@@ -202,21 +198,30 @@ export default {
                 },
 
             /* Arreglo vacio para almacenar los datos a mostrar */
-                users:[],
-                profile:[]
+                user:null,
+                event:null
             }
         },
     created(){
             this.obtenerDatos();
+            //this.obtenerEvento();
         },
     methods: {
 
         obtenerDatos: function(){
                 let URL = '/cliente/perfil/get/'+ this.userId;
                 axios.get(URL).then((response)=>{
-                    this.users = response.data;
+                    this.user = response.data[0];
+                    //console.log(response.data[0]);
+                    this.event = response.data[1];
                 });     
             },
+        //obtenerEvento: function(){
+        //       let URL = '/cliente/event/get/'+ this.userId;
+        //        axios.get(URL).then((response)=>{
+        //            this.events = response.data;
+        //        });     
+        //    },
         /* Cambiar foto de perfil */
         cambiarPerfil: function(){
                     $('#cambioPerfil').modal('show');

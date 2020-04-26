@@ -5,6 +5,7 @@ namespace App\Http\Controllers\system;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\Project;
 use App\User;
 
 class ProfileController extends Controller
@@ -128,8 +129,11 @@ class ProfileController extends Controller
 
     public function getProfileClient($id)
     {
-        $user = User::with('profile')->where('id', $id)->get();
-        return $user;
+        $user = User::where('id', $id)->with('profile')->first();
+        $project = Project::where('client_id', $user->id)->first();
+
+        $array = [$user, $project];
+        return $array;
     }
 
     public function storeClient(Request $request, $id)
