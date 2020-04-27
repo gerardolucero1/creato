@@ -19,4 +19,9 @@ class NotificationController extends Controller
         $user = User::where('id', $id)->get();
         return $user;
     }
+    public function date($id)
+    {
+        $notifications = Notification::where('data', $id)->where('read_at', null)->get();
+        return $notifications;
+    }
 }

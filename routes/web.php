@@ -227,6 +227,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
     Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
     Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::get('notificacion/date/{id}', 'System\NotificationController@date')->name('notification.date');
 
     
     // Notificaciones cliente

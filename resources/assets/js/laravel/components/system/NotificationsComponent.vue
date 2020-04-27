@@ -20,7 +20,7 @@
         </ul>
         <div class="dropdown-divider">
         </div>
-            <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
+            <a class="dropdown-item text-center mb-0" :href="'/notificacion'">
                 <i class="fa fa-flag mr-5"></i> Ver todo
             </a> 
     </div>
