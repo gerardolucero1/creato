@@ -163,14 +163,14 @@
                         <div class="content-side content-side-full content-side-user px-10 align-parent">
                             <!-- Visible only in mini mode -->
                             <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                                <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                <img class="img-avatar img-avatar32" src="{{ Auth::user()->profile->photo }}" alt="">
                             </div>
                             <!-- END Visible only in mini mode -->
     
                             <!-- Visible only in normal mode -->
                             <div class="sidebar-mini-hidden-b text-center">
                                 <a class="img-link" href="javascript:void(0)">
-                                    <img class="img-avatar" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                    <img class="img-avatar" src="{{ Auth::user()->profile->photo }}" alt="">
                                 </a>
                                 <ul class="list-inline mt-10">
                                     <li class="list-inline-item">

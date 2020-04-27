@@ -46,42 +46,27 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" v-if="project != null">
         <div class="row">
           <div class="col-md-12 col-xl-12 js-appear-enabled animated fadeIn" data-toggle="appear">
               <div class="block block-rounded">
                   <div class="block-content p-0 overflow-hidden">
-                      <div class="project-banner" style="background-image: url('https://ep01.epimg.net/elpais/imagenes/2019/07/09/gente/1562660716_197654_1562660817_noticia_normal.jpg');">
+                      <div class="project-banner" :style="{ backgroundImage: 'url(' + project.banner + ')' }">
 
                       </div>
                   </div>
                   <div class="block-content border-bottom">
-                      <h4 class="font-size-h5 mb-10">{{ event.eventName }}</h4>
-                      <h5 class="font-size-h1 font-w300 mb-5">Jose Angel Pando</h5>
+                      <h5 class="font-size-h1 font-w300 mb-5">{{ project.title }}</h5>
                       <p class="text-muted">
-                          <i class="fa fa-map-pin mr-5"></i> Lugar de muestra
+                          <i class="fa fa-map-pin mr-5"></i> {{ project.place }}
                       </p>
-                  </div>
-                  <div class="block-content border-bottom">
-                      <div class="row">
-                          <div class="col-12 text-center">
-                              <p>
-                                  <i class="fa fa-fw fa-users text-muted mr-5"></i> <strong>4</strong> Invitados
-                              </p>
-                          </div>
-                      </div>
                   </div>
                   <div class="block-content block-content-full">
                       <div class="row">
-                          <div class="col-6">
-                              <a class="btn btn-sm btn-hero btn-noborder btn-secondary btn-block" href="#">
+                          <div class="col-12">
+                              <button class="btn btn-sm btn-hero btn-noborder btn-secondary btn-block" @click="goToProject">
                                   Detalles
-                              </a>
-                          </div>
-                          <div class="col-6">
-                              <a class="btn btn-sm btn-hero btn-noborder btn-primary btn-block" href="#">
-                                  Editar
-                              </a>
+                              </button>
                           </div>
                       </div>
                   </div>
@@ -111,15 +96,18 @@ export default {
       newEvent: {
         eventName: "",
         startDate: "",
-        endDate: ""
+        endDate: "",
+        type: 'EVENTO',
       },
       event: '',
       addingMode: true,
-      indexToUpdate: ""
+      indexToUpdate: "",
+      project: null
     };
   },
   created() {
     this.getEvents();
+    this.getProject()
   },
   methods: {
     addNewEvent() {
@@ -144,7 +132,8 @@ export default {
       this.newEvent = {
         eventName: title,
         startDate: start,
-        endDate: end
+        endDate: end,
+        type: 'EVENTO',
       };
 
       this.event = this.newEvent;
@@ -185,6 +174,22 @@ export default {
       Object.keys(this.newEvent).forEach(key => {
         return (this.newEvent[key] = "");
       });
+    },
+    async getProject(){
+      try {
+        let URL = '/dashboard/proyectos/next'
+
+        let response = await axios.get(URL)
+
+        if (response) {
+          this.project = response.data
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    goToProject(){
+      window.location.href = `/dashboard/proyectos/show/${this.project.id}`
     }
   },
   watch: {

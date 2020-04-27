@@ -16,7 +16,7 @@
         <ul class="list-unstyled my-20">
             <indiv-notifications-component 
             v-for="notification in notifications" :key="notification.index" 
-            :notification="notification"/>
+            :notification="notification" @getNoty="getNotification" />
         </ul>
         <div class="dropdown-divider">
         </div>
@@ -52,6 +52,7 @@ export default {
     },
     methods:{
         obtenerNotificacion: function(){
+            this.notifications = []
             let URL = 'notificacion/'+ this.userId;
                 axios.get(URL).then((response)=>{  
                 //this.notifications = response.data;
@@ -62,6 +63,13 @@ export default {
                 //this.reducir();
                 });
             },
+
+            getNotification(args){
+                if(args == 1){
+                    console.log('Obtener notys')
+                    this.obtenerNotificacion()
+                }
+            }
     }
 
 }

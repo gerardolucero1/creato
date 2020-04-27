@@ -9,6 +9,7 @@ use App\Project;
 use App\Calendar;
 use App\Companion;
 use App\GuestList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -288,5 +289,13 @@ class ProjectController extends Controller
     {
         $event = Project::where('client_id', $id)->get();
         return $event;
+    }
+
+    // obtener evento mas reciente
+    public function next()
+    {
+        $now = Carbon::now();
+        $project = Project::orderBy('date', 'ASC')->where('date', '>=', $now)->first();
+        return $project;
     }
 }

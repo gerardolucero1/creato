@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('dashboard/proyectos/resumen/{id}', 'System\ProjectController@review')->name('projects.review');
         Route::post('dashboard/proyectos/pdf', 'System\ProjectController@pdf')->name('projects.pdf');
         Route::post('dashboard/proyectos/list', 'System\ProjectController@copyList')->name('projects.copyList');
+        Route::get('dashboard/proyectos/next', 'System\ProjectController@next')->name('projects.next');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
@@ -247,6 +248,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
     Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
     Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::post('notificacion/mark-as-read', 'System\NotificationController@markRead')->name('notification.markRead');
 
     
     // Notificaciones cliente

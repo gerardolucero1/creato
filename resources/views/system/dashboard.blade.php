@@ -27,13 +27,13 @@
                 </a>
             </div>
             <div class="col-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="{{route('block.index')}}">
+                <a class="block block-link-shadow text-right" href="#">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-notebook fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="15">15</div>
-                        <div class="font-size-sm font-w600 text-uppercase text-muted">Tareas</div>
+                        <div class="font-size-h3 font-w600 js-count-to-enabled" data-toggle="countTo" data-speed="1000" data-to="15">{{ count(App\BlockList::all()) }}</div>
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Bloques</div>
                     </div>
                 </a>
             </div>
@@ -75,7 +75,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block block-rounded text-center" href="javascript:void(0)">
+                    <a class="block block-rounded text-center" href="{{route('users.edit', Auth::user()->id)}}">
                         <div class="block-content">
                             <p class="mt-5 mb-10">
                                 <i class="fa fa-pencil text-gray fa-2x d-xl-none"></i>
@@ -97,7 +97,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block block-rounded text-center" href="javascript:void(0)">
+                    <a class="block block-rounded text-center" href="{{route('projects.create')}}">
                         <div class="block-content">
                             <p class="mt-5 mb-10">
                                 <i class="fa fa-plus-square-o text-gray fa-2x d-xl-none"></i>
@@ -108,7 +108,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block block-rounded text-center" href="javascript:void(0)">
+                    <a class="block block-rounded text-center" href="{{route('users.create')}}">
                         <div class="block-content">
                             <p class="mt-5 mb-10">
                                 <i class="fa fa-plus-square-o text-gray fa-2x d-xl-none"></i>
@@ -119,13 +119,13 @@
                     </a>
                 </div>
                 <div class="col-6 col-md-4 col-xl-2">
-                    <a class="block block-rounded text-center" href="javascript:void(0)">
+                    <a class="block block-rounded text-center" href="{{route('block.index')}}">
                         <div class="block-content">
                             <p class="mt-5 mb-10">
                                 <i class="fa fa-plus-square-o text-gray fa-2x d-xl-none"></i>
                                 <i class="fa fa-plus-square-o text-gray fa-3x d-none d-xl-inline-block"></i>
                             </p>
-                            <p class="font-w600 font-size-sm text-uppercase">Lista +</p>
+                            <p class="font-w600 font-size-sm text-uppercase">Bloque +</p>
                         </div>
                     </a>
                 </div>

@@ -1,6 +1,6 @@
 <template>
     <li>
-        <a class="text-body-color-dark media mb-15" @click="Leido()">
+        <a class="text-body-color-dark media mb-15" @click="getRead()">
             <div class="ml-5 mr-15">
                 <i class="fa fa-fw fa-check text-success"></i>
             </div>
@@ -46,10 +46,19 @@ export default {
                     
                 });
             },
-        Leido: function(){
-            let Strings = this.notification.split (" ");
-            let result = JSON.parse(Strings);
-            console.log(Strings);
+        getRead: async function(){
+            try {
+                let URL = '/notificacion/mark-as-read'
+                let response = await axios.post(URL, {
+                    data: this.notification
+                })
+
+                if (response.data == 1) {
+                    window.location.href = `/dashboard/conversaciones`;                
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
 

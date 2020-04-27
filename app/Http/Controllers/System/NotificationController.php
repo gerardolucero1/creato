@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\System;
 
+use App\User;
+use Carbon\Carbon;
+use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Notification;
-use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
 {
@@ -18,5 +21,19 @@ class NotificationController extends Controller
     {
         $user = User::where('id', $id)->get();
         return $user;
+    }
+
+    public function markRead(Request $request)
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $notifications = Notification::where('data', $data->data)->get();
+        // dd($notifications);
+        // dd(Auth::user()->unreadNotifications->where('data', $data->data));
+        foreach ($notifications as $notification) {
+            $notification->read_at = Carbon::now();
+            $notification->save();
+        }
+
+        return 1;
     }
 }
