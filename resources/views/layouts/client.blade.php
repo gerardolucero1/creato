@@ -47,6 +47,8 @@
 
         <!--Animate CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/src/css/lightgallery.css">
+
         @yield('styles')
 
     </head>
@@ -239,6 +241,8 @@
         <!-- Drop Zone -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.1/dist/js/lightgallery.min.js"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/src/js/lg-utils.js"></script> --}}
 
         @yield('scripts')
     </body>

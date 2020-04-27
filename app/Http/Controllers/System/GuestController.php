@@ -116,9 +116,20 @@ class GuestController extends Controller
     }
 
     public function importExcel(Request $request){
-        $file = $request->file('excel');
-        Excel::import(new GuestsImport, $file);
-        return back();
+            try {
+                $file = $request->file('excel');
+                Excel::import(new GuestsImport, $file);
+            } catch (\ErrorException $th) {
+                return back()->withError('Revisa que todos los campos esten completos. Descarga el documento de prueba.');
+            } catch(\Maatwebsite\Excel\Exceptions\NoTypeDetectedException $th){
+                return back()->withError('Revisa tu documento, debe ser un excel.');
+            } catch(\Illuminate\Database\QueryException $th){
+                return back()->withError('Parece que intentas agregar un valor donde no corresponde.');
+            } catch(\Exception $th){
+                return back()->withError('Revisa tu documento.');
+            }
+            return back()->with('info', 'Se ha cargado el archivo con exito.');
+        
     }
 
 }

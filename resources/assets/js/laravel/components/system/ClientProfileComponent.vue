@@ -1,92 +1,89 @@
 <template>
-      <div class="content" v-if="user != null">
-            <main id="main-container" style="min-height: 250px;">
-                <div class="bg-image bg-image-bottom" :style='{ backgroundImage: `url(${user.profile.banner})` }'>
-                    <div class="bg-primary-dark-op py-30">
-                        <button type="button" class="btn btn-lg btn-circle btn-outline-info mr-5 mb-5 ml-4" @click="cambiarBanner()">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        <div class="content content-full text-center">
-                            <div class="mb-15">
-                                <a class="img-link" @click="cambiarPerfil()">
-                                    <img class="img-avatar img-avatar96 img-avatar-thumb" :src="user.profile.photo" >
-                                </a>
-                            </div>
-                            <h1 class="h3 text-white font-w700 mb-10">{{ user.name }} {{ user.profile.last_name }}</h1>
-                            <h2 class="h5 text-white-op">
-                                {{ event.date }}
-                            </h2>
+    <div class="" v-if="user != null">
+        <!-- <main id="main-container" style="min-height: 250px;">
+            <div class="bg-image bg-image-bottom" :style='{ backgroundImage: `url(${user.profile.banner})` }'>
+                <div class="bg-primary-dark-op py-30">
+                    <button type="button" class="btn btn-lg btn-circle btn-outline-info mr-5 mb-5 ml-4" @click="cambiarBanner()">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    <div class="content content-full text-center">
+                        <div class="mb-15">
+                            <a class="img-link" @click="cambiarPerfil()">
+                                <img class="img-avatar img-avatar96 img-avatar-thumb" :src="user.profile.photo" >
+                            </a>
                         </div>
+                        <h1 class="h3 text-white font-w700 mb-10">{{ user.name }} {{ user.profile.last_name }}</h1>
+                        <h2 class="h5 text-white-op">
+                            {{ event.date }}
+                        </h2>
                     </div>
                 </div>
-            </main>
-            <h2 class="content-heading">Datos</h2>
-            <div class="row">
-                <div class="col-md-9">
+            </div>
+        </main> -->
+        <!-- <div class="row">
+            <div class="col-md-9">
+                <div class="block">
+                    <div class="block-header">
+                        <h3 class="block-title">Descripción</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                <i class="si si-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content" style="min-height: 200px;">
+                        <p>{{ user.profile.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="block">
                     <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Descripción</h3>
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Datos</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
                                     <i class="si si-pencil"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="block-content" style="min-height: 200px;">
-                            <p>{{ user.profile.description }}</p>
-                        </div>
+                    </div>
+                    <div class="block-content" style="min-height: 175px;">
+                        Numero de telefono<p>{{ user.profile.phone }}</p>
+                        Correo <p>{{ user.email }}</p>
+                        Otros datos
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="block">
-                        <div class="block">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Datos</h3>
-                                <div class="block-options">
-                                    <button type="button" class="btn-block-option js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                        <i class="si si-pencil"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block-content" style="min-height: 175px;">
-                            Numero de telefono<p>{{ user.profile.phone }}</p>
-                            Correo <p>{{ user.email }}</p>
-                            Otros datos
-                        </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">
+                            Progreso <small>Normal</small>
+                        </h3>
                     </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="block">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">
-                                Progreso <small>Normal</small>
-                            </h3>
-                        </div>
-                        <div class="block-content">
-                            <div class="progress push">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                    <span class="progress-bar-label">50%</span>
-                                </div>
+                    <div class="block-content">
+                        <div class="progress push">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <span class="progress-bar-label">50%</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                <client-gallery-component :userId="userId"></client-gallery-component>
-            <h2 class="content-heading"></h2>
-        <div class="bg-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTV2HfciS-At-CmTedfjd6HJqJXYOcKkltVrPgsRhjJJtNTeann');">
+        </div> -->
+        <!-- <client-gallery-component :userId="userId"></client-gallery-component> -->
+        <div class="bg-image" style="background-image: url('https://s1.1zoom.me/big3/90/354027-admin.jpg');">
             <div class="hero bg-black-op">
                 <div class="hero-inner">
                     <div class="content content-full">
                         <div class="row justify-content-center">
                             <div class="col-md-6 py-30 text-center">
                                 <h1 class="display-4 font-w700 text-white mb-10">Tu boda</h1>
-                                <h2 class="h4 font-w400 text-white-op pb-30 mb-20 border-white-op-b">We’re working on it! Coming soon..</h2>
+                                <h2 class="h4 font-w400 text-white-op pb-30 mb-20 border-white-op-b">SIN PRISA, PERO SIN PAUSA...</h2>
                                 <div class="js-countdown mb-20">
                                     <div class="row text-white">
-                                        <div class="col-2"></div>
-                                        <div class="col-8 text-center">
+                                        <div class="col-12 text-center">
                                             <Countdown :end="event.date"></Countdown>
                                         </div>
                                     </div>
@@ -163,7 +160,6 @@
         </div>
         <!-- termina modal banner -->
     </div>
-
 </template>
 
 <script>
