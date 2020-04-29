@@ -36,4 +36,18 @@ class NotificationController extends Controller
 
         return 1;
     }
+
+    public function markReadConversation(Request $request)
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $notifications = Notification::where('notifiable_id', $data->user)->where('data', $data->data)->get();
+        // dd($notifications);
+        // dd(Auth::user()->unreadNotifications->where('data', $data->data));
+        foreach ($notifications as $notification) {
+            $notification->read_at = Carbon::now();
+            $notification->save();
+        }
+
+        return 1;
+    }
 }

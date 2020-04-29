@@ -47,7 +47,7 @@
 
         <!--Animate CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/src/css/lightgallery.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
         @yield('styles')
 
@@ -237,13 +237,12 @@
 
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
-
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script> --}}
         <!-- Drop Zone -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.1/dist/js/lightgallery.min.js"></script>
-        {{-- <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.1.3/src/js/lg-utils.js"></script> --}}
-
+            
+            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
         @yield('scripts')
     </body>
 </html>

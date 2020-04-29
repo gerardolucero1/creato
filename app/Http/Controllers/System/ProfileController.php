@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\system;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\User;
 use App\Profile;
 use App\Project;
-use App\User;
+use App\ProfilePicture;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class ProfileController extends Controller
 {
@@ -136,28 +138,66 @@ class ProfileController extends Controller
         return $array;
     }
 
-    public function storeClient(Request $request, $id)
+    public function profilePicture(Request $request, $id)
     {
-        $profile = Profile::where('user_id', $id)->first();
-        
-        
-         //Imagen
-         if($archivo = $request->file('banner')){
-            
-            $nombre =  $archivo->getClientOriginalName();
-            $archivo->move(public_path('file/'), $nombre);
-            $profile->fill(['banner' => asset('file/'.$nombre)])->save();
-        }
-        
-        
-        if($archivo = $request->file('photo')){
+        $input  = array('image' => Input::file('file'));
+        $reglas = array('image' => 'mimes:jpeg,png');
 
-            $nombre =  $archivo->getClientOriginalName();
-            $archivo->move(public_path('file/'), $nombre);
-            $profile->fill(['photo' => asset('file/'.$nombre)])->save();
+        $v = \Validator::make($input,  $reglas);
+ 
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
         }
-        
-        return;
+
+        if($archivo = $request->file('file')){
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+        }
+
+        $profile = Profile::where('user_id', $id)->first();
+        $profile->fill(['photo' => asset($url.$path)])->save();
+
+        $profilePicture = new ProfilePicture();
+        $profilePicture->user_id = $id;
+        $profilePicture->fill(['image' => asset($url.$path)])->save();
+        return back()
+        ->with('info', 'Foto actualizada con exito');
+      
+    }
+
+    public function bannerPicture(Request $request, $id)
+    {
+        $input  = array('image' => Input::file('file'));
+        $reglas = array('image' => 'mimes:jpeg,png');
+
+        $v = \Validator::make($input,  $reglas);
+ 
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+
+        if($archivo = $request->file('file')){
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+        }
+
+        $profile = Profile::where('user_id', $id)->first();
+        $profile->fill(['banner' => asset($url.$path)])->save();
+
+        return back()
+        ->with('info', 'Foto actualizada con exito');
       
     }
 

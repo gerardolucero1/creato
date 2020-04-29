@@ -8,7 +8,7 @@
                         
                         {{ conversation.contact_name }}
                     </p>
-                    <p class="text-muted small mb-1">{{ conversation.last_message }}</p>
+                    <p class="text-muted small mb-1">{{ conversation.last_message | truncarConversacion }}</p>
                 
                     <p class="text-muted small">{{ lastTime }}</p>
             </a>   
@@ -26,6 +26,19 @@ export default {
         return{
 
         };
+    },
+    filters: {
+        truncarConversacion(args){
+
+            let conversation = args.split(':')
+
+            let num = 12
+            if (conversation[1].length <= num) {
+                return conversation[1]
+            }
+            
+            return conversation[1].slice(0, num) + '...'
+        }
     },
     computed: {
         lastTime(){

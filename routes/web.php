@@ -188,10 +188,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
     Route::get('cliente/event/get/{id}', 'System\ProjectController@clientEvent')->name('client.event');
         // Gallery
-        Route::get('/cliente/perfil/galeria/{id}', 'System\GalleryController@index')->name('Get.Gallery');
-        Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\GalleryController@store')->name('imagen.store');
-        Route::delete('/cliente/perfil/galeria/eliminar/{id}', 'System\GalleryController@destroy')->name('imagen.destroy');
-
+        Route::post('cliente/gallery/{id}', 'System\GalleryController@store')->name('gallery.store');
+        Route::delete('cliente/gallery/{id}', 'System\GalleryController@destroy')->name('gallery.delete');
+        // Portfolio pictures
+        Route::put('cliente/perfil/profile-picture/{id}', 'System\ProfileController@profilePicture')->name('profile.profilePicture');
+        Route::put('cliente/perfil/banner-picture/{id}', 'System\ProfileController@bannerPicture')->name('profile.bannerPicture');
     // Task Routes
         // Block
     Route::get('dashboard/block', 'System\BlocktaskController@index')->name('block.index');
@@ -249,6 +250,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
     Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
     Route::post('notificacion/mark-as-read', 'System\NotificationController@markRead')->name('notification.markRead');
+    Route::post('/notificacion/mark-as-read/conversation', 'System\NotificationController@markReadConversation')->name('notification.markRead.conversation');
 
     
     // Notificaciones cliente

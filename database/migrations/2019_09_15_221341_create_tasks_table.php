@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->integer('listTask_id')->unsigned();
             $table->string('name')->nullable();
-            $table->string('slug')->nullable();
+            $table->text('slug')->nullable();
             $table->string('category')->nullable();
             $table->boolean('complete')->nullable();
             $table->boolean('favorite')->nullable();

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 
@@ -209,6 +210,16 @@ class ProjectController extends Controller
     public function updatePlans(Request $request, $id)
     {
         $project = Project::find($id);
+
+        $input  = array('image' => Input::file('plans'));
+        $reglas = array('image' => 'mimes:jpeg,png');
+
+        $v = \Validator::make($input,  $reglas);
+ 
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
 
         // Planos
         if($archivo = $request->file('plans')){
