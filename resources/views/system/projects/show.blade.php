@@ -111,6 +111,37 @@
                 <companion-component :project="{{ $project }}"></companion-component>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    @if ($project->finished == 0 || is_null($project->finished))
+                        <div class="block-header block-header-default">
+                            <form action="{{ route('projects.destroy', $project->id ) }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <input type="hidden" name="type" value="1">
+                                <button type="submit" class="btn btn-danger mr-5 mb-5">
+                                    Finalizar proyecto
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="block-header block-header-default">
+                            <form action="{{ route('projects.destroy', $project->id ) }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <input type="hidden" name="type" value="0">
+                                <button type="submit" class="btn btn-success mr-5 mb-5">
+                                    Activar proyecto
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                    
+                </div>
+            </div>
+        </div>
     </div>
 
     @include('system.projects.modals.image')

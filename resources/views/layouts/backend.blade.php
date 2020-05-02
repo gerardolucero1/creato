@@ -93,10 +93,10 @@
     
                             <!-- User Info -->
                             <div class="content-header-item">
-                                <a class="img-link mr-5" href="javascript:void(0)">
-                                    <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                <a class="img-link mr-5" href="#">
+                                    <img class="img-avatar img-avatar32" src="{{ Auth::user()->profile->photo }}" alt="">
                                 </a>
-                                <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">{{ Auth::user()->name }}</a>
+                                <a class="align-middle link-effect text-primary-dark font-w600" href="#">{{ Auth::user()->name }}</a>
                             </div>
                             <!-- END User Info -->
                         </div>
@@ -105,7 +105,7 @@
     
                     <!-- Side Content -->
                     <div class="content-side">
-                        {{--  <clients-online-component></clients-online-component>  --}}
+                         <clients-online-component></clients-online-component> 
                     </div>
                     <!-- END Side Content -->
                 </aside>
@@ -304,12 +304,12 @@
                                             <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
                                             <span class="badge badge-primary"></span>
                                         </a>
-                                        <div class="dropdown-divider"></div>
+                                        {{-- <div class="dropdown-divider"></div> --}}
                                             <!-- Toggle Side Overlay -->
                                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                            <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                                            {{-- <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
                                                 <i class="si si-note mr-5"></i> Notes 
-                                            </a>
+                                            </a> --}}
                                             <!-- END Side Overlay -->
                                 
                                             <div class="dropdown-divider"></div>
@@ -338,7 +338,7 @@
                             <!-- Toggle Side Overlay -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                             <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                                <i class="fa fa-sticky-note"></i>
+                                <i class="fa fa-users"></i>
                             </button>
                             <!-- END Toggle Side Overlay -->
                         </div>

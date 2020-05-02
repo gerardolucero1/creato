@@ -195,9 +195,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        $project->finished = $request->type;
+        $project->save();
+        return back();
     }
 
     /**
@@ -251,8 +254,11 @@ class ProjectController extends Controller
     }
 
     public function copyList(Request $request){
+
         $user = User::find($request->client_id);
         $project = Project::find($request->project_id);
+
+        Guest::where('guestList_id', $project->list->id)->delete();
 
         foreach ($user->project->list->guests as $guest) {
             $new_guest = new Guest();

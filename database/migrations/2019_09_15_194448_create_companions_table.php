@@ -16,17 +16,17 @@ class CreateCompanionsTable extends Migration
         Schema::create('companions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('guest_id')->unsigned();
-            $table->string('name');
-            $table->string('lastName');
-            $table->string('secondLastName');
-            $table->enum('genere', ['MALE', 'FEMALE']);
-            $table->string('email');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('secondLastName')->nullable();
+            $table->enum('genere', ['MALE', 'FEMALE'])->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('dataX')->nullable();
             $table->string('dataY')->nullable();
             $table->boolean('seated')->nullable();
             $table->string('tableName')->nullable();
-            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO']);
+            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->nullable();
             $table->timestamps();
 
             //Relation

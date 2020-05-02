@@ -26,6 +26,9 @@ Broadcast::channel('users.{id}', function ($user, $id) {
 
 Broadcast::channel('messenger', function ($user) {
     return [
-        'id' => $user->id
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'photo' => $user->profile->photo,
     ];
 });
