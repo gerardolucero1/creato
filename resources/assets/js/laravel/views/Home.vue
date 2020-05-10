@@ -167,6 +167,22 @@
         height: 100%;
         pointer-events: none;
     }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+
+        .box-tag-container{
+            display: none;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+        
+    }
 </style>
 
 <template>
@@ -201,7 +217,7 @@
                 </section>
                 <div class="video-container">
                     <div class="video">
-                        <iframe src="https://player.vimeo.com/video/280128196?autoplay=1&loop=1&title=0&byline=0&portrait=0" frameborder="0" allow="fullscreen;" allowfullscreen></iframe>
+                        <iframe src="https://player.vimeo.com/video/280128196?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe>
                     </div>
                 </div>
                 

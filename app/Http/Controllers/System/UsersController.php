@@ -19,13 +19,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->get();
+        $users = User::orderBy('id', 'DESC')->where('active', 1)->get();
         return view('system.users.index', compact('users'));
     }
 
     public function clientesIndex()
     {
-        $users = User::orderBy('id', 'DESC')->get();
+        $users = User::orderBy('id', 'DESC')->where('active', 1)->get();
         return view('system.users.clientesIndex', compact('users'));
     }
 
@@ -52,7 +52,7 @@ class UsersController extends Controller
 
         $v = $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
             'password' => 'required',
         ]);
 
@@ -96,8 +96,8 @@ class UsersController extends Controller
             $profile = new Profile();
             $profile->last_name = "apellido paterno";
             $profile->second_name = "apellido materno";
-            $profile->photo = "http://localhost:8000/file/escanor.jpg";
-            $profile->banner = "http://localhost:8000/file/banner escanor.jpg";
+            $profile->photo = "https://www.cinema.com.do/html/img/notfound.jpg";
+            $profile->banner = "https://www.edreams.es/blog/wp-content/uploads/sites/5/2016/03/Portada-Blog-1.png";
             $profile->description = "descripción";
             $profile->phone = "123456789";
             $profile->user_id = $ultimoUsuario->id;
@@ -173,8 +173,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $user->delete();
+        $user->active = 0;
+        $user->update();
 
-        return back()->with('info', 'Usuario eliminado con exito');
+        return back()->with('info', 'Usuario archivado con exito');
     }
 }

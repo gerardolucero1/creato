@@ -210,6 +210,57 @@
         background-color: #E7D5CD;
         color: black;
     }
+
+    .inputs{
+        display: flex;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+        h2{
+            text-align: center;
+        }
+
+        h3{
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .box-content .box-1{
+            height: calc((100vh - 150px) / 5.5);
+            display: block;
+            
+        }
+
+        .box-2{
+            margin-top: 120px;
+        }
+
+        .inputs{
+            display: block;
+        }
+
+        .box-content .box-2 input, textarea{
+            width: 100%;
+        }
+
+        .form-button{
+            width: 100%;
+        }
+
+        .box-about-img{
+            display: none;
+        }
+
+    }
+
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+        
+    }
 </style>
 
 <template>
@@ -251,23 +302,23 @@
                 <div class="row box-2">
                     <div class="col-md-7">
                         <form action="" @submit.prevent="sendEmail">
-                            <div class="d-flex">
+                            <div class="inputs">
                                 <label for="">Nombre</label>
                                 <input type="text" class="form-control" v-model="contact.name" required>
                             </div>
-                            <div class="d-flex">
+                            <div class="inputs">
                                 <label for="">Correo</label>
                                 <input type="email" class="form-control" v-model="contact.email" required>
                             </div>
-                            <div class="d-flex">
+                            <div class="inputs">
                                 <label for="">Celular</label>
                                 <input type="number" class="form-control" v-model="contact.telephone">
                             </div>
-                            <div class="d-flex">
+                            <div class="inputs">
                                 <label for="">Mensaje</label>
                                 <textarea class="form-control" name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
                             </div>
-                            <div class="d-flex">
+                            <div class="inputs">
                                 <label for="" style="visibility: hidden;">Mensaje</label>
                                 <button class="form-button" type="submit">ENVIAR</button>
                             </div>

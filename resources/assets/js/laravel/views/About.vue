@@ -152,6 +152,33 @@
     .main-menu-btn:hover{
         cursor: pointer;
     }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+        h2{
+            text-align: center;
+        }
+
+        .box-2 p{
+            text-align: justify;
+        }
+
+        .box-2 .row:nth-child(2){
+            margin-top: 20px;
+        }
+
+        .box-about-img {
+            width: 100%;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+        
+    }
 </style>
 
 <template>
@@ -203,25 +230,25 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-3">
                                 <div class="box-about-img" style="background-image: url('/images/paola.png');">
 
                                 </div>
                                 <p class="text-center">Ana Paola</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-3">
                                 <div class="box-about-img" style="background-image: url('/images/maria.png');">
 
                                 </div>
                                 <p class="text-center">Ana Maria</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-3">
                                 <div class="box-about-img" style="background-image: url('/images/gerardo.png');">
 
                                 </div>
                                 <p class="text-center">Gerardo</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-3">
                                 <div class="box-about-img" style="background-image: url('/images/todos.png');">
 
                                 </div>

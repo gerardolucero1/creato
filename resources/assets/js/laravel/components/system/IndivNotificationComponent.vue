@@ -41,7 +41,7 @@ export default {
             let result = JSON.parse(Strings);
             //console.log(result.from_id)
 
-            let URL = 'notificacion/administrador/'+ result.from_id;
+            let URL = '/notificacion/administrador/'+ result.from_id;
                 axios.get(URL).then((response)=>{           
                     this.users = response.data;
                     //console.log(response.data)
@@ -64,7 +64,7 @@ export default {
         },
 
         obtenerFecha: function(){
-            let URL = 'notificacion/date/'+ this.notification;
+            let URL = '/notificacion/date/'+ this.notification;
                 axios.get(URL).then((response)=>{           
                     this.date = response.data;
                     //console.log(response.data)

@@ -158,7 +158,7 @@
                                                                 <input type="text" v-model="item.phone" style="width: 100%;">
                                                             </td>
                                                             <td>
-                                                                <input type="number" v-model="item.guests" style="width: 100%;">
+                                                                <input type="number" v-model="item.guests" style="width: 100%;" min="1" max="10">
                                                             </td>
                                                             <td>
                                                                 <select name="" id="" v-model="item.genere" style="width: 110%;">
@@ -428,6 +428,9 @@ export default {
             let URL = '/cliente/lista';
 
             this.guests.forEach((element) => {
+                if(element.guests > 10){
+                    element.guests = 10
+                }
                 element.guestList_id = this.lista.id;
             });
 

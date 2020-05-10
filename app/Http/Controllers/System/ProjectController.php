@@ -38,7 +38,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $allUsers = User::orderBy('id', 'DESC')->get();
+        $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();
         //dd($users);
         
         
@@ -109,7 +109,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         //dd($project->user->name);
-        $allUsers = User::orderBy('id', 'DESC')->get();        
+        $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();        
         
         $usersClient = [];
         foreach ($allUsers as $user) {
@@ -134,8 +134,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $allUsers = User::orderBy('id', 'DESC')->get();
-        //dd($users);
+        $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();
+        // dd($users);
         
         
         $usersClient = [];

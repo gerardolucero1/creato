@@ -144,7 +144,7 @@
             </div>
         </div>
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <a class="block block-link-shadow overflow-hidden" href="javascript:void(0)">
                     <div class="block-content block-content-full">
                         <i class="si si-briefcase fa-2x text-body-bg-dark"></i>
@@ -165,7 +165,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <a class="block block-link-shadow overflow-hidden" href="javascript:void(0)">
                     <div class="block-content block-content-full">
                         <div class="text-right">
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> --}}
         </div>
         </div>
     </div>

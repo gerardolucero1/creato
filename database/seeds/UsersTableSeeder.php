@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Profile;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -12,29 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create();
-
-        /*
-
-        // Usuario con el rol cliente
-        $cliente = User::create([
-            'name' => 'Cliente',
-            'email' => 'cliente@gmail.com',
-            'password' => bcrypt('Margarit@1'),
-        ]);
-
-        $cliente->assignRole('cliente');
-
-        // Usuario con el rol editor
-        $editor = User::create([
-            'name' => 'Editor',
-            'email' => 'editor@gmail.com',
-            'password' => bcrypt('Margarit@1'),
-        ]);
-
-        $editor->assignRole('editor');
-
-        */
+        // factory(App\User::class, 10)->create();
 
         // Usuario con el rol admin
         $admin = User::create([
@@ -45,12 +24,15 @@ class UsersTableSeeder extends Seeder
 
         $admin->assignRole('super-admin');
 
-        $admin = User::create([
-            'name' => 'prueba chat',
-            'email' => 'ejemplo2@ejemplo',
-            'password' => bcrypt('111etics'),
+        $profile = Profile::create([
+            'user_id' => 1,
+            'last_name' => "apellido paterno",
+            'second_name' => "apellido materno",
+            'photo' => "https://www.cinema.com.do/html/img/notfound.jpg",
+            'banner' => "https://www.edreams.es/blog/wp-content/uploads/sites/5/2016/03/Portada-Blog-1.png",
+            'description' => "descripción",
+            'phone' => "123456789",
         ]);
 
-        $admin->assignRole('super-admin');
     }
 }

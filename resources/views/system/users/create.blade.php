@@ -1,6 +1,23 @@
 @extends('layouts.backend')
 
 @section('content')
+
+    <div class="bg-image bg-image-bottom" style="background-image: url('{{ Auth::user()->profile->banner }}');">
+        <div class="bg-black-op-75 py-30">
+            <div class="content content-full text-center">
+                <div class="mb-15">
+                    <a class="img-link" href="#">
+                        <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ Auth::user()->profile->photo }}" alt="">
+                    </a>
+                </div>
+                <h1 class="h3 text-white font-w700 mb-10">{{ Auth::user()->name }}</h1>
+                <h2 class="h5 text-white-op">
+                    {{ Auth::user()->email }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
     @if (session('info'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('info') }}
@@ -22,22 +39,6 @@
             </button>
         </div>
     @endif
-
-    <div class="bg-image bg-image-bottom" style="background-image: url('{{ Auth::user()->profile->banner }}');">
-        <div class="bg-black-op-75 py-30">
-            <div class="content content-full text-center">
-                <div class="mb-15">
-                    <a class="img-link" href="#">
-                        <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ Auth::user()->profile->photo }}" alt="">
-                    </a>
-                </div>
-                <h1 class="h3 text-white font-w700 mb-10">{{ Auth::user()->name }}</h1>
-                <h2 class="h5 text-white-op">
-                    {{ Auth::user()->email }}
-                </h2>
-            </div>
-        </div>
-    </div>
 
     <section class="content">
         <div class="block">

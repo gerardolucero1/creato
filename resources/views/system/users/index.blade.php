@@ -79,7 +79,7 @@
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#3085d6',
                                                             cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Eliminar'
+                                                            confirmButtonText: 'Archivar'
                                                             }).then((result) => {
                                                             if (result.value) {
                                                                 document.getElementById('delete-project-{{ $user->id }}').submit();
@@ -135,7 +135,7 @@
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#3085d6',
                                                             cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Eliminar'
+                                                            confirmButtonText: 'Archivar'
                                                             }).then((result) => {
                                                             if (result.value) {
                                                                 document.getElementById('delete-project-{{ $user->id }}').submit();

@@ -165,6 +165,38 @@
         cursor: pointer;
     }
 
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+
+        h2{
+            text-align: center;
+        }
+
+        .project-title{
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .box-content .box-1{
+            height: calc((100vh - 150px) / 5.5);
+            display: block;
+            
+        }
+
+        .box-2{
+            margin-top: 50px;
+        }
+
+    }
+
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+        
+    }
+
 </style>
 
 <template>
@@ -205,18 +237,18 @@
                 </div>
                 <div v-if="project != null" class="row box-2">
                     <gallery :images="images" :index="index" @close="index = null"></gallery>
-                    <div class="col-md-1 arrow-content d-flex justify-content-start align-items-center">
+                    <div class="col-1 col-md-1 arrow-content d-flex justify-content-start align-items-center">
                         <i v-show="count != 1" class="arrow fas fa-caret-left" @click="count--"></i>
                     </div>
                     <div
-                        class="col-md-2"
+                        class="col-2 col-md-2"
                         v-for="(image, imageIndex) in images"
                         :key="imageIndex"
                         @click="index = imageIndex"
                         style="cursor: pointer;"
                         :style="{ backgroundImage: 'url(' + image + ')', height: 'calc((100vh - 150px) / 1.2)' }"
                     ></div>
-                    <div class="col-md-1 arrow-content d-flex justify-content-end align-items-center">
+                    <div class="col-1 col-md-1 arrow-content d-flex justify-content-end align-items-center">
                         <i v-show="count != lastPage" class="arrow fas fa-caret-right" @click="count++"></i>
                     </div>
                 </div>

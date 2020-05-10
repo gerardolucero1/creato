@@ -31,13 +31,19 @@ export default {
         truncarConversacion(args){
 
             let conversation = args.split(':')
-
-            let num = 12
-            if (conversation[1].length <= num) {
-                return conversation[1]
-            }
             
-            return conversation[1].slice(0, num) + '...'
+            if(conversation[1] != undefined){
+                let num = 12
+                if (conversation[1].length <= num) {
+                    return conversation[1]
+                }
+                
+                return conversation[1].slice(0, num) + '...'
+            }else{
+                return '...'
+            }
+
+            
         }
     },
     computed: {
