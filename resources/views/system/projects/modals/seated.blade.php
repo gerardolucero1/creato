@@ -2,6 +2,7 @@
 <div class="modal fade show" id="obtenerListaInvitados" tabindex="-1" role="dialog" aria-labelledby="modal-slideleft" aria-modal="true">
     <div class="modal-dialog modal-dialog-slideleft" role="document">
         <div class="modal-content">
+            {!! Form::open(['route' => 'projects.pdf', 'target' => '_blank']) !!}
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
                     <h3 class="block-title text-center">
@@ -59,14 +60,43 @@
                     @else
                         <p>Todos los invitados confirmados se encuentran sentados y con una mesa asignada</p>
                     @endif
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Selecciona las opciones que quieras imprimir en el PDF.</p>
+                            <input type="checkbox" name="options[]" value="name" id="name">
+                            <label for="name">Nombre</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="email" id="email">
+                            <label for="email">Email</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="telephone" id="telephone">
+                            <label for="telephone">Telefono</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="table" id="table">
+                            <label for="table">Mesa</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="origin" id="origin">
+                            <label for="origin">Parte de...</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="genere" id="genere">
+                            <label for="genere">Sexo</label>
+                            <br>
+                            <input type="checkbox" name="options[]" value="check" id="check">
+                            <label for="check">Checked</label>
+
+                            <input type="hidden" value="{{ $project->id }}" name="project_id">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancelar</button>
-                <a href="{{ route('projects.pdf', $project->id) }}" target="_blank" class="btn btn-alt-success">
+                <button type="submit" target="_blank" class="btn btn-alt-success">
                     <i class="fa fa-check"></i> Imprimir lista
-                </a>
+                </button>
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

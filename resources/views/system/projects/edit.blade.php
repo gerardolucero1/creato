@@ -26,15 +26,21 @@
     <section class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block block-themed">
-                    <div class="block-header bg-gd-sea">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Editar proyecto</h3>
+                        <div class="block-options">
+                            <a href="{{ route('projects.create') }}" class="btn btn-sm btn-secondary">Añadir proyecto</a>
+                        </div>
+                    </div>
+                    {{-- <div class="block-header bg-gd-sea">
                         <h3 class="block-title">Proyecto</h3>
                         <div class="block-options">
                             <a href="{{ route('projects.create') }}" class="btn-block-option">
                                 <i class="si si-plus"></i>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="block-content pb-4">
                         <div class="row">
                             <div class="col-md-12">

@@ -1,10 +1,11 @@
 <?php
 
-use App\Guest;
 use App\Task;
+use App\Guest;
 use App\Project;
 use App\Companion;
 use App\GuestList;
+use App\Mail\Contact as ContactEmail;
 use Illuminate\Http\Request;
 
 /*
@@ -21,11 +22,46 @@ use Illuminate\Http\Request;
 // Web routes
 Route::get('/', 'Web\IndexController@index');
 
-Auth::routes();
+//Email contacto
+Route::post('/contact/send-email', function(Request $request){
+    $data = json_decode(file_get_contents("php://input"));
+    Mail::to('creatoeventos@gmail.com', 'Creato Studio')
+        ->send(new ContactEmail($data));
+});
+
+// Auth::routes();
+
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+
+    // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    // Route::post('register', 'Auth\RegisterController@register');
+
+
+// Password Reset Routes...
+
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+
+
+
+
+
+
+Route::get('no-project', function() {
+    return view('system.no_project');
+})->name('no_project');
 
 // System routes
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () { 
     
     Route::match(['get', 'post'], '/dashboard', 'System\SystemController@index')->name('dashboard.admin');
 
@@ -58,9 +94,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/proyectos', 'System\ProjectController@store')->name('projects.store');
     Route::get('dashboard/proyectos/edit/{id}', 'System\ProjectController@edit')->name('projects.edit');
     Route::put('dashboard/proyectos/{id}', 'System\ProjectController@update')->name('projects.update');
+    Route::delete('dashboard/proyectos/{id}', 'System\ProjectController@destroy')->name('projects.destroy');
         Route::put('dashboard/planos/{id}', 'System\ProjectController@updatePlans')->name('projects.plans');
         Route::get('dashboard/proyectos/resumen/{id}', 'System\ProjectController@review')->name('projects.review');
-        Route::get('dashboard/proyectos/pdf/{id}', 'System\ProjectController@pdf')->name('projects.pdf');
+        Route::post('dashboard/proyectos/pdf', 'System\ProjectController@pdf')->name('projects.pdf');
+        Route::post('dashboard/proyectos/list', 'System\ProjectController@copyList')->name('projects.copyList');
+        Route::get('dashboard/proyectos/next', 'System\ProjectController@next')->name('projects.next');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
@@ -116,8 +155,16 @@ Route::group(['middleware' => ['auth']], function () {
     //Lista de invitados
     Route::resource('cliente/lista', 'System\GuestController');
 
+    //Importar excel invitados
+    Route::post('cliente/excel/import', 'System\GuestController@importExcel')->name('guests.import.excel');
+
     //Lista de acompanantes
     Route::resource('cliente/acompanante', 'System\CompanionController');
+
+    //Grupos invitados
+    Route::get('cliente/groups/{id}', 'System\GroupController@index')->name('groups.index');
+    Route::post('cliente/groups', 'System\GroupController@store')->name('groups.store');
+    Route::post('cliente/groups/group', 'System\GroupController@getGroup')->name('groups.getGroup');
 
     // Tables routes
     Route::get('cliente/tables', 'System\TablesController@index')->name('tables.index');
@@ -165,11 +212,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('cliente/perfil', 'System\ProfileController@indexClient')->name('client.profile');
     Route::get('/cliente/perfil/get/{id}', 'System\ProfileController@getProfileClient')->name('Get.Profile');
     Route::post('/cliente/perfil/guardar/perfil/{id}', 'System\ProfileController@storeClient')->name('Store.ProfileClient');
+    Route::get('cliente/event/get/{id}', 'System\ProjectController@clientEvent')->name('client.event');
         // Gallery
-        Route::get('/cliente/perfil/galeria/{id}', 'System\GalleryController@index')->name('Get.Gallery');
-        Route::post('/cliente/perfil/guardar/galeria/{id}', 'System\GalleryController@store')->name('imagen.store');
-        Route::delete('/cliente/perfil/galeria/eliminar/{id}', 'System\GalleryController@destroy')->name('imagen.destroy');
-
+        Route::post('cliente/gallery/{id}', 'System\GalleryController@store')->name('gallery.store');
+        Route::delete('cliente/gallery/{id}', 'System\GalleryController@destroy')->name('gallery.delete');
+        // Portfolio pictures
+        Route::put('cliente/perfil/profile-picture/{id}', 'System\ProfileController@profilePicture')->name('profile.profilePicture');
+        Route::put('cliente/perfil/banner-picture/{id}', 'System\ProfileController@bannerPicture')->name('profile.bannerPicture');
     // Task Routes
         // Block
     Route::get('dashboard/block', 'System\BlocktaskController@index')->name('block.index');
@@ -224,8 +273,27 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Notifications
     Route::get('dashboard/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+    Route::get('notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
+    Route::post('notificacion/mark-as-read', 'System\NotificationController@markRead')->name('notification.markRead');
+    Route::post('/notificacion/mark-as-read/conversation', 'System\NotificationController@markReadConversation')->name('notification.markRead.conversation');
+    Route::get('notificacion/date/{id}', 'System\NotificationController@date')->name('notification.date');
+
+    
     // Notificaciones cliente
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+
+    // Notificaciones Email
+    Route::post('sendemail', function(Request $request){
+        $data = array(
+            'name' => "Prueba de email",
+        );
+        Mail::send('emails.welcome', $data, function($message){
+            $message->from('3dlogprueba@gmail.com', 'prueba de email');
+            $message->to('undle40@gmail.com')->subject('test de email');
+        });
+        return "EL correo fue enviado correctamente";
+    });
 
 });
 

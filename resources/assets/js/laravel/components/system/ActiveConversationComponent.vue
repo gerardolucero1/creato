@@ -40,7 +40,7 @@ export default {
         messages: Array
     },
     data(){
-        return{
+        return{ 
             newMessage: ''
         };
     },
@@ -59,8 +59,12 @@ export default {
                      const message = response.data.message;
                      message.writtenByMe = true;
                      this.$emit('messageCreated', message);
+
                  }  
             }); 
+        },
+        emailMessages(){
+            
         },
         scrollTopBottom(){
             const el = document.querySelector('.js-chat-talk');

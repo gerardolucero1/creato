@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Creato Studio</title>
+    <meta name="description" content="Creato web page">
+    <meta name="author" content="3DLOG">
     <meta name="user" content="{{ Auth::user() }}">
 
     <!-- Fonts -->
@@ -16,13 +18,25 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cormorant:300i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Unna:700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     @yield('styles')
+
+    <style>
+        body{
+            background-image: url('/images/textura.png');
+            background-size: contain;
+            background-position: center;
+            position: relative;
+            background-repeat: repeat;
+        }
+    </style>
 </head>
-<body>
+<body style="overflow-x: hidden;">
     <div id="app">
         @yield('content')
     </div>
@@ -31,7 +45,7 @@
     
     <!-- Laravel Scaffolding JS -->
     <script src="{{ mix('js/laravel.app.js') }}"></script>
-
+    <script src="https://player.vimeo.com/api/player.js"></script>
     @yield('scripts')
 </body>
 </html>

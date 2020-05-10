@@ -10,12 +10,25 @@
 
 <template>
     <section class="container">
+        <div class="block block-rounded mt-4">
+            <div class="block-content bg-pattern" style="background-image: url('assets/media/various/bg-pattern-inverse.png');">
+                <div class="py-20 text-center">
+                    <h1 class="h3 mb-5">{{ lista.name }}</h1>
+                    <p class="mb-10 text-muted">
+                        <em>{{ lista.slug }}</em>
+                    </p>
+                    <!-- <p>
+                        Web Design and Development of ACME’s website. Brand identity as well as promo mobile app development for their projects.
+                    </p> -->
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-7">
                 <div class="js-tasks">
                     <h2 class="content-heading mb-10">Activas</h2>
                     <div class="js-task-list">
-                        <div v-for="(item, index) in tareasPendientes" class="js-task block block-rounded mb-5 animated fadeIn" data-task-completed="false" data-task-starred="false">
+                        <div v-for="(item, index) in tareasPendientes" :key="index" class="js-task block block-rounded mb-5 animated fadeIn" data-task-completed="false" data-task-starred="false">
                             <table class="table table-borderless table-vcenter mb-0">
                                 <tbody><tr>
                                     <td class="text-center" style="width: 50px;">
@@ -40,7 +53,7 @@
                     </div>
                     <h2 class="content-heading mb-10">Completadas</h2>
                     <div class="js-task-list-completed">
-                        <div v-for="(item, index) in tareasCompletas" class="js-task block block-rounded mb-5 animated fadeIn" data-task-completed="true" data-task-starred="false">
+                        <div v-for="(item, index) in tareasCompletas" :key="index" class="js-task block block-rounded mb-5 animated fadeIn" data-task-completed="true" data-task-starred="false">
                             <table class="table table-borderless table-vcenter bg-body-light mb-0">
                                 <tbody><tr>
                                     <td class="text-center" style="width: 50px;">

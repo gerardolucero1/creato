@@ -21811,6 +21811,12 @@ div.tagsinput span.tag a:hover {
   opacity: 0.25;
 }
 
+@font-face {
+  font-family: "Bodoni";
+  src: url("fonts/Bodoni-72-Book.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
 @-webkit-keyframes swal2-show {
   0% {
     transform: scale(0.7);
@@ -21825,7 +21831,6 @@ div.tagsinput span.tag a:hover {
     transform: scale(1);
   }
 }
-
 @keyframes swal2-show {
   0% {
     transform: scale(0.7);

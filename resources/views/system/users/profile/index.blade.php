@@ -1,7 +1,27 @@
 @extends('layouts.backend')
 
 @section('content')
-<main id="main-container" style="min-height: 144px;">
+<div class="bg-image bg-image-bottom" style="background-image: url('{{ Auth::user()->profile->banner }}');">
+  <div class="bg-primary-dark-op py-30">
+      <div class="content content-full text-center">
+          <div class="mb-15">
+              <a class="img-link" href="#">
+                  <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ Auth::user()->profile->photo }}" alt="">
+              </a>
+          </div>
+          <h1 class="h3 text-white font-w700 mb-10">
+            {{ Auth::user()->name }}
+          </h1>
+          <h2 class="h5 text-white-op">
+            {{ Auth::user()->email }}
+          </h2>
+          <a class="btn btn-rounded btn-hero btn-sm btn-alt-secondary mb-5 px-20" href="{{ route('users.edit', Auth::user()->id) }}">
+              <i class="fa fa-pencil"></i>
+          </a>
+      </div>
+  </div>
+</div>
+{{-- <main id="main-container" style="min-height: 144px;">
     <div class="bg-image bg-image-bottom" style="background-image: url('{{ Auth::user()->profile->banner }}');">
         <div class="bg-primary-dark-op py-50">
           <div class="offset-md-1">
@@ -222,6 +242,15 @@
       </div>
         </div>
     </div>
-</div>
+</div> --}}
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            Codebase.layout('header_style_glass');
+        });
+    </script>
+    
 @endsection

@@ -45,7 +45,9 @@
         "simplebar": "^2.6.1",
         "vue-chartjs": "^3.5.0",
         "vue-fuse": "^2.1.2",
+        "vue-gallery": "^2.0.1",
         "vuedraggable": "^2.23.0",
-        "vuejs-countdown": "^0.2.1"
+        "vuejs-countdown": "^0.2.1",
+        "vuelidate": "^0.7.5"
     }
 }

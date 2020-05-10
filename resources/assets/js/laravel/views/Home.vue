@@ -1,23 +1,229 @@
+<style scoped>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu{
+        color: white;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+
+    .box-container{
+        background-color: white;
+        width: 100vw;
+        height: 100vh;
+        padding: 50px 50px;
+        background-image: url('/images/textura.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .box-main{
+        width: 100%;
+        height: calc(100vh - 100px);
+    }
+
+    .main-menu-container{
+        width: 100%;
+        height: 50px;
+        background-color: #E7D5CD;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main-menu-btn{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+    .main-menu-logo{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-right: 10px;
+    }
+
+    .main-menu-btn p{
+        font-family: Bodoni;
+        font-size: 22px;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+    }
+
+    .main-menu-logo img{
+        margin-top: 8px;
+        width: 40px;
+    }
+
+    .box-content{
+        width: 100%;
+        height: calc(100vh - 150px);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+    }
+
+    .box-tag-container{
+        background-color: #E7D5CD;
+        padding: 20px 50px;
+        margin-left: -50px;
+        color: #545454;
+        z-index: 1000;
+    }
+
+    .box-tag-container p:nth-child(1){
+        font-size: 40px;
+    }
+
+    .box-tag-container p:nth-child(2){
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-size: 19px;
+        text-align: center;
+    }
+
+    .menu-container{
+        background-color: #C8CECE;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: -50px;
+        padding: 10px;
+        visibility: hidden;
+        z-index: 1000;
+    }
+
+    .active{
+        visibility: visible;
+    }
+
+    .menu-container ul{
+        margin-left: 40px;
+        list-style: none;
+    }
+
+    .menu-container ul li{
+        font-family: Bodoni;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+        text-shadow: 1px 1px 10px #707070;
+        cursor: pointer;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a{
+        color: white;
+    }
+
+    .menu-container ul li a:hover{
+        text-decoration: none;
+    }
+
+    .main-menu-btn:hover{
+        cursor: pointer;
+    }
+
+    .video-container{
+        /* background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 150px); */
+        background: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 150px);
+    }
+
+    .video{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .video-container iframe{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+
+        .box-tag-container{
+            display: none;
+        }
+    }
+
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+        
+    }
+</style>
+
 <template>
-    <section>
-        <!--
-        <video src="/videos/video-home.mp4" width="100%" autoplay loop muted></video>
-        -->
-        <img src="https://i1.wp.com/varaeventos.com/wp-content/uploads/2017/06/tendencias-bodas-2019-1024x768.jpg" width="100%" alt="">
-        <div class="layer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <p class="text-left"><span class="text-main">Creamos</span> <span class="text">diseños</span></p>
-                        <p class="text-right"><span class="text-main">cumpliendo tus</span> <span class="text">sueños</span></p>
-                    </div>
+    <section class="box-container">
+        <div class="box-main">
+            <div class="main-menu-container">
+                <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
+                    <p>menú</p>
+                    <i class="menu fas fa-bars"></i>
+                </div>
+                <div class="main-menu-logo">
+                    <img src="/images/logo.png" alt="">
                 </div>
             </div>
 
-            <div class="main-btns">
-                <div>
-                    <a href="#" class="main-links">NUESTROS PROYECTOS</a>
-                    <a href="/dashboard" class="main-links">NOVIAS CREATO</a>
+            <div class="box-content">
+                <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
+                    <ul>
+                        <li>
+                            <router-link to="/">- inicio</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/about">- nosotros</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/projects">- proyectos</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact">- contacto</router-link>
+                        </li>
+                    </ul>
+                </section>
+                <div class="video-container">
+                    <div class="video">
+                        <iframe src="https://player.vimeo.com/video/280128196?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="box-tag-container">
+                    <p>CREATO.MX</p>
+                    <p>event design</p>
                 </div>
             </div>
         </div>
@@ -26,75 +232,20 @@
 
 <script>
 export default {
+    name: 'Inicio',
 
+    data(){
+        return{
+            menu: false,
+        }
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+
+    }
 }
 </script>
-
-<style scoped>
-    img{
-        min-width: 100vw;
-        height: 100vh;
-        position: absolute;
-        object-fit: cover;
-        object-position: center;
-        top: 0;
-        left: 0;
-    }
-
-    .layer{
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        left: 0;
-        top: 0;
-        background-color: rgba(0, 0, 0, 0.3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-    }
-
-    .layer p{
-        font-size: 4.2em;
-        color: rgba(232, 215, 207, 1);
-        line-height: 0.7em;
-    }
-
-    .layer .text-main{
-        font-family: 'Unna', serif;
-    }
-
-    .layer .text{
-        font-family: 'Cormorant', serif;
-    }
-
-    .main-btns{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding-bottom: 50px;
-    }
-
-    .main-btns a{
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        padding: 20px 30px;
-        color: rgba(232, 215, 207, 1);
-        font-family: 'DM Serif Text', serif;
-        font-size: 15px;
-        letter-spacing: 4px;
-        text-shadow: 1px 1px 2px rgba(106, 105, 105, 0.5);
-        transition: all 0.4s;
-    }
-
-    .main-btns a:hover{
-        color: black;
-        background-color: rgba(232, 215, 207, 1);
-    }
-</style>

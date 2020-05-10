@@ -13,8 +13,11 @@ import VueFuse from 'vue-fuse';
 Vue.use(VueFuse);
 
 import DataTable from 'laravel-vue-datatable';
+import Vuelidate from 'vuelidate'
 
 Vue.use(DataTable);
+
+Vue.use(Vuelidate)
 
 /**
  * The following block of code may be used to automatically register your
@@ -44,6 +47,7 @@ Vue.component('statistic-component', require('./components/system/StatisticCompo
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);
 Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
+Vue.component('menu-component', require('./components/web/MenuComponent.vue').default);
 // Mensajes
 Vue.component('contact-component', require('./components/system/ContactComponent.vue').default);
 Vue.component('contact-list-component', require('./components/system/ContactListComponent.vue').default);
@@ -56,6 +60,9 @@ Vue.component('inbox-component', require('./components/system/InboxNotificationC
 Vue.component('client-profile-component', require('./components/system/ClientProfileComponent.vue').default);
 //Galeria cliente
 Vue.component('client-gallery-component', require('./components/system/GalleryComponent.vue').default);
+    // Notificaciones
+    Vue.component('notifications-component', require('./components/system/NotificationsComponent.vue').default);
+    Vue.component('indiv-notifications-component', require('./components/system/IndivNotificationComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

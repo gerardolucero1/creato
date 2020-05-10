@@ -6,12 +6,10 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Codebase - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Creato Studio</title>
 
-        <meta
-            name="description"
-            content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
+        <meta name="description" content="Creato web system">
+        <meta name="author" content="3DLOG">
         <meta name="robots" content="noindex, nofollow">
         <meta name="user" content="{{ Auth::user() }}">
 
@@ -49,6 +47,8 @@
 
         <!--Animate CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
         @yield('styles')
 
     </head>
@@ -237,11 +237,12 @@
 
         <!-- Laravel Scaffolding JS -->
         <script src="{{ mix('js/laravel.app.js') }}"></script>
-
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script> --}}
         <!-- Drop Zone -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
-
+            
+            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
         @yield('scripts')
     </body>
 </html>

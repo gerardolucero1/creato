@@ -29,7 +29,7 @@
                         <div class="float-right mt-10">
                             <i class="si si-note fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600">65</div>
+                        <div class="font-size-h3 font-w600">{{ tasks.length }}</div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Tareas</div>
                     </div>
                 </a>
@@ -40,7 +40,7 @@
                         <div class="float-right mt-10">
                             <i class="si si-check fa-3x text-body-bg-dark"></i>
                         </div>
-                        <div class="font-size-h3 font-w600">32</div>
+                        <div class="font-size-h3 font-w600">{{ tareasCompletadas }}</div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Completadas</div>
                     </div>
                 </a>
@@ -67,7 +67,7 @@
                                     <th>Nombre</th>
                                     <th>Usuario asignado</th>
                                     <th># Lista de tareas</th>
-                                    <th class="d-none d-sm-table-cell" style="width: 15%;">Estado</th>
+                                    <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">Estado</th> -->
                                     <th class="text-center" style="width: 100px;">Opciones</th>
                                 </tr>
                             </thead>
@@ -77,9 +77,9 @@
                                     <td>{{ bloque.name }}</td>
                                     <td>{{ bloque.user.name }}</td>
                                     <td>{{ bloque.lists_task.length }}</td>
-                                    <td class="d-none d-sm-table-cell">
+                                    <!-- <td class="d-none d-sm-table-cell">
                                         <span class="badge badge-info">Activo</span>
-                                    </td>
+                                    </td> -->
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit" @click="iniciaEdicionBloque(bloque)">
@@ -221,6 +221,7 @@
 
             /* Arreglos vacios para almacenar los datos que se mostraran */
                 bloques:[],
+                tasks: [],
 
                 usuarios:[],
             }
@@ -243,7 +244,18 @@
 
                     return listas
                 }
-            }
+            },
+
+            tareasCompletadas(){
+                let contador = 0;
+                this.tasks.forEach((element) => {
+                    if(element.complete == 1){
+                        contador++
+                    }
+                })
+
+                return contador
+            },
         },
 
         methods: {
@@ -284,7 +296,8 @@
             obtenerBloques: function(){
                 let URL = 'blocks/get';
                 axios.get(URL).then((response)=>{
-                    this.bloques = response.data;
+                    this.bloques = response.data[0];
+                    this.tasks = response.data[1];
                     console.log(this.bloques);
                 }).catch((error)=>{
                     console.log(error.data);

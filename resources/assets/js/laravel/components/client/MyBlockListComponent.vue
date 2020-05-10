@@ -27,9 +27,43 @@
 <template>
     <section class="row">
         <div class="col-md-9">
-            <div class="block block-bordered">
+            <div class="block block-rounded">
+                <div class="block-header">
+                    <h3 class="block-title">Próximas tareas</h3>
+                </div>
+                <div class="block-content">
+                    <div v-if="listas.length != 0" class="block-content" style="margin: 0; padding: 0;">
+                        <div class="todo ribbon ribbon-left ribbon-bookmark ribbon-primary" v-for="(item, index) in listas" :key="index">
+                            <div class="ribbon-box">
+                                <span v-if="tareasPendientes(item) == 0">
+                                    <i class="fa fa-fw fa-check"></i>
+                                </span>
+                                <span v-else>
+                                    {{ tareasPendientes(item) }}
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p class="title-todo">
+                                        {{ item.name }}
+                                    </p>
+                                    <p class="category-todo">{{ item.slug }}</p>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <a :href="'cliente/tareas/' + item.id" type="button" class="btn btn-lg btn-circle btn-alt-secondary mr-5 mb-5">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-else>Aun no tienes ninguna lista asignada</p>
+                </div>
+            </div>
+            
+            <!-- <div class="block block-bordered">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Lista de pendientes</h3>
+                    <h3 class="block-title">Próximas tareas</h3>
                 </div>
                 <div v-if="listas.length != 0" class="block-content" style="margin: 0; padding: 0;">
                     <div class="todo ribbon ribbon-left ribbon-bookmark ribbon-primary" v-for="(item, index) in listas" :key="index">
@@ -56,11 +90,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <div v-else class="block-content" style="margin: 0; padding: 0;">
+                    <img src="https://verybilbao.com/wp-content/uploads/2018/05/portada-eneko-wep.jpg" width="100%" alt="">
+                </div>
+            </div> -->
         </div>
         <div class="col-md-3">
-            <div class="block block-bordered">
-                <div class="block-header block-header-default">
+            <div class="block block-rounded">
+                <div class="block-header">
                     <h3 class="block-title">Mis listas</h3>
                 </div>
                 <div class="block-content">
@@ -68,10 +105,6 @@
                         <li class="list-group-item">
                             <span class="js-task-badge badge badge-primary float-right animated bounceIn">{{ listasActivas }}</span>
                             <i class="fa fa-fw fa-tasks mr-5"></i> Activas
-                        </li>
-                        <li class="list-group-item">
-                            <span class="js-task-badge-starred badge badge-warning float-right animated bounceIn">2</span>
-                            <i class="fa fa-fw fa-ban mr-5"></i> Omitidas
                         </li>
                         <li class="list-group-item">
                             <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">{{ listasCompletadas }}</span>

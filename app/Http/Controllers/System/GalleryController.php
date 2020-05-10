@@ -17,7 +17,7 @@ class GalleryController extends Controller
     public function index($id)
     {
         $gallery = Gallery::where('user_id', $id)->get();
-        return $gallery;
+        return $gallery; 
     }
 
     /**
@@ -38,18 +38,32 @@ class GalleryController extends Controller
      */
     public function store(Request $request, $id)
     {
-           
-        $imagen = Gallery::create($request->all());
-         //Imagen
-         if($archivo = $request->file('image')){
-            
-            $nombre =  $archivo->getClientOriginalName();
-            $archivo->move(public_path('file/'), $nombre);
-            $imagen->fill(['image' => asset('file/'.$nombre)])->save();
+        // $input  = array('image' => Input::file('file'));
+        // $reglas = array('image' => 'mimes:jpeg,png,jpg');
+
+        // $v = \Validator::make($input,  $reglas);
+ 
+        // if ($v->fails())
+        // {
+        //     return redirect()->back()->withInput()->withErrors($v->errors());
+        // }
+
+        if($archivo = $request->file('file')){
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
         }
 
-
-        return;
+        $gallery = new Gallery();
+        $gallery->user_id = $id;
+        $gallery->fill(['image' => asset($url.$path)])->save();
+        
+        return back()
+        ->with('info', 'Fotos cargadas con exito');
       
     }
 

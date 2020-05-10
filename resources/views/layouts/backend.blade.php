@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Codebase - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Creato Studio</title>
 
-        <meta name="description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
+        <meta name="description" content="Creato web system">
+        <meta name="author" content="3DLOG">
         <meta name="robots" content="noindex, nofollow">
 
         <!-- CSRF Token -->
@@ -93,10 +93,10 @@
     
                             <!-- User Info -->
                             <div class="content-header-item">
-                                <a class="img-link mr-5" href="javascript:void(0)">
-                                    <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                <a class="img-link mr-5" href="#">
+                                    <img class="img-avatar img-avatar32" src="{{ Auth::user()->profile->photo }}" alt="">
                                 </a>
-                                <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">{{ Auth::user()->name }}</a>
+                                <a class="align-middle link-effect text-primary-dark font-w600" href="#">{{ Auth::user()->name }}</a>
                             </div>
                             <!-- END User Info -->
                         </div>
@@ -105,7 +105,7 @@
     
                     <!-- Side Content -->
                     <div class="content-side">
-                        {{--  <clients-online-component></clients-online-component>  --}}
+                         <clients-online-component></clients-online-component> 
                     </div>
                     <!-- END Side Content -->
                 </aside>
@@ -163,14 +163,14 @@
                         <div class="content-side content-side-full content-side-user px-10 align-parent">
                             <!-- Visible only in mini mode -->
                             <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                                <img class="img-avatar img-avatar32" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                <img class="img-avatar img-avatar32" src="{{ Auth::user()->profile->photo }}" alt="">
                             </div>
                             <!-- END Visible only in mini mode -->
     
                             <!-- Visible only in normal mode -->
                             <div class="sidebar-mini-hidden-b text-center">
                                 <a class="img-link" href="javascript:void(0)">
-                                    <img class="img-avatar" src="{{ asset('images/avatars/avatar1.jpg') }}" alt="">
+                                    <img class="img-avatar" src="{{ Auth::user()->profile->photo }}" alt="">
                                 </a>
                                 <ul class="list-inline mt-10">
                                     <li class="list-inline-item">
@@ -296,27 +296,27 @@
                                     <i class="fa fa-angle-down ml-5"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
+                                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">Usuario</h5>
                                         <a class="dropdown-item" href="{{ route('users.Profile') }}">
-                                            <i class="si si-user mr-5"></i> Profile
+                                            <i class="si si-user mr-5"></i> Perfil
                                         </a>
                                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('conversation.index') }}">
-                                            <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                                            <span class="badge badge-primary"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span>
+                                            <span><i class="si si-envelope-open mr-5"></i> Mensajes</span>
+                                            <span class="badge badge-primary"></span>
                                         </a>
-                                        <div class="dropdown-divider"></div>
+                                        {{-- <div class="dropdown-divider"></div> --}}
                                             <!-- Toggle Side Overlay -->
                                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                            <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                                            {{-- <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
                                                 <i class="si si-note mr-5"></i> Notes 
-                                            </a>
+                                            </a> --}}
                                             <!-- END Side Overlay -->
                                 
                                             <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                                        <i class="si si-logout"></i> Sign Out
+                                                        <i class="si si-logout"></i> Salir
                                                 </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
@@ -329,35 +329,16 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-flag"></i>
-                                    <span class="badge badge-primary badge-pill">1</span>
+                                    <span class="badge badge-primary badge-pill"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span>
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right min-width-300" aria-labelledby="page-header-notifications">
-                                    <h5 class="h6 text-center py-10 mb-0 border-b text-uppercase">Notifications</h5>
-                                    <ul class="list-unstyled my-20">
-                                        <li>
-                                            <a class="text-body-color-dark media mb-15" href="javascript:void(0)">
-                                                <div class="ml-5 mr-15">
-                                                    <i class="fa fa-fw fa-check text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-10">
-                                                    <p class="mb-0">A new message from <strong>Monica Perez</strong></p>
-                                                    <div class="text-muted font-size-sm font-italic">15 min ago</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
-                                        <i class="fa fa-flag mr-5"></i> View All
-                                    </a>
-                                </div>
+                                <notifications-component :user-id="{{ Auth::user()->id }}"/>
                             </div>
                             <!-- END Notifications -->
     
                             <!-- Toggle Side Overlay -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                             <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                                <i class="fa fa-sticky-note"></i>
+                                <i class="fa fa-users"></i>
                             </button>
                             <!-- END Toggle Side Overlay -->
                         </div>

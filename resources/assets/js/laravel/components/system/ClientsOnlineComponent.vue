@@ -23,7 +23,7 @@
                 <ul class="nav-users push">
                     <li v-for="(user, index) in users" :key="index">
                         <a href="#">
-                            <img class="img-avatar" src="https://akns-images.eonline.com/eol_images/Entire_Site/2019726/rs_600x600-190826232132-e-asia-twice-mina-thumbnail-GettyImages-1155471411.jpg" alt="">
+                            <img class="img-avatar" :src="user.photo" alt="">
                             <i class="fa fa-circle text-success"></i> {{ user.name }}
                             <div class="font-w400 font-size-xs text-muted">{{ user.email }}</div>
                         </a>
@@ -42,11 +42,11 @@ export default {
         }
     },
     mounted(){
-        Echo.join('clientsOnline')
+        Echo.join('messenger')
         .here((user) => {
             
             this.users = user;  
-            console.log(this.users);   
+            console.log('Este es el usuaro:' + this.users);   
         })
         .joining((user) => {
             if(!this.users.some((element) => {

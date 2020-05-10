@@ -1,6 +1,17 @@
 @extends('layouts.backend')
 
 @section('content')
+    <div class="bg-primary">
+        <div class="bg-pattern bg-black-op-25">
+            <div class="content content-top text-center">
+                <div class="py-50">
+                    <h1 class="font-w700 text-white mb-10">Clientes</h1>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if (session('info'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('info') }}
@@ -22,18 +33,8 @@
             </button>
         </div>
     @endif
-    <div class="bg-primary">
-        <div class="bg-pattern bg-black-op-25">
-            <div class="content content-top text-center">
-                <div class="py-50">
-                    <h1 class="font-w700 text-white mb-10">Clientes</h1>
-                    <h2 class="h4 font-w400 text-white-op">Creato studio, hacemos tu boda realidad.</h2>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="content">
+    <div class="content content-full">
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Listado de clientes</h3>
@@ -76,13 +77,13 @@
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#3085d6',
                                                             cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Eliminar'
+                                                            confirmButtonText: 'Archivar'
                                                             }).then((result) => {
                                                             if (result.value) {
                                                                 document.getElementById('delete-project-{{ $user->id }}').submit();
                                                                 Swal.fire(
-                                                                '¡Eliminado!',
-                                                                'El cliente ha sido eliminado',
+                                                                'Archivado!',
+                                                                'El cliente ha sido archivado',
                                                                 'success'
                                                                 )
                                                             }

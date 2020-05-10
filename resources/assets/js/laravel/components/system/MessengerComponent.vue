@@ -59,21 +59,35 @@ export default {
 
         Echo.join('messenger')
             .here((users) => {
-                console.log('online', users)
+                users.forEach(user => this.changeStatus(user, true));
             })
-            .joining((user) => {
-                console.log(user.id);
-            })
-            .leaving((user) => {
-                console.log(user.id);
-            });
+            .joining(
+                (user) => this.changeStatus(user, true)
+            )
+            .leaving((user) => this.changeStatus(user, false)
+            );
     },
 
     methods: {
         changeActiveConversation(conversation){
             this.selectedConversation = conversation;
-            this.getMessages();
+            let data = `{"from_id":${this.selectedConversation.contact_id}}`
+            this.getMessages()
+            this.getRead(data)
         },
+
+        getRead: async function(data){
+            try {
+                let URL = '/notificacion/mark-as-read/conversation'
+                let response = await axios.post(URL, {
+                    data: data,
+                    user: this.userId,
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
         getMessages(){
             axios.get(`mensajes?contact_id=${this.selectedConversation.contact_id}`)
             .then((response) => {
@@ -101,6 +115,15 @@ export default {
                 this.conversations = Response.data;
             });
         },
+        changeStatus(user, status){
+            //console.log('se conecto', user.id);
+            let index = this.conversations.findIndex((conversation) => {
+                return conversation.contact_id == user.id;
+            });
+            if (index >= 0)
+            this.$set(this.conversations[index], 'online', status);
+            //this.$set(this.)
+        }
     },
 
     computed:{

@@ -1,5 +1,7 @@
 @extends('layouts.client')
 
 @section('content')
-<messenger-component :user-id="{{ auth()->id() }}"/>
+<section class="content">
+    <messenger-component :user-id="{{ auth()->id() }}"/>
+<section>
 @endsection

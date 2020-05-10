@@ -41,7 +41,7 @@
                                     <th>Nombre</th>
                                     <th>Categoria</th>
                                     <th># Tareas</th>
-                                    <th class="d-none d-sm-table-cell" style="width: 15%;">Estado</th>
+                                    <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">Estado</th> -->
                                     <th class="text-center" style="width: 100px;">Opciones</th>
                                 </tr>
                             </thead>
@@ -51,9 +51,9 @@
                                     <td>{{ lista.name }}</td>
                                     <td>{{ lista.slug }}</td>
                                     <td>{{ lista.tasks.length }}</td>
-                                    <td class="d-none d-sm-table-cell">
+                                    <!-- <td class="d-none d-sm-table-cell">
                                         <span class="badge badge-info">Completada</span>
-                                    </td>
+                                    </td> -->
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit" @click="iniciaEdicionLista(lista)">

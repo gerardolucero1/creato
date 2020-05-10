@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\system;
 
+use App\Task;
+use App\User;
+use App\BlockList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\BlockList;
-use App\User;
 
 class BlocktaskController extends Controller
 {
@@ -97,8 +98,11 @@ class BlocktaskController extends Controller
     }
 
     public function getBlock(){
-        $blocks= BlockList::with('user')->with('lists_task')->orderBy('id', 'DESC')->get();
-        return $blocks;
+        $blocks = BlockList::with('user')->with('lists_task')->orderBy('id', 'DESC')->get();
+        $tasks = Task::all();
+
+        $data = [$blocks, $tasks];
+        return $data;
     }
 
     public function getUsers(){

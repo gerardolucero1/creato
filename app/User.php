@@ -3,8 +3,10 @@
 namespace App;
 
 use App\MyList;
+use App\Gallery;
 use App\Profile;
 use App\Project;
+use App\ProfilePicture;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -61,4 +63,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(MyList::class, 'client_id');
     }
+
+    public function gallery()
+    {
+        return $this->hasMany(Gallery::class, 'user_id');
+    }
+
+    public function profile_pictures()
+    {
+        return $this->hasMany(ProfilePicture::class, 'user_id');
+    }
+
 }
