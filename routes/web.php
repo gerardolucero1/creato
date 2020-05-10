@@ -252,6 +252,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/notificacion/administrador/{id}', 'System\NotificationController@details')->name('notification.details');
     Route::post('notificacion/mark-as-read', 'System\NotificationController@markRead')->name('notification.markRead');
     Route::post('/notificacion/mark-as-read/conversation', 'System\NotificationController@markReadConversation')->name('notification.markRead.conversation');
+    Route::get('notificacion/date/{id}', 'System\NotificationController@date')->name('notification.date');
 
     
     // Notificaciones cliente

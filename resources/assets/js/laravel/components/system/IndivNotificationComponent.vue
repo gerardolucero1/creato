@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <li v-if="date.length !== 0">
         <a class="text-body-color-dark media mb-15" @click="getRead()">
             <div class="ml-5 mr-15">
                 <i class="fa fa-fw fa-check text-success"></i>
@@ -17,18 +17,20 @@
 <script>
 export default {
     props:{
-        notification: String,
+        notification: String
     },
 
     data(){
         return{
-            users:[],
-            result:[]
+            users: [],
+            result: [],
+            date: []
         };
     },
 
     created(){
         this.obtenerUsuario();
+        this.obtenerFecha();
     },
 
     methods:{
@@ -59,13 +61,24 @@ export default {
             } catch (error) {
                 console.log(error)
             }
-        }
+        },
+
+        obtenerFecha: function(){
+            let URL = 'notificacion/date/'+ this.notification;
+                axios.get(URL).then((response)=>{           
+                    this.date = response.data;
+                    //console.log(response.data)
+                    
+                });
+            },
     },
 
     computed: {
         lastTime(){
-            let date = this.notification.created_at;
-            console.log(date)
+            let ultimo = this.date[this.date.length-1];
+            let date = ultimo.created_at;
+            //let result = JSON.parse(date);
+            //console.log(date)
             return moment(date, "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
         },
     }

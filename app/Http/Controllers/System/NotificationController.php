@@ -49,5 +49,9 @@ class NotificationController extends Controller
         }
 
         return 1;
+    public function date($id)
+    {
+        $notifications = Notification::where('data', $id)->where('read_at', null)->get();
+        return $notifications;
     }
 }
