@@ -47,7 +47,6 @@ Vue.component('statistic-component', require('./components/system/StatisticCompo
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);
 Vue.component('navbar-component', require('./components/web/NavbarComponent.vue').default);
-Vue.component('menu-component', require('./components/web/MenuComponent.vue').default);
 // Mensajes
 Vue.component('contact-component', require('./components/system/ContactComponent.vue').default);
 Vue.component('contact-list-component', require('./components/system/ContactListComponent.vue').default);
