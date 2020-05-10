@@ -3,7 +3,7 @@
         <h5 class="h6 text-center py-10 mb-0 border-b text-uppercase">Notifications</h5>
         <ul class="list-unstyled my-20" v-if="notifications.length == 0">
             <li>
-                <a class="text-body-color-dark media mb-15" :href="'dashboard/conversaciones'">
+                <a class="text-body-color-dark media mb-15" :href="'#'">
                     <div class="ml-5 mr-15">
                         <i class="fa fa-fw fa-check text-success"></i>
                     </div>
@@ -18,11 +18,11 @@
             v-for="notification in notifications" :key="notification.index" 
             :notification="notification" @getNoty="getNotification" />
         </ul>
-        <div class="dropdown-divider">
-        </div>
-            <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
+        <!-- <div class="dropdown-divider">
+        </div> -->
+            <!-- <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
                 <i class="fa fa-flag mr-5"></i> Ver todo
-            </a> 
+            </a>  -->
     </div>
 </template>
 

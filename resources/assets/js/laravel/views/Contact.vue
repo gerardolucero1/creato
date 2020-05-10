@@ -334,6 +334,10 @@ export default {
 
     methods: {
         sendEmail(){
+            if(this.$v.contact.$invalid){
+                console.log('Fallo')
+                return
+            }
             let URL = '/contact/send-email'
             axios.post(URL, this.contact).then((response) => {
                 console.log('email enviado')
