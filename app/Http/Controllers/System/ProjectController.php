@@ -10,6 +10,7 @@ use App\Calendar;
 use App\Companion;
 use App\GuestList;
 use Carbon\Carbon;
+use App\NumberTable;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -93,6 +94,7 @@ class ProjectController extends Controller
         $guestList = new GuestList();
         $guestList->project_id = $project->id;
         $guestList->name = 'Lista de '. $project->title;
+        $guestList->image_size = 30;
         $guestList->save();        
 
         return redirect()->route('projects.edit', $project->id)
@@ -212,6 +214,16 @@ class ProjectController extends Controller
      */
     public function updatePlans(Request $request, $id)
     {
+        if(is_null($request->tableNumber) || $request->tableNumber == 0){
+            return back()->withError('El numero de mesas debe ser mayor a 1');
+        }
+
+        if($request->tableNumber > 100){
+            return back()->withError('El numero de mesas no puede ser mayor a 100');
+        }
+
+        $counter = $request->tableNumber;
+
         $project = Project::find($id);
 
         $input  = array('image' => Input::file('plans'));
@@ -236,8 +248,21 @@ class ProjectController extends Controller
             $project->fill(['plans' => asset($url.$path)])->save();
         }
 
+        NumberTable::where('project_id', $project->id)->delete();
+        do{
+            $table = new NumberTable();
+            $table->project_id = $project->id;
+            $table->name = $counter;
+            $table->number = $counter;
+            $table->save();
+
+            $counter--;
+        }while ($counter > 0);
+            
+        
+
         return back()
-            ->with('info', 'Planos cargados con exito');
+            ->with('info', 'Planos y mesas cargados con exito');
     }
 
     public function review($id){
@@ -254,51 +279,59 @@ class ProjectController extends Controller
     }
 
     public function copyList(Request $request){
+        try{
+            $user = User::find($request->client_id);
 
-        $user = User::find($request->client_id);
-        $project = Project::find($request->project_id);
+            if(is_null($user)){
+                return back()->withError('Selecciona un nombre de la lista');
+            }
 
-        Guest::where('guestList_id', $project->list->id)->delete();
+            $project = Project::find($request->project_id);
 
-        foreach ($user->project->list->guests as $guest) {
-            $new_guest = new Guest();
-            $new_guest->guestList_id = $project->list->id;
-            $new_guest->name = $guest->name;
-            $new_guest->lastName = $guest->lastName;
-            $new_guest->secondLastName = $guest->secondLastName;
-            $new_guest->genere = $guest->genere;
-            $new_guest->email = $guest->email;
-            $new_guest->phone = $guest->phone;
-            $new_guest->guests = $guest->guests;
-            $new_guest->dataX = null;
-            $new_guest->dataY = null;
-            $new_guest->seated = null;
-            $new_guest->status = 'PENDIENTE';
-            $new_guest->origin = $guest->origin;
-            $new_guest->tableName = null;
-            $new_guest->save();
+            Guest::where('guestList_id', $project->list->id)->delete();
 
-                foreach ($guest->companions as $companion) {
-                    $new_companion = new Companion();
-                    $new_companion->guest_id = $new_guest->id;
-                    $new_companion->name = $companion->name;
-                    $new_companion->lastName = $companion->lastName;
-                    $new_companion->secondLastName = $companion->secondLastName;
-                    $new_companion->genere = $companion->genere;
-                    $new_companion->email = $companion->email;
-                    $new_companion->phone = $companion->phone;
-                    $new_companion->dataX = null;
-                    $new_companion->dataY = null;
-                    $new_companion->seated = null;
-                    $new_companion->status = 'PENDIENTE';
-                    $new_companion->tableName = null;
-                    $new_companion->save();
-                }
+            foreach ($user->project->list->guests as $guest) {
+                $new_guest = new Guest();
+                $new_guest->guestList_id = $project->list->id;
+                $new_guest->name = $guest->name;
+                $new_guest->lastName = $guest->lastName;
+                $new_guest->secondLastName = $guest->secondLastName;
+                $new_guest->genere = $guest->genere;
+                $new_guest->email = $guest->email;
+                $new_guest->phone = $guest->phone;
+                $new_guest->guests = $guest->guests;
+                $new_guest->dataX = null;
+                $new_guest->dataY = null;
+                $new_guest->seated = null;
+                $new_guest->status = 'PENDIENTE';
+                $new_guest->origin = $guest->origin;
+                $new_guest->tableName = null;
+                $new_guest->save();
 
+                    foreach ($guest->companions as $companion) {
+                        $new_companion = new Companion();
+                        $new_companion->guest_id = $new_guest->id;
+                        $new_companion->name = $companion->name;
+                        $new_companion->lastName = $companion->lastName;
+                        $new_companion->secondLastName = $companion->secondLastName;
+                        $new_companion->genere = $companion->genere;
+                        $new_companion->email = $companion->email;
+                        $new_companion->phone = $companion->phone;
+                        $new_companion->dataX = null;
+                        $new_companion->dataY = null;
+                        $new_companion->seated = null;
+                        $new_companion->status = 'PENDIENTE';
+                        $new_companion->tableName = null;
+                        $new_companion->save();
+                    }
+
+            }
+        }catch(\Exception $th){
+            return back()->withError('Selecciona un nombre de la lista');
         }
+        
 
         return back()->with('success', 'Se ha copiado la lista de invitados con exito');
-        //dd($user->project->list->guests);
     }
 
     // obtener fecha de evento para cliente

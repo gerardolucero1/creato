@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\GuestList;
+use App\NumberTable;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -26,5 +27,10 @@ class Project extends Model
     public function list()
     {
         return $this->hasOne(GuestList::class);
+    }
+
+    public function tables()
+    {
+        return $this->hasMany(NumberTable::class);
     }
 }

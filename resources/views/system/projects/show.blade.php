@@ -25,8 +25,17 @@
     </div>
     <div class="container-fluid">
         @if (session('info'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="mt-4 alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('info') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="mt-4 alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,7 +43,7 @@
         @endif
     
         @if (count($errors))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="mt-4 alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -62,7 +71,7 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="block">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Planos de la boda</h3>
@@ -81,29 +90,9 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-md-6">
-                <div class="block">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Lista de tareas</h3>
-                        <div class="block-options">
-                            
-                        </div>
-                    </div>
-                    <div class="block-content">
-                        <ul class="list-group list-group-flush">
-                            @if($project->user->block_list)
-                                @foreach ($project->user->block_list->lists_task as $list)
-                                    <li class="list-group-item list-group-item-action">
-                                        <a href="{{ route('task.show', $list->id) }}">
-                                            <i class="fa fa-list-ul"></i> {{ $list->name }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
+            <div class="col-md-6">
+                <admin-list-component :project="{{ $project }}"></admin-list-component>
+            </div>
         </div>
         
         <div class="row">
@@ -163,16 +152,8 @@
 
         document.getElementById('projectDate').innerHTML = relativeDate;
 
-        jQuery('input[type=file]').change(function(){
-            var filename = jQuery(this).val().split('\\').pop();
-            var idname = jQuery(this).attr('id');
-            console.log(filename);
-
-            document.getElementById('name-file').innerHTML = filename;
-        });
-
         $(function() {
-        $('#file-input').change(function(e) {
+        $('#file-input-image').change(function(e) {
             addImage(e); 
             });
 

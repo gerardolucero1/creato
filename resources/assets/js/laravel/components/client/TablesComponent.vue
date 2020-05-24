@@ -15,10 +15,10 @@
         flex-direction: column;
     }
 
-    .picture img{
+    /* .picture img{
         width: 30px;
         height: 30px;
-    }
+    } */
 
     .sidebar-invitados{
         background-color: white;
@@ -119,6 +119,31 @@ padding: 0;
         margin-bottom: 0;
         font-size: 14px;
     }
+
+    .table-icon{
+        width: 60px;
+        height: 78px;
+        padding: 2px;
+        transition: all 0.4s;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    .table-icon:hover{
+        background-color: #E7D5CD;
+    }
+
+    .table-icon img{
+        width: 100%;
+    }
+
+    .activeClass{
+        background-color: #E7D5CD;
+    }
+
+    .hidden{
+        opacity: 0;
+    }
 </style>
 
 <template>
@@ -161,6 +186,7 @@ padding: 0;
                             </div>
                         </div>
                     </div>
+
                     <div class="mini-sidebar col-md-12">
                         <h5 class="text-center mt-1">Mis Grupos</h5>
                         <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" @click="obtenerGrupo('Todos')">Todos</span>
@@ -179,25 +205,55 @@ padding: 0;
         </div>
         <div class="row mt-4">
             <div class="col-md-12">
-                <section class="drag-zone" id="wrap-zone">
+                <div class="block block-rounded">
+                    <div class="block-content" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col-md-10 d-flex justify-content-start align-items-center flex-wrap">
+                            <label><input type="checkbox" v-model="ocultarNombres"> Ocultar nombres</label>
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-start align-items-center flex-wrap">
+                            <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#ajustarTamano">Ajustar tamaño</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="block block-rounded">
+                    <div class="block-content" style="padding: 10px;">
+                        <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap">
+                            <div :class="[item.number == mesaSeleccionada ? 'activeClass' : '']" class="table-icon" v-for="(item, index) in mesas" :key="index" @click="mesaSeleccionada = item.number">
+                                <img src="https://images.vexels.com/media/users/3/148881/isolated/preview/5acbf09ec9202ad5bbed61d97a086ec4-icono-de-mesa-de-oficina-by-vexels.png" alt="">
+                                <p class="text-center">Mesa {{ item.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 mb-4">
+            <div class="col-md-12">
+                <section class="drag-zone" id="wrap-zone" style="padding: 0;">
                     <img v-if="proyecto.plans" :src="proyecto.plans" width="100%" alt="">
                     <img v-else src="/images/creato.jpg" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
-                        <div v-if="invitado.companions" class="picture draggable" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
-                            <img v-else src="/images/avatars/female.png" alt="">
-                            <label class="nombre-invitado" for="">{{ invitado.name }}</label>
-                            <!--
-                            <div class="acciones">
+                        <div v-if="invitado.companions" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                            <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
+                            <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            
+                            <!-- <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'invitado')">Eliminar</button>
-                            </div>
-                            -->
+                            </div> -->
+                           
                         </div>
                         <div v-else class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
-                            <img v-else src="/images/avatars/female.png" alt="">
-                            <label class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                            <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
+                            <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
                             <!--
                             <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'acompanante')">Eliminar</button>
@@ -207,6 +263,34 @@ padding: 0;
                     </div>
                     
                 </section>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="ajustarTamano" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Configuracion del tamaño del layout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" height="300px">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column" style="height: 250px;">
+                             <img :width="`${size2}px`" :height="`${size2}px`" src="/images/avatars/male.png" alt="">
+                             <div class="form-group mt-4">
+                                <label for="formControlRange">Ajusta el tamaño de la imagen</label>
+                                <input type="range" class="form-control-range" id="formControlRange" min="5" max="60" v-model="size2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" @click="guardarTamano">Guardar</button>
+                </div>
+                </div>
             </div>
         </div>
     </section>
@@ -234,6 +318,20 @@ padding: 0;
                 limpiar: false,
 
                 groups: null,
+                size: 0,
+                size2: 30,
+
+                mesas:[
+                    // { name: '1', number: 1 },
+                    // { name: '2', number: 2 },
+                    // { name: '3', number: 3 },
+                    // { name: '4', number: 4 },
+                    // { name: '5', number: 5 },
+                    // { name: '6', number: 6 },
+                    // { name: '7', number: 7 },
+                ],
+                mesaSeleccionada: 1,
+                ocultarNombres: false,
             }
         },
 
@@ -249,12 +347,15 @@ padding: 0;
             this.obtenerInvitados();
             this.obtenerProyecto();
             this.obtenerGrupos();
+            this.obtenerMesas();
 
             this.$on('resultadoInvitados', resultadoInvitados => {
                 this.resultadoInvitados = resultadoInvitados
             });
         },
         mounted(){
+            this.obtenerTamano()
+
             //Ajustamos el contenedor al tamaño real en px de su 100% en cualquier monitor
             let wrap = document.getElementById('wrap-zone');
             let medidaX = wrap.offsetWidth;
@@ -283,6 +384,7 @@ padding: 0;
                     let tipo = event.currentTarget.dataset.tipo;
                     
                     let URL = '/cliente/tables/' + dataID;
+                    let URL2 = '/cliente/tables/asignar-mesa/' + dataID;
 
                     axios.put(URL, {
                         'dataX': dataX,
@@ -291,6 +393,17 @@ padding: 0;
                         'tipo': tipo,
                     }).then((response) => {
                         console.log('Invitado acomodado');
+
+                        //Actualizar mesa
+                        axios.put(URL2, {
+                                    'tipo': tipo,
+                                    'tableName': this.mesaSeleccionada,
+                                }).then((response) => {   
+                                    console.log('Funciono prroooooo')
+                                    // this.obtenerInvitados()          
+                                }).catch((error) => {
+                                    console.log(error.data);
+                                })
                     }).catch((error) => {
                         console.log(error.data);
                     })
@@ -387,6 +500,50 @@ padding: 0;
         },
 
         methods: {
+            async obtenerMesas(){
+                try {
+                    let URL = '/cliente/tables/obtener-mesas'
+                    let response = await axios.get(URL)
+
+                    if(response){
+                        console.log(`Estas son las mesas: ${response.data}`)
+                        this.mesas = response.data.reverse()
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+
+            async guardarTamano(){
+               try {
+                    let URL = '/cliente/tables/guardar-tamano'
+                    let response = await axios.post(URL, {
+                        size: this.size2
+                    })
+
+                    if(response){
+                        this.size = this.size2
+                    }
+               } catch (error) {
+                   console.log(error)
+               }
+            },
+
+            async obtenerTamano(){
+                try {
+                    let URL = '/cliente/tables/obtener-tamano'
+
+                    let response = await axios.get(URL)
+
+                    if(response){
+                        console.log(`Este es el tamano: ${response.data}`)
+                        this.size = response.data
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+
             obtenerGrupos: function(){
                 let URL = '/cliente/groups/' + this.user.id;
 

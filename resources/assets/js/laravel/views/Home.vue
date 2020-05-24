@@ -213,6 +213,9 @@
                         <li>
                             <router-link to="/contact">- contacto</router-link>
                         </li>
+                        <li>
+                            <router-link to="localhost:3000/login">- novias reato</router-link>
+                        </li>
                     </ul>
                 </section>
                 <div class="video-container">

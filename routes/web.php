@@ -173,7 +173,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('cliente/tables/limpiar/{id}', 'System\TablesController@destroy')->name('tables.delete');
     Route::put('cliente/tables/asignar-mesa/{id}', 'System\TablesController@asignarMesa')->name('tables.asignarMesa');
     Route::get('cliente/tables/proyecto', 'System\TablesController@project')->name('tables.project');
-
+        //Guardar tamaño de la imagen en las mesas
+        Route::post('cliente/tables/guardar-tamano', 'System\TablesController@guardarTamano')->name('tables.guardarTamano');
+        Route::get('cliente/tables/obtener-tamano', 'System\TablesController@obtenerTamano')->name('tables.obtenerTamano');
+        //Obtener el total de mesas
+        Route::get('/cliente/tables/obtener-mesas', 'System\TablesController@obtenerMesas')->name('tables.obtenerMesas');
+    
     //Obtener listas del cliente
     Route::get('cliente/obtener-listas/{id}', 'System\ClientController@obtenerListas')->name('client.obtenerListas');
         //Vista tarea
@@ -228,10 +233,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/block/update/{id}', 'System\BlocktaskController@update')->name('block.update');
     Route::delete('dashboard/block/delete/{id}', 'System\BlocktaskController@destroy')->name('block.destroy');
 
-        // List
+    // List
     Route::get('dashboard/lista', 'System\ListtaskController@index')->name('list.index');
     Route::get('dashboard/list/get/{id}', 'System\ListtaskController@getLists')->name('list.getLists');
-    Route::put('dashboard/list/update/{id}', 'System\ListTaskController@update')->name('list.update');
+    Route::put('dashboard/list/update/{id}', 'System\ListtaskController@update')->name('list.update');
     Route::post('dashboard/lista/store', 'System\ListtaskController@store')->name('list.store');
     Route::get('dashboard/lista/{id}', 'System\ListtaskController@show')->name('list.show');
     Route::delete('dashboard/lista/delete/{id}', 'System\ListtaskController@destroy')->name('list.destroy');
@@ -239,7 +244,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('dashboard/obtener-bloque/{id}', 'System\ListtaskController@obtenerBloque')->name('obtenerBloque');
     
 
-        // Task
+    // Task
     Route::get('dashboard/tarea', 'System\TaskController@index')->name('task.index');
     Route::post('dashboard/lista/tarea/store', 'System\TaskController@store')->name('task.store');
     Route::delete('dashboard/lista/tarea/tarea/{id}', 'System\TaskController@destroy')->name('task.destroy');
@@ -248,6 +253,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/tareas/{id}', 'System\TaskController@getTask')->name('task.getTask');
 
         Route::get('dashboard/obtener-lista/{id}', 'System\TaskController@obtenerLista')->name('obtenerLista');
+
+    // Admin list
+    Route::get('dashboard/admin-lista', 'System\AdminListController@index')->name('adminList.index');
+    Route::get('dashboard/admin-list/get/{id}', 'System\AdminListController@getLists')->name('adminList.getLists');
+    Route::put('dashboard/admin-list/update/{id}', 'System\AdminListController@update')->name('adminList.update');
+    Route::post('dashboard/admin-lista/store', 'System\AdminListController@store')->name('adminList.store');
+    Route::get('dashboard/admin-lista/{id}', 'System\AdminListController@show')->name('adminList.show');
+    Route::delete('dashboard/admin-lista/delete/{id}', 'System\AdminListController@destroy')->name('adminList.destroy');
+
 
     //Graficas
     Route::get('dashboard/estadisticas', 'System\SystemController@estadisticasIndex')->name('estadisticas.index');
