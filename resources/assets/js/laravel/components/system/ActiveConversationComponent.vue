@@ -59,11 +59,26 @@ export default {
                      const message = response.data.message;
                      message.writtenByMe = true;
                      this.$emit('messageCreated', message);
+                     emailMessages();
 
-                 }  
+                 }
+                 
             }); 
         },
         emailMessages(){
+            // aqui establecer el destinatario del mensaje
+            //const params = {
+            //    to_id: this.contactId,
+            //    content: this.newMessage,
+            //};
+           axios.post('sendemail').then((response) => {
+                //this.notifications = response.data;
+                //this.notificaciones = response.data;
+                //var unique = [...new Set(this.notificaciones.map(item=> item.data))];
+                console.log('email enviado');
+                //this.notifications = unique; 
+                //this.reducir();
+            }); 
             
         },
         scrollTopBottom(){
