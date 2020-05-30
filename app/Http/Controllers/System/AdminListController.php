@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\system;
 
+use App\Evidence;
 use App\AdminList;
+use App\AdminTask;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -48,8 +50,8 @@ class AdminListController extends Controller
      */
     public function show($id)
     {
-        $listtask = AdminList::where('project_id', $id)->get();
-        return view('system.task.list')-> with ('listtask',$listtask);
+        $listTask = AdminList::with('project')->find($id);
+        return view('system.projects.task.index', compact('listTask'));
     }
 
     /**
@@ -74,8 +76,11 @@ class AdminListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $listtask = AdminList::find($id);
-        $listtask->fill($request->all())->save();
+        $listTask = AdminList::find($id);
+        $listTask->name = $request->name;
+        $listTask->category = $request->category;
+        $listTask->save();
+        // $listtask->fill($request->all())->save();
         return;
     }
 
@@ -97,4 +102,58 @@ class AdminListController extends Controller
         return $listTask;
 
     }
+    
+    public function getTasks($id){
+        $tasks = AdminTask::where('admin_list',$id)->get();
+        return $tasks;
+
+    }
+
+    public function showTasks($id)
+    {
+        $task = AdminTask::find($id);
+        return view('system.projects.task.show', compact('task'));
+    }
+
+    public function storeTasks(Request $request){
+        $task = AdminTask::create($request->all());
+        return;
+    }
+
+    public function completeTasks(Request $request, $id){
+        $task = AdminTask::find($id);
+        $task->fill($request->all())->save();
+        return;
+
+    }
+
+    public function destroyTasks($id)
+    {
+        $task = AdminTask::find($id);
+        $task->delete();
+        return;
+    }
+
+    public function taskGalleryStore(Request $request, $id)
+    {
+
+        if($archivo = $request->file('file')){
+
+            $md5Name = md5_file($archivo->getRealPath());
+            $guessExtension = $archivo->guessExtension();
+            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+
+            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+
+        }
+
+        $evidence = new Evidence();
+        $evidence->adminTask_id = $id;
+        $evidence->fill(['image' => asset($url.$path)])->save();
+        
+        return back()
+        ->with('info', 'Fotos cargadas con exito');
+      
+    }
+    
 }

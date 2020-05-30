@@ -11,7 +11,38 @@
             </div>
         </div>
         <div v-if="listas.length != 0" class="block-content">
-            <table class="table table-striped table-vcenter">
+            <div v-for="(lista, index) in listas" :key="index" class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9" data-task-completed="false" data-task-starred="false">
+                <table class="table table-borderless table-vcenter mb-0">
+                    <tbody>
+                        <tr>
+                            <td class="text-center" style="width: 50px;">
+                                <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                    <span class="badge badge-info">
+                                        {{ lista.tasks.length }}
+                                    </span>
+                                    <!-- <input type="checkbox" class="css-control-input">
+                                    <span class="css-control-indicator"></span> -->
+                                </label>
+                            </td>
+                            <td class="js-task-content font-w600">
+                                {{ lista.name }}
+                            </td>
+                            <td class="text-right" style="width: 150px;">
+                                <button class="js-task-star btn btn-sm btn-alt-warning" type="button" @click="iniciaEdicionLista(lista)">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <a :href="`/dashboard/admin-lista/${lista.id}`" class="js-task-remove btn btn-sm btn-alt-info" type="button">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <button class="js-task-remove btn btn-sm btn-alt-danger" type="button"  @click="eliminarLista(lista)">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <table class="table table-striped table-vcenter">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
@@ -40,7 +71,7 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
 
         <!-- Modal agregar lista -->
@@ -93,8 +124,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="guardarLista()" >Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" @click="guardarLista()" >Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -150,8 +181,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="editarLista(actualizarLista)" >Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="editarLista(actualizarLista)" >Actualizar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -189,13 +220,13 @@
                                         <td>{{ lista.tasks.length }}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit" @click="iniciaEdicionBloque(lista)">
+                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit" @click="iniciaEdicionLista(lista)">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                                 <a :href="'lista/' + lista.id" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(lista)">
+                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarLista(lista)">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </div>

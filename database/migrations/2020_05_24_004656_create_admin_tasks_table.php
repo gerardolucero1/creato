@@ -22,7 +22,7 @@ class CreateAdminTasksTable extends Migration
             $table->timestamps();
 
             //Relation
-            $table->foreign('admin_list')->references('id')->on('projects')
+            $table->foreign('admin_list')->references('id')->on('admin_lists')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

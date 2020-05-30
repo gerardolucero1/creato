@@ -2,7 +2,7 @@
     .todo{
         width: 100%;
         padding: 10px 5px 5px 65px;
-        border-bottom: 1px solid rgba(228, 231, 237, 1);
+        border: 1px solid rgba(228, 231, 237, 1);
         transition: all .5s;
     }
 
@@ -22,19 +22,25 @@
     .category-todo{
         font-size: 14px;
     }
+
+    .ribbon-primary.ribbon-bookmark.ribbon-left .ribbon-box::before {
+        border-color: #E59169;
+        border-right-color: transparent;
+    }
 </style>
 
 <template>
     <section class="row">
         <div class="col-md-9">
-            <div class="block block-rounded">
+            <div class="block-rounded">
                 <div class="block-header">
-                    <h3 class="block-title">Próximas tareas</h3>
+                    <h3 class="block-title" style="font-size: 1.5em;">Próximas tareas</h3>
                 </div>
-                <div class="block-content">
+                <div>
+
                     <div v-if="listas.length != 0" class="block-content" style="margin: 0; padding: 0;">
                         <div class="todo ribbon ribbon-left ribbon-bookmark ribbon-primary" v-for="(item, index) in listas" :key="index">
-                            <div class="ribbon-box">
+                            <div class="ribbon-box" style="background-color: #E59169;">
                                 <span v-if="tareasPendientes(item) == 0">
                                     <i class="fa fa-fw fa-check"></i>
                                 </span>
@@ -47,11 +53,11 @@
                                     <p class="title-todo">
                                         {{ item.name }}
                                     </p>
-                                    <p class="category-todo">{{ item.slug }}</p>
+                                    <label class="category-todo" style="background-color: #D9D9D9; padding: 2px; font-size: 11px;">{{ item.slug }}</label>
                                 </div>
                                 <div class="col-md-2 text-center">
-                                    <a :href="'cliente/tareas/' + item.id" type="button" class="btn btn-lg btn-circle btn-alt-secondary mr-5 mb-5">
-                                        <i class="fa fa-eye"></i>
+                                    <a :href="'cliente/tareas/' + item.id" type="button" class="btn btn-lg btn-circle mr-5 mb-5" style="background-color: #f76c6f;">
+                                        <i class="fa fa-eye" style="color: white;"></i>
                                     </a>
                                 </div>
                             </div>
@@ -60,55 +66,21 @@
                     <p v-else>Aun no tienes ninguna lista asignada</p>
                 </div>
             </div>
-            
-            <!-- <div class="block block-bordered">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Próximas tareas</h3>
-                </div>
-                <div v-if="listas.length != 0" class="block-content" style="margin: 0; padding: 0;">
-                    <div class="todo ribbon ribbon-left ribbon-bookmark ribbon-primary" v-for="(item, index) in listas" :key="index">
-                        <div class="ribbon-box">
-                            <span v-if="tareasPendientes(item) == 0">
-                                <i class="fa fa-fw fa-check"></i>
-                            </span>
-                            <span v-else>
-                                {{ tareasPendientes(item) }}
-                            </span>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <p class="title-todo">
-                                    {{ item.name }}
-                                </p>
-                                <p class="category-todo">{{ item.slug }}</p>
-                            </div>
-                            <div class="col-md-2 text-center">
-                                <a :href="'cliente/tareas/' + item.id" type="button" class="btn btn-lg btn-circle btn-alt-secondary mr-5 mb-5">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-else class="block-content" style="margin: 0; padding: 0;">
-                    <img src="https://verybilbao.com/wp-content/uploads/2018/05/portada-eneko-wep.jpg" width="100%" alt="">
-                </div>
-            </div> -->
         </div>
         <div class="col-md-3">
-            <div class="block block-rounded">
+            <div class="block-rounded">
                 <div class="block-header">
-                    <h3 class="block-title">Mis listas</h3>
+                    <h3 class="block-title" style="font-size: 1.5em;">Mis listas</h3>
                 </div>
-                <div class="block-content">
+                <div style="border: none;">
                     <ul class="list-group push">
                         <li class="list-group-item">
                             <span class="js-task-badge badge badge-primary float-right animated bounceIn">{{ listasActivas }}</span>
-                            <i class="fa fa-fw fa-tasks mr-5"></i> Activas
+                            Activas
                         </li>
                         <li class="list-group-item">
                             <span class="js-task-badge-completed badge badge-success float-right animated bounceIn">{{ listasCompletadas }}</span>
-                            <i class="fa fa-fw fa-check mr-5"></i> Completadas
+                            Completadas
                         </li>
                     </ul>
                 </div>

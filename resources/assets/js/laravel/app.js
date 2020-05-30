@@ -44,6 +44,7 @@ Vue.component('quotation-component', require('./components/system/QuotationCompo
 Vue.component('calendar-component', require('./components/system/CalendarComponent.vue').default);
 Vue.component('statistic-component', require('./components/system/StatisticComponent.vue').default);
 Vue.component('admin-list-component', require('./components/system/AdminListComponent.vue').default);
+Vue.component('admin-task-component', require('./components/system/AdminTaskComponent.vue').default);
 
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);

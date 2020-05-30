@@ -144,6 +144,16 @@ padding: 0;
     .hidden{
         opacity: 0;
     }
+
+    .btn-rounded{
+        border: 1px solid #f76c6f;
+        color: #f76c6f;
+    }
+
+    .btn-rounded:hover{
+        background-color: #f76c6f;
+        color: white;
+    }
 </style>
 
 <template>
@@ -203,16 +213,16 @@ padding: 0;
                 </ul>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="block block-rounded">
-                    <div class="block-content" style="padding: 10px;">
+        <div class="row">
+            <div class="col-md-12 mt-4">
+                <div class="block-rounded">
+                    <div class="" style="padding: 10px;">
                         <div class="row">
                             <div class="col-md-10 d-flex justify-content-start align-items-center flex-wrap">
                             <label><input type="checkbox" v-model="ocultarNombres"> Ocultar nombres</label>
                         </div>
                         <div class="col-md-2 d-flex justify-content-start align-items-center flex-wrap">
-                            <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#ajustarTamano">Ajustar tamaño</button>
+                            <button type="button" class="btn btn-rounded min-width-125 mb-10" data-toggle="modal" data-target="#ajustarTamano">Ajustar tamaño</button>
                         </div>
                         </div>
                     </div>
@@ -221,8 +231,8 @@ padding: 0;
         </div>
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="block block-rounded">
-                    <div class="block-content" style="padding: 10px;">
+                <div class="block-rounded">
+                    <div class="" style="padding: 10px;">
                         <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap">
                             <div :class="[item.number == mesaSeleccionada ? 'activeClass' : '']" class="table-icon" v-for="(item, index) in mesas" :key="index" @click="mesaSeleccionada = item.number">
                                 <img src="https://images.vexels.com/media/users/3/148881/isolated/preview/5acbf09ec9202ad5bbed61d97a086ec4-icono-de-mesa-de-oficina-by-vexels.png" alt="">

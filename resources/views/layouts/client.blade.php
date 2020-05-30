@@ -51,6 +51,23 @@
 
         @yield('styles')
 
+        <style>
+            #page-header{
+                background-color: #E7D5CD;
+            }
+
+            @media (min-width: 992px){
+                .nav-main-header a {
+                    color: white;
+                    text-shadow: 1px 1px 10px #707070;
+                }
+
+                .nav-main-header ul, .nav-main-header > li:hover > a.nav-submenu {
+                    background-color: white;
+                }
+            }
+        </style>
+
     </head>
     <body>
         <div
@@ -79,7 +96,8 @@
                                                 </button>
                                                 <div class="content-header-item mr-5" style="margin-top: -10px;">
                                                     <a class="" href="{{ route('dashboard.client') }}">
-                                                        <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
+                                                        {{-- <img src="/images/logo-creato.webp" width="170px" alt="" srcset=""> --}}
+                                                        <img src="/images/logo.png" width="170px" alt="" srcset="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -129,7 +147,8 @@
                     <div class="content-header-section">
                         <div class="content-header-item mr-5" style="margin-top: -25px;">
                             <a class="" href="{{ route('dashboard.client') }}">
-                                <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
+                                {{-- <img src="/images/logo-creato.webp" width="170px" alt="" srcset=""> --}}
+                                <img src="/images/logo.png" width="40px" alt="" srcset="">
                             </a>
                         </div>
                     </div>
@@ -209,11 +228,11 @@
                     </div>
                 </div>
             </header>
-            <div id="app">
+            <div id="app" style="background-color: white; padding-bottom: 2em;">
                 <clients-online-component style="display: none;"></clients-online-component>
                 @yield('content')
             </div>
-            <footer id="page-footer" class="bg-white opacity-0" style="opacity: 1;">
+            <footer id="page-footer" class="opacity-0" style="opacity: 1;" style="background-color: #EFEFEF;">
                 <div class="content py-20 font-size-xs clearfix">
                     <div class="float-right">
                         Crafted with

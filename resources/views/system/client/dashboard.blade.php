@@ -42,11 +42,11 @@
             <div class="row">
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('guests.index') }}">
-                        <div class="block-content block-content-full text-center">
+                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-users text-primary"></i>
+                                <i class="fa fa-3x fa-users" style="color: white;"></i>
                             </div>
-                            <p class="font-size-lg font-w600 mb-0">
+                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px #707070;">
                                 Invitados
                             </p>
                             {{-- <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
@@ -57,11 +57,11 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="javascript:void(0)">
-                        <div class="block-content block-content-full text-center">
+                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-list-ul text-elegance"></i>
+                                <i class="fa fa-3x fa-list-ul" style="color: white;"></i>
                             </div>
-                            <p class="font-size-lg font-w600 mb-0">
+                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px #707070;">
                                 Listas
                             </p>
                             {{-- <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
@@ -72,11 +72,11 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('messages.client') }}">
-                        <div class="block-content block-content-full text-center">
+                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
                             <div class="p-20 mb-5">
-                                <i class="fa fa-3x fa-envelope-open text-pulse"></i>
+                                <i class="fa fa-3x fa-envelope-open" style="color: white;"></i>
                             </div>
-                            <p class="font-size-lg font-w600 mb-0">
+                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px #707070;">
                                 <span class="badge badge-pill badge-danger"><inbox-component :user-id="{{ Auth::user()->id }}"></inbox-component></span> Mensajes
                             </p>
                             {{-- <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
@@ -87,11 +87,11 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('tables.index') }}">
-                        <div class="block-content block-content-full text-center">
+                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
                             <div class="p-20 mb-5">
-                            <i class="fa fa-3x fa-pencil-square text-primary"></i>
+                            <i class="fa fa-3x fa-pencil-square" style="color: white;"></i>
                             </div>
-                            <p class="font-size-lg font-w600 mb-0">
+                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px #707070;">
                                 Organizador
                             </p>
                             {{-- <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">

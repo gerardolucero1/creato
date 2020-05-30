@@ -1,10 +1,22 @@
+<style scoped>
+    .btn-rounded{
+        border: 1px solid #f76c6f;
+        color: #f76c6f;
+    }
+
+    .btn-rounded:hover{
+        background-color: #f76c6f;
+        color: white;
+    }
+</style>
+
 <template>
     <section class="">
         <div class="row mt-4">
             <div class="col-md-12">
-                <div class="block">
+                <div class="">
                     <div class="block-content" style="margin: 0; padding: 10px 0 0 10px;">
-                        <button type="button" class="btn btn-rounded btn-outline-primary min-width-125 mb-10" data-toggle="modal" data-target="#agregarInvitado">
+                        <button type="button" class="btn btn-rounded min-width-125 mb-10" data-toggle="modal" data-target="#agregarInvitado">
                             <i class="fa fa-plus mr-5"></i>Invitado
                         </button>
                     </div>
@@ -12,18 +24,18 @@
             </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row mt-4">
             <div class="col-md-12">
-                <div class="block block-themed block-rounded">
-                    <div class="block-header bg-info">
-                        <h3 class="block-title">Lista de invitados</h3>
+                <div class="block-themed block-rounded">
+                    <div class="block-header" style="background-color: #f76c6f;">
+                        <h3 class="block-title" style="color: white;">Lista de invitados</h3>
                         <div class="block-options">
                             <!-- <button type="button" class="btn-block-option">
                                 <i class="si si-plus"></i>
                             </button> -->
                         </div>
                     </div>
-                    <div class="block-content" v-if="lista.length != 0">
+                    <div class="" v-if="lista.length != 0">
                         <h3 v-if="lista.guests.length == 0" class="text-center">Aun no tienes una lista de invitados</h3>
                         <div v-else class="col-lg-12">
         	                <div class="panel panel-default">
@@ -501,7 +513,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

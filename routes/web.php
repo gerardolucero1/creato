@@ -261,9 +261,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/admin-lista/store', 'System\AdminListController@store')->name('adminList.store');
     Route::get('dashboard/admin-lista/{id}', 'System\AdminListController@show')->name('adminList.show');
     Route::delete('dashboard/admin-lista/delete/{id}', 'System\AdminListController@destroy')->name('adminList.destroy');
-
-
-    //Graficas
+        //Admin tasks
+        Route::get('dashboard/admin-lista/tasks/{id}', 'System\AdminListController@getTasks')->name('adminList.getTasks');
+        Route::post('dashboard/admin-lista/tasks/store', 'System\AdminListController@storeTasks')->name('adminList.storeTasks');
+        Route::get('dashboard/admin-lista/tasks/show/{id}', 'System\AdminListController@showTasks')->name('adminList.showTasks');
+        Route::post('dashboard/admin-lista/tasks/complete/{id}', 'System\AdminListController@completeTasks')->name('adminList.completeTasks');
+        Route::delete('dashboard/admin-lista/tasks/{id}', 'System\AdminListController@destroyTasks')->name('adminList.destroyTasks');
+        Route::post('dashboard/admin-lista/tasks/evidence/{id}', 'System\AdminListController@taskGalleryStore')->name('adminList.taskGalleryStore');
+        //Graficas
     Route::get('dashboard/estadisticas', 'System\SystemController@estadisticasIndex')->name('estadisticas.index');
         //Obtener datos
         Route::get('grafica-obtener-datos', 'System\SystemController@obtenerDatos');
