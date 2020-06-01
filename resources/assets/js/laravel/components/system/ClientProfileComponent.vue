@@ -165,7 +165,7 @@ export default {
         }
     },
     mounted(){
-        Echo.join('messenger')
+        Echo.join('messengerOnline')
             .here((users) => {
                 //code here
             })

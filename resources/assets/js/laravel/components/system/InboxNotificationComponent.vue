@@ -31,16 +31,15 @@ export default {
             .notification((notification) => {
                 this.obtenerNotificacion()  
             });
-        Echo.join('messenger')
+        Echo.join('messengerOnline')
             .here((users) => {
-                //code here
+                users.forEach(user => this.changeStatus(user, true));
             })
             .joining(
-                // code here
+                (user) => this.changeStatus(user, true)
             )
-            .leaving(
-                // code here
-            ); 
+            .leaving((user) => this.changeStatus(user, false)
+            );
     },
     methods:{
         obtenerNotificacion: function(){
@@ -51,6 +50,9 @@ export default {
                     this.notification = response.data; 
                 });
             },
+            changeStatus(user, status){
+            
+        },
     }
 
 }

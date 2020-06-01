@@ -4,8 +4,10 @@ use App\Task;
 use App\Guest;
 use App\Project;
 use App\Companion;
+use App\User;
 use App\GuestList;
 use App\Mail\Contact as ContactEmail;
+use App\Mail\NotificationMail;
 use Illuminate\Http\Request;
 
 /*
@@ -284,15 +286,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
 
     // Notificaciones Email
-    Route::post('sendemail', function(Request $request){
-        $data = array(
-            'name' => "Prueba de email",
-        );
-        Mail::send('emails.welcome', $data, function($message){
-            $message->from('3dlogprueba@gmail.com', 'prueba de email');
-            $message->to('undle40@gmail.com')->subject('test de email');
-        });
-        return "EL correo fue enviado correctamente";
+    Route::post('/sendemail', function(Request $request){
+        $data = json_decode(file_get_contents("php://input"));
+        $user = User::find($data->to_id);
+        $from = Auth::user();
+        Mail::to($user->email, 'Creato Studio')
+            ->send(new NotificationMail($data,$from));
     });
 
 });
