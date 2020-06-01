@@ -48,10 +48,12 @@
         <!--Animate CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-
-        @yield('styles')
-
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
         <style>
+            #app{
+                background-color: white; 
+                padding-bottom: 2em !important;
+            }
             #page-header{
                 background-color: #E7D5CD;
             }
@@ -67,7 +69,7 @@
                 }
             }
         </style>
-
+        @yield('styles')
     </head>
     <body>
         <div
@@ -228,7 +230,7 @@
                     </div>
                 </div>
             </header>
-            <div id="app" style="background-color: white; padding-bottom: 2em;">
+            <div id="app">
                 <clients-online-component style="display: none;"></clients-online-component>
                 @yield('content')
             </div>
@@ -262,6 +264,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
             
             <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            <script src="https://unpkg.com/swiper/js/swiper.js"></script>
         @yield('scripts')
     </body>
 </html>

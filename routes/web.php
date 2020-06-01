@@ -152,6 +152,10 @@ Route::group(['middleware' => ['auth']], function () {
             return;
         });
 
+    //Evidencia
+    Route::get('cliente/evidence', 'System\AdminListController@indexEvidence')->name('evidence.indexEvidence');
+        Route::get('cliente/get-admins-lists', 'System\AdminListController@getListsAdmin')->name('evidence.getListsAdmin');
+        Route::get('cliente/get-evidence/{id}', 'System\AdminListController@getEvidence')->name('evidence.getEvidence');
     //Lista de invitados
     Route::resource('cliente/lista', 'System\GuestController');
 

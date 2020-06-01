@@ -56,7 +56,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                    <a class="block block-link-shadow" href="javascript:void(0)">
+                    <a class="block block-link-shadow" href="{{ route('evidence.indexEvidence') }}">
                         <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-list-ul" style="color: white;"></i>

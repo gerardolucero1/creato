@@ -45,6 +45,7 @@ Vue.component('calendar-component', require('./components/system/CalendarCompone
 Vue.component('statistic-component', require('./components/system/StatisticComponent.vue').default);
 Vue.component('admin-list-component', require('./components/system/AdminListComponent.vue').default);
 Vue.component('admin-task-component', require('./components/system/AdminTaskComponent.vue').default);
+Vue.component('admin-task-client-component', require('./components/client/AdminTasksComponent.vue').default);
 
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);

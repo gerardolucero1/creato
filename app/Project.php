@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\AdminList;
 use App\GuestList;
 use App\NumberTable;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +28,11 @@ class Project extends Model
     public function list()
     {
         return $this->hasOne(GuestList::class);
+    }
+
+    public function adminList()
+    {
+        return $this->hasMany(AdminList::class, 'project_id');
     }
 
     public function tables()

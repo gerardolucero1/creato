@@ -7,6 +7,7 @@ use App\AdminList;
 use App\AdminTask;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminListController extends Controller
 {
@@ -154,6 +155,23 @@ class AdminListController extends Controller
         return back()
         ->with('info', 'Fotos cargadas con exito');
       
+    }
+
+    public function indexEvidence()
+    {
+        return view('system.client.evidence.index');
+    }
+
+    public function getListsAdmin() 
+    {
+        $lists = AdminList::with('tasks')->where('project_id', Auth::user()->project->id)->get();
+        return $lists;
+    }
+
+    public function getEvidence($id) 
+    {
+        $evidence = Evidence::where('adminTask_id', $id)->get();
+        return $evidence;
     }
     
 }

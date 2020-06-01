@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .drag-zone{
         background-color: blue;
         width: 100%;
@@ -130,7 +130,7 @@ padding: 0;
     }
 
     .table-icon:hover{
-        background-color: #E7D5CD;
+        background-color: rgb(231, 213, 205, 0.5);
     }
 
     .table-icon img{
@@ -138,7 +138,7 @@ padding: 0;
     }
 
     .activeClass{
-        background-color: #E7D5CD;
+        background-color: rgb(231, 213, 205, 0.5);
     }
 
     .hidden{
@@ -154,6 +154,55 @@ padding: 0;
         background-color: #f76c6f;
         color: white;
     }
+
+    input[type="range"]{
+        -webkit-appearance:none;
+        width:160px;
+        height:20px;
+        margin:10px 50px;
+        background: linear-gradient(to right, #9A2720 0%, #9A2720 100%);
+        background-size:150px 10px;
+        background-position:center;
+        background-repeat:no-repeat;
+        overflow:hidden;
+        outline: none;
+    }
+
+    input[type="range"]:first-of-type{
+        margin-top:30px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb{
+        -webkit-appearance:none;
+        width:20px;
+        height:20px;
+        background:#F26B5E;
+        position:relative;
+        z-index:3;
+        box-shadow:0 0 5px 0 rgba(0,0,0,0.3);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:after{
+        content:" ";
+        width:160px;
+        height:10px;
+        position:absolute;
+        z-index:1;
+        right:20px;
+        top:5px;
+        background: #ff5b32;
+        background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
+    }
+
+    .btn-save{
+        border: 1px solid #f76c6f;
+        color: #f76c6f;
+    }
+
+    .btn-save:hover{
+        background-color: #f76c6f;
+        color: white;
+    }
 </style>
 
 <template>
@@ -166,7 +215,7 @@ padding: 0;
             </div>
             <div class="lista-invitados">
                 <h2 class="text-center mt-1">Mis invitados</h2>
-                <div class="row">
+                <div class="">
                     <div class="col-md-12">
                         <buscador-component
                             :limpiar="limpiar"
@@ -197,20 +246,22 @@ padding: 0;
                         </div>
                     </div>
 
-                    <div class="mini-sidebar col-md-12">
+                    <div class="mini-sidebar col-md-12 mt-3 mb-2 pt-2 pb-2" style="background-color: #F0F0F0;">
                         <h5 class="text-center mt-1">Mis Grupos</h5>
-                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" @click="obtenerGrupo('Todos')">Todos</span>
-                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" @click="obtenerGrupo('General')">General</span>
-                        <span class="badge badge-info mr-1 ml-1" style="cursor: pointer;" v-for="(group, index) in groups" :key="index" @click="obtenerGrupo(group.name)">{{ group.name }}</span>
+                        <span class="badge mr-1 ml-1" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="obtenerGrupo('Todos')">Todos</span>
+                        <span class="badge mr-1 ml-1" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="obtenerGrupo('General')">General</span>
+                        <span class="badge mr-1 ml-1" style="cursor: pointer; background-color: #f76c6f; color: white;" v-for="(group, index) in groups" :key="index" @click="obtenerGrupo(group.name)">{{ group.name }}</span>
                     </div>
                 </div>
-                <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
-                    <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge badge-primary badge-pill text-right" style="cursor: pointer;" @click="sentarInvitado(invitado)">ASIGNAR</span>
-                        <ul class="list-group" v-for="(companion, index) in invitado.companions" :key="index">
-                            <li v-if="companion.status == 'CONFIRMADO'" class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge badge-primary badge-pill" style="cursor: pointer;" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="col-md-12">
+                    <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
+                        <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge text-right" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="sentarInvitado(invitado)">ASIGNAR</span>
+                            <ul class="list-group" v-for="(companion, index) in invitado.companions" :key="index">
+                                <li v-if="companion.status == 'CONFIRMADO'" class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -219,20 +270,28 @@ padding: 0;
                     <div class="" style="padding: 10px;">
                         <div class="row">
                             <div class="col-md-10 d-flex justify-content-start align-items-center flex-wrap">
-                            <label><input type="checkbox" v-model="ocultarNombres"> Ocultar nombres</label>
-                        </div>
-                        <div class="col-md-2 d-flex justify-content-start align-items-center flex-wrap">
-                            <button type="button" class="btn btn-rounded min-width-125 mb-10" data-toggle="modal" data-target="#ajustarTamano">Ajustar tamaño</button>
-                        </div>
+                                <div class="col-6">
+                                    <label class="css-control css-control-secondary css-checkbox">
+                                        <input type="checkbox" v-model="ocultarNombres" class="css-control-input" checked="">
+                                        <span class="css-control-indicator"></span> Ocultar nombres
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-start align-items-center flex-wrap">
+                                <button type="button" class="btn btn-rounded min-width-125 mb-10" data-toggle="modal" data-target="#ajustarTamano">Ajustar tamaño</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="mt-2 mb-2" style="border-bottom: 1px solid #F0F0F0;"></div>
+
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="block-rounded">
-                    <div class="" style="padding: 10px;">
+                    <div class="">
                         <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap">
                             <div :class="[item.number == mesaSeleccionada ? 'activeClass' : '']" class="table-icon" v-for="(item, index) in mesas" :key="index" @click="mesaSeleccionada = item.number">
                                 <img src="https://images.vexels.com/media/users/3/148881/isolated/preview/5acbf09ec9202ad5bbed61d97a086ec4-icono-de-mesa-de-oficina-by-vexels.png" alt="">
@@ -243,6 +302,9 @@ padding: 0;
                 </div>
             </div>
         </div>
+
+        <div class="mt-2 mb-2" style="border-bottom: 1px solid #F0F0F0;"></div>
+
         <div class="row mt-1 mb-4">
             <div class="col-md-12">
                 <section class="drag-zone" id="wrap-zone" style="padding: 0;">
@@ -285,20 +347,23 @@ padding: 0;
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" height="300px">
+                <div class="modal-body" height="200px">
                     <div class="row">
-                        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column" style="height: 250px;">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column" style="height: 150px;">
                              <img :width="`${size2}px`" :height="`${size2}px`" src="/images/avatars/male.png" alt="">
-                             <div class="form-group mt-4">
+                             
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column">
+                            <div class="form-group mt-4 text-center">
                                 <label for="formControlRange">Ajusta el tamaño de la imagen</label>
-                                <input type="range" class="form-control-range" id="formControlRange" min="5" max="60" v-model="size2">
                             </div>
+                            <input type="range" class="form-control-range" id="formControlRange" min="5" max="60" v-model="size2">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" @click="guardarTamano">Guardar</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-save" @click="guardarTamano">Guardar</button>
                 </div>
                 </div>
             </div>
