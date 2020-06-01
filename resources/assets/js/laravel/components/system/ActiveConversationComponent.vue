@@ -59,13 +59,13 @@ export default {
                      const message = response.data.message;
                      message.writtenByMe = true;
                      this.$emit('messageCreated', message);
+                     this.$emit('sendMail', params);
 
-                 }  
+                 }
+                 
             }); 
         },
-        emailMessages(){
-            
-        },
+        
         scrollTopBottom(){
             const el = document.querySelector('.js-chat-talk');
             el.scrollTop = el.scrollHeight;

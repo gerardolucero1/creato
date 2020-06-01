@@ -13,7 +13,7 @@ import VueFuse from 'vue-fuse';
 Vue.use(VueFuse);
 
 import DataTable from 'laravel-vue-datatable';
-import Vuelidate from 'vuelidate'
+import Vuelidate from 'vuelidate';
 
 Vue.use(DataTable);
 

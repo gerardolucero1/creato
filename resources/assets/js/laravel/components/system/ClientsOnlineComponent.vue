@@ -42,7 +42,7 @@ export default {
         }
     },
     mounted(){
-        Echo.join('messenger')
+        Echo.join('clientsOnline')
         .here((user) => {
             
             this.users = user;  

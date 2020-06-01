@@ -24,7 +24,7 @@ Broadcast::channel('users.{id}', function ($user, $id) {
 });
 
 
-Broadcast::channel('messenger', function ($user) {
+Broadcast::channel('messengerOnline', function ($user) {
     return [
         'id' => $user->id,
         'name' => $user->name,

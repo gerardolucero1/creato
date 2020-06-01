@@ -25,7 +25,8 @@
                         :contact-id="selectedConversation.contact_id"
                         :contact-name="selectedConversation.contact_name"
                         :messages="messages"
-                        @messageCreated="addMessage($event)">
+                        @messageCreated="addMessage($event)"
+                        @sendMail="sendMail($event)">
                         </active-conversation-component>
                 </div>
             </div>
@@ -57,7 +58,7 @@ export default {
 	    		this.addMessage(message);
             });
 
-        Echo.join('messenger')
+        Echo.join('messengerOnline')
             .here((users) => {
                 users.forEach(user => this.changeStatus(user, true));
             })
@@ -123,7 +124,18 @@ export default {
             if (index >= 0)
             this.$set(this.conversations[index], 'online', status);
             //this.$set(this.)
-        }
+        },
+
+        sendMail(args){
+            let conversation = this.onlineUsers.find(item => {
+                return item.contact_id == args.to_id
+            })
+            if(conversation== undefined){
+                axios.post('/sendemail',args).then((response) => {
+                
+            }); 
+            }
+            }
     },
 
     computed:{
@@ -132,6 +144,13 @@ export default {
                 (conversation) => conversation.contact_name
                                     .toLowerCase()
                                     .includes(this.querySearch.toLowerCase()));
+        },
+
+        onlineUsers(){
+            let users = this.conversations.filter(item => {
+                return item.online == true; 
+            })
+            return users;
         }
     }
 }
