@@ -16,7 +16,8 @@
                     </div>
                     <div class="block-content">
                         <p>Estos son los usuarios registrados hasta el momento, puedes seleccionar cualquiera y su lista de invitados se copiara de inmediato al proyecto actual.</p>
-                    <div class="form-group row">
+                        
+                        <div class="form-group row">
                             <div class="col-md-12">
                                 <div class="">
                                     {{ Form::label('client_id', 'Cliente') }}
@@ -26,6 +27,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <small class="text-danger">*Todos los invitados previamente registrados seran reeemplazados por los de la lista seleccionada, ten cuidado*</small>
                     </div>
                 </div>
                 <div class="modal-footer">

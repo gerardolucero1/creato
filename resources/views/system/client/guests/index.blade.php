@@ -1,5 +1,19 @@
 @extends('layouts.client')
 
+@section('styles')
+    <style>
+        .btn-rounded{
+            border: 1px solid #f76c6f;
+            color: #f76c6f;
+        }
+
+        .btn-rounded:hover{
+            background-color: #f76c6f;
+            color: white;
+        }
+    </style>
+@endsection
+
 @section('content')
     <main id="main-container" style="min-height: 288px;">
         <div class="container">
@@ -38,15 +52,15 @@
                 <div class="col-md-12">
                     <guests-component></guests-component>
                 </div>
-                <div class="col-md-12">
-                    <div class="block">
-                        <div class="block-content" style="margin: 0; padding: 10px 0 0 10px; text-align: center;">
+                <div class="col-md-12 mt-4">
+                    <div class="">
+                        <div class="" style="margin: 0; padding: 10px 0 0 10px; text-align: center;">
                             <h5>Sube tu lista desde Excel.</h5>
                             <form action="{{ route('guests.import.excel') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="excel" id="">
                                 <br>
-                                <button type="submit" class="btn btn-rounded btn-outline-primary min-width-125 mb-10 mt-3">
+                                <button type="submit" class="btn btn-rounded min-width-125 mb-10 mt-3">
                                     Subir
                                 </button>
                             </form>

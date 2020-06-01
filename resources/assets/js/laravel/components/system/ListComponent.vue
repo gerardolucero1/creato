@@ -12,8 +12,11 @@
                             <p class="mb-10 text-muted">
                                 <em>{{ bloque.created_at | formatoFecha }}</em>
                             </p>
-                            <p>
+                            <p v-if="bloque.user != null">
                                 Bloque asignado a: {{ bloque.user.name }}
+                            </p>
+                            <p v-else>
+                                Bloque asignado a: GENERAL
                             </p>
                         </div>
                     </div>

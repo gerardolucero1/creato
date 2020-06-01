@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System;
 
 use App\Guest;
 use App\Companion;
+use App\GuestList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -148,4 +149,30 @@ class TablesController extends Controller
             return $companion;
         }
     }
+
+    public function guardarTamano(Request $request)
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $user = Auth::user();
+        
+        $guestList = GuestList::find($user->project->list->id);
+        $guestList->image_size = $data->size;
+        $guestList->save();
+        return;
+    }
+
+    public function obtenerTamano()
+    {
+        $user = Auth::user();
+        
+        $guestList = GuestList::find($user->project->list->id);
+        return $guestList->image_size;
+    }
+
+    public function obtenerMesas()
+    {
+        $user = Auth::user();
+        return $user->project->tables;
+    }
+
 }
