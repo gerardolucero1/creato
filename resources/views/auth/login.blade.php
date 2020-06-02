@@ -35,7 +35,7 @@
             <div class="content content-full">
                 <div class="px-30 py-10">
                     <a class="font-w700" href="/">
-                        <img class="creato-logo" src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png" width="190px" alt="Creato-studio-logo">
+                        <img class="creato-logo" src="/images/creato-logo-1.png" width="300px" alt="Creato-studio-logo">
                     </a>
                     <h1 class="h3 font-w700 mt-30 mb-10">Bienvenido a Creato</h1>
                     <h2 class="h5 font-w400 text-muted mb-0">Por favor has login</h2>

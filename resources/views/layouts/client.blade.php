@@ -17,16 +17,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-        <link
-            rel="icon"
-            sizes="192x192"
-            type="image/png"
-            href="{{ asset('media/favicons/favicon-192x192.png') }}">
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+        <link rel="shortcut icon" type="image/png" href="/favicon.ico">
 
         <!-- Fonts and Styles -->
         @yield('css_before')
@@ -147,10 +138,10 @@
             <header id="page-header">
                 <div class="content-header">
                     <div class="content-header-section">
-                        <div class="content-header-item mr-5" style="margin-top: -25px;">
+                        <div class="content-header-item mr-5" style="margin-top: -15px;">
                             <a class="" href="{{ route('dashboard.client') }}">
                                 {{-- <img src="/images/logo-creato.webp" width="170px" alt="" srcset=""> --}}
-                                <img src="/images/logo.png" width="40px" alt="" srcset="">
+                                <img src="/images/creato-logo-2.png" width="40px" alt="" srcset="">
                             </a>
                         </div>
                     </div>

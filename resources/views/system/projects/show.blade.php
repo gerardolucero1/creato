@@ -85,7 +85,7 @@
                         @if ($project->plans)
                             <img src="{{ $project->plans }}" width="100%">
                         @else
-                            <img src="/images/creato.jpg" width="100%">                        
+                            <img src="/images/creato-logo-4.png" width="100%">                        
                         @endif
                     </div>
                 </div>

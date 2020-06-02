@@ -309,7 +309,7 @@ padding: 0;
             <div class="col-md-12">
                 <section class="drag-zone" id="wrap-zone" style="padding: 0;">
                     <img v-if="proyecto.plans" :src="proyecto.plans" width="100%" alt="">
-                    <img v-else src="/images/creato.jpg" width="100%" alt="">
+                    <img v-else src="/images/creato-logo-4.png" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
                         <div v-if="invitado.companions" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">

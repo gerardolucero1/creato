@@ -62,6 +62,7 @@
         justify-content: flex-start;
         align-items: center;
         padding-right: 10px;
+        margin-top: -8px;
     }
 
     .main-menu-btn p{
@@ -315,7 +316,7 @@
                 </div>
                 <div class="main-menu-logo">
                     <router-link to="/">
-                        <img src="/images/logo.png" alt="">
+                        <img src="/images/creato-logo-2.png" alt="">
                     </router-link>
                 </div>
             </div>
@@ -334,6 +335,9 @@
                         </li>
                         <li>
                             <router-link to="/contact">- contacto</router-link>
+                        </li>
+                        <li>
+                            <a href="/login">- novias creato</a>
                         </li>
                     </ul>
                 </section>

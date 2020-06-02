@@ -14,9 +14,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-        <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
 
         <!-- Fonts and Styles -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
@@ -149,9 +147,9 @@
                                 <!-- END Close Sidebar -->
     
                                 <!-- Logo -->
-                                <div class="content-header-item" style="margin-top: -10px;">
+                                <div class="content-header-item" style="margin-top: -20px;">
                                     <a class="" href="{{ route('dashboard.admin') }}">
-                                        <img src="/images/logo-creato.webp" width="170px" alt="logo-creato" srcset="">
+                                        <img src="/images/creato-logo-1.png" width="200px" alt="logo-creato" srcset="">
                                     </a>
                                 </div>
                                 <!-- END Logo -->
