@@ -75,8 +75,8 @@
                                 <tr v-for="bloque in bloques" :key="bloque.index">
                                     <th class="text-center" scope="row">{{ bloque.id }}</th>
                                     <td>{{ bloque.name }}</td>
-                                    <td v-if="bloque.user != null">{{ bloque.user.name }}</td>
-                                    <td v-else>Bloque general</td>
+                                    <td v-if="bloque.user == null">Bloque general</td>
+                                    <td v-else>{{ bloque.user.name }}</td>
                                     <td>{{ bloque.lists_task.length }}</td>
                                     <!-- <td class="d-none d-sm-table-cell">
                                         <span class="badge badge-info">Activo</span>
@@ -89,12 +89,13 @@
                                             <a :href="'lista/' + bloque.id" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <button v-if="bloque.user != null" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="iniciarCopiarBloque(bloque)">
+                                            <button v-if="bloque.user == null" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="iniciarCopiarBloque(bloque)">
                                                 <i class="fa fa-copy"></i>
                                             </button>
+                                            <button v-else type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            
                                         </div>
                                     </td>
                                 </tr>
