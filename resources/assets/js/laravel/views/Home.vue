@@ -236,8 +236,8 @@
                     <!-- <iframe src="https://player.vimeo.com/video/418283179?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe> -->
                 </div>
                 
-                <div class="box-tag-container">
-                    <img src="/images/creato-logo-1.png" width="300px" alt="">
+                <div class="box-tag-container" v-for="imagen in imagenes" :key="imagen.index">
+                    <img :src="imagen.index" width="300px" alt=""> 
                 </div>
             </div>
         </div>
@@ -252,14 +252,25 @@ export default {
         return{
             menu: false,
             sound: true,
+            imagenes:[]
         }
     },
 
     computed: {
 
     },
+    created(){
+            this.obtenerDatos();
+        },
 
     methods: {
+        obtenerDatos: function(){
+                let URL = '/index';
+                axios.get(URL).then((response)=>{
+                    this.imagenes = response.data;
+                });     
+        },
+
         videoSound(){
             let video = document.getElementById('video-source')
             this.sound = !this.sound

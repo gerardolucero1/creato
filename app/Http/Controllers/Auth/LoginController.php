@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Config;
+
 
 class LoginController extends Controller
 {
@@ -26,6 +28,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+    
     public function authenticated($request , $user){
         $rol = $user->roles->implode('name', ',');
 
@@ -48,6 +52,13 @@ class LoginController extends Controller
                 break;
         }
     }
+
+    public function showLoginForm()
+    {
+        $config = Config::find(1);
+        return view('auth.login', compact('config'));
+    }
+
     //protected $redirectTo = '/dashboard';
 
     /**

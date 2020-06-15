@@ -32,7 +32,7 @@
 
 @section('content')
     <main id="main-container" style="min-height: 288px;">
-        <div class="banner-inicio" style="background-image: url('https://www.alcaidesaeventos.com/images/cabecera/slide/alcaidesa-eventos-terraza-bodas-04.jpg');">
+        <div class="banner-inicio" style="background-image: url('{{ $config->welcome }}');">
             <div class="banner-inicio-layer">
                 <h2>Bienvenido(a)</h2>
                 <h4>{{ Auth::user()->name }}</h4>

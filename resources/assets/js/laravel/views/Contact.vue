@@ -394,10 +394,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-5" style="background-image: url('/images/index.png'); background-position: center; background-size: cover;">
-                        <!-- <div class="">
-                            <img src="/images/index.png" width="100%" alt="">
-                        </div> -->
+                    <div class="col-12 col-sm-12 col-md-5" v-for="imagen in imagenes" :key="imagen.index">
+                        <div class="" :style='{ backgroundImage: "url(" + imagen.contact + ")", }'>
+                            <!-- <div class="">
+                                <img src="/images/index.png" width="100%" alt="">
+                            </div> -->
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="row">
@@ -448,7 +450,8 @@ export default {
                 email: '',
                 telephone: '',
                 message: ''
-            }
+            },
+            imagenes: []
         }
     },
 
@@ -478,7 +481,13 @@ export default {
             axios.post(URL, this.contact).then((response) => {
                 console.log('email enviado')
             })
-        }
+        },
+        obtenerDatos: function(){
+                let URL = '/index';
+                axios.get(URL).then((response)=>{
+                    this.imagenes = response.data;
+                });     
+        },
     }
 }
 </script>

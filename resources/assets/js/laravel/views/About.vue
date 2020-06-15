@@ -233,27 +233,27 @@
                             </div>
                         </div>
 
-                        <div class="row mt-3">
+                        <div class="row mt-3" v-for="imagen in imagenes" :key="imagen.index">
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/paola.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros1 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Ana Paola</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/maria.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros2 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Ana Maria</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/gerardo.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros3 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Gerardo</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/todos.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros4 + ")", }'>
 
                                 </div>
                             </div>
@@ -274,15 +274,24 @@ export default {
     data(){
         return{
             menu: false,
+            imagenes:[]
         }
     },
 
     computed: {
 
     },
+    created(){
+            this.obtenerDatos();
+        },
 
     methods: {
-
+        obtenerDatos: function(){
+                let URL = '/index';
+                axios.get(URL).then((response)=>{
+                    this.imagenes = response.data;
+                });     
+        },
     }
 }
 </script>
