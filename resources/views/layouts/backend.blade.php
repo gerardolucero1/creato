@@ -301,7 +301,11 @@
                                             <i class="si si-user mr-5"></i> Perfil
                                         </a>
                                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('conversation.index') }}">
-                                            <span><i class="si si-envelope-open mr-5"></i> Mensajes</span>
+                                            <span><i class="si si-envelope mr-5"></i> Mensajes</span>
+                                            <span class="badge badge-primary"></span>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('config.index') }}">
+                                            <span><i class="si si-settings mr-5"></i> Configuración</span>
                                             <span class="badge badge-primary"></span>
                                         </a>
                                         {{-- <div class="dropdown-divider"></div> --}}
