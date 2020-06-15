@@ -17,6 +17,7 @@ class CreateGuestListsTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->string('name');
+            $table->integer('image_size')->nullable();
             $table->timestamps();
 
             //Relation

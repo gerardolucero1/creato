@@ -1,5 +1,7 @@
 @extends('layouts.client')
 
 @section('content')
-    <tables-component></tables-component>
+    <div class="container-fluid">
+        <tables-component></tables-component>
+    </div>
 @endsection

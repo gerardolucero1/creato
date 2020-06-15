@@ -16,7 +16,12 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('clientsOnline', function ($user) {
-    return $user;
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'photo' => $user->profile->photo,
+    ];
 });
 
 Broadcast::channel('users.{id}', function ($user, $id) {

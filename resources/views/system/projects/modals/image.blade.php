@@ -48,17 +48,22 @@
                             <div class="col-md-12">
                                 <div class="form-group row">
                                     <div class="col-md-12">
-                                        <div class="form-material">
-                                            <input type="file" name="plans" id="file-input">
-                                            <label for="file-input">
-                                                <i class="fa fa-upload"></i> <span id="name-file">Planos de boda</span>
-                                            </label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input js-custom-file-input-enabled" id="file-input-image" name="plans" data-toggle="custom-file-input">
+                                            <label class="custom-file-label" for="file-input-">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <img id="imgSalida" width="100%" src="" />
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="table-number">Ingresa el numero de mesas</label>
+                                    <input type="number" name="tableNumber" class="form-control" id="table-number" aria-describedby="table-number-help">
+                                    <small id="table-number-help" class="form-text text-muted">El numero debe ser mayor a 1</small>
+                                </div>
                             </div>
                         </div>
                     </div>

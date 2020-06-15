@@ -53,6 +53,7 @@
         justify-content: flex-start;
         align-items: center;
         padding-right: 10px;
+        margin-top: -8px;
     }
 
     .main-menu-btn p{
@@ -191,7 +192,7 @@
                 </div>
                 <div class="main-menu-logo">
                     <router-link to="/">
-                        <img src="/images/logo.png" alt="">
+                        <img src="/images/creato-logo-2.png" alt="">
                     </router-link>
                 </div>
             </div>
@@ -211,6 +212,9 @@
                         <li>
                             <router-link to="/contact">- contacto</router-link>
                         </li>
+                        <li>
+                            <a href="/login">- novias creato</a>
+                        </li>
                     </ul>
                 </section>
 
@@ -220,16 +224,16 @@
                 <div class="row box-2">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p>Somos una firma mexicana de talentos enfocada en crear experiencias únicas. Tomamos tu inspiración y emoción para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu esencia en cada elemento.</p>
+                            <div class="col-md-12" style="padding: 0 0; font-size: 1.1em;">
+                                <p class="text-justify">Somos una firma mexicana de talentos enfocada en crear experiencias únicas. Tomamos tu inspiración y emoción para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu esencia en cada elemento.</p>
                                 <br>
-                                <p>Planeamos y estructuramos cada uno de los aspectos técnicos para que el proceso de creación sea sinónimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minúsculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
+                                <p class="text-justify">Planeamos y estructuramos cada uno de los aspectos técnicos para que el proceso de creación sea sinónimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minúsculo para que en su conjunto logremos la espectacularidad que te mereces.</p>
                                 <br>
-                                <p>Creato es creación; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
+                                <p class="text-justify">Creato es creación; diseño de vanguardia; propuestas que buscan innovar, evolucionar e integrar; buscamos el sentido propio de cada quien partiendo de la personalidad de cada ser humano.</p>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-12 col-md-3">
                                 <div class="box-about-img" style="background-image: url('/images/paola.png');">
 

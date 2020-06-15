@@ -135,8 +135,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="guardarTarea()" >Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-alt-success" @click="guardarTarea()">
+                                <i class="fa fa-check"></i> Guardar
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary" @click="guardarTarea()" >Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> -->
                         </div>
                     </div>
                 </div>
@@ -201,8 +205,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="editarTarea(actualizarTarea)" >Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-alt-success" @click="editarTarea(actualizarTarea)">
+                                <i class="fa fa-check"></i> Editar
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary" @click="editarTarea(actualizarTarea)" >Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                         </div>
                     </div>
                 </div>

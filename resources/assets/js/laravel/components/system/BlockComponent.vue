@@ -75,7 +75,8 @@
                                 <tr v-for="bloque in bloques" :key="bloque.index">
                                     <th class="text-center" scope="row">{{ bloque.id }}</th>
                                     <td>{{ bloque.name }}</td>
-                                    <td>{{ bloque.user.name }}</td>
+                                    <td v-if="bloque.user != null">{{ bloque.user.name }}</td>
+                                    <td v-else>Bloque general</td>
                                     <td>{{ bloque.lists_task.length }}</td>
                                     <!-- <td class="d-none d-sm-table-cell">
                                         <span class="badge badge-info">Activo</span>
@@ -88,8 +89,11 @@
                                             <a :href="'lista/' + bloque.id" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
+                                            <button v-if="bloque.user != null" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
                                                 <i class="fa fa-times"></i>
+                                            </button>
+                                            <button v-else type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="iniciarCopiarBloque(bloque)">
+                                                <i class="fa fa-copy"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -106,7 +110,7 @@
        
         <!-- Modal agregar bloque -->
         
-       <div class="modal fade show" id="agregarBloque" tabindex="-1" role="dialog">
+        <div class="modal fade show" id="agregarBloque" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-slideleft" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
@@ -166,13 +170,13 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-material">
                                         <input v-model="actualizarBloque.name" type="text" class="form-control" name="material-text" placeholder="">
                                         <label for="material-text">Nombre</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12" v-if="actualizarBloque.user != null">
                                     <div class="form-material">
                                         <select v-model="actualizarBloque.client_id" class="form-control" name="listTask_id" id="lista">
                                             <option value="">elije el cliente</option>
@@ -193,7 +197,7 @@
                 </div>
             </div>
         </div> 
-        <!-- termina modal para editar bloque -->      
+        <!-- termina modal para editar bloque -->       
     </section>
 </template>
 
@@ -224,6 +228,8 @@
                 tasks: [],
 
                 usuarios:[],
+
+                copiarBloque: false,
             }
         },
         created(){
@@ -259,18 +265,29 @@
         },
 
         methods: {
-    /* C-rear bloques */
+            iniciarCopiarBloque(bloque){
+                this.copiarBloque = true
+                $('#agregarBloque').modal('show');
+            },
+
+            /* C-rear bloques */
 
             agregarBloque: function(){
-                    $('#agregarBloque').modal('show');
+                this.copiarBloque = false
+                $('#agregarBloque').modal('show');
             },
 
             guardarBloque: function(){
                 console.log(this.bloque)
                 let URL = 'block/save';
+                
 
-                axios.post(URL, 
-                    this.bloque
+                let bloque = {
+                    name: this.bloque.name,
+                    client_id: this.bloque.client_id,
+                    copiar: this.copiarBloque,
+                }
+                axios.post(URL, bloque
                 ).then((response) => {
                     console.log('se inserto datos');
                     $('#agregarBloque').modal('hide');
@@ -296,7 +313,7 @@
             obtenerBloques: function(){
                 let URL = 'blocks/get';
                 axios.get(URL).then((response)=>{
-                    this.bloques = response.data[0];
+                    this.bloques = response.data[0].reverse();
                     this.tasks = response.data[1];
                     console.log(this.bloques);
                 }).catch((error)=>{

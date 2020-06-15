@@ -45,6 +45,7 @@
         justify-content: flex-start;
         align-items: center;
         padding-right: 10px;
+        margin-top: -8px;
     }
 
     .main-menu-btn p{
@@ -150,22 +151,30 @@
         height: calc(100vh - 150px);
     }
 
-    .video{
-        position: absolute;
-        top: 0;
-        left: 0;
+    .video-container video{
+        object-fit: cover;
+        object-position: center;
         width: 100%;
-        height: 100%;
-        pointer-events: none;
+        height: calc(100vh - 150px);
     }
 
-    .video-container iframe{
+    .btn-audio{
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
+        bottom: 0;
+        right: 0;
+        visibility: hidden;
+        width: 35px;
+        height: 35px;
+        border-radius: 100%;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        background-color: transparent;
+        color: royalblue;
+        border: 1px solid royalblue;
+    }
+
+    .video-container:hover .btn-audio{
+        visibility: visible;
     }
 
     /* Responsive */
@@ -194,7 +203,7 @@
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
-                    <img src="/images/logo.png" alt="">
+                    <img src="/images/creato-logo-2.png" alt="">
                 </div>
             </div>
 
@@ -213,17 +222,22 @@
                         <li>
                             <router-link to="/contact">- contacto</router-link>
                         </li>
+                        <li>
+                            <a href="/login">- novias creato</a>
+                        </li>
                     </ul>
                 </section>
                 <div class="video-container">
-                    <div class="video">
-                        <iframe src="https://player.vimeo.com/video/418283179?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe>
-                    </div>
+                    <video id="video-source" src="/videos/Creato_Web_2.webm" autoplay loop muted></video>
+                    <button class="btn-audio" @click="videoSound">
+                        <i v-if="!sound" class="fas fa-volume-mute"></i>
+                        <i v-else class="fas fa-volume-up"></i>
+                    </button>
+                    <!-- <iframe src="https://player.vimeo.com/video/418283179?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe> -->
                 </div>
                 
                 <div class="box-tag-container">
-                    <p>CREATO.MX</p>
-                    <p>event design</p>
+                    <img src="/images/creato-logo-1.png" width="300px" alt="">
                 </div>
             </div>
         </div>
@@ -237,6 +251,7 @@ export default {
     data(){
         return{
             menu: false,
+            sound: true,
         }
     },
 
@@ -245,7 +260,11 @@ export default {
     },
 
     methods: {
-
+        videoSound(){
+            let video = document.getElementById('video-source')
+            this.sound = !this.sound
+            video.muted = this.sound;
+        }
     }
 }
 </script>

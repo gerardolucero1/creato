@@ -15,7 +15,7 @@ class CreateBlockListsTable extends Migration
     {
         Schema::create('block_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('client_id')->unsigned();
+            $table->integer('client_id')->unsigned()->nullable();
             $table->string('name');
             $table->timestamps();
 

@@ -62,6 +62,7 @@
         justify-content: flex-start;
         align-items: center;
         padding-right: 10px;
+        margin-top: -8px;
     }
 
     .main-menu-btn p{
@@ -111,6 +112,10 @@
         border-radius: 0;
         width: 80%;
         margin-top: 10px;
+    }
+
+    .box-content .box-2 textarea{
+        border: 1px solid black;
     }
 
     .box-content .box-2 textarea:focus{
@@ -211,11 +216,26 @@
         color: black;
     }
 
-    .inputs{
+    .input-special{
         display: flex;
     }
 
+    /* .inputs{
+        display: flex;
+    } */
+
     /* Responsive */
+    @media only screen and (max-width: 992px) {
+        .inputs{
+            display: block;
+        }
+
+        .box-content .box-1{
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+    }
     @media only screen and (max-width: 600px) {
         h2{
             text-align: center;
@@ -259,7 +279,40 @@
     and (max-device-width: 812px) 
     and (-webkit-min-device-pixel-ratio: 3)
     and (orientation: portrait) { 
-        
+        h2{
+            text-align: center;
+        }
+
+        h3{
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .box-content .box-1{
+            height: calc((100vh - 150px) / 5.5);
+            display: block;
+            
+        }
+
+        .box-2{
+            margin-top: 120px;
+        }
+
+        .inputs{
+            display: block;
+        }
+
+        .box-content .box-2 input, textarea{
+            width: 100%;
+        }
+
+        .form-button{
+            width: 100%;
+        }
+
+        .box-about-img{
+            display: none;
+        }
     }
 </style>
 
@@ -273,7 +326,7 @@
                 </div>
                 <div class="main-menu-logo">
                     <router-link to="/">
-                        <img src="/images/logo.png" alt="">
+                        <img src="/images/creato-logo-2.png" alt="">
                     </router-link>
                 </div>
             </div>
@@ -293,6 +346,9 @@
                         <li>
                             <router-link to="/contact">- contacto</router-link>
                         </li>
+                        <li>
+                            <a href="/login">- novias creato</a>
+                        </li>
                     </ul>
                 </section>
                 <div class="row box-1">
@@ -300,23 +356,23 @@
                     <h3>Contáctanos para obtener mas información de nosotros y nuestros servicios.</h3>
                 </div>
                 <div class="row box-2">
-                    <div class="col-md-7">
+                    <div class="col-12 col-sm-12 col-md-7">
                         <form action="" @submit.prevent="sendEmail">
                             <div class="inputs">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" v-model="contact.name" required>
+                                <input type="text" v-model="contact.name" required>
                             </div>
                             <div class="inputs">
                                 <label for="">Correo</label>
-                                <input type="email" class="form-control" v-model="contact.email" required>
+                                <input type="email" v-model="contact.email" required>
                             </div>
                             <div class="inputs">
                                 <label for="">Celular</label>
-                                <input type="number" class="form-control" v-model="contact.telephone">
+                                <input type="number" v-model="contact.telephone">
                             </div>
-                            <div class="inputs">
+                            <div class="inputs input-special">
                                 <label for="">Mensaje</label>
-                                <textarea class="form-control" name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
+                                <textarea name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
                             </div>
                             <div class="inputs">
                                 <label for="" style="visibility: hidden;">Mensaje</label>
@@ -324,7 +380,7 @@
                             </div>
                         </form>
                         <div class="row box-social-media mt-3">
-                            <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="col-12 col-sm-12 col-md-12 d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <a href="#" target="_blank">
                                         <img class="mr-1" src="/images/logo-fb.png" alt="">
@@ -338,12 +394,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="box-about-img">
+                    <div class="col-12 col-sm-12 col-md-5" style="background-image: url('/images/index.png'); background-position: center; background-size: cover;">
+                        <!-- <div class="">
                             <img src="/images/index.png" width="100%" alt="">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
+                <!-- <div class="row">
+                    <div class="col-md-7">
+                        <div class="form">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="">Nombre</label>
+                                        <input type="text" style="width: 90%;" v-model="contact.name" required> 
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="">Correo</label>
+                                        <input type="email" style="width: 90%;" v-model="contact.email" required> 
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="">Celular</label>
+                                        <input type="number" style="width: 90%;" v-model="contact.telephone">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="">Mensaje</label>
+                                        <textarea style="width: 90%;" name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="/images/index.png" width="100%" alt="">
+                    </div>
+                </div> -->
             </div>
         </div>
     </section>

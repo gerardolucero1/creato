@@ -58,7 +58,7 @@
                                         <div class="col-md-6 col-xl-4" style="margin: 0; padding: 10px;">
                                             <div class="block text-center">
                                                 <div class="block-content">
-                                                    <img class="img-avatar img-avatar96" src="https://hallyumusic.com/wp-content/uploads/2018/01/APRIL-Chaewon-The-Ruby-Cover.jpg" alt="">
+                                                    <img class="img-avatar img-avatar96" src="{{ $user->profile->photo }}" alt="">
                                                 </div>
                                                 <div class="block-content block-content-full">
                                                     <div class="font-size-h4 font-w600 mb-0">{{ $user->name }}</div>
@@ -114,7 +114,7 @@
                                         <div class="col-md-6 col-xl-4" style="margin: 0; padding: 10px;">
                                             <div class="block text-center">
                                                 <div class="block-content">
-                                                    <img class="img-avatar img-avatar96" src="https://hallyumusic.com/wp-content/uploads/2018/01/APRIL-Chaewon-The-Ruby-Cover.jpg" alt="">
+                                                    <img class="img-avatar img-avatar96" src="{{ $user->profile->photo }}" alt="">
                                                 </div>
                                                 <div class="block-content block-content-full">
                                                     <div class="font-size-h4 font-w600 mb-0">{{ $user->name }}</div>

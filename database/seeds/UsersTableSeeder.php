@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Profile;
+use App\BlockList;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -32,6 +33,11 @@ class UsersTableSeeder extends Seeder
             'banner' => "https://www.edreams.es/blog/wp-content/uploads/sites/5/2016/03/Portada-Blog-1.png",
             'description' => "descripción",
             'phone' => "123456789",
+        ]);
+
+        $list = BlockList::create([
+            'client_id' => null,
+            'name' => 'Bloque General'
         ]);
 
     }

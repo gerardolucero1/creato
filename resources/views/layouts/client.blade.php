@@ -17,16 +17,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-        <link
-            rel="icon"
-            sizes="192x192"
-            type="image/png"
-            href="{{ asset('media/favicons/favicon-192x192.png') }}">
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+        <link rel="shortcut icon" type="image/png" href="/favicon.ico">
 
         <!-- Fonts and Styles -->
         @yield('css_before')
@@ -48,9 +39,28 @@
         <!--Animate CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+        <style>
+            #app{
+                background-color: white; 
+                padding-bottom: 2em !important;
+            }
+            #page-header{
+                background-color: #E7D5CD;
+            }
 
+            @media (min-width: 992px){
+                .nav-main-header a {
+                    color: white;
+                    text-shadow: 1px 1px 10px #707070;
+                }
+
+                .nav-main-header ul, .nav-main-header > li:hover > a.nav-submenu {
+                    background-color: white;
+                }
+            }
+        </style>
         @yield('styles')
-
     </head>
     <body>
         <div
@@ -79,7 +89,8 @@
                                                 </button>
                                                 <div class="content-header-item mr-5" style="margin-top: -10px;">
                                                     <a class="" href="{{ route('dashboard.client') }}">
-                                                        <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
+                                                        {{-- <img src="/images/logo-creato.webp" width="170px" alt="" srcset=""> --}}
+                                                        <img src="/images/logo.png" width="170px" alt="" srcset="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -127,9 +138,10 @@
             <header id="page-header">
                 <div class="content-header">
                     <div class="content-header-section">
-                        <div class="content-header-item mr-5" style="margin-top: -25px;">
+                        <div class="content-header-item mr-5" style="margin-top: -15px;">
                             <a class="" href="{{ route('dashboard.client') }}">
-                                <img src="/images/logo-creato.webp" width="170px" alt="" srcset="">
+                                {{-- <img src="/images/logo-creato.webp" width="170px" alt="" srcset=""> --}}
+                                <img src="/images/creato-logo-2.png" width="40px" alt="" srcset="">
                             </a>
                         </div>
                     </div>
@@ -213,7 +225,7 @@
                 <clients-online-component style="display: none;"></clients-online-component>
                 @yield('content')
             </div>
-            <footer id="page-footer" class="bg-white opacity-0" style="opacity: 1;">
+            <footer id="page-footer" class="opacity-0" style="opacity: 1;" style="background-color: #EFEFEF;">
                 <div class="content py-20 font-size-xs clearfix">
                     <div class="float-right">
                         Crafted with
@@ -243,6 +255,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
             
             <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            <script src="https://unpkg.com/swiper/js/swiper.js"></script>
         @yield('scripts')
     </body>
 </html>

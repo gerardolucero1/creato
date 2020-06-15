@@ -12,8 +12,11 @@
                             <p class="mb-10 text-muted">
                                 <em>{{ bloque.created_at | formatoFecha }}</em>
                             </p>
-                            <p>
+                            <p v-if="bloque.user != null">
                                 Bloque asignado a: {{ bloque.user.name }}
+                            </p>
+                            <p v-else>
+                                Bloque asignado a: GENERAL
                             </p>
                         </div>
                     </div>
@@ -125,8 +128,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="guardarLista()" >Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-alt-success" @click="guardarLista()">
+                                <i class="fa fa-check"></i> Guardar
+                            </button>
+                            <!-- <button type="button" class="btn btn-success" @click="guardarLista()" >Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                         </div>
                     </div>
                 </div>
@@ -182,8 +189,12 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="editarLista(actualizarLista)" >Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-alt-success" @click="editarLista(actualizarLista)">
+                            <i class="fa fa-check"></i> Editar
+                        </button>
+                        <!-- <button type="button" class="btn btn-primary" @click="editarLista(actualizarLista)" >Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                     </div>
                 </div>
             </div>
