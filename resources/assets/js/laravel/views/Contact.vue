@@ -393,10 +393,10 @@
                             </div>
                         </div>
                     </div>
-                        <div class="col-12 col-sm-12 col-md-5" style="background-image: url('/images/index.png'); background-position: center; background-size: cover;">
-                            <!-- <div class="">
-                                <img src="/images/index.png" width="100%" alt="">
-                            </div> -->
+                        <div class="col-12 col-sm-12 col-md-5" style=" background-position: center; background-size: cover;">
+                            <div class="">
+                                <img :src="imagenes.config.contact" width="100%" alt="">
+                            </div>
                         </div>
                 </div>
                 <!-- <div class="row">

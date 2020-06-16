@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Validator;
 use App\Http\Requests\PortfolioStoreRequest;
 use App\Http\Requests\PortfolioUpdateRequest;
+use App\Config;
 
 class PortfolioController extends Controller
 {
@@ -20,8 +21,9 @@ class PortfolioController extends Controller
      */
     public function index()
     {
+        $config = Config::find(1);
         $portfolios = Portfolio::orderBy('id', 'DESC')->get();
-        return view('system.portfolio.index', compact('portfolios'));
+        return view('system.portfolio.index', compact('portfolios', 'config'));
     }
 
     /**
@@ -31,7 +33,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('system.portfolio.create');
+        $config = Config::find(1);
+        return view('system.portfolio.create', compact('config'));
     }
 
     /**
@@ -68,10 +71,11 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
+        $config = Config::find(1);
         if (is_null($portfolio)) {
             return back();
         }
-        return view('system.portfolio.show',compact('portfolio'));
+        return view('system.portfolio.show',compact('portfolio', 'config'));
     }
 
     /**
@@ -82,9 +86,10 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
+        $config = Config::find(1);
         $portfolio = Portfolio::find($id);
 
-        return view('system.portfolio.edit', compact('portfolio'));
+        return view('system.portfolio.edit', compact('portfolio', 'config'));
     }
 
     /**
@@ -97,6 +102,7 @@ class PortfolioController extends Controller
     public function update(PortfolioUpdateRequest $request, $id)
     {
         $portfolio = Portfolio::find($id);
+        
 
         //Comprobamos que el slug no se repita pero ignoramos el slug propio
         $v = \Validator::make($request->all(), [

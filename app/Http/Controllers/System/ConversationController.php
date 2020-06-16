@@ -6,18 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Conversation;
 use App\Profile;
+use App\Config;
 
 
 class ConversationController extends Controller
 {
     public function index()
     {
-        return view('system.messages.chat');
+        $config = Config::find(1);
+        return view('system.messages.chat', compact('config')); 
     }
 
     public function indexClient()
     {
-        return view('system.client.messages.index');
+        $config = Config::find(1);
+        return view('system.client.messages.index', compact('config')); 
     }
 
     public function conversation()

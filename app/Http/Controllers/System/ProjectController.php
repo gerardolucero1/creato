@@ -10,6 +10,7 @@ use App\Calendar;
 use App\Companion;
 use App\GuestList;
 use Carbon\Carbon;
+use App\Config;
 use App\NumberTable;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -29,7 +30,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderBy('id', 'DESC')->get();
-        return view('system.projects.index', compact('projects'));
+        $config = Config::find(1);
+        return view('system.projects.index', compact('projects', 'config'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProjectController extends Controller
     public function create()
     {
         $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();
+        $config = Config::find(1);
         //dd($users);
         
         
@@ -54,7 +57,7 @@ class ProjectController extends Controller
         $users = $fullUsers->pluck('name', 'id');
         //dd($users);
         
-        return view('system.projects.create', compact('users'));
+        return view('system.projects.create', compact('users', 'config'));
     }
 
     /**
@@ -110,6 +113,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
+        $config = Config::find(1);
         //dd($project->user->name);
         $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();        
         
@@ -124,7 +128,7 @@ class ProjectController extends Controller
         $users = $fullUsers->pluck('name', 'id');
         unset($users[$project->user->id]);
         //dd($users);
-        return view('system.projects.show', compact('project', 'users'));
+        return view('system.projects.show', compact('project', 'users', 'config'));
     }
 
     /**
@@ -136,6 +140,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
+        $config = Config::find(1);
         $allUsers = User::orderBy('id', 'DESC')->where('active', 1)->get();
         // dd($users);
         
@@ -150,7 +155,7 @@ class ProjectController extends Controller
         $fullUsers = collect($usersClient);
         $users = $fullUsers->pluck('name', 'id');
 
-        return view('system.projects.edit', compact('project', 'users'));
+        return view('system.projects.edit', compact('project', 'users', 'config'));
     }
 
     /**

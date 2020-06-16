@@ -9,6 +9,7 @@ use App\MyList;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Config;
 
 class UsersController extends Controller
 {
@@ -19,14 +20,16 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $config = Config::find(1);
         $users = User::orderBy('id', 'DESC')->where('active', 1)->get();
-        return view('system.users.index', compact('users'));
+        return view('system.users.index', compact('users', 'config'));
     }
 
     public function clientesIndex()
     {
+        $config = Config::find(1);
         $users = User::orderBy('id', 'DESC')->where('active', 1)->get();
-        return view('system.users.clientesIndex', compact('users'));
+        return view('system.users.clientesIndex', compact('users', 'config'));
     }
 
     /**
@@ -36,8 +39,9 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $config = Config::find(1);
         $roles = Role::all()->pluck('name', 'id');
-        return view('system.users.create', compact('roles'));
+        return view('system.users.create', compact('roles', 'config'));
     }
 
     /**
@@ -129,9 +133,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        $config = Config::find(1);
         $user = User::find($id);
         $roles = Role::all()->pluck('name', 'id');
-        return view('system.users.edit', compact('user', 'roles'));
+        return view('system.users.edit', compact('user', 'roles', 'config'));
     }
 
     /**
