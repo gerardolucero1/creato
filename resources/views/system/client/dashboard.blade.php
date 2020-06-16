@@ -32,7 +32,7 @@
 
 @section('content')
     <main id="main-container" style="min-height: 288px;">
-        <div class="banner-inicio" style="background-image: url('https://www.alcaidesaeventos.com/images/cabecera/slide/alcaidesa-eventos-terraza-bodas-04.jpg');">
+        <div class="banner-inicio" style="background-image: url('{{ $config->welcome }}');">
             <div class="banner-inicio-layer">
                 <h2>Bienvenido(a)</h2>
                 <h4>{{ Auth::user()->name }}</h4>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('guests.index') }}">
-                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
+                        <div class="block-content block-content-full text-center" style="background-color: {{ $config->color }}">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-users" style="color: white;"></i>
                             </div>
@@ -57,11 +57,11 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('evidence.indexEvidence') }}">
-                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
+                        <div class="block-content block-content-full text-center" style="background-color: {{ $config->color }}">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-list-ul" style="color: white;"></i>
                             </div>
-                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px #707070;">
+                            <p class="font-size-lg font-w600 mb-0" style="color: white; text-shadow: 1px 1px 10px {{ $config->color }}">
                                 Listas
                             </p>
                             {{-- <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('messages.client') }}">
-                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
+                        <div class="block-content block-content-full text-center" style="background-color: {{ $config->color }}">
                             <div class="p-20 mb-5">
                                 <i class="fa fa-3x fa-envelope-open" style="color: white;"></i>
                             </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-link-shadow" href="{{ route('tables.index') }}">
-                        <div class="block-content block-content-full text-center" style="background-color: #E7D5CD">
+                        <div class="block-content block-content-full text-center" style="background-color: {{ $config->color }}">
                             <div class="p-20 mb-5">
                             <i class="fa fa-3x fa-pencil-square" style="color: white;"></i>
                             </div>

@@ -6,14 +6,14 @@
             content:"";
             width:100vw;
             height:100vh;
-            background-image: url('http://www.losestelares.com.mx/wp-content/uploads/2016/07/Organizacion-de-boda-3-2.jpg');
+            background-image: url({{ $config->dashboard }});
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
             position: absolute;
             top: 0;
             left: 0;
-            transform: scaleX(-1);
+            transform: scaleX(-1); 
         }
     </style>
 @endsection
@@ -35,7 +35,7 @@
             <div class="content content-full">
                 <div class="px-30 py-10">
                     <a class="font-w700" href="/">
-                        <img class="creato-logo" src="/images/creato-logo-1.png" width="300px" alt="Creato-studio-logo">
+                        <img class="creato-logo" src="{{ $config->index }}" width="300px" alt="Creato-studio-logo">
                     </a>
                     <h1 class="h3 font-w700 mt-30 mb-10">Bienvenido a Creato</h1>
                     <h2 class="h5 font-w400 text-muted mb-0">Por favor has login</h2>

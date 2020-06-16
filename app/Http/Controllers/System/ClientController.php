@@ -7,11 +7,13 @@ use App\ListTask;
 use App\BlockList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Config;
 
 class ClientController extends Controller
 {
     public function index(){
-        return view('system.client.dashboard');
+        $config = Config::find(1);
+        return view('system.client.dashboard', compact('config'));
     }
 
     public function obtenerListas($id){

@@ -36,7 +36,6 @@
     .main-menu-container{
         width: 100%;
         height: 50px;
-        background-color: #E7D5CD;
         display: flex;
         justify-content: space-between;
     }
@@ -185,7 +184,7 @@
 <template>
     <section class="box-container">
         <div class="box-main">
-            <div class="main-menu-container">
+            <div class="main-menu-container" :style="myStyle">
                 <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
@@ -233,27 +232,27 @@
                             </div>
                         </div>
 
-                        <div class="row mt-3">
+                        <div class="row mt-3" v-for="imagen in imagenes" :key="imagen.index">
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/paola.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros1 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Ana Paola</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/maria.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros2 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Ana Maria</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/gerardo.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros3 + ")", }'>
 
                                 </div>
                                 <p class="text-center">Gerardo</p>
                             </div>
                             <div class="col-12 col-md-3">
-                                <div class="box-about-img" style="background-image: url('/images/todos.png');">
+                                <div class="box-about-img" :style='{ backgroundImage: "url(" + imagen.nosotros4 + ")", }'>
 
                                 </div>
                             </div>
@@ -274,15 +273,28 @@ export default {
     data(){
         return{
             menu: false,
+            imagenes:[],
+            myStyle: {
+                backgroundColor: " "
+            },
         }
     },
 
     computed: {
 
     },
+    created(){
+            this.obtenerDatos();
+        },
 
     methods: {
-
+        obtenerDatos: function(){
+                let URL = '/index';
+                axios.get(URL).then((response)=>{
+                    this.imagenes = response.data;
+                    this.myStyle.backgroundColor =response.data.config.color;
+                });     
+        },
     }
 }
 </script>

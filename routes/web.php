@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 |
 */
 
+//Obtener imagenes
+Route::get('/index', 'System\ConfigController@indexImagen')->name('config.indexImagen');
+Route::get('/index/color', 'System\ConfigController@GetColor')->name('config.getColor');
+
+
 // Web routes
 Route::get('/', 'Web\IndexController@index');
 
@@ -310,6 +315,20 @@ Route::group(['middleware' => ['auth']], function () {
     
     // Notificaciones cliente
     Route::get('/notificacion/{id}', 'System\NotificationController@show')->name('notification.get');
+
+    // Admin config
+    Route::get('dashboard/configuracion', 'System\ConfigController@index')->name('config.index');
+    Route::get('dashboard/configuracion/edit', 'System\ConfigController@edit')->name('config.edit');
+    Route::put('dashboard/configuracion/dashboard/{id}', 'System\ConfigController@dashboard')->name('config.dashboard');
+    Route::put('dashboard/configuracion/bienvenido/{id}', 'System\ConfigController@bienvenido')->name('config.bienvenido');
+    Route::put('dashboard/configuracion/mesas/{id}', 'System\ConfigController@mesas')->name('config.mesas');
+    Route::put('dashboard/configuracion/imgIndex/{id}', 'System\ConfigController@imgIndex')->name('config.imgIndex');
+    Route::put('dashboard/configuracion/nosotros1/{id}', 'System\ConfigController@nosotros1')->name('config.nosotros1');
+    Route::put('dashboard/configuracion/nosotros2/{id}', 'System\ConfigController@nosotros2')->name('config.nosotros2');
+    Route::put('dashboard/configuracion/nosotros3/{id}', 'System\ConfigController@nosotros3')->name('config.nosotros3');
+    Route::put('dashboard/configuracion/nosotros4/{id}', 'System\ConfigController@nosotros4')->name('config.nosotros4');
+    Route::put('dashboard/configuracion/contacto/{id}', 'System\ConfigController@contacto')->name('config.contacto');
+    Route::post('configuracion/color/{id}', 'System\ConfigController@color')->name('config.color');
 
     // Notificaciones Email
     Route::post('/sendemail', function(Request $request){
