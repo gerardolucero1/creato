@@ -1,45 +1,78 @@
+<style  scoped>
+    .margin-negativo{
+        margin-left: 0px;
+    }
+
+    .margin-negativo2{
+        margin-left: 30px;
+    }
+</style>
 <template>
-    <div :style="{background: color}">
-        <color-picker
-            :color="color"
-            :sucker-hide="false"
-            :sucker-canvas="suckerCanvas"
-            :sucker-area="suckerArea"
-            @changeColor="changeColor"
-            @openSucker="openSucker"
-        />
+    <div class="col-md-6 justify-content-around d-flex align-items-center  margin-negativo" v-if="color.length !== 0">
+        <ColorPicker class="" :width="150" :height="200" :disabled="false" :startColor="color" @colorChange="onColorChange"/>
+            <div class="margin-negativo2">
+            <p>Selected color: </p>
+            <p>{{ color }}</p>
+            <svg height="32" width="32">
+            <circle cx="16" cy="16" r="15" :fill="color" />
+            </svg>
+        </div>
+        
     </div>
 </template>
 
 <script>
-    import colorPicker from '@caohenghu/vue-colorpicker'
+import ColorPicker from 'vue-color-picker-wheel';
 
-    export default {
-        components: {
-            colorPicker
-        },
-        data() {
-            return {
-                color: '#59c7f9',
-                suckerCanvas: null,
-                suckerArea: [],
-                isSucking: false
-            }
-        },
-        methods: {
-            changeColor(color) {
-                const {rgba: {r, g, b, a}} = color
-                this.color = `rgba(${r, g, b, a})`
-            },
-            openSucker(isOpen) {
-                if (isOpen) {
-                    // ... canvas be created
-                    // this.suckerCanvas = canvas
-                    // this.suckerArea = [x1, y1, x2, y2]
-                } else {
-                    // this.suckerCanvas && this.suckerCanvas.remove
-                }
+export default {
+  name: 'app',
+  data(){
+        return{
+            color: "",
+            colorNuevo: {
+                'color' : ''
             }
         }
-    }
+    },
+    created(){
+            this.obtenerDatos();
+        },
+  components: {
+    ColorPicker
+  },
+  computed: {
+            setColor: function(){
+                let color = this.color;
+                return color;
+            },
+  },
+
+  methods: {
+      obtenerDatos: function(){
+                let URL = '/index/color';
+                axios.get(URL).then((response)=>{
+                    this.color = response.data.color;
+                    console.log(response.data.color)
+                });     
+            },
+    onColorChange(color) {
+        this.color = color;
+        this.colorNuevo.color = color;
+      console.log('Color has changed to: ', color);
+      this.enviarColor();
+    },
+    enviarColor(){
+  
+               let URL = '/configuracion/color/' + 1;
+
+                axios.post(URL, 
+                    this.colorNuevo
+                ).then((response) => {
+        
+                })
+        },
+  }
+};
 </script>
+
+

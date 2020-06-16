@@ -23,6 +23,8 @@ use Illuminate\Http\Request;
 
 //Obtener imagenes
 Route::get('/index', 'System\ConfigController@indexImagen')->name('config.indexImagen');
+Route::get('/index/color', 'System\ConfigController@GetColor')->name('config.getColor');
+
 
 // Web routes
 Route::get('/', 'Web\IndexController@index');
@@ -323,7 +325,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('dashboard/configuracion/nosotros3/{id}', 'System\ConfigController@nosotros3')->name('config.nosotros3');
     Route::put('dashboard/configuracion/nosotros4/{id}', 'System\ConfigController@nosotros4')->name('config.nosotros4');
     Route::put('dashboard/configuracion/contacto/{id}', 'System\ConfigController@contacto')->name('config.contacto');
-    Route::post('dashboard/configuracion/color', 'System\ConfigController@color')->name('config.color');
+    Route::post('configuracion/color/{id}', 'System\ConfigController@color')->name('config.color');
 
     // Notificaciones Email
     Route::post('/sendemail', function(Request $request){

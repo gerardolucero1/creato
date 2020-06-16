@@ -298,8 +298,9 @@ class ConfigController extends Controller
     public function color(Request $request, $id)
     {
         $config = Config::find($id);
-        $config->color= $request->color;
-
+        
+        $config->fill($request->all())->save();
+    
         return back();
     }
     /**
@@ -312,5 +313,10 @@ class ConfigController extends Controller
     {
         $config = Config::find(1);
         return compact('config');
+    }
+    public function GetColor()
+    {
+        $config = Config::find(1);
+        return $config;
     }
 }

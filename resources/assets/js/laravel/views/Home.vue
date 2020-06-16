@@ -28,7 +28,6 @@
     .main-menu-container{
         width: 100%;
         height: 50px;
-        background-color: #E7D5CD;
         display: flex;
         justify-content: space-between;
     }
@@ -72,7 +71,6 @@
     }
 
     .box-tag-container{
-        background-color: #E7D5CD;
         padding: 20px 50px;
         margin-left: -50px;
         color: #545454;
@@ -197,7 +195,7 @@
 <template>
     <section class="box-container">
         <div class="box-main">
-            <div class="main-menu-container">
+            <div class="main-menu-container" :style="myStyle">
                 <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
@@ -236,7 +234,7 @@
                     <!-- <iframe src="https://player.vimeo.com/video/418283179?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe> -->
                 </div>
                 
-                <div class="box-tag-container" v-for="imagen in imagenes" :key="imagen.index">
+                <div class="box-tag-container"  :style="myStyle2" v-for="imagen in imagenes" :key="imagen.index">
                     <img :src="imagen.index" width="300px" alt=""> 
                 </div>
             </div>
@@ -252,7 +250,13 @@ export default {
         return{
             menu: false,
             sound: true,
-            imagenes:[]
+            imagenes:[],
+            myStyle: {
+                backgroundColor: " "
+            },
+            myStyle2: {
+                backgroundColor: " "
+            }
         }
     },
 
@@ -268,6 +272,9 @@ export default {
                 let URL = '/index';
                 axios.get(URL).then((response)=>{
                     this.imagenes = response.data;
+                    this.myStyle.backgroundColor =response.data.config.color;
+                    this.myStyle2.backgroundColor =response.data.config.color;
+                    console.log(response.data.config.color)
                 });     
         },
 

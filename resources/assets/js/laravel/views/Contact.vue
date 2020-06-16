@@ -45,7 +45,6 @@
     .main-menu-container{
         width: 100%;
         height: 50px;
-        background-color: #E7D5CD;
         display: flex;
         justify-content: space-between;
     }
@@ -319,7 +318,7 @@
 <template>
     <section class="box-container">
         <div class="box-main">
-            <div class="main-menu-container">
+            <div class="main-menu-container" :style="myStyle">
                 <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
@@ -394,13 +393,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-5" v-for="imagen in imagenes" :key="imagen.index">
-                        <div class="" :style='{ backgroundImage: "url(" + imagen.contact + ")", }'>
+                        <div class="col-12 col-sm-12 col-md-5" style="background-image: url('/images/index.png'); background-position: center; background-size: cover;">
                             <!-- <div class="">
                                 <img src="/images/index.png" width="100%" alt="">
                             </div> -->
                         </div>
-                    </div>
                 </div>
                 <!-- <div class="row">
                     <div class="col-md-7">
@@ -451,7 +448,13 @@ export default {
                 telephone: '',
                 message: ''
             },
-            imagenes: []
+            imagenes: [],
+            myStyle: {
+                backgroundColor: "",
+            },
+            myStyle2: {
+                backgroundColor: "",
+            },
         }
     },
 
@@ -470,6 +473,9 @@ export default {
     computed: {
 
     },
+    created(){
+            this.obtenerDatos();
+        },
 
     methods: {
         sendEmail(){
@@ -486,6 +492,8 @@ export default {
                 let URL = '/index';
                 axios.get(URL).then((response)=>{
                     this.imagenes = response.data;
+                    this.myStyle.backgroundColor =response.data.config.color;
+                    this.myStyle2.backgroundColor =response.data.config.contact;
                 });     
         },
     }

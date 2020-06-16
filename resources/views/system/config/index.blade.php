@@ -1,5 +1,23 @@
 @extends('layouts.backend')
 
+@section('styles')
+    <style>
+        .images-ratio{
+            width: 100%;
+            padding-top: 0%; /* 1:1 Aspect Ratio */
+            position: relative; /* If you want text inside of it */
+            background-position: center;
+            background-size: cover;
+            height: 200px;
+        }
+
+
+        .banner-inicio-layer h2, .banner-inicio-layer h4{
+            color: white;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content">
     <h2 class="content-heading">Configuración</h2>
@@ -10,7 +28,7 @@
                     <div class="row items-push js-gallery js-gallery-enabled">
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->dashboard }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->dashboard }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Dashboard</h3>
@@ -53,7 +71,7 @@
                         <!-- Imagen Bienvenido -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->welcome }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->welcome }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Bienvenido</h3>
@@ -96,7 +114,7 @@
                         <!-- Imagen mesas -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->tables }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->tables }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Mesas</h3>
@@ -139,7 +157,7 @@
                         <!-- Imagen index pagina -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->index }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->index }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">index</h3>
@@ -182,7 +200,7 @@
                         <!-- Imagen nosotros 1 -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->nosotros1 }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->nosotros1 }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Ana Paola</h3>
@@ -225,7 +243,7 @@
                         <!-- Imagen nosotros 2 -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->nosotros2 }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->nosotros2 }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Ana Maria</h3>
@@ -268,7 +286,7 @@
                         <!-- Imagen nosotros 3 -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->nosotros3 }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->nosotros3 }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Gerardo</h3>
@@ -311,7 +329,7 @@
                         <!-- Imagen nosotros 4 -->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->nosotros4 }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->nosotros4 }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Nosotros</h3>
@@ -354,7 +372,7 @@
                         <!-- Imagen contacto-->
                         <div class="col-md-6 animated fadeIn">
                             <div class="options-container fx-item-zoom-in fx-overlay-slide-down">
-                                <img class="img-fluid options-item" src="{{ $config->contact }}" alt="">
+                                <img class="img-fluid options-item images-ratio" src="{{ $config->contact }}" alt="">
                                 <div class="options-overlay bg-black-op-75">
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">contacto</h3>

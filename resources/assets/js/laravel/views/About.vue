@@ -36,7 +36,6 @@
     .main-menu-container{
         width: 100%;
         height: 50px;
-        background-color: #E7D5CD;
         display: flex;
         justify-content: space-between;
     }
@@ -185,7 +184,7 @@
 <template>
     <section class="box-container">
         <div class="box-main">
-            <div class="main-menu-container">
+            <div class="main-menu-container" :style="myStyle">
                 <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
                     <p>menú</p>
                     <i class="menu fas fa-bars"></i>
@@ -274,7 +273,10 @@ export default {
     data(){
         return{
             menu: false,
-            imagenes:[]
+            imagenes:[],
+            myStyle: {
+                backgroundColor: " "
+            },
         }
     },
 
@@ -290,6 +292,7 @@ export default {
                 let URL = '/index';
                 axios.get(URL).then((response)=>{
                     this.imagenes = response.data;
+                    this.myStyle.backgroundColor =response.data.config.color;
                 });     
         },
     }

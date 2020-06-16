@@ -135,7 +135,7 @@
                         style="transform: translate3d(0px, 0px, 0px); display: none;"></div>
                 </div>
             </nav>
-            <header id="page-header">
+            <header style="background-color: {{ $config->color }}">
                 <div class="content-header">
                     <div class="content-header-section">
                         <div class="content-header-item mr-5" style="margin-top: -15px;">
