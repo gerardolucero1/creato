@@ -23,7 +23,7 @@ class ImagesSeeder extends Seeder
             'nosotros4' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/a945994fcaba62807da1171b652fe4e4.png', 
             'contact' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/e5dd571aa77668278a4893ebf244995e.png', 
             'otro' => 'vacio',
-            'color' => '#2b9ef7'
+            'color' => '#E7D5CD'
         ]);
     }
 }
