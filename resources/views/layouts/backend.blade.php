@@ -149,7 +149,7 @@
                                 <!-- Logo -->
                                 <div class="content-header-item" style="margin-top: -20px;">
                                     <a class="" href="{{ route('dashboard.admin') }}">
-                                        <img src="/images/creato-logo-1.png" width="200px" alt="logo-creato" srcset="">
+                                        <img src="{{ $config->index }}" width="200px" alt="logo-creato" srcset="">
                                     </a>
                                 </div>
                                 <!-- END Logo -->

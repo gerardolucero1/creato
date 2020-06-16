@@ -9,6 +9,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Config;
 
 
 class SystemController extends Controller
@@ -16,11 +17,12 @@ class SystemController extends Controller
 
     public function index(){
         $user = Auth::user();
+        $config = Config::find(1);
         $rol = $user->roles->implode('name', ',');
 
         switch ($rol) {
             case 'super-admin':
-                return view('system.dashboard');
+                return view('system.dashboard', compact('config'));
                 break;
             case 'cliente':
                 return view('system.client.dashboard');

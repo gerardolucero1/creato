@@ -8,6 +8,7 @@ use App\GuestList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Config;
 
 class TablesController extends Controller
 {
@@ -18,7 +19,8 @@ class TablesController extends Controller
      */
     public function index()
     {
-        return view('system.client.tables.index');
+        $config = Config::find(1);
+        return view('system.client.tables.index', compact('config'));
     }
 
     /**

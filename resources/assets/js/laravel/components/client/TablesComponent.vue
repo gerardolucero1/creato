@@ -309,7 +309,7 @@ padding: 0;
             <div class="col-md-12">
                 <section class="drag-zone" id="wrap-zone" style="padding: 0;">
                     <img v-if="proyecto.plans" :src="proyecto.plans" width="100%" alt="">
-                    <img v-else src="/images/creato-logo-4.png" width="100%" alt="">
+                    <img v-else :src="imagenes" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
                         <div v-if="invitado.companions" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
@@ -383,6 +383,10 @@ padding: 0;
 
         data(){
             return{
+                imagenes: [],
+                myStyle: {
+                backgroundColor: "",
+                },
                 invitados: [],
                 invitadosSentados: [],
                 invitado: '',
@@ -423,6 +427,7 @@ padding: 0;
             this.obtenerProyecto();
             this.obtenerGrupos();
             this.obtenerMesas();
+            this.obtenerDatos();
 
             this.$on('resultadoInvitados', resultadoInvitados => {
                 this.resultadoInvitados = resultadoInvitados
@@ -575,6 +580,16 @@ padding: 0;
         },
 
         methods: {
+
+            obtenerDatos: function(){
+                let URL = '/index';
+                axios.get(URL).then((response)=>{
+                    this.imagenes = response.data.config.tables;
+                    this.myStyle.backgroundColor =response.data.config.color;
+
+                });     
+            },
+
             async obtenerMesas(){
                 try {
                     let URL = '/cliente/tables/obtener-mesas'

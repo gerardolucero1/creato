@@ -9,6 +9,7 @@ use App\ProfilePicture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use App\Config;
 
 class ProfileController extends Controller
 {
@@ -19,8 +20,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        
-        return view('system.users.profile.index');
+        $config = Config::find(1);
+        return view('system.users.profile.index', compact('config')); 
     }
 
     /**
@@ -30,7 +31,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-     return view('system.users.profile.create');
+    $config = Config::find(1);
+     return view('system.users.profile.create', compact('config')); 
         
     }
 
@@ -77,7 +79,8 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $profile = Profile::find($id);
-        return view('system.users.profile.edit', compact('profile'));
+        $config = Config::find(1);
+        return view('system.users.profile.edit', compact('profile', 'config'));
     }
 
     /**
@@ -125,8 +128,8 @@ class ProfileController extends Controller
     /* Perfil de cliente */
     public function indexClient()
     {
-        
-        return view('system.client.profile.index');
+        $config = Config::find(1);
+        return view('system.client.profile.index', compact('config'));
     }
 
     public function getProfileClient($id)
