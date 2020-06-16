@@ -46,6 +46,7 @@ Vue.component('statistic-component', require('./components/system/StatisticCompo
 Vue.component('admin-list-component', require('./components/system/AdminListComponent.vue').default);
 Vue.component('admin-task-component', require('./components/system/AdminTaskComponent.vue').default);
 Vue.component('admin-task-client-component', require('./components/client/AdminTasksComponent.vue').default);
+Vue.component('tables-editor-component', require('./components/system/TablesEditorComponent.vue').default);
 
 //Web Components
 Vue.component('app-component', require('./components/web/AppComponent.vue').default);

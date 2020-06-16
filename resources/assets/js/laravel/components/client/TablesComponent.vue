@@ -293,9 +293,15 @@ padding: 0;
                 <div class="block-rounded">
                     <div class="">
                         <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap">
-                            <div :class="[item.number == mesaSeleccionada ? 'activeClass' : '']" class="table-icon" v-for="(item, index) in mesas" :key="index" @click="mesaSeleccionada = item.number">
+                            <div :class="[item.number == mesaSeleccionada.number ? 'activeClass' : '']" style="position: relative;" class="table-icon" v-for="(item, index) in mesas" :key="index" @click="selectMesa(item)">
                                 <img src="https://images.vexels.com/media/users/3/148881/isolated/preview/5acbf09ec9202ad5bbed61d97a086ec4-icono-de-mesa-de-oficina-by-vexels.png" alt="">
                                 <p class="text-center">Mesa {{ item.name }}</p>
+                                <p class="text-center" style="position: absolute; top: 0; left: 0;">
+                                    <span class="badge badge-pill badge-danger">{{ item.capability }}</span>
+                                </p>
+                                <p class="text-center" style="position: absolute; top: 0; right: 0;">
+                                    <span class="badge badge-pill badge-info">{{ item.ocuped }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -472,10 +478,11 @@ padding: 0;
                         //Actualizar mesa
                         axios.put(URL2, {
                                     'tipo': tipo,
-                                    'tableName': this.mesaSeleccionada,
+                                    'tableId': this.mesaSeleccionada.id,
                                 }).then((response) => {   
                                     console.log('Funciono prroooooo')
-                                    // this.obtenerInvitados()          
+                                    this.mesaSeleccionada.ocuped++
+                                    // this.obtenerMesas()          
                                 }).catch((error) => {
                                     console.log(error.data);
                                 })
@@ -575,6 +582,10 @@ padding: 0;
         },
 
         methods: {
+            selectMesa(item){
+                this.mesaSeleccionada = item
+            },
+
             async obtenerMesas(){
                 try {
                     let URL = '/cliente/tables/obtener-mesas'
@@ -583,6 +594,7 @@ padding: 0;
                     if(response){
                         console.log(`Estas son las mesas: ${response.data}`)
                         this.mesas = response.data.reverse()
+                        this.mesaSeleccionada = this.mesas[0]
                     }
                 } catch (error) {
                     console.log(error)
@@ -764,6 +776,15 @@ padding: 0;
             },
 
             sentarInvitado: function(invitado){
+                if (this.mesaSeleccionada.capability == this.mesaSeleccionada.ocuped) {
+                    Swal.fire(
+                        'Error',
+                        'La mesa ya esta a su maximo',
+                        'error'
+                    )
+
+                    return
+                }
                 this.limpiar = true;
                 if(this.invitadosSentados.some((element) => {
                     return element == invitado
@@ -775,6 +796,7 @@ padding: 0;
                     )
                 }else{
                     this.invitadosSentados.push(invitado);
+                    this.isActive = !this.isActive
                 }
 
                 setTimeout(() => {
@@ -783,6 +805,15 @@ padding: 0;
             },
 
             sentarAcompanante: function(companion){
+                if (this.mesaSeleccionada.capability == this.mesaSeleccionada.ocuped) {
+                    Swal.fire(
+                        'Error',
+                        'La mesa ya esta a su maximo',
+                        'error'
+                    )
+
+                    return
+                }
                 if(this.invitadosSentados.some((element) => {
                     return element == companion
                 })){
@@ -793,6 +824,7 @@ padding: 0;
                     )
                 }else{
                     this.invitadosSentados.push(companion);
+                    this.isActive = !this.isActive
                 }  
             },
 

@@ -348,4 +348,27 @@ class ProjectController extends Controller
         $project = Project::orderBy('date', 'ASC')->where('date', '>=', $now)->first();
         return $project;
     }
+
+    public function mesasEditorIndex($id)
+    {
+        $project = Project::find($id);
+        return view('system.projects.mesasEditor', compact('project'));
+    }
+
+    public function mesasEditorShow($id)
+    {
+        $tables = NumberTable::where('project_id', $id)->get();
+        return $tables;
+    }
+
+    public function mesasEditorUpdate(Request $request)
+    {
+        $data = json_decode(file_get_contents("php://input"));
+
+        $table = NumberTable::where('id', $data->id)->first();
+        $table->capability = $data->value;
+        $table->save();
+        
+        return;
+    }
 }

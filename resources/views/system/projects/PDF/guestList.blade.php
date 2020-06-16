@@ -67,7 +67,13 @@
                             <td style="padding: 5px; height: 20px;">{{ $guest->email }}</td>
                         @endif
                         @if (in_array('table', $options))
-                            <td style="padding: 5px; text-align: center">{{ $guest->tableName }}</td>
+                            <td style="padding: 5px; text-align: center">
+                                @if (is_null($guest->table))
+                                    Sin mesa
+                                @else
+                                    {{ $guest->table->name }}
+                                @endif
+                            </td>
                         @endif
                         @if (in_array('origin', $options))
                             <td style="padding: 5px; text-align: center">{{ $guest->origin }}</td>
@@ -100,7 +106,13 @@
                             <td style="padding: 5px; height: 20px;">{{ $companion->email }}</td>
                         @endif
                         @if (in_array('table', $options))
-                            <td style="padding: 5px; text-align: center">{{ $companion->tableName }}</td>
+                            <td style="padding: 5px; text-align: center">
+                                @if (is_null($companion->table))
+                                    Sin mesa
+                                @else
+                                    {{ $companion->table->name }}
+                                @endif
+                            </td>
                         @endif
                         @if (in_array('origin', $options))
                             <td style="padding: 5px; text-align: center">--</td>

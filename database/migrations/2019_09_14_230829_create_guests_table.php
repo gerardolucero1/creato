@@ -28,12 +28,16 @@ class CreateGuestsTable extends Migration
             $table->boolean('seated')->nullable();
             $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->nullable();
             $table->enum('origin', ['NOVIA', 'NOVIO']);
-            $table->string('tableName')->nullable();
+            $table->integer('tableName')->unsigned();
             $table->string('groupName')->nullable();
             $table->timestamps();
 
             //Relation
             $table->foreign('guestList_id')->references('id')->on('guest_lists')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('tableName')->references('id')->on('number_tables')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

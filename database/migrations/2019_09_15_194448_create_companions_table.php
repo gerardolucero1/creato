@@ -25,12 +25,16 @@ class CreateCompanionsTable extends Migration
             $table->string('dataX')->nullable();
             $table->string('dataY')->nullable();
             $table->boolean('seated')->nullable();
-            $table->string('tableName')->nullable();
+            $table->integer('tableName')->unsigned();
             $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->nullable();
             $table->timestamps();
 
             //Relation
             $table->foreign('guest_id')->references('id')->on('guests')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('tableName')->references('id')->on('number_tables')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

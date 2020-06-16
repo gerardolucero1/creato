@@ -65,6 +65,9 @@
                         <button type="button" class="btn btn-secondary mr-5 mb-5" data-toggle="modal" data-target="#seleccionarListaInvitados">
                             Seleccionar lista de invitados
                         </button>
+                        <a href="{{ route('mesasEditor.index', $project->id) }}" type="button" class="btn btn-info mr-5 mb-5">
+                            Editor de mesas
+                        </a>
                     </div>
                 </div>
             </div>

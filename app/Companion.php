@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Guest;
+use App\NumberTable;
 use Illuminate\Database\Eloquent\Model;
 
 class Companion extends Model
@@ -25,5 +26,10 @@ class Companion extends Model
     public function guest()
     {
         return $this->belongsTo(Guest::class);
+    }
+
+    public function table()
+    {
+        return $this->hasOne(NumberTable::class, 'tableName');
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Group;
 use App\Companion;
+use App\NumberTable;
 use Illuminate\Database\Eloquent\Model;
 
 class Guest extends Model
@@ -29,6 +30,11 @@ class Guest extends Model
     public function guestList()
     {
         return $this->belongsTo(GuestList::class);
+    }
+
+    public function table()
+    {
+        return $this->belongsTo(NumberTable::class, 'tableName');
     }
 
     public function companions()

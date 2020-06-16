@@ -48,6 +48,7 @@ class LoginController extends Controller
                 break;
         }
     }
+
     //protected $redirectTo = '/dashboard';
 
     /**
