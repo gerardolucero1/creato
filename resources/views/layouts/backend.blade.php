@@ -77,6 +77,11 @@
             'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
         -->
         <div id="app">
+            @php
+                use App\Config;
+                
+                $config = Config::find(1);
+            @endphp
             <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
                 <!-- Side Overlay-->
                 <aside id="side-overlay">

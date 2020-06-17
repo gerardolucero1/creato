@@ -33,7 +33,7 @@
                 @method('PUT')
                 @csrf
                 <div class="block block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
+                    <div class="block-header" style="background-color: #E7D5CD;">
                         <h3 class="block-title text-center">
                             Subir foto de perfil
                         </h3>

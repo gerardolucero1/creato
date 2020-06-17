@@ -66,6 +66,11 @@
         <div
             id="page-container"
             class="sidebar-inverse side-scroll main-content-boxed side-trans-enabled">
+            @php
+                use App\Config;
+                
+                $config = Config::find(1);
+            @endphp
             <nav id="sidebar" data-simplebar="init">
                 <div class="simplebar-wrapper" style="margin: 0px;">
                     <div class="simplebar-height-auto-observer-wrapper">

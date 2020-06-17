@@ -30,6 +30,6 @@ class Companion extends Model
 
     public function table()
     {
-        return $this->hasOne(NumberTable::class, 'tableName');
+        return $this->belongsTo(NumberTable::class, 'tableName');
     }
 }

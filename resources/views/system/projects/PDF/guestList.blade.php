@@ -11,7 +11,7 @@
     <table style="width: 100%; border-bottom:solid; border-bottom-width: 1px; padding-bottom: 15px">
         <tr>
             <td>
-                <img src="https://img1.wsimg.com/isteam/ip/c61c6bbe-8c4b-487a-8931-330fb513cba4/logo/cf928107-e87c-4e5b-b2a9-50d94529bfbe.png/:/rs=h:166/qt=q:95" style="width:200px">
+                <img src="https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/71907b2fd9703aac01a424d863a6f5a6.png" style="width:200px">
                 
             </td>
             <td>
@@ -80,7 +80,7 @@
                         @endif
                         @if (in_array('genere', $options))
                             <td style="padding: 5px; text-align: center">
-                                @if ($guest->genere == 'MALE')
+                                @if ($guest->genere == 'H')
                                     Hombre
                                 @else
                                     Mujer
@@ -119,7 +119,7 @@
                         @endif
                         @if (in_array('genere', $options))
                             <td style="padding: 5px; text-align: center">
-                                @if ($companion->genere == 'MALE')
+                                @if ($companion->genere == 'H')
                                     Hombre
                                 @else
                                     Mujer

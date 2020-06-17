@@ -21,7 +21,18 @@
 @endsection
 
 @section('content')
-@if (session('info'))
+    <div class="bg-primary">
+        <div class="bg-pattern bg-black-op-25">
+            <div class="content content-top text-center">
+                <div class="py-50">
+                    <h1 class="font-w700 text-white mb-10">Configuracion</h1>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (session('info'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('info') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,16 +53,6 @@
             </button>
         </div>
     @endif
-    <div class="bg-primary">
-        <div class="bg-pattern bg-black-op-25">
-            <div class="content content-top text-center">
-                <div class="py-50">
-                    <h1 class="font-w700 text-white mb-10">Configuracion</h1>
-                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <div class="content">
     <div class="row">

@@ -8,6 +8,12 @@
         background-color: #f76c6f;
         color: white;
     }
+
+    .btn-block{
+        border: 1px solid #f76c6f;
+        background-color: #f76c6f;
+        color: white;
+    }
 </style>
 
 <template>
@@ -58,7 +64,7 @@
                                             <tbody>
                                                 <tr v-for="guest in lista.guests" :key="guest.index">
                                                     <td class="text-center">
-                                                        <img v-if="guest.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                        <img v-if="guest.genere == 'M'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
                                                         <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                                                     </td>
                                                     <td class="font-w600">{{ guest.name }}</td>
@@ -102,7 +108,7 @@
             <div class="modal-dialog modal-dialog-slideleft modal-xl" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
+                        <div class="block-header" style="background-color: #E7D5CD;">
                             <h3 class="block-title text-center">
                                 Lista de Inivitados
                             </h3>
@@ -174,8 +180,8 @@
                                                             </td>
                                                             <td>
                                                                 <select name="" id="" v-model="item.genere" style="width: 110%;">
-                                                                    <option value="MALE">Hombre</option>
-                                                                    <option value="FEMALE">Mujer</option>
+                                                                    <option value="H">Hombre</option>
+                                                                    <option value="M">Mujer</option>
                                                                 </select>
                                                             </td>
                                                             <td>
@@ -222,7 +228,7 @@
             <div class="modal-dialog modal-dialog-slideleft" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
-                        <div class="block-header bg-primary-dark">
+                        <div class="block-header" style="background-color: #E7D5CD;">
                             <h3 class="block-title text-center">
                                 Nuevo invitado
                             </h3>
@@ -290,8 +296,8 @@
                                             <div class="form-material">
                                                 <select class="form-control" name="genere" v-model="invitadoEdicion.genere">
                                                     <option>...</option>
-                                                    <option value="MALE">Hombre</option>
-                                                    <option value="FEMALE">Mujer</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
                                                 </select>
                                                 <label for="material-select">Sexo</label>
                                             </div>
@@ -315,7 +321,7 @@
                                             <option value="PENDIENTE">Pendiente</option>
                                             <option value="CANCELADO">Cancelado</option>
                                         </select>
-                                        <label for="material-select">Please Select</label>
+                                        <label for="material-select">Estatus</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -324,7 +330,7 @@
                                             <option value="General">General</option>
                                             <option v-for="(group, index) in groups" :key="index" :value="group.name">{{ group.name }}</option>
                                         </select>
-                                        <label for="material-select">Please Select</label>
+                                        <label for="material-select">Grupo asignado</label>
                                     </div>
                                 </div>
                             </div>

@@ -203,6 +203,14 @@ padding: 0;
         background-color: #f76c6f;
         color: white;
     }
+
+    .noSeated{
+        background-color: #f76c6f;
+    }
+
+    .isSeated{
+        background-color: #818483;
+    }
 </style>
 
 <template>
@@ -232,7 +240,7 @@ padding: 0;
                                 <div v-for="invitado in resultadoInvitados.slice(0,5)" :key="invitado.index">
                                     <div class="row contenedor-invitado" v-on:click="sentarInvitado(invitado)" style="margin:0">
                                         <div class="col-md-3">
-                                            <img class="img-fluid" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="" width="70%">
+                                            <img class="img-fluid" v-if="invitado.genere == 'H'" src="/images/avatars/male.png" alt="" width="70%">
                                             <img class="img-fluid" v-else src="/images/avatars/female.png" alt="" width="70%">
                                         </div>
                                         <div class="col-md-8">
@@ -255,9 +263,9 @@ padding: 0;
                 </div>
                 <div class="col-md-12">
                     <ul class="list-group" v-for="(invitado, index) in invitados" :key="index">
-                        <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge text-right" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="sentarInvitado(invitado)">ASIGNAR</span>
+                        <li class="list-group-item" style="border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ invitado.name }} {{ invitado.lastName }} - <span class="badge text-right" style="cursor: pointer; color: white;" :class="[ invitado.seated == 1 ? 'isSeated' : 'noSeated' ]" @click="sentarInvitado(invitado)">ASIGNAR</span>
                             <ul class="list-group" v-for="(companion, index) in invitado.companions" :key="index">
-                                <li v-if="companion.status == 'CONFIRMADO'" class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge" style="cursor: pointer; background-color: #f76c6f; color: white;" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
+                                <li v-if="companion.status == 'CONFIRMADO'" class="list-group-item d-flex justify-content-between align-items-center" style="border-left: 6px solid red; border-bottom: 1px solid rgba(228, 231, 237, 1); margin-top: 5px;">{{ companion.name }} {{ companion.lastName }} <span class="badge" style="cursor: pointer; color: white;" :class="[ companion.seated == 1 ? 'isSeated' : 'noSeated' ]" @click="sentarAcompanante(companion)">ASIGNAR</span></li>
                             </ul>
                         </li>
                     </ul>
@@ -318,8 +326,8 @@ padding: 0;
                     <img v-else :src="imagenes" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
-                        <div v-if="invitado.companions" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                        <div v-if="invitado.companions" v-tooltip="`${invitado.name} ${invitado.lastName}`" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :data-table="invitado.tableName" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'H'" src="/images/avatars/male.png" alt="">
                             <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
                             <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
                             
@@ -328,8 +336,8 @@ padding: 0;
                             </div> -->
                            
                         </div>
-                        <div v-else class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
-                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'MALE'" src="/images/avatars/male.png" alt="">
+                        <div v-else  v-tooltip="`${invitado.name} ${invitado.lastName}`" class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :data-table="invitado.tableName" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                            <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'H'" src="/images/avatars/male.png" alt="">
                             <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
                             <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
                             <!--
@@ -415,7 +423,8 @@ padding: 0;
                     // { name: '6', number: 6 },
                     // { name: '7', number: 7 },
                 ],
-                mesaSeleccionada: 1,
+                mesaSeleccionada: null,
+                oldMesaSeleccionada: null,
                 ocultarNombres: false,
             }
         },
@@ -463,11 +472,22 @@ padding: 0;
                 onmove: dragMoveListener,
                 // call this function on every dragend event
                 onend: (event) => {
+                    if (this.mesaSeleccionada.capability == this.mesaSeleccionada.ocuped) {
+                        Swal.fire(
+                            'Error',
+                            'La mesa ya esta a su maximo',
+                            'error'
+                        )
+
+                        return
+                    }
+
                     console.log(event);
                     let dataID = event.currentTarget.dataset.id;
                     let dataX = event.currentTarget.dataset.x;
                     let dataY = event.currentTarget.dataset.y;
                     let tipo = event.currentTarget.dataset.tipo;
+                    let tableID = event.currentTarget.dataset.table;
                     
                     let URL = '/cliente/tables/' + dataID;
                     let URL2 = '/cliente/tables/asignar-mesa/' + dataID;
@@ -486,8 +506,23 @@ padding: 0;
                                     'tableId': this.mesaSeleccionada.id,
                                 }).then((response) => {   
                                     console.log('Funciono prroooooo')
-                                    this.mesaSeleccionada.ocuped++
-                                    // this.obtenerMesas()          
+                                    // let oldTable = this.mesas.find(document => {
+
+                                    //     return document.id == tableID
+                                    // })
+                                    // oldTable.ocuped--
+                                    
+                                    // this.mesaSeleccionada.ocuped++
+
+                                    // let user = this.invitadosSentados.find(doc => {
+                                    //     return doc.id == dataID
+                                    // })
+
+                                    // user.tableName = this.mesaSeleccionada.id
+                                    this.obtenerMesas()
+                                    this.invitados = []
+                                    this.invitadosSentados = []
+                                    this.obtenerInvitados();       
                                 }).catch((error) => {
                                     console.log(error.data);
                                 })
@@ -499,9 +534,10 @@ padding: 0;
 
             function dragMoveListener (event) {
                 var target = event.target
-                // keep the dragged position in the data-x/data-y attributes
+
                 var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
                 var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+                
 
                 // translate the element
                 target.style.webkitTransform =
@@ -546,47 +582,48 @@ padding: 0;
                         console.log(error.data);
                     })
                 })
-                .on('hold', (event) => {
-                    let dataID = event.currentTarget.dataset.id;
-                    let index = event.currentTarget.dataset.index;
-                    let tipo = event.currentTarget.dataset.tipo;
+                // .on('hold', (event) => {
+                //     let dataID = event.currentTarget.dataset.id;
+                //     let index = event.currentTarget.dataset.index;
+                //     let tipo = event.currentTarget.dataset.tipo;
 
-                    let URL = '/cliente/tables/asignar-mesa/' + dataID;
+                //     let URL = '/cliente/tables/asignar-mesa/' + dataID;
 
-                    const { value: table } = Swal.fire({
-                        title: 'Ingresa el nombre o numero de la mesa',
-                        input: 'text',
-                        showCancelButton: true,
-                        inputValidator: (value) => {
-                            if (!value) {
-                                return 'El nombre o numero de mesa no puede ir vacio'
-                            }else{
-                                axios.put(URL, {
-                                    'tipo': tipo,
-                                    'tableName': value,
-                                }).then((response) => {   
-                                    Swal.fire({
-                                        title: 'Correcto',
-                                        text: 'Mesa asignada',
-                                        type: 'success',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                        onClose: () => {
-                                            this.obtenerInvitados();
-                                        }
-                                    })           
+                //     const { value: table } = Swal.fire({
+                //         title: 'Ingresa el nombre o numero de la mesa',
+                //         input: 'text',
+                //         showCancelButton: true,
+                //         inputValidator: (value) => {
+                //             if (!value) {
+                //                 return 'El nombre o numero de mesa no puede ir vacio'
+                //             }else{
+                //                 axios.put(URL, {
+                //                     'tipo': tipo,
+                //                     'tableName': value,
+                //                 }).then((response) => {   
+                //                     Swal.fire({
+                //                         title: 'Correcto',
+                //                         text: 'Mesa asignada',
+                //                         type: 'success',
+                //                         showConfirmButton: false,
+                //                         timer: 1500,
+                //                         onClose: () => {
+                //                             this.obtenerInvitados();
+                //                         }
+                //                     })           
                                     
-                                }).catch((error) => {
-                                    console.log(error.data);
-                                })
-                            }
-                        }
-                    })
-                })
+                //                 }).catch((error) => {
+                //                     console.log(error.data);
+                //                 })
+                //             }
+                //         }
+                //     })
+                // })
 
         },
 
         methods: {
+
             obtenerDatos: function(){
                 let URL = '/index';
                 axios.get(URL).then((response)=>{
@@ -597,6 +634,7 @@ padding: 0;
             },
             
             selectMesa(item){
+                this.oldMesaSeleccionada = this.mesaSeleccionada
                 this.mesaSeleccionada = item   
             },
 
@@ -608,7 +646,14 @@ padding: 0;
                     if(response){
                         console.log(`Estas son las mesas: ${response.data}`)
                         this.mesas = response.data.reverse()
-                        this.mesaSeleccionada = this.mesas[0]
+                        if (this.mesaSeleccionada == null) {
+                            this.mesaSeleccionada = this.mesas[0]
+                        }else{
+                            this.mesaSeleccionada = this.mesas.find(document => {
+                                return document.id == this.mesaSeleccionada.id
+                            })
+                        }
+                        
                     }
                 } catch (error) {
                     console.log(error)
@@ -809,6 +854,7 @@ padding: 0;
                         'error'
                     )
                 }else{
+                    invitado.seated = 1
                     this.invitadosSentados.push(invitado);
                     this.isActive = !this.isActive
                 }
@@ -837,6 +883,7 @@ padding: 0;
                         'error'
                     )
                 }else{
+                    companion.seated = 1
                     this.invitadosSentados.push(companion);
                     this.isActive = !this.isActive
                 }  

@@ -46,7 +46,7 @@
                                     <div class="card mt-2" v-for="(guest, index) in invitados" :key="index">
                                         <div class="row">
                                             <div class="col-md-1 text-center">
-                                                <img v-if="guest.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                <img v-if="guest.genere == 'M'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
                                                 <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                                             </div>
                                             <div class="col-md-2 text-center">
@@ -88,7 +88,7 @@
                                             <div class="card-body">
                                                 <div class="row" v-for="(companion, index) in guest.companions" :key="index">
                                                     <div class="col-md-1 text-center">
-                                                        <img v-if="companion.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                        <img v-if="companion.genere == 'M'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
                                                         <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                                                     </div>
                                                     <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
@@ -205,8 +205,8 @@
                                             <div class="form-material">
                                                 <select class="form-control" name="genere" v-model="acompanante.genere">
                                                     <option>...</option>
-                                                    <option value="MALE">Hombre</option>
-                                                    <option value="FEMALE">Mujer</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
                                                 </select>
                                                 <label for="material-select">Sexo</label>
                                             </div>
@@ -220,7 +220,7 @@
                                             <option value="PENDIENTE">Pendiente</option>
                                             <option value="CANCELADO">Cancelado</option>
                                         </select>
-                                        <label for="material-select">Please Select</label>
+                                        <label for="material-select">Estatus</label>
                                     </div>
                                 </div>
                             </div>
@@ -309,8 +309,8 @@
                                             <div class="form-material">
                                                 <select class="form-control" name="genere" v-model="acompananteEdicion.genere">
                                                     <option>...</option>
-                                                    <option value="MALE">Hombre</option>
-                                                    <option value="FEMALE">Mujer</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
                                                 </select>
                                                 <label for="material-select">Sexo</label>
                                             </div>
@@ -324,7 +324,7 @@
                                             <option value="PENDIENTE">Pendiente</option>
                                             <option value="CANCELADO">Cancelado</option>
                                         </select>
-                                        <label for="material-select">Please Select</label>
+                                        <label for="material-select">Estatus</label>
                                     </div>
                                 </div>
                             </div>
@@ -532,6 +532,17 @@
                             'Acompañante agregado',
                             'success'
                         );
+                        this.acompanante = {
+                            'guest_id': '',
+                            'name': '',
+                            'lastName': '',
+                            'secondLastName': '',
+                            'email': '',
+                            'phone': '',
+                            'genere': '',
+                            'status': 'CONFIRMADO',
+                        }
+                        
                         $('#agregarAcompanante').modal('hide');
                         this.obtenerAcompanantes();
                     }).catch((error) => {

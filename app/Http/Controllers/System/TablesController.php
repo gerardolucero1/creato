@@ -152,13 +152,25 @@ class TablesController extends Controller
 
         if($request->tipo == 'invitado'){
             $guest = Guest::with('companions')->find($id);
+                if (!is_null($guest->tableName)) {
+                    $oldTable = NumberTable::find($guest->tableName);
+                    $oldTable->ocuped = $oldTable->ocuped - 1;
+                    $oldTable->save();
+                }
+                
             $guest->tableName = $table->id;
             $guest->save();
 
             return $guest;
         }else if($request->tipo == 'acompanante'){
             $companion = Companion::find($id);
-            $guest->tableName = $table->id;
+                if (!is_null($companion->tableName)) {
+                    $oldTable = NumberTable::find($companion->tableName);
+                    $oldTable->ocuped = $oldTable->ocuped - 1;
+                    $oldTable->save();
+                }
+                
+            $companion->tableName = $table->id;
             $companion->save();
 
             return $companion;

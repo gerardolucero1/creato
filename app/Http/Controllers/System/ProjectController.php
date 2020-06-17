@@ -357,7 +357,8 @@ class ProjectController extends Controller
     public function mesasEditorIndex($id)
     {
         $project = Project::find($id);
-        return view('system.projects.mesasEditor', compact('project'));
+        $config = Config::find(1);
+        return view('system.projects.mesasEditor', compact('project', 'config'));
     }
 
     public function mesasEditorShow($id)

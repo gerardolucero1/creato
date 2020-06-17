@@ -17,7 +17,7 @@
                     <h1 class="font-w700 text-white mb-10">{{ $project->title }}</h1>
                     <h2 class="h4 font-w400 text-white-op">Andábamos sin buscarnos, pero sabiendo que andábamos para encontrarnos.</h2>
                     <div class="font-size-md text-muted">
-                        <a class="text-body-bg-dark" href="be_pages_generic_profile.php">{{ $project->user->name }}</a> • <span id="projectDate"></span>
+                        <a class="text-body-bg-dark" href="#">{{ $project->user->name }}</a> • <span id="projectDate"></span>
                     </div>
                 </div>
             </div>

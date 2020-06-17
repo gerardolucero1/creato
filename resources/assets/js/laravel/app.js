@@ -14,6 +14,9 @@ Vue.use(VueFuse);
 
 import DataTable from 'laravel-vue-datatable';
 import Vuelidate from 'vuelidate';
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 
 Vue.use(DataTable);
 
