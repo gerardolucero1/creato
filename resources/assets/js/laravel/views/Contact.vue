@@ -393,41 +393,13 @@
                             </div>
                         </div>
                     </div>
-                        <div class="col-12 col-sm-12 col-md-5" style=" background-position: center; background-size: cover;">
-                            <div class="">
-                                <img :src="imagenes.config.contact" width="100%" alt="">
-                            </div>
-                        </div>
+                    <div class="col-12 col-sm-12 col-md-5" style=" background-position: center; background-size: cover;" :style="{ 'background-image': 'url(' + imagenes.config.contact + ')' }">
+                        <!-- <div class="">
+                            <img :src="imagenes.config.contact" width="100%" alt="">
+                        </div> -->
+                    </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-md-7">
-                        <div class="form">
-                            <form action="">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="">Nombre</label>
-                                        <input type="text" style="width: 90%;" v-model="contact.name" required> 
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="">Correo</label>
-                                        <input type="email" style="width: 90%;" v-model="contact.email" required> 
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="">Celular</label>
-                                        <input type="number" style="width: 90%;" v-model="contact.telephone">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="">Mensaje</label>
-                                        <textarea style="width: 90%;" name="message" id="" cols="30" rows="10" v-model="contact.message" required></textarea>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <img src="/images/index.png" width="100%" alt="">
-                    </div>
-                </div> -->
+
             </div>
         </div>
     </section>
