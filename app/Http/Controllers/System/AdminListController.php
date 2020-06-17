@@ -8,6 +8,7 @@ use App\AdminTask;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Config;
 
 class AdminListController extends Controller
 {
@@ -159,7 +160,8 @@ class AdminListController extends Controller
 
     public function indexEvidence()
     {
-        return view('system.client.evidence.index');
+        $config = Config::find(1);
+        return view('system.client.evidence.index', compact('config'));
     }
 
     public function getListsAdmin() 

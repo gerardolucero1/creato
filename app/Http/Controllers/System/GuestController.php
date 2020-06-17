@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Input;
+use App\Config;
 
 class GuestController extends Controller
 {
@@ -22,7 +23,8 @@ class GuestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('system.client.guests.index', compact('user'));
+        $config = Config::find(1);
+        return view('system.client.guests.index', compact('user','config'));
     }
 
     /**

@@ -23,9 +23,9 @@
                     <i class="si si-printer"></i> Imprimir lista
                 </button>
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"><i class="si si-size-fullscreen"></i></button>
-                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                {{-- <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                     <i class="si si-refresh"></i>
-                </button>
+                </button> --}}
             </div>
         </div>
         <div class="block-content">
@@ -34,8 +34,8 @@
                     <p class="h3">Creato Studio</p>
                     <address>
                         {{ \Carbon\Carbon::now()->toFormattedDateString()}}<br>
-                        Chihuahua, Chihuahua<br>
-                        Chihuahua 2000, 33131<br>
+                        {{-- Chihuahua, Chihuahua<br>
+                        Chihuahua 2000, 33131<br> --}}
                         creato-studio@gmail.com
                     </address>
                 </div>
@@ -44,7 +44,7 @@
                     <address>
                         {{ \Carbon\Carbon::parse($project->date)->toFormattedDateString()}}<br>
                         {{ $project->place }}<br>
-                        Chihuahua 2000, 33131<br>
+                        {{-- Chihuahua 2000, 33131<br> --}}
                         {{ $project->user->email }}
                     </address>
                 </div>

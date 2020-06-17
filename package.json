@@ -44,6 +44,7 @@
         "laravel-vue-datatable": "^0.3.7",
         "pusher-js": "^5.0.2",
         "simplebar": "^2.6.1",
+        "v-tooltip": "^2.0.3",
         "vue-chartjs": "^3.5.0",
         "vue-color-picker-wheel": "^0.4.3",
         "vue-fuse": "^2.1.2",

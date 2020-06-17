@@ -75,7 +75,7 @@
                                 <tr v-for="bloque in bloques" :key="bloque.index">
                                     <th class="text-center" scope="row">{{ bloque.id }}</th>
                                     <td>{{ bloque.name }}</td>
-                                    <td v-if="bloque.user != null">{{ bloque.user.name }}</td>
+                                    <td v-if="bloque.user.id != 1">{{ bloque.user.name }}</td>
                                     <td v-else>Bloque general</td>
                                     <td>{{ bloque.lists_task.length }}</td>
                                     <!-- <td class="d-none d-sm-table-cell">
@@ -89,7 +89,7 @@
                                             <a :href="'lista/' + bloque.id" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <button v-if="bloque.user != null" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
+                                            <button v-if="bloque.user.id != 1" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="eliminarBloque(bloque)">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                             <button v-else type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete" @click="iniciarCopiarBloque(bloque)">
@@ -176,7 +176,7 @@
                                         <label for="material-text">Nombre</label>
                                     </div>
                                 </div>
-                                <div class="col-md-12" v-if="actualizarBloque.user != null">
+                                <div class="col-md-12" v-if="actualizarBloque.client_id != 1">
                                     <div class="form-material">
                                         <select v-model="actualizarBloque.client_id" class="form-control" name="listTask_id" id="lista">
                                             <option value="">elije el cliente</option>

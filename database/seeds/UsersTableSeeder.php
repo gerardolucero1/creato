@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $list = BlockList::create([
-            'client_id' => null,
+            'client_id' => 1,
             'name' => 'Bloque General'
         ]);
 

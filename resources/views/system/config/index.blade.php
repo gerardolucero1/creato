@@ -9,6 +9,8 @@
             background-position: center;
             background-size: cover;
             height: 200px;
+            object-fit: cover;
+            object-position: center;
         }
 
 
@@ -19,8 +21,40 @@
 @endsection
 
 @section('content')
+    <div class="bg-primary">
+        <div class="bg-pattern bg-black-op-25">
+            <div class="content content-top text-center">
+                <div class="py-50">
+                    <h1 class="font-w700 text-white mb-10">Configuracion</h1>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('info') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (count($errors))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
 <div class="content">
-    <h2 class="content-heading">Configuración</h2>
     <div class="row">
         <div class="col-md-12">
             <div class="block">
@@ -33,9 +67,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Dashboard</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->dashboard }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#centralModalSm"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -76,9 +108,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Bienvenido</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->welcome }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#bienvenidoModal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -119,9 +149,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Mesas</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->tables }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#mesasModal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -162,9 +190,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">index</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->index }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#indexModal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -205,9 +231,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Ana Paola</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->nosotros1 }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#nosotros1Modal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -248,9 +272,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Ana Maria</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->nosotros2 }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#nosotros2Modal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -291,9 +313,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Gerardo</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->nosotros3 }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#nosotros3Modal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -334,9 +354,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">Nosotros</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->nosotros4 }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#nosotros4Modal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -377,9 +395,7 @@
                                     <div class="options-overlay-content">
                                         <h3 class="h4 text-white mb-5">contacto</h3>
                                         <h4 class="h6 text-white-op mb-15">More Details</h4>
-                                        <a class="btn btn-sm btn-rounded btn-noborder btn-alt-primary min-width-75 img-lightbox" href="{{ $config->contact }}">
-                                            <i class="fa fa-search-plus"></i> View
-                                        </a>
+                                        
                                         <a class="btn btn-sm btn-rounded btn-noborder btn-alt-success min-width-75" href="#" data-toggle="modal" data-target="#contactModal"><i class="fa fa-pencil"></i> Edit</a>
                                     </div>
                                 </div>
@@ -418,4 +434,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            Codebase.layout('header_style_glass');
+        });
+    </script>
+    
 @endsection

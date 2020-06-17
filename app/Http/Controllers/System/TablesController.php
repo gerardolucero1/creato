@@ -5,9 +5,11 @@ namespace App\Http\Controllers\System;
 use App\Guest;
 use App\Companion;
 use App\GuestList;
+use App\NumberTable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Config;
 
 class TablesController extends Controller
 {
@@ -18,7 +20,8 @@ class TablesController extends Controller
      */
     public function index()
     {
-        return view('system.client.tables.index');
+        $config = Config::find(1);
+        return view('system.client.tables.index', compact('config'));
     }
 
     /**
@@ -99,20 +102,28 @@ class TablesController extends Controller
     {
         if($request->tipo == 'invitado'){
             $guest = Guest::with('companions')->find($id);
+                $table = NumberTable::find($guest->tableName);
+                $table->ocuped = $table->ocuped - 1;
+                $table->save();
             $guest->dataX = null;
             $guest->dataY = null;
             $guest->seated = false;
             $guest->tableName = null;
             $guest->save();
+                
 
             return $guest;
         }else if($request->tipo == 'acompanante'){
             $companion = Companion::find($id);
+                $table = NumberTable::find($companion->tableName);
+                $table->ocuped = $table->ocuped - 1;
+                $table->save();
             $companion->dataX = null;
             $companion->dataY = null;
             $companion->seated = false;
             $companion->tableName = null;
             $companion->save();
+                
 
             return $companion;
         }
@@ -135,15 +146,31 @@ class TablesController extends Controller
     }
 
     public function asignarMesa(Request $request, $id){
+        $table = NumberTable::find($request->tableId);
+        $table->ocuped = $table->ocuped + 1;
+        $table->save();
+
         if($request->tipo == 'invitado'){
             $guest = Guest::with('companions')->find($id);
-            $guest->tableName = $request->tableName;
+                if (!is_null($guest->tableName)) {
+                    $oldTable = NumberTable::find($guest->tableName);
+                    $oldTable->ocuped = $oldTable->ocuped - 1;
+                    $oldTable->save();
+                }
+                
+            $guest->tableName = $table->id;
             $guest->save();
 
             return $guest;
         }else if($request->tipo == 'acompanante'){
             $companion = Companion::find($id);
-            $companion->tableName = $request->tableName;
+                if (!is_null($companion->tableName)) {
+                    $oldTable = NumberTable::find($companion->tableName);
+                    $oldTable->ocuped = $oldTable->ocuped - 1;
+                    $oldTable->save();
+                }
+                
+            $companion->tableName = $table->id;
             $companion->save();
 
             return $companion;

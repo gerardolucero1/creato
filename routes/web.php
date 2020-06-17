@@ -107,6 +107,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('dashboard/proyectos/pdf', 'System\ProjectController@pdf')->name('projects.pdf');
         Route::post('dashboard/proyectos/list', 'System\ProjectController@copyList')->name('projects.copyList');
         Route::get('dashboard/proyectos/next', 'System\ProjectController@next')->name('projects.next');
+        Route::get('dashboard/proyectos/mesas-editor/{id}', 'System\ProjectController@mesasEditorIndex')->name('mesasEditor.index');
+        Route::get('dashboard/proyectos/mesas-editor/tables/{id}', 'System\ProjectController@mesasEditorShow')->name('mesasEditor.show');
+        Route::put('dashboard/proyectos/mesas-editor/tables', 'System\ProjectController@mesasEditorUpdate')->name('mesasEditor.update');
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');

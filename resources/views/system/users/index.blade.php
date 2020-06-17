@@ -71,6 +71,7 @@
                                                     {{-- <button type="button" class="btn btn-circle btn-alt-success mr-5 mb-5 js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Profile">
                                                         <i class="fa fa-user"></i>
                                                     </button> --}}
+                                                    @if ($user->id != 1)
                                                     <button onclick="event.preventDefault();
                                                         Swal.fire({
                                                             title: '¿Estas seguro?',
@@ -94,6 +95,8 @@
                                                     style="submit" class="btn btn-circle btn-alt-danger mr-5 mb-5 js-tooltip-enabled">
                                                         <i class="fa fa-times"></i>
                                                     </button>
+                                                    @endif
+                                                    
                                                     <form id="delete-project-{{ $user->id }}" action="{{ route('users.delete', $user->id) }}" method="POST" class="d-inline-block">
                                                         @csrf
                                                         @method('DELETE')

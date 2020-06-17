@@ -42,7 +42,19 @@
             left: 0;
             margin-top: 5px;
             margin-left: 5px;
-        }   
+        }
+
+        .btn-circle{
+            border: 1px solid #f76c6f;
+            background-color: #f76c6f;
+            color: white;
+        }
+
+        .btn-circle:hover{
+            border: 1px solid white;
+            background-color: white;
+            color: #f76c6f;
+        }
     </style>
 @endsection
 

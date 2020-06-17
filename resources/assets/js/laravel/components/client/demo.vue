@@ -56,7 +56,7 @@
                                             <tbody>
                                                 <tr v-for="guest in lista.guests" :key="guest.index">
                                                     <td class="text-center">
-                                                        <img v-if="guest.genere == 'FEMALE'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
+                                                        <img v-if="guest.genere == 'M'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
                                                         <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
                                                     </td>
                                                     <td class="font-w600">{{ guest.name }}</td>
@@ -168,8 +168,8 @@
                                             <div class="form-material">
                                                 <select class="form-control" name="genere" v-model="invitado.genere">
                                                     <option>...</option>
-                                                    <option value="MALE">Hombre</option>
-                                                    <option value="FEMALE">Mujer</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
                                                 </select>
                                                 <label for="material-select">Sexo</label>
                                             </div>
@@ -281,8 +281,8 @@
                                             <div class="form-material">
                                                 <select class="form-control" name="genere" v-model="invitadoEdicion.genere">
                                                     <option>...</option>
-                                                    <option value="MALE">Hombre</option>
-                                                    <option value="FEMALE">Mujer</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
                                                 </select>
                                                 <label for="material-select">Sexo</label>
                                             </div>
