@@ -31,7 +31,7 @@
         width: 100vw;
         height: 100vh;
         padding: 50px 50px;
-        background-image: url('/images/textura.png');
+        background: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url('/images/textura.png');
         background-size: cover;
         background-position: center;
         position: relative;
