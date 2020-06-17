@@ -13,10 +13,10 @@ class ImagesSeeder extends Seeder
     public function run()
     {
         $config = Config::create([
-            'dashboard' => 'http://www.losestelares.com.mx/wp-content/uploads/2016/07/Organizacion-de-boda-3-2.jpg',
-            'welcome' => 'https://www.alcaidesaeventos.com/images/cabecera/slide/alcaidesa-eventos-terraza-bodas-04.jpg', 
-            'tables' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/16d9b4ec65a4600fb6a78f8fba87431f.jpeg', 
-            'index' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/dbb918919ef10319f51d1ec2f484b71f.webp', 
+            'dashboard' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/5719d7acbf0b2c5a77e32dd107444f8a.png',
+            'welcome' => 'http://bodasytradiciones.com/wp-content/uploads/2015/03/bodas-tradiciones-banner-2-1024x296.jpg', 
+            'tables' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/5719d7acbf0b2c5a77e32dd107444f8a.png', 
+            'index' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/71907b2fd9703aac01a424d863a6f5a6.png', 
             'nosotros1' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/b809c0892bd19d49374993b0dcadd83b.png', 
             'nosotros2' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/5afaa099deda26898f0f9af664eb2614.png', 
             'nosotros3' => 'https://creato-studio.s3.us-east-2.amazonaws.com/creatoStudio/8da03a3bd7f31749f0677d2e9ffc3818.png', 

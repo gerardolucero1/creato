@@ -21,8 +21,39 @@
 @endsection
 
 @section('content')
+@if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('info') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (count($errors))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    <div class="bg-primary">
+        <div class="bg-pattern bg-black-op-25">
+            <div class="content content-top text-center">
+                <div class="py-50">
+                    <h1 class="font-w700 text-white mb-10">Configuracion</h1>
+                    <h2 class="h4 font-w400 text-white-op">Creato studio, event design.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <div class="content">
-    <h2 class="content-heading">Configuración</h2>
     <div class="row">
         <div class="col-md-12">
             <div class="block">
@@ -402,4 +433,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            Codebase.layout('header_style_glass');
+        });
+    </script>
+    
 @endsection

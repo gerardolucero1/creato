@@ -20,11 +20,11 @@ class GuestsImport implements ToModel
             'name' => $row[0],
             'lastName' => $row[1],
             'secondLastName' => $row[2],
-            'email' => $row[3],
-            'phone' => $row[4],
-            'guests' => $row[5],
-            'genere' => $row[6],
-            'origin' => $row[7],
+            'email' => $row[7],
+            'phone' => $row[6],
+            'guests' => $row[4],
+            'genere' => $row[3],
+            'origin' => $row[5],
         ]);
     }
 }

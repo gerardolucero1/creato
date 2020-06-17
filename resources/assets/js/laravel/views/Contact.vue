@@ -216,6 +216,8 @@
     }
 
     .input-special{
+        margin-top: 32px;
+        margin-left: 5px;
         display: flex;
     }
 

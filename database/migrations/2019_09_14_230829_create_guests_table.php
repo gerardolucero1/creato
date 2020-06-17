@@ -26,9 +26,9 @@ class CreateGuestsTable extends Migration
             $table->string('dataX')->nullable();
             $table->string('dataY')->nullable();
             $table->boolean('seated')->nullable();
-            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->nullable();
+            $table->enum('status', ['CONFIRMADO', 'PENDIENTE', 'CANCELADO'])->default('PENDIENTE')->nullable();
             $table->enum('origin', ['NOVIA', 'NOVIO']);
-            $table->integer('tableName')->unsigned();
+            $table->integer('tableName')->unsigned()->nullable();
             $table->string('groupName')->nullable();
             $table->timestamps();
 
