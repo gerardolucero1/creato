@@ -9,10 +9,6 @@
         top: 0;
         left: 0;
         touch-action: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
     }
 
     /* .picture img{
@@ -81,7 +77,6 @@
     }
 
     .nombre-invitado{
-        display: block;
         background-color: rgba(255, 255, 255, 0.5);
         color: black;
         border: 1px solid rgba(226, 226, 226, 1);
@@ -142,7 +137,9 @@ padding: 0;
     }
 
     .hidden{
-        opacity: 0;
+        display: none;
+        /* visibility: hidden; */
+        /* opacity: 0; */
     }
 
     .btn-rounded{
@@ -326,10 +323,13 @@ padding: 0;
                     <img v-else :src="imagenes" width="100%" alt="">
                     
                     <div v-for="(invitado, index) in invitadosSentados" :key="index" class="invitado">
-                        <div v-if="invitado.companions" v-tooltip="`${invitado.name} ${invitado.lastName}`" class="picture draggable d-flex justify-content-center align-items-center flex-column" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :data-table="invitado.tableName" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
+                        <div v-if="invitado.companions" v-tooltip="`${invitado.name} ${invitado.lastName}`" class="picture draggable" :data-index="index" :data-tipo="'invitado'" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :data-table="invitado.tableName" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
                             <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'H'" src="/images/avatars/male.png" alt="">
                             <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
-                            <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            <div :class="[ocultarNombres ? 'hidden' : '']">
+                                <p class="nombre-invitado" for="">{{ invitado.name }}</p>
+                            </div>
+                            
                             
                             <!-- <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'invitado')">Eliminar</button>
@@ -339,7 +339,9 @@ padding: 0;
                         <div v-else  v-tooltip="`${invitado.name} ${invitado.lastName}`" class="picture draggable" :data-tipo="'acompanante'" :data-index="index" :data-x="invitado.dataX" :data-y="invitado.dataY" :data-id="invitado.id" :data-table="invitado.tableName" :style="{ transform: 'translate(' + invitado.dataX + 'px,' + invitado.dataY + 'px)' }" @click="obtenerInvitado(invitado)">
                             <img :width="`${size}px`" :height="`${size}px`" v-if="invitado.genere == 'H'" src="/images/avatars/male.png" alt="">
                             <img :width="`${size}px`" :height="`${size}px`" v-else src="/images/avatars/female.png" alt="">
-                            <label :class="[ocultarNombres ? 'hidden' : '']" class="nombre-invitado" for="">{{ invitado.name }}</label>
+                            <div :class="[ocultarNombres ? 'hidden' : '']">
+                                <p class="nombre-invitado" for="">{{ invitado.name }}</p>
+                            </div>
                             <!--
                             <div class="acciones">
                                 <button @click="eliminarInvitado(invitado, index, tipo = 'acompanante')">Eliminar</button>
