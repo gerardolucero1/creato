@@ -294,6 +294,7 @@ export default {
     mounted(){
         this.getProject()
         this.getProjectImages()
+        this.obtenerDatos()
     },
 
     watch:{
