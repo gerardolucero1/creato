@@ -223,7 +223,7 @@
                 <div class="row box-2">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12" style="padding: 0 0; font-size: 1.1em;">
+                            <div class="col-md-12" style="padding: 0 0; font-size: 1.0em;">
                                 <p class="text-justify">Somos una firma mexicana de talentos enfocada en crear experiencias únicas. Tomamos tu inspiración y emoción para moldear el diseño de tus eventos; escucharte y entenderte nos permite materializar tus sueños y reflejar tu esencia en cada elemento.</p>
                                 <br>
                                 <p class="text-justify">Planeamos y estructuramos cada uno de los aspectos técnicos para que el proceso de creación sea sinónimo de tranquilidad y, sobre todo, felicidad. Ejecutamos cada detalle minúsculo para que en su conjunto logremos la espectacularidad que te mereces.</p>

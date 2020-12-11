@@ -198,7 +198,7 @@
         <div class="box-main">
             <div class="main-menu-container" :style="myStyle">
                 <div class="main-menu-btn" @mouseover="menu = true" @mouseleave="menu = false">
-                    <p>menú</p>
+                    <p>Menú</p>
                     <i class="menu fas fa-bars"></i>
                 </div>
                 <div class="main-menu-logo">
@@ -210,19 +210,19 @@
                 <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
                     <ul>
                         <li>
-                            <router-link to="/">- inicio</router-link>
+                            <router-link to="/">- Inicio</router-link>
                         </li>
                         <li>
-                            <router-link to="/about">- nosotros</router-link>
+                            <router-link to="/about">- Nosotros</router-link>
                         </li>
                         <li>
-                            <router-link to="/projects">- proyectos</router-link>
+                            <router-link to="/projects">- Proyectos</router-link>
                         </li>
                         <li>
-                            <router-link to="/contact">- contacto</router-link>
+                            <router-link to="/contact">- Contacto</router-link>
                         </li>
                         <li>
-                            <a href="/login">- novias creato</a>
+                            <a href="/login">- Novias Creato</a>
                         </li>
                     </ul>
                 </section>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="content-heading">Mi evento<small>Galeria</small>
+        <h2 class="content-heading">Mi evento<small>Galería</small>
             <button type="button" class="btn btn-lg btn-circle btn-outline-info mr-5 mb-5 ml-4" @click="CargarImagen()">
                 <i class="fa fa-plus"></i>
             </button>

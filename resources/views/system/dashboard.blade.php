@@ -5,7 +5,7 @@
     <div class="container mt-4">
         <div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="col-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="/dashboard/proyectos">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-briefcase fa-3x text-body-bg-dark"></i>
@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="col-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="/dashboard/portafolio">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-folder fa-3x text-body-bg-dark"></i>
@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="col-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="#">
+                <a class="block block-link-shadow text-right" href="/dashboard/block">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-notebook fa-3x text-body-bg-dark"></i>
@@ -38,7 +38,7 @@
                 </a>
             </div>
             <div class="col-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="/dashboard/clientes">
                     <div class="block-content block-content-full clearfix">
                         <div class="float-left mt-10 d-none d-sm-block">
                             <i class="si si-users fa-3x text-body-bg-dark"></i>

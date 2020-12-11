@@ -354,7 +354,7 @@
                 </section>
                 <div class="row box-1">
                     <h2>Nos encantaría escuchar de ti</h2>
-                    <h3>Contáctanos para obtener mas información de nosotros y nuestros servicios.</h3>
+                    <h3>Contáctanos para obtener mas información acerca de nosotros y nuestros servicios.</h3>
                 </div>
                 <div class="row box-2">
                     <div class="col-12 col-sm-12 col-md-7">
