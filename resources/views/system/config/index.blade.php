@@ -428,6 +428,7 @@
                         </div>
                         <!-- Termina imagen bienvenido -->
                         <colorpicker-component/>
+                        
                     </div>
                 </div>
             </div>

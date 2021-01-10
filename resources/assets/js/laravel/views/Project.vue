@@ -249,7 +249,7 @@
                         :key="imageIndex"
                         @click="index = imageIndex"
                         style="cursor: pointer;"
-                        :style="{ backgroundImage: 'url(' + image + ')', height: 'calc((100vh - 150px) / 1.2)' }"
+                        :style="{ backgroundImage: 'url(' + image + ')', height: 'calc((100vh - 95px) / 1.1)' }"
                     ></div>
                     <div class="col-1 col-md-1 arrow-content d-flex justify-content-end align-items-center">
                         <i v-show="count != lastPage" class="arrow fas fa-caret-right" @click="count++"></i>

@@ -67,7 +67,7 @@ export default {
 
                 axios.post(URL, 
                     this.colorNuevo
-                ).then((response) => {
+                ).then((response) => { 
         
                 })
         },

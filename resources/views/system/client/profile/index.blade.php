@@ -102,7 +102,7 @@
                             <div class="col-md-2">
                                 <div class="m-5">
                                     <a class="img-link" href="#" data-toggle="modal" data-target="#obtenerFotosPerfil">
-                                        <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ Auth::user()->profile->photo }}" alt="">
+                                        <img class="img-avatar img-avatar128 img-avatar-thumb" src="{{ Auth::user()->profile->photo }}" alt=""> 
                                     </a>
                                 </div>
                             </div>
