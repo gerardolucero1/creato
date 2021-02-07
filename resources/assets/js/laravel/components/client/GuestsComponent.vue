@@ -51,6 +51,12 @@
                                         <table class="table table-striped table-vcenter">
                                             <thead>
                                                 <tr>
+                                                <th>
+                                                    <label class="form-checkbox">
+                                                        <input type="checkbox" v-model="selectAll" @click="select">
+                                                        <i class="form-icon"></i>
+                                                    </label>
+                                                </th>
                                                     <th class="text-center" style="width: 100px;"><i class="si si-user"></i></th>
                                                     <th>Nombre</th>
                                                     <th style="width: 30%;">Apellidos</th>
@@ -63,6 +69,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr v-for="guest in lista.guests" :key="guest.index">
+                                                    <td>
+                                                        <label class="form-checkbox">
+                                                            <input type="checkbox" :value="guest.id" v-model="selected">
+                                                            <i class="form-icon"></i>
+                                                        </label>
+                                                    </td>
                                                     <td class="text-center">
                                                         <img v-if="guest.genere == 'M'" class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219961.png" alt="">
                                                         <img v-else class="img-avatar img-avatar48" src="https://image.flaticon.com/icons/png/512/219/219957.png" alt="">
@@ -379,6 +391,8 @@ export default {
             nombreGrupo: '',
 
             groups: null,
+            selected: [],
+		    selectAll: false
         }
     },
 
@@ -392,6 +406,7 @@ export default {
     },
 
     methods: {
+        
         obtenerGrupos: function(){
             let URL = '/cliente/groups/' + this.user.id;
 
@@ -515,6 +530,17 @@ export default {
                     });
                 }
             });
+        },
+
+         select() {
+            this.selected = [];
+            this.guests;
+
+            if (!this.selectAll) {
+                for (let guest in this.guests) {
+                    console.log("hasta aqui todo bien"); 
+                }
+            }
         },
     }
 }

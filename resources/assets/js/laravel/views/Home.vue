@@ -76,6 +76,14 @@
         margin-left: -50px;
         color: #545454;
         z-index: 1000;
+        width: 400px;
+        transition: transform 1s;
+    }
+    .box-tag-container:hover{
+        padding: 20px 50px;
+        margin-left: -50px;
+        z-index: 1000;
+        transform: translate(-350px);
     }
 
     .box-tag-container p:nth-child(1){
@@ -191,6 +199,7 @@
     and (orientation: portrait) { 
         
     }
+
 </style>
 
 <template>
@@ -205,7 +214,7 @@
                     <img src="/images/creato-logo-2.png" alt="">
                 </div>
             </div>
-
+                        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
             <div class="box-content">
                 <section class="menu-container" :class="[menu ? 'active' : '']" @mouseover="menu = true" @mouseleave="menu = false">
                     <ul>
@@ -234,8 +243,7 @@
                     </button>
                     <!-- <iframe src="https://player.vimeo.com/video/418283179?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="fullscreen;" allowfullscreen></iframe> -->
                 </div>
-                
-                <div class="box-tag-container"  :style="myStyle2" v-for="imagen in imagenes" :key="imagen.index">
+                <div id="animated" class="box-tag-container"  :style="myStyle2" v-for="imagen in imagenes" :key="imagen.index">
                     <img :src="imagen.index" width="300px" alt=""> 
                 </div>
             </div>
@@ -246,8 +254,8 @@
 <script>
 export default {
     name: 'Inicio',
-
     data(){
+        show: true;
         return{
             menu: false,
             sound: true,
@@ -283,7 +291,7 @@ export default {
             let video = document.getElementById('video-source')
             this.sound = !this.sound
             video.muted = this.sound;
-        }
+        },
     }
 }
 </script>
