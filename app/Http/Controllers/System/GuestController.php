@@ -117,6 +117,17 @@ class GuestController extends Controller
         $guest->delete();
     }
 
+    public function deleteList(Request $request)
+    {
+        
+        $data = json_decode(file_get_contents("php://input"));
+        foreach ($data as $guest){
+            $guest = Guest::find($guest);
+            $guest->delete();
+        }
+        
+    }
+
     public function importExcel(Request $request){
             try {
                 $file = $request->file('excel');

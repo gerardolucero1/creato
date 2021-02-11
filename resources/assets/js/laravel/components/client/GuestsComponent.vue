@@ -25,6 +25,9 @@
                         <button type="button" class="btn btn-rounded min-width-125 mb-10" data-toggle="modal" data-target="#agregarInvitado">
                             <i class="fa fa-plus mr-5"></i>Invitado
                         </button>
+                        <button v-if="userIds.length != 0" type="button" class="btn btn-rounded btn-alt-danger min-width-125 mb-10" data-toggle="modal" @click="eliminarseleccion(userIds)">
+                            <i class="si si-trash mr-5"></i>Eliminar Selección
+                        </button>
                     </div>
                 </div>
             </div>
@@ -53,7 +56,7 @@
                                                 <tr>
                                                 <th>
                                                     <label class="form-checkbox">
-                                                        <input type="checkbox" v-model="selectAll" @click="select">
+                                                        <input type="checkbox" v-model="allSelected">
                                                         <i class="form-icon"></i>
                                                     </label>
                                                 </th>
@@ -71,7 +74,7 @@
                                                 <tr v-for="guest in lista.guests" :key="guest.index">
                                                     <td>
                                                         <label class="form-checkbox">
-                                                            <input type="checkbox" :value="guest.id" v-model="selected">
+                                                            <input type="checkbox" :value="guest.id" v-model="userIds">
                                                             <i class="form-icon"></i>
                                                         </label>
                                                     </td>
@@ -391,8 +394,8 @@ export default {
             nombreGrupo: '',
 
             groups: null,
-            selected: [],
-		    selectAll: false
+		    allSelected: false,
+            userIds: []
         }
     },
 
@@ -405,7 +408,52 @@ export default {
         this.obtenerGrupos();
     },
 
+    watch:{
+        allSelected() {
+        
+                if(this.allSelected){
+                    this.userIds =[]
+                    this.lista.guests.forEach(item => {
+                        this.userIds.push(item.id);
+                    })
+                }
+                else(this.userIds =[])
+            
+        },
+    },
+
     methods: {
+
+        eliminarseleccion: function(userIds){
+            console.log(userIds);
+            
+            let URL = '/cliente/lista/eliminar';
+
+            Swal.fire({
+                title: '¿Quieres eliminar a los invitados seleccionados? ',
+                text: "No podras revertir esta accion",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, ¡eliminalos!',
+                cancelButtonText: '¡No los elimines!'
+                }).then((result) => {
+                if (result.value) {
+                    axios.post(URL, this.userIds).then((response) => {
+                        Swal.fire(
+                            'Buen trabajo!',
+                            'Invitado eliminado',
+                            'success'
+                        );
+                        this.obtenerLista();
+                        this.userIds =[]
+                    }).catch((error) => {
+                        console.log(error.data);
+                    });
+                }
+            });
+        },
         
         obtenerGrupos: function(){
             let URL = '/cliente/groups/' + this.user.id;
@@ -530,18 +578,7 @@ export default {
                     });
                 }
             });
-        },
-
-         select() {
-            this.selected = [];
-            this.guests;
-
-            if (!this.selectAll) {
-                for (let guest in this.guests) {
-                    console.log("hasta aqui todo bien"); 
-                }
-            }
-        },
+        }
     }
 }
 </script>

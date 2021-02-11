@@ -168,6 +168,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('cliente/get-evidence/{id}', 'System\AdminListController@getEvidence')->name('evidence.getEvidence');
     //Lista de invitados
     Route::resource('cliente/lista', 'System\GuestController');
+    //Eliminar lista de invitados
+    Route::post('cliente/lista/eliminar', 'System\GuestController@deleteList')->name('list.delete');
 
     //Importar excel invitados
     Route::post('cliente/excel/import', 'System\GuestController@importExcel')->name('guests.import.excel');
