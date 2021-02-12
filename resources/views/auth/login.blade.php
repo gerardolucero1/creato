@@ -10,6 +10,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            background-color: url({{ $config->color }});
             position: absolute;
             top: 0;
             left: 0;
@@ -20,7 +21,7 @@
 @section('content')
 <div class="bg-image" id="background-image-login">
     <div class="row mx-0 bg-black-op">
-        <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
+        <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end"> 
             <div class="p-30 invisible" data-toggle="appear">
                 <p class="font-size-h3 font-w600 text-white">
                     Event design.
