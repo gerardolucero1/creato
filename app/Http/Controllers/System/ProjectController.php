@@ -377,4 +377,14 @@ class ProjectController extends Controller
         
         return;
     }
+
+    public function editTables(Request $request)
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        foreach ($data->id as $table){
+            $table = NumberTable::find($table);
+            $table->capability = $data->value;
+            $table->save();
+        }
+    }
 }
