@@ -202,4 +202,15 @@ class TablesController extends Controller
         return $user->project->tables;
     }
 
+    public function deleteTable(Request $request)
+    {
+        
+        $data = json_decode(file_get_contents("php://input"));
+        foreach ($data as $table){
+            $table = NumberTable::find($table);
+            $table->delete();
+        }
+        
+    }
+
 }

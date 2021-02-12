@@ -26,7 +26,7 @@
                             <i class="fa fa-plus mr-5"></i>Invitado
                         </button>
                         <button v-if="userIds.length != 0" type="button" class="btn btn-rounded btn-alt-danger min-width-125 mb-10" data-toggle="modal" @click="eliminarseleccion(userIds)">
-                            <i class="si si-trash mr-5"></i>Eliminar Selección
+                            <i class="si si-trash mr-5"></i>
                         </button>
                     </div>
                 </div>
@@ -443,7 +443,7 @@ export default {
                     axios.post(URL, this.userIds).then((response) => {
                         Swal.fire(
                             'Buen trabajo!',
-                            'Invitado eliminado',
+                            'Invitados eliminados',
                             'success'
                         );
                         this.obtenerLista();

@@ -110,6 +110,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('dashboard/proyectos/mesas-editor/{id}', 'System\ProjectController@mesasEditorIndex')->name('mesasEditor.index');
         Route::get('dashboard/proyectos/mesas-editor/tables/{id}', 'System\ProjectController@mesasEditorShow')->name('mesasEditor.show');
         Route::put('dashboard/proyectos/mesas-editor/tables', 'System\ProjectController@mesasEditorUpdate')->name('mesasEditor.update');
+        //Eliminar mesas
+        Route::post('/dashboard/proyectos/mesas-editor/eliminarselect', 'System\TablesController@deleteTable')->name('table.delete');
+        //editar mesas
+        Route::post('/dashboard/proyectos/mesas-editor/tables/multiple', 'System\ProjectController@editTables')->name('tables.edit');
+        
 
     // Events routes
     Route::resource('dashboard/events', 'System\EventController');
