@@ -34,7 +34,7 @@
         "@fullcalendar/daygrid": "^4.3.0",
         "@fullcalendar/interaction": "^4.3.0",
         "@fullcalendar/vue": "^4.3.1",
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "interactjs": "^1.4.0-rc.13",
         "jquery-countto": "^1.2.0",
         "jquery-scroll-lock": "^3.1.3",
