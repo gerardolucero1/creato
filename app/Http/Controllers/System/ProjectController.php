@@ -72,16 +72,16 @@ class ProjectController extends Controller
         $project = Project::create($request->all());
 
         // Store in AWS S3
-        if($archivo = $request->file('banner')){
+        // if($archivo = $request->file('banner')){
 
-            $md5Name = md5_file($archivo->getRealPath());
-            $guessExtension = $archivo->guessExtension();
-            $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
+        //     $md5Name = md5_file($archivo->getRealPath());
+        //     $guessExtension = $archivo->guessExtension();
+        //     $path = $archivo->storeAs('creatoStudio', $md5Name.'.'.$guessExtension  ,'s3');
 
-            $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
+        //     $url = 'https://creato-studio.s3.us-east-2.amazonaws.com/';
 
-            $project->fill(['banner' => asset($url.$path)])->save();
-        }
+        //     $project->fill(['banner' => asset($url.$path)])->save();
+        // }
 
         // Obtenemos el proyecto creado
         $project = Project::orderBy('id', 'DESC')->first();

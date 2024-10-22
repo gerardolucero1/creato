@@ -20796,7 +20796,7 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\js\codebase\app.js */"./resources/assets/js/codebase/app.js");
+module.exports = __webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/js/codebase/app.js */"./resources/assets/js/codebase/app.js");
 
 
 /***/ })

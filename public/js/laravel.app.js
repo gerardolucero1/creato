@@ -44528,7 +44528,7 @@ exports.i(__webpack_require__(/*! -!../../../../../../node_modules/css-loader??r
 exports.i(__webpack_require__(/*! -!../../../../../../node_modules/css-loader??ref--11-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!@fullcalendar/daygrid/main.css */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@fullcalendar/daygrid/main.css"), "");
 
 // module
-exports.push([module.i, "\n.fc-title {\r\n  color: #fff;\n}\n.fc-title:hover {\r\n  cursor: pointer;\n}\n.project-banner{\r\n            width: 100%;\r\n            padding-top: 50%; /* 1:1 Aspect Ratio */\r\n            background-size: cover;\r\n            background-position: center;\r\n            position: relative; /* If you want text inside of it */\n}\r\n", ""]);
+exports.push([module.i, "\n.fc-title {\n  color: #fff;\n}\n.fc-title:hover {\n  cursor: pointer;\n}\n.project-banner{\n            width: 100%;\n            padding-top: 50%; /* 1:1 Aspect Ratio */\n            background-size: cover;\n            background-position: center;\n            position: relative; /* If you want text inside of it */\n}\n", ""]);
 
 // exports
 
@@ -132391,7 +132391,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\r\n                            Close\r\n                        "
+            "\n                            Close\n                        "
           )
         ]
       )
@@ -158973,13 +158973,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\js\laravel\app.js */"./resources/assets/js/laravel/app.js");
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\main.scss */"./resources/assets/sass/main.scss");
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\codebase\themes\corporate.scss */"./resources/assets/sass/codebase/themes/corporate.scss");
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\codebase\themes\earth.scss */"./resources/assets/sass/codebase/themes/earth.scss");
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\codebase\themes\elegance.scss */"./resources/assets/sass/codebase/themes/elegance.scss");
-__webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\codebase\themes\flat.scss */"./resources/assets/sass/codebase/themes/flat.scss");
-module.exports = __webpack_require__(/*! C:\Users\Erik\Documents\GitHub\creato\resources\assets\sass\codebase\themes\pulse.scss */"./resources/assets/sass/codebase/themes/pulse.scss");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/js/laravel/app.js */"./resources/assets/js/laravel/app.js");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/main.scss */"./resources/assets/sass/main.scss");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/codebase/themes/corporate.scss */"./resources/assets/sass/codebase/themes/corporate.scss");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/codebase/themes/earth.scss */"./resources/assets/sass/codebase/themes/earth.scss");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/codebase/themes/elegance.scss */"./resources/assets/sass/codebase/themes/elegance.scss");
+__webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/codebase/themes/flat.scss */"./resources/assets/sass/codebase/themes/flat.scss");
+module.exports = __webpack_require__(/*! /Users/gerardolucero/Desktop/proyectos/laravel/creato-old/resources/assets/sass/codebase/themes/pulse.scss */"./resources/assets/sass/codebase/themes/pulse.scss");
 
 
 /***/ })
